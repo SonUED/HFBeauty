@@ -1,0 +1,68 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Montserrat";
+}
+.header {
+  display: flex;
+  height: 10rem;
+  background-color: rgb(228, 228, 228);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+}
+.logo img {
+  width: 10rem;
+  padding: 1rem 1rem;
+}
+.form-section {
+  display: flex;
+  height: 50vh;
+  width: 30%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+}
+.form-section form {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+}
+label {
+  font-size: 1.2rem;
+}
+.form-section form input {
+  padding: 1rem;
+  margin: 0.8rem 0rem;
+  opacity: 0.8;
+  outline: none;
+  transition: opacity 0.1s linear;
+}
+.error {
+  border: 2px solid red;
+  border-radius: 3px;
+}
+.form-section form input:hover {
+  opacity: 1;
+  outline: none;
+}
+.form-section form input[type="submit"] {
+  color: white;
+  background: rgb(235, 113, 65);
+  border: none;
+}
+footer {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  bottom: 0;
+  width: 100%;
+  padding: 2rem;
+  background-color: rgb(228, 228, 228);
+  font-size: 2rem;
+}
