@@ -1,0 +1,32 @@
+var users = [
+  {
+    maKH: 1,
+    tenKH: "Nguyen Van A",
+    ngaySinh: "1/1/1999",
+    anhDaiDien: "",
+    mail: "nva@gmail.com",
+    soDienThoai: "0123456789",
+    diaChi: "1 Hoa Lien Hoa Vang",
+    tenTaiKhoan: "nva",
+  },
+  {
+    maKH: 2,
+    tenKH: "Nguyen Van B",
+    ngaySinh: "2/2/1999",
+    anhDaiDien: "",
+    mail: "nvc@gmail.com",
+    soDienThoai: "0123456781",
+    diaChi: "2 Hoa Lien Hoa Vang",
+    tenTaiKhoan: "nvb",
+  },
+  {
+    maKH: 3,
+    tenKH: "Nguyen Van C",
+    ngaySinh: "3/3/1999",
+    anhDaiDien: "",
+    mail: "nvc@gmail.com",
+    soDienThoai: "0123456781",
+    diaChi: "3 Hoa Lien Hoa Vang",
+    tenTaiKhoan: "nvc",
+  },
+];
