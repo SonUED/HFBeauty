@@ -31,11 +31,14 @@
     />
  
     <!-- Your CSS -->
-    <link rel="stylesheet" href="../css/userManager.css" />
+    <link rel="stylesheet" href="../css/user_manager.css" />
   </head>
-  <script src="../js/userManager.js"></script>
+  <script src="../js/user_manager.js"></script>
 
-  <body onload="loadTable()">
+  <body onload="loadTable(gUsers)">
+    <div class="search-box">
+      <input type="text" name="search" id="search" onkeyup="searching(this.value)">
+    </div>
     <div class="content " >
       <div class="tbl-box">
         <table class="table" id="tbl">

@@ -1,4 +1,4 @@
-var users = [
+var gUsers = [
   {
     tenTaiKhoan: "nva",
     tenKH: "Nguyen Van A",
@@ -17,7 +17,7 @@ var users = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX-g7iDC3RkcWjMYAEJ-ogKQwfsJnPXns4aQ&usqp=CAU",
     mail: "nvc@gmail.com",
     soDienThoai: "0123456781",
-    diaChi: "2 Hoa Lien Hoa Vang",
+    diaChi: "2 Lien Chieu",
   },
   {
     tenTaiKhoan: "nvc",
@@ -27,24 +27,45 @@ var users = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX-g7iDC3RkcWjMYAEJ-ogKQwfsJnPXns4aQ&usqp=CAU",
     mail: "nvc@gmail.com",
     soDienThoai: "0123456781",
-    diaChi: "3 Hoa Lien Hoa Vang",
+    diaChi: "3 Hai Chau",
   },
 ];
 
 function setUsersIntoLocalStorage() {
-  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("users", JSON.stringify(gUsers));
 }
 
 function getUsersFromLocalStorage() {
-  users = JSON.parse(localStorage.getItem("users"));
+  gUsers = JSON.parse(localStorage.getItem("users"));
 }
 
 function deleteUser(tenTaiKhoan) {
-  users = users.filter((eachUser) => eachUser.tenTaiKhoan != tenTaiKhoan);
-  loadTable();
+  gUsers = gUsers.filter((eachUser) => eachUser.tenTaiKhoan != tenTaiKhoan);
+  loadTable(gUsers);
 }
 
-function loadTable() {
+function searching(inputText) {
+  inputText = inputText.toLowerCase().trim();
+  inputText = inputText.replace(/\s\s+/g, " ");
+
+  if (inputText == "") {
+    loadTable(gUsers);
+    return;
+  }
+
+  let keywords = inputText.split(" ");
+  let sUsers = gUsers.filter((eachUser) => {
+    return Object.keys(eachUser).some((key) => {
+      return keywords.reduce(
+        (acc, word) => acc && eachUser[key].toLowerCase().includes(word),
+        true
+      );
+    });
+  });
+  loadTable(sUsers);
+}
+
+function loadTable(users) {
   let tblBody = document.querySelector("#tblBody");
   let no = 0;
   tblBody.innerHTML = "";
