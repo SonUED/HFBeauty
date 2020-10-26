@@ -3,6 +3,7 @@ body {
   font-weight: 500;
   background-color: #fff;
   color: #2d2d2d;
+  letter-spacing: 0.02rem;
 }
 
 a {
@@ -40,7 +41,6 @@ a {
   padding: 9px 9px 9px 20px;
   margin-bottom: 20px;
   font-size: 12px;
-  letter-spacing: 0.02rem;
   text-transform: uppercase;
   background-color: #f7f7f7;
 }
@@ -162,6 +162,7 @@ a {
 ****************************************/
 .collection {
   /******* HEADER *******/
+  /******* LIST *******/
 }
 
 .collection__sidebar {
@@ -183,6 +184,23 @@ a {
   font-family: "Oswald", sans-serif;
   font-weight: 600;
   font-size: 24px;
+}
+
+/****************************************
+		SECTION description
+****************************************/
+.collection__des h2 {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.collection__des p {
+  margin-bottom: 10px;
+  font-family: "Arimo", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 /****************************************

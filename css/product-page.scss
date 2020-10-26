@@ -10,6 +10,7 @@ body {
   font-weight: 500;
   background-color: #fff;
   color: $primaryColor;
+  letter-spacing: 0.02rem;
 }
 
 a {
@@ -44,7 +45,6 @@ a {
   margin-bottom: 20px;
 
   font-size: 12px;
-  letter-spacing: 0.02rem;
   text-transform: uppercase;
 
   background-color: #f7f7f7;
@@ -185,6 +185,27 @@ a {
       font-weight: 600;
       font-size: 24px;
     }
+  }
+
+  /******* LIST *******/
+}
+
+/****************************************
+		SECTION description
+****************************************/
+.collection__des {
+  h2 {
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+
+  p {
+    margin-bottom: 10px;
+    font-family: $secondaryFont, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
   }
 }
 
