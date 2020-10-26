@@ -28,8 +28,9 @@ a {
 }
 
 /****************************************
-		TOOLBAR
+          REUSED COMPONENT
 ****************************************/
+/******* TOOLBAR *******/
 .toolbar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -137,8 +138,114 @@ a {
           box-shadow: none;
 }
 
+.toolbar .dropdown-item {
+  text-transform: none;
+}
+
 .toolbar .dropdown-item:hover {
   background-color: #e0e5e2;
+}
+
+/******* CARD *******/
+.card {
+  border: none;
+}
+
+.card img {
+  height: 220px;
+}
+
+.card-top {
+  position: relative;
+}
+
+.card-top .card-label,
+.card-top .card-quick-view {
+  position: absolute;
+  font-size: 12px;
+}
+
+.card-top .card-label {
+  top: 20px;
+  padding: 2px 5px;
+  font-family: "Arimo", sans-serif;
+  color: white;
+  background-color: #e7040f;
+}
+
+.card-top .card-label strong {
+  font-weight: 400;
+}
+
+.card-top .card-quick-view {
+  visibility: hidden;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 5px 10px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: white;
+  -webkit-box-shadow: 0 0 6px 0.1px #b8bab9;
+          box-shadow: 0 0 6px 0.1px #b8bab9;
+}
+
+.card-top .card-quick-view:hover {
+  color: white;
+  background-color: black;
+}
+
+.card-body {
+  padding: 10px 0 15px;
+}
+
+.card-body-title, .card-body-subtitle {
+  height: 23px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.card-body-title, .card-body-text {
+  font-family: "Arimo", sans-serif;
+}
+
+.card-body-subtitle,
+.card-body .btn {
+  font-family: "Oswald";
+  text-transform: uppercase;
+}
+
+.card-body-title:hover {
+  cursor: pointer;
+  color: #e7040f;
+}
+
+.card-body .price-box {
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e7040f;
+}
+
+.card-body .btn {
+  visibility: hidden;
+  width: 100%;
+  padding: 9px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #ff416a;
+  border: 1px solid black;
+}
+
+.card-body .btn:hover {
+  background-color: #ff722e;
+  border: 1px solid #ff416a;
 }
 
 /****************************************
@@ -162,7 +269,7 @@ a {
 ****************************************/
 .collection {
   /******* HEADER *******/
-  /******* LIST *******/
+  /******* ITEM *******/
 }
 
 .collection__sidebar {
@@ -184,6 +291,23 @@ a {
   font-family: "Oswald", sans-serif;
   font-weight: 600;
   font-size: 24px;
+}
+
+.collection__item {
+  margin-bottom: 5px;
+}
+
+.collection__item:hover {
+  padding: -15px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 0 5px 0.1px #b8bab9;
+          box-shadow: 0 0 5px 0.1px #b8bab9;
+}
+
+.collection__item:hover .btn,
+.collection__item:hover .card-quick-view {
+  cursor: pointer;
+  visibility: visible;
 }
 
 /****************************************
