@@ -285,14 +285,9 @@ a {
 	font-size: 17px;
 }
 /****************************************
-		SECTION collection
+		SECTION collection content
 ****************************************/
 .collection {
-	&__sidebar {
-		height: 100px;
-		background-color: red;
-	}
-
 	/******* HEADER *******/
 	&__image {
 		margin-bottom: 33px;
@@ -316,13 +311,25 @@ a {
 
 		&:hover {
 			padding: -15px;
-			border-radius: 2px;
 			box-shadow: 0 0 5px 0.1px #b8bab9;
 
 			.btn,
 			.card-quick-view {
 				cursor: pointer;
 				visibility: visible;
+			}
+		}
+
+		&--featured {
+			width: 95%;
+			margin: 0 auto;
+
+			.btn {
+				visibility: visible;
+			}
+
+			&:hover {
+				box-shadow: none;
 			}
 		}
 	}
@@ -375,5 +382,43 @@ a {
 .brand {
 	.brand__block {
 		padding: 38px 0;
+	}
+}
+
+/****************************************
+		SECTION sidebar
+****************************************/
+// .sidebar {
+// 	background-color: red;
+// 	height: 1000px;
+// }
+
+.featured-product {
+	&__title {
+		margin-bottom: 30px;
+		text-align: left;
+
+		h3 {
+			padding-bottom: 8px;
+
+			font-size: 16px;
+			font-weight: 600;
+			line-height: 22px;
+			border-bottom: 1px solid #efefef;
+
+			span {
+				position: relative;
+			}
+
+			span::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -9px;
+				width: 100%;
+				height: 2px;
+				background: #000;
+			}
+		}
 	}
 }
