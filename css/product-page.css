@@ -199,7 +199,6 @@ ul {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   padding: 5px 10px;
-  font-family: "Oswald", sans-serif;
   font-weight: 400;
   line-height: 20px;
   text-align: center;
@@ -238,7 +237,6 @@ ul {
 
 .card-body .card-subtitle,
 .card-body .btn {
-  font-family: "Oswald";
   text-transform: uppercase;
 }
 
@@ -350,7 +348,6 @@ ul {
 .collection__title h1 {
   height: 30px;
   color: #000000;
-  font-family: "Oswald", sans-serif;
   font-weight: 600;
   font-size: 24px;
 }
@@ -417,7 +414,6 @@ ul {
 .recently-viewed-products__title h3 {
   margin-bottom: 12px;
   padding: 0 25px;
-  font-family: "Oswald", sans-serif;
   font-size: 24px;
   font-weight: 600;
 }
@@ -432,6 +428,12 @@ ul {
 /****************************************
 		SECTION sidebar
 ****************************************/
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5vh;
+}
+
 .sidebar__filter .card-body label {
   margin-bottom: 10px;
   padding-left: 15px;
