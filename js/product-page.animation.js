@@ -1,6 +1,10 @@
 const viewModeGrid = document.querySelector('.view-mode--grid');
 const viewModeList = document.querySelector('.view-mode--list');
 
+const closeQuickViewBtn = document.querySelector('.close-button');
+const showQuickViewBtns = document.querySelectorAll('.card-quick-view-btn');
+const quickViewOverlay = document.querySelector('.quick-view-overlay');
+
 let filterPrice = { id: 'filter-price', isAngleUp: true };
 let filterBrand = { id: 'filter-brand', isAngleUp: true };
 
@@ -36,3 +40,15 @@ const rotateZAngleUp = (element) => {
 		rotateAngle(filterBrand, angle);
 	}
 };
+
+// Close & show quick view overlay
+
+closeQuickViewBtn.addEventListener('click', (e) => {
+	quickViewOverlay.style.display = 'none';
+});
+
+showQuickViewBtns.forEach((btn) =>
+	btn.addEventListener('click', (e) => {
+		quickViewOverlay.style.display = 'block';
+	})
+);

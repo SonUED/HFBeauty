@@ -8,6 +8,7 @@ $hoverTextColor: #e7040f;
 $labelColor: #e7040f;
 $buttonColor: #ff416a;
 $hoverButtonColor: #ff722e;
+$borderColor: #e0e5e2;
 
 body {
 	font-family: $primaryFont, sans-serif;
@@ -93,9 +94,9 @@ ul {
 			width: 36px;
 			height: 36px;
 
-			color: #e0e5e2;
+			color: $borderColor;
 			background-color: #fff;
-			border: 1px solid #e0e5e2;
+			border: 1px solid $borderColor;
 
 			i {
 				font-size: 17px;
@@ -143,7 +144,7 @@ ul {
 
 		color: $primaryColor;
 		background-color: #fff;
-		border: 1px solid #e0e5e2;
+		border: 1px solid $borderColor;
 
 		text-align: left;
 		font-family: $secondaryFont, sans-serif;
@@ -153,7 +154,7 @@ ul {
 	.show > .btn-secondary.dropdown-toggle {
 		color: $primaryColor;
 		background-color: #fff;
-		border: 1px solid #e0e5e2;
+		border: 1px solid $borderColor;
 	}
 
 	.show > .btn-secondary.dropdown-toggle:focus {
@@ -164,7 +165,7 @@ ul {
 		text-transform: none;
 
 		&:hover {
-			background-color: #e0e5e2;
+			background-color: $borderColor;
 		}
 	}
 }
@@ -181,7 +182,7 @@ ul {
 		position: relative;
 
 		.card-label,
-		.card-quick-view {
+		.card-quick-view-btn {
 			position: absolute;
 			font-size: 12px;
 		}
@@ -200,8 +201,10 @@ ul {
 			}
 		}
 
-		.card-quick-view {
+		.card-quick-view-btn {
 			visibility: hidden;
+			cursor: pointer;
+
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
@@ -219,6 +222,10 @@ ul {
 			&:hover {
 				color: white;
 				background-color: black;
+			}
+
+			span {
+				pointer-events: none;
 			}
 		}
 	}
@@ -278,6 +285,41 @@ ul {
 	}
 }
 
+.quantity {
+	&__group {
+		padding: 5px;
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	&__plus,
+	&__minus,
+	&__content {
+		display: inline-block;
+		margin: 0 0 0 -1px;
+		padding: 0 1px 0 0;
+		height: 50px;
+		width: 15%;
+		text-align: center;
+
+		background-color: #fff;
+		border: 1px solid $borderColor;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__plus:hover,
+	&__minus:hover {
+		color: white;
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+
+	&__content {
+		width: 40%;
+	}
+}
 /******* BLUR GRAY BORDER BOTTOM *******/
 %blurGrayBorderBottom {
 	content: '';
@@ -336,8 +378,7 @@ ul {
 			box-shadow: 0 0 5px 0.1px #b8bab9;
 
 			.btn,
-			.card-quick-view {
-				cursor: pointer;
+			.card-quick-view-btn {
 				visibility: visible;
 			}
 		}
@@ -425,7 +466,7 @@ ul {
 
 .filter__title {
 	h2 {
-		border-bottom: 1px solid #efefef;
+		border-bottom: 1px solid $borderColor;
 	}
 
 	.btn,
@@ -474,5 +515,92 @@ ul {
 				@extend %blurGrayBorderBottom;
 			}
 		}
+	}
+}
+
+/****************************************
+		SECTION overlay quick view
+****************************************/
+.quick-view-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.quick-view {
+	position: relative;
+	margin: 15vh auto 0;
+	max-width: (1200px/100 * 80);
+	background-color: white;
+
+	.close-button {
+		position: absolute;
+		left: 100%;
+		bottom: 100%;
+		width: 36px;
+		height: 36px;
+		padding: 3px 0;
+
+		font-size: 30px;
+		line-height: 30px;
+		text-align: center;
+
+		color: white;
+		background-color: black;
+
+		&:hover {
+			background-color: $hoverTextColor;
+		}
+	}
+
+	.product-quick-view {
+		position: absolute;
+	}
+}
+
+.product-detail {
+	width: 100%;
+	max-height: 70vh;
+	padding: 40px;
+
+	font-family: $secondaryFont, sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	background-color: white;
+
+	.btn {
+		visibility: visible;
+	}
+
+	.strong-text-700,
+	.card-title {
+		font-weight: 700;
+	}
+
+	.card-title {
+		font-size: 18px;
+		line-height: 30px;
+	}
+
+	.btn,
+	.card-title,
+	.price-box,
+	.quantity,
+	&__brand,
+	&__code,
+	&__des,
+	&__seen,
+	&__reviews {
+		margin-bottom: 20px;
+		line-height: 20px;
+	}
+
+	.price-box {
+		font-size: 20px;
 	}
 }
