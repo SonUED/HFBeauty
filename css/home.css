@@ -8,6 +8,7 @@ body {
   position: relative;
   height: 10rem;
   width: 100%;
+  background-color: rgb(228, 228, 228);
 }
 .logo {
   display: flex;
@@ -69,7 +70,7 @@ body {
   position: relative;
   text-align: center;
   font-size: 3rem;
-  margin-top: 3rem;
+  padding: 3rem;
 }
 .products h3::before {
   top: 50%;
@@ -152,6 +153,10 @@ body {
   font-family: "Montserrat";
   transition: display 0.2s linear;
 }
+.img {
+  display: flex;
+  justify-content: space-between;
+}
 .product:hover {
   opacity: 0.5;
 }
@@ -164,5 +169,5 @@ body {
   flex-wrap: wrap;
 }
 #instagram img {
-  width: calc(100% / 4 - 30px);
+  width: calc(100% / 4 - 50px);
 }
