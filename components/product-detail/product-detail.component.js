@@ -1,6 +1,7 @@
 const productDetailTemplate = document.createElement('template');
 
 productDetailTemplate.innerHTML = `
+<link rel="stylesheet" type="text/css" href="/components/product-detail/product-detail.style.css">
 <div class="product-detail product-quick-view">
 	<div class="row">
 		<div class="col-lg-6">
@@ -70,13 +71,13 @@ productDetailTemplate.innerHTML = `
 </div>`;
 
 class Product extends HTMLElement {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	connectedCallback() {
-		this.innerHTML = productDetailTemplate.innerHTML;
-	}
+  connectedCallback() {
+    this.innerHTML = productDetailTemplate.innerHTML;
+  }
 }
 
 customElements.define('product-detail-element', Product);

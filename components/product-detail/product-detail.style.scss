@@ -1,0 +1,41 @@
+.product-detail {
+  width: 100%;
+  max-height: 70vh;
+  padding: 40px;
+
+  font-family: 'Arimo', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: white;
+
+  .btn {
+    visibility: visible;
+  }
+
+  .strong-text-700,
+  .card-title {
+    font-weight: 700;
+  }
+
+  .card-title {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .btn,
+  .card-title,
+  .price-box,
+  .quantity,
+  &__brand,
+  &__code,
+  &__des,
+  &__seen,
+  &__reviews {
+    margin-bottom: 20px;
+    line-height: 20px;
+  }
+
+  .price-box {
+    font-size: 20px;
+  }
+}

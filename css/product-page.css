@@ -313,23 +313,6 @@ ul {
 }
 
 /****************************************
-		SECTION display-page-url
-****************************************/
-.display-page-url {
-  height: 56px;
-  padding: 17px 0 15px;
-  font-family: "Arimo", sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 24px;
-}
-
-.arrow {
-  font-size: 14px;
-  font-weight: 400;
-}
-
-/****************************************
 		SECTION collection content
 ****************************************/
 .collection {
@@ -496,6 +479,7 @@ ul {
 		SECTION overlay quick view
 ****************************************/
 .quick-view-overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -533,41 +517,5 @@ ul {
 
 .quick-view .product-quick-view {
   position: absolute;
-}
-
-.product-detail {
-  width: 100%;
-  max-height: 70vh;
-  padding: 40px;
-  font-family: "Arimo", sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  background-color: white;
-}
-
-.product-detail .btn {
-  visibility: visible;
-}
-
-.product-detail .strong-text-700,
-.product-detail .card-title {
-  font-weight: 700;
-}
-
-.product-detail .card-title {
-  font-size: 18px;
-  line-height: 30px;
-}
-
-.product-detail .btn,
-.product-detail .card-title,
-.product-detail .price-box,
-.product-detail .quantity, .product-detail__brand, .product-detail__code, .product-detail__des, .product-detail__seen, .product-detail__reviews {
-  margin-bottom: 20px;
-  line-height: 20px;
-}
-
-.product-detail .price-box {
-  font-size: 20px;
 }
 /*# sourceMappingURL=product-page.css.map */

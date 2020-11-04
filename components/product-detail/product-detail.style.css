@@ -1,0 +1,41 @@
+.product-detail {
+  width: 100%;
+  max-height: 70vh;
+  padding: 40px;
+  font-family: 'Arimo', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: white;
+}
+
+.product-detail .btn {
+  visibility: visible;
+}
+
+.product-detail .strong-text-700,
+.product-detail .card-title {
+  font-weight: 700;
+}
+
+.product-detail .card-title {
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.product-detail .btn,
+.product-detail .card-title,
+.product-detail .price-box,
+.product-detail .quantity,
+.product-detail__brand,
+.product-detail__code,
+.product-detail__des,
+.product-detail__seen,
+.product-detail__reviews {
+  margin-bottom: 20px;
+  line-height: 20px;
+}
+
+.product-detail .price-box {
+  font-size: 20px;
+}
+/*# sourceMappingURL=product-detail.style.css.map */
