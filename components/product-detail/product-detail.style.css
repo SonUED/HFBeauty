@@ -25,12 +25,7 @@
 .product-detail .btn,
 .product-detail .card-title,
 .product-detail .price-box,
-.product-detail .quantity,
-.product-detail__brand,
-.product-detail__code,
-.product-detail__des,
-.product-detail__seen,
-.product-detail__reviews {
+.product-detail .quantity, .product-detail__brand, .product-detail__code, .product-detail__des, .product-detail__seen, .product-detail__reviews {
   margin-bottom: 20px;
   line-height: 20px;
 }
