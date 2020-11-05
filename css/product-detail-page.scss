@@ -1,0 +1,13 @@
+.nav {
+  &-tabs {
+    font-weight: 600;
+    font-size: 14px;
+
+    .nav-link {
+      text-transform: uppercase;
+    }
+    .nav-link.active {
+      color: black;
+    }
+  }
+}

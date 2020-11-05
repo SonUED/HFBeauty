@@ -30,12 +30,116 @@
     />
     <link rel="stylesheet" href="../css//normalize.css" />
     <link rel="stylesheet" href="../css/product-page.css" />
+    <link rel="stylesheet" href="../css/product-detail-page.css" />
     <title>Document</title>
   </head>
   <body>
     <main class="section-main container">
       <display-page-url-element></display-page-url-element>
-      <product-detail-element></product-detail-element>
+      <div class="row">
+        <div class="col-20"></div>
+        <div class="col-80">
+          <section class="product-info">
+            <product-detail-element></product-detail-element>
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="home-tab"
+                  data-toggle="tab"
+                  href="#home"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                  >Description</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="profile-tab"
+                  data-toggle="tab"
+                  href="#profile"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                  >Customer Reviews</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="contact-tab"
+                  data-toggle="tab"
+                  href="#contact"
+                  role="tab"
+                  aria-controls="contact"
+                  aria-selected="false"
+                  >Shipping & Returns</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="home"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+              >
+                A lipstick isn't just a lipstick anymore. With Chambor, it
+                becomes your beauty secret that helps you get the desired result
+                in plumpness, moisture, colour and a lot more. The new Rouge
+                Plump+ amplifies lips by 25%* giving you sensuously full lips.
+                This has been dermatologist tested and clinically proven. Plumps
+                up lips by 25%. Creates softer and fuller lines. A blend of
+                conditioners and antioxidants intensely moisturize, nourish and
+                protect the lips. Sun protection- SPF15. Feather resistant.
+                Ultra long wear. No animal ingredients. Dermatologist tested.
+              </div>
+              <div
+                class="tab-pane fade"
+                id="profile"
+                role="tabpanel"
+                aria-labelledby="profile-tab"
+              >
+                ...
+              </div>
+              <div
+                class="tab-pane fade"
+                id="contact"
+                role="tabpanel"
+                aria-labelledby="contact-tab"
+              >
+                Returns Policy offers its customers an ’Easy return policy’,
+                wherein you can raise a return/exchange request of a product
+                within 5 days of its delivery. We also accept partial returns
+                wherein you can raise a return request for one or all products
+                in your order. Step 1: Contact our Customer Support team via
+                email (*@gmail.com) within 5 days of receiving the order. Step
+                2: Provide us with your order ID details and your request to
+                return/replace/refund your order. Kindly email an image of the
+                product and the invoice for our reference. Step 3: Courier the
+                product to our warehouse. We will initiate the refund or
+                replacement process only if the products are received by us in
+                their original packaging with their seals, labels and barcodes
+                intact For our complete return & refund policy please click here
+                Shipping Policy - We can ship to virtually any address in India.
+                The product is shipped between 1-5 business days depending on
+                the shipping option selected by you. We don’t charge shipping
+                cost for our standard delivery for orders worth over Rs. 1000.
+                For, orders less than Rs. 1000 we levy standard shipping charges
+                of Rs 99. For quicker delivery we provide an expedited shipping
+                option for a charge of Rs 199. Such orders will still take 1
+                business days to be dispatched from our warehouse but will be
+                delivered in 2-4 days post the dispatch. For orders for Tier-2
+                Cities and below, the delivery days might be extended.
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
       <recently-viewed-products-element></recently-viewed-products-element>
     </main>
 

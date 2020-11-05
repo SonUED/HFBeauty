@@ -1,0 +1,13 @@
+.nav-tabs {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.nav-tabs .nav-link {
+  text-transform: uppercase;
+}
+
+.nav-tabs .nav-link.active {
+  color: black;
+}
+/*# sourceMappingURL=product-detail-page.css.map */
