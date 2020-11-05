@@ -1,5 +1,17 @@
 @import 'basic-setup';
 
+.buy-it-now-btn {
+	width: 100%;
+	color: black;
+	background-color: #fff;
+	border: 1px solid $buttonColor;
+
+	&:hover {
+		background-color: $buttonColor;
+		border: 1px solid black;
+	}
+}
+
 .nav {
 	&-tabs {
 		font-weight: 600;

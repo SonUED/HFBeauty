@@ -257,16 +257,18 @@ ul {
 }
 
 .card-body .btn {
+  padding: 10px;
+  font: 600 16px/20px "Oswald", sans-serif;
+}
+
+.card-body .add-to-cart-btn {
   visibility: hidden;
   width: 100%;
-  padding: 9px 15px;
-  font-size: 14px;
-  font-weight: 600;
   background-color: #ff416a;
   border: 1px solid black;
 }
 
-.card-body .btn:hover {
+.card-body .add-to-cart-btn:hover {
   background-color: #ff722e;
   border: 1px solid #ff416a;
 }
@@ -303,6 +305,18 @@ ul {
 
 .quantity__content {
   width: 40%;
+}
+
+.buy-it-now-btn {
+  width: 100%;
+  color: black;
+  background-color: #fff;
+  border: 1px solid #ff416a;
+}
+
+.buy-it-now-btn:hover {
+  background-color: #ff416a;
+  border: 1px solid black;
 }
 
 .nav-tabs {

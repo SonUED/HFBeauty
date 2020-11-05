@@ -60,7 +60,8 @@ productDetailTemplate.innerHTML = `
 						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
 					</p>
 				</div>
-				<a href="#" class="btn btn-primary">ADD TO CART</a>
+				<a href="#" class="btn btn-primary add-to-cart-btn">ADD TO CART</a>
+				<slot name="buy-it-now-btn"></slot>
 				<div class="product-detail__seen">
 					<i class="fas fa-eye"></i>
 					100 customers are viewing this product
@@ -71,13 +72,13 @@ productDetailTemplate.innerHTML = `
 </div>`;
 
 class Product extends HTMLElement {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 
-  connectedCallback() {
-    this.innerHTML = productDetailTemplate.innerHTML;
-  }
+	connectedCallback() {
+		this.innerHTML = productDetailTemplate.innerHTML;
+	}
 }
 
 customElements.define('product-detail-element', Product);
