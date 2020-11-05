@@ -41,9 +41,7 @@ ul {
   padding-right: 15px;
 }
 
-a.disabled {
-  cursor: not-allowed;
-  color: red;
+.disabled-click {
   pointer-events: none;
 }
 
