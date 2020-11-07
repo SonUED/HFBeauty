@@ -1,0 +1,30 @@
+
+.form-category {
+    display: none;
+    margin: auto;
+    border: 2px gray;
+    width: 80%;
+    padding-bottom: 10px;;
+}
+.title {
+    margin-left: 10%;
+}
+.form-category input{
+    width: 100%;
+}
+.img-thumbnail {
+    width: 100px;
+}
+#index {
+    display: none;
+}
+.table{
+    display: table;
+    width: 100%;
+    margin: auto;
+}
+.table-head {
+    width: 80%;
+    margin: auto;
+}
+

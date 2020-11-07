@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../css/manage-order.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <title>Manage Order</title>
+  </head>
+  <body>
+    <h1 class="title">Quản lý đơn hàng</h1>
+    <div class="btn-group">
+      <input
+        type="button"
+        onclick="show('all')"
+        class="all button"
+        value="Tất cả"
+      />
+
+      <input
+        type="button"
+        onclick="show('wait for accept')"
+        class="wait-for-accept button"
+        value="Chờ xác nhận"
+      />
+
+      <input
+        type="button"
+        onclick="show('wait for take')"
+        class="wait-for-take button"
+        value="Chờ lấy hàng"
+      />
+
+      <input
+        type="button"
+        onclick="show('deliver')"
+        class="deliver button"
+        value="Đang giao"
+      />
+      <input
+        type="button"
+        onclick="show('received')"
+        class="received button"
+        value="Đã giao"
+      />
+    </div>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <td>Mã Đơn Hàng</td>
+                <td>Mã Khách hàng</td>
+                <td>Tên Người Nhận</td>
+                <td>ĐỊa Chỉ Giao Hàng</td>
+                <td>SDT</td>
+                <td>Ngày Đặt</td>
+                <td>Trạng Thái</td>
+                <td class="apply">Duyệt</td>
+                <td class="reject">Hủy</td>
+            </tr>
+        </thead>
+        <tbody class="table-order"></tbody>
+
+    </table>
+
+    <script type="text/javascript" src="../../js/manage-order.js"></script>
+  </body>
+</html>
