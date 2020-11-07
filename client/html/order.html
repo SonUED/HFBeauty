@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../css/order.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <title>Order</title>
+  </head>
+  <body>
+    <h1 class="title">
+      Theo Dõi Đơn Hàng
+    </h1>
+
+
+    <div class="btn-group">
+      <input
+      type="button"
+      onclick="show('all')"
+      class="all button"
+      value="Tất cả"
+      />
+
+      <input
+        type="button"
+        onclick="show('wait for accept')"
+        class="wait-for-accept button"
+        value="Chờ xác nhận"
+      />
+
+      <input
+        type="button"
+        onclick="show('wait for take')"
+        class="wait-for-take button"
+        value="Chờ lấy hàng"
+      />
+
+      <input
+        type="button"
+        onclick="show('deliver')"
+        class="deliver button"
+        value="Đang giao"
+      />
+      <input
+        type="button"
+        onclick="show('delivered')"
+        class="delivered button"
+        value="Đã giao"
+      />
+      <input
+        type="button"
+        onclick="show('canceled')"
+        class="canceled button"
+        value="Đã hủy"
+      />
+    </div>
+    
+    <table class="table-order">
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><img src="https://bizweb.dktcdn.net/thumb/grande/100/300/657/products/son-kem-li-mem-muot-romand-zero-velvet-tint-7-100x100.jpg?" alt=""></td>
+        <td>
+          <p>this is the name of product</p>
+          <p>this is amount of product</p>
+        </td>
+        <td>this is price of product</td>
+      </tr>
+      <tr>
+        <td><img src="https://bizweb.dktcdn.net/thumb/grande/100/300/657/products/son-kem-li-mem-muot-romand-zero-velvet-tint-7-100x100.jpg?" alt=""></td>
+        <td>
+          <p>this is the name of product</p>
+          <p>this is amount of product</p>
+        </td>
+        <td>this is price of product</td>
+      </tr>
+      <tr>
+        <td><img src="https://bizweb.dktcdn.net/thumb/grande/100/300/657/products/son-kem-li-mem-muot-romand-zero-velvet-tint-7-100x100.jpg?" alt=""></td>
+        <td>
+          <p>this is the name of product</p>
+          <p>this is amount of product</p>
+        </td>
+        <td>this is price of product</td>
+      </tr>
+    </table>
+    
+
+    <script type="text/javascript" src="../../js/order.js"></script>
+  </body>
+</html>

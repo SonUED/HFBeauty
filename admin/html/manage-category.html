@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/manage-category.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Category</title>
+</head>
+<body>
+    <h1 class="title">Quản lý danh mục <i class="fa fa-plus" onclick="showForm()"></i></h1>
+    <form class="form-category ">
+        <input type="button" id="index" value="">
+        <div class="form-group">
+            <label for="name">Tên Danh mục</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div class="form-group">
+            <label for="description">Mô tả</label>
+            <input type="text" name="description" id="description">
+        </div>
+        <div class="form-group">
+            <label for="image">ảnh</label>
+            <input type="text" name="image" id="image">
+        </div>
+        <input class="btn btn-primary" type="button" value="save" onclick="save()">
+    </form>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <td>ID</td>
+                <td>Tên Danh Mục</td>
+                <td>Mô Tả</td>
+                <td>Ảnh</td>
+                <td>Chỉnh Sửa</td>
+                <td>Xóa</td>
+            </tr>
+        </thead>
+        <tbody class="table-category"></tbody>
+
+    </table>
+    
+    <script type="text/javascript" src="../../js/manage-category.js"></script>
+</body>
+</html>

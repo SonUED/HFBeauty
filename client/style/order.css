@@ -1,0 +1,43 @@
+.title {
+    margin-left: 10%;
+}
+.table-head {
+    width: 80%;
+    margin: auto;
+}
+.btn-group {
+    width: 80%;
+    margin-left: 10%;
+}
+.button {
+    /* margin-left: 20%; */
+    
+    text-align: center;
+    background-color: white;
+    outline: none;
+    border: none;
+    width: 100%;
+
+}
+.button:hover {
+    color: orange;
+}
+
+input:focus {
+    border-bottom: 3px solid orange;
+}
+
+table {
+    width: 70%;
+    margin: 50px 15% 0 15%;
+    border-bottom: 1px solid #ebebe0;
+    border-top: 1px solid #ebebe0;
+}
+table tr {
+   
+    border-bottom: 1px solid #ebebe0;
+    border-top: 1px solid #ebebe0;
+}
+img {
+    width: 100px;
+}

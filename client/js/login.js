@@ -1,7 +1,8 @@
-const userData = [{ id: 1, TenTK: "sonbk1", MatKhau: "123456" }];
-
+const username = document.getElementById("username").value;
+const password = document.getElementById("password").value;
+const accountData = localStorage.getItem("account");
 const isExist = (username, password) => {
-  return userData.some(
+  return accountData.some(
     (user) => user.TenTK === username && user.MatKhau === password
   );
 };
@@ -13,11 +14,8 @@ const handleChange = (self) => {
   }
 };
 const login = () => {
-  const user = form_login.username.value;
-  const password = form_login.password.value;
   console.log(user + password);
   if (isExist(user, password)) {
-    localStorage.setItem("user", user, password);
     alert("Dang nhap thanh cong");
   } else {
     alert("Dang nhap that bai");

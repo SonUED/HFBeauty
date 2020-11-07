@@ -1,0 +1,42 @@
+body {
+  font-family: "Montserrat";
+}
+* {
+  outline: none;
+}
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8rem;
+  width: 100%;
+  background: #c5d5cb;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+}
+.header img {
+  width: 7rem;
+  padding: 1rem 1rem;
+}
+.user a {
+  font-size: 1.6rem;
+  margin-right: 3rem;
+}
+.user img {
+  border-radius: 50%;
+  max-width: 6rem;
+}
+.dropdown:hover .dropdown-item {
+  display: block;
+}
+.dropdown .dropdown-item {
+  display: block;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  width: 100%;
+  padding: 12px 16px;
+}
