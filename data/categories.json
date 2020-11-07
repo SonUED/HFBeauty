@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "maDM": "DM1",
+      "tenDM": "Son gấc Collagen",
+      "moTa": "Son môi với chiết xuất từ thiên nhiên và collagen",
+      "anh": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMBSJqT3LWBxOdcd6AMAnbkDmDfDib55q6yw&usqp=CAU"
+    },
+    {
+      "maDM": "DM2",
+      "tenDM": "Son kem",
+      "moTa": "Son kem",
+      "anh": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMBSJqT3LWBxOdcd6AMAnbkDmDfDib55q6yw&usqp=CAU"
+    },
+    {
+      "maDM": "DM3",
+      "tenDM": "Son sáp gấc",
+      "moTa": "Son sáp gấc cao cấp",
+      "anh": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMBSJqT3LWBxOdcd6AMAnbkDmDfDib55q6yw&usqp=CAU"
+    },
+    {
+      "maDM": "DM4",
+      "tenDM": "Dưỡng tóc",
+      "moTa": "Dầu gội, dầu xả và xịt bưởi",
+      "anh": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMBSJqT3LWBxOdcd6AMAnbkDmDfDib55q6yw&usqp=CAU"
+    },
+    {
+      "maDM": "DM5",
+      "tenDM": "Son dưỡng",
+      "moTa": "Son dưỡng",
+      "anh": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMBSJqT3LWBxOdcd6AMAnbkDmDfDib55q6yw&usqp=CAU"
+    }
+  ]
+}
