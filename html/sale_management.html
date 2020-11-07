@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý người dùng</title>
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Awesome Font -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="../css/sale_management.css" />
+  </head>
+
+  <body onload="loadData()">
+    <div class="tool-area">
+      <div class="search-box">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          id="search"
+        />
+      </div>
+      <div class="btns">
+        <button class="btn btn-primary">Thêm mới</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="tbl-box">
+        <table class="table" id="tbl">
+          <thead class="thead-dark">
+            <tr>
+              <th>Mã khuyến mãi</th>
+              <th>Tên đợt khuyến mãi</th>
+              <th>Giảm giá</th>
+              <th>Ngày bắt đầu</th>
+              <th>Ngày kết thúc</th>
+              <th>Ghi chú</th>
+              <th>Các danh mục</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tblBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="input-frm">
+      <h1>TẠO KHUYẾN MÃI</h1>
+      <div>
+        <form name="frm">
+          <div class="form-group">
+            <label for="salename">Tên đợt khuyến mãi</label>
+            <input
+              type="text"
+              class="form-control"
+              name="salenem"
+              id="salename"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Mô tả</label>
+            <textarea class="form-control" id="description" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="discount">Giảm giá</label>
+            <input
+              type="number"
+              class="form-control"
+              id="discount"
+              min="0"
+              max="100"
+            />
+          </div>
+          <div class="date-container row">
+            <div class="form-group col-md-6">
+              <label for="beginDate">Ngày bắt đầu</label>
+              <input type="date" class="form-control" id="beginDate" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="endDate">Ngày kết thúc</label>
+              <input type="date" class="form-control" id="endDate" />
+            </div>
+          </div>
+
+          <div id="cateSelecting" class="select-cate">
+            <h5>Chọn thể loại áp dụng</h5>
+          </div>
+          <div class="btns-group">
+            <button type="button" class="btn btn-primary" onclick="clickAdd()">
+              Thêm
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="clickCancel()"
+            >
+              Huỷ
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="../js/sale_management.js"></script>
+  </body>
+</html>
