@@ -324,3 +324,31 @@ ul {
 		width: 40%;
 	}
 }
+
+/******* COLLECTION ITEM *******/
+.collection__item {
+	margin-bottom: 5px;
+
+	&:hover {
+		padding: -15px;
+		box-shadow: 0 0 5px 0.1px #b8bab9;
+
+		.add-to-cart-btn,
+		.card-quick-view-btn {
+			visibility: visible;
+		}
+	}
+
+	&--featured {
+		width: 95%;
+		margin: 0 auto;
+
+		.add-to-cart-btn {
+			visibility: visible;
+		}
+
+		&:hover {
+			box-shadow: none;
+		}
+	}
+}

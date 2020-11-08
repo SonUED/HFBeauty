@@ -1,4 +1,4 @@
-@import 'basic-setup';
+@import 'product-basic-setup';
 
 /******* BLUR GRAY BORDER BOTTOM *******/
 %blurGrayBorderBottom {
@@ -31,34 +31,6 @@
 
 		strong {
 			font-weight: 600;
-		}
-	}
-
-	/******* ITEM *******/
-	&__item {
-		margin-bottom: 5px;
-
-		&:hover {
-			padding: -15px;
-			box-shadow: 0 0 5px 0.1px #b8bab9;
-
-			.btn,
-			.card-quick-view-btn {
-				visibility: visible;
-			}
-		}
-
-		&--featured {
-			width: 95%;
-			margin: 0 auto;
-
-			.btn {
-				visibility: visible;
-			}
-
-			&:hover {
-				box-shadow: none;
-			}
 		}
 	}
 }

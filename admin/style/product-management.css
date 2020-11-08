@@ -1,0 +1,21 @@
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.product-management {
+  width: 100%;
+  background-color: #eaecf6;
+  padding: 100px;
+}
+
+.product-management__wrapper {
+  background-color: white;
+  border-radius: 6px;
+  padding: 30px;
+}
+
+.product-management__body {
+  border: 2px solid red;
+}
+/*# sourceMappingURL=product-management.css.map */

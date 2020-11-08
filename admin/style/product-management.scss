@@ -1,0 +1,22 @@
+$bgc: #eaecf6;
+
+.container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.product-management {
+	width: 100%;
+	background-color: $bgc;
+	padding: 100px;
+
+	&__wrapper {
+		background-color: white;
+		border-radius: 6px;
+		padding: 30px;
+	}
+
+	&__body {
+		border: 2px solid red;
+	}
+}

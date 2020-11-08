@@ -1,7 +1,7 @@
 const recentlyViewedProductsTemplate = document.createElement('template');
 
 recentlyViewedProductsTemplate.innerHTML = `
-<link rel="stylesheet" type="text/css" href="/components/recently-viewd-products/recently-viewed-product.style.css">
+<link rel="stylesheet" type="text/css" href="/component/recently-viewd-products/recently-viewed-product.style.css">
 <section class="recently-viewed-products">
     <div class="recently-viewed-products__title">
     <h3>RECENTLY VIEWED PRODUCTS</h3>
@@ -14,7 +14,7 @@ recentlyViewedProductsTemplate.innerHTML = `
             <div class="card-label"><strong>-15%</strong></div>
             <div class="card-quick-view-btn"><span>QUICK VIEW</span></div>
             <img
-                src="../img/Chambor_Rouge_Plum+_Lipstick.webp"
+                src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
                 class="card-img-top"
                 alt="..."
             />
@@ -29,7 +29,7 @@ recentlyViewedProductsTemplate.innerHTML = `
                 &nbsp;
                 <span class="new-price">Rs. 718.00</span>
             </div>
-            <a href="#" class="btn btn-primary">ADD TO CART</a>
+            <a href="#" class="btn btn-primary add-to-cart-btn">ADD TO CART</a>
             </div>
         </div>
         </div>
@@ -39,16 +39,16 @@ recentlyViewedProductsTemplate.innerHTML = `
 `;
 
 class RecentlyViewedProducts extends HTMLElement {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 
-  connectedCallback() {
-    this.innerHTML = recentlyViewedProductsTemplate.innerHTML;
-  }
+	connectedCallback() {
+		this.innerHTML = recentlyViewedProductsTemplate.innerHTML;
+	}
 }
 
 customElements.define(
-  'recently-viewed-products-element',
-  RecentlyViewedProducts
+	'recently-viewed-products-element',
+	RecentlyViewedProducts
 );

@@ -1,14 +1,14 @@
 const productDetailTemplate = document.createElement('template');
 
 productDetailTemplate.innerHTML = `
-<link rel="stylesheet" type="text/css" href="/components/product-detail/product-detail.style.css">
+<link rel="stylesheet" type="text/css" href="/component/product-detail/product-detail.style.css">
 <div class="product-detail product-quick-view">
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="card-top">
 				<div class="card-label"><strong>-15%</strong></div>
 				<img
-					src="../img/Chambor_Rouge_Plum+_Lipstick.webp"
+					src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
 					class="img-fluid"
 					alt="product-img"
 				/>

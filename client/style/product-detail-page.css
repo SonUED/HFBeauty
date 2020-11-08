@@ -307,6 +307,36 @@ ul {
   width: 40%;
 }
 
+/******* COLLECTION ITEM *******/
+.collection__item {
+  margin-bottom: 5px;
+}
+
+.collection__item:hover {
+  padding: -15px;
+  -webkit-box-shadow: 0 0 5px 0.1px #b8bab9;
+          box-shadow: 0 0 5px 0.1px #b8bab9;
+}
+
+.collection__item:hover .add-to-cart-btn,
+.collection__item:hover .card-quick-view-btn {
+  visibility: visible;
+}
+
+.collection__item--featured {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.collection__item--featured .add-to-cart-btn {
+  visibility: visible;
+}
+
+.collection__item--featured:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .buy-it-now-btn {
   width: 100%;
   color: black;
