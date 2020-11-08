@@ -29,17 +29,22 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
       crossorigin="anonymous"
     />
- 
+
     <!-- Your CSS -->
-    <link rel="stylesheet" href="../css/user_management.css" />
+    <link rel="stylesheet" href="../style/user-management.css" />
   </head>
-  <script src="../js/user_management.js"></script>
+  <script src="../js/user-management.js"></script>
 
   <body onload="loadTable(gUsers)">
     <div class="search-box">
-      <input type="text" name="search" id="search" onkeyup="searching(this.value)">
+      <input
+        type="text"
+        name="search"
+        id="search"
+        onkeyup="searching(this.value)"
+      />
     </div>
-    <div class="content " >
+    <div class="content">
       <div class="tbl-box">
         <table class="table" id="tbl">
           <thead class="thead-dark">
@@ -55,8 +60,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody id="tblBody">
-          </tbody>
+          <tbody id="tblBody"></tbody>
         </table>
       </div>
     </div>
