@@ -1,2 +1,3 @@
-css/*.map
-components/*/*.map
+admin/style/*.map
+client/style/*.map
+component/*/*.map
