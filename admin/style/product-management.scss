@@ -1,4 +1,4 @@
-$bgc: #eaecf6;
+$bgc: #eef0f8;
 
 .container-fluid {
 	padding-left: 0;
@@ -7,13 +7,13 @@ $bgc: #eaecf6;
 
 .product-management {
 	width: 100%;
+	padding: 20px;
 	background-color: $bgc;
-	padding: 100px;
 
 	&__wrapper {
+		padding: 25px;
 		background-color: white;
 		border-radius: 6px;
-		padding: 30px;
 	}
 
 	&__body {

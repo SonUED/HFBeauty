@@ -5,14 +5,14 @@
 
 .product-management {
   width: 100%;
-  background-color: #eaecf6;
-  padding: 100px;
+  padding: 20px;
+  background-color: #eef0f8;
 }
 
 .product-management__wrapper {
+  padding: 25px;
   background-color: white;
   border-radius: 6px;
-  padding: 30px;
 }
 
 .product-management__body {
