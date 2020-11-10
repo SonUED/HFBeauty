@@ -32,7 +32,102 @@
 		<link rel="stylesheet" href="../style/product-management.css" />
 		<title>Document</title>
 	</head>
-	<body>
+	<body onload="fetchProductList()">
+		<section class="product-working-overlay">
+			<div class="product-working">
+				<a href="#" class="close-button"><i class="fas fa-times"></i></a>
+				<div class="product-detail">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card-top">
+								<img
+									id="product-img-display"
+									class="img-fluid"
+									src="#"
+									alt="product-img"
+								/>
+								<input
+									id="product-img"
+									type="file"
+									onchange="changeImage(this)"
+								/>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="card-body">
+								<label for="product-name">Product Name:</label>
+								<input id="product-name" type="text" />
+								<div class="product-detail__reviews">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<div class="product-detail__brand">
+									<label for="product-brand">Brand:</label>
+									<input id="product-brand" type="text" />
+								</div>
+								<div class="product-detail__code">
+									<label for="product-code">Code:</label>
+									<input id="product-code" type="text" />
+								</div>
+								<div class="price-box">
+									<label for="product-price">Price:</label
+									><input id="product-price" type="number" />
+								</div>
+
+								<div class="quantity">
+									<label for="product-quantity">Product Quantity:</label>
+
+									<div class="quantity__group">
+										<button class="quantity__minus">
+											<i class="fas fa-minus"></i>
+										</button>
+										<input
+											id="product-quantity"
+											class="quantity__content"
+											type="number"
+										/>
+										<button class="quantity__plus">
+											<i class="fas fa-plus"></i>
+										</button>
+									</div>
+								</div>
+								<label for="product-input-date">Input Date:</label>
+								<input id="product-input-date" type="date" />
+
+								<label for="product-manu-date">Manufacture Date:</label>
+								<input id="product-manu-date" type="date" />
+
+								<label for="product-expiry-date">Expiry Date:</label>
+								<input id="product-expiry-date" type="text" />
+
+								<div class="product-detail__des">
+									<label for="product-des">Product Description:</label>
+									<textarea id="product-des" rows="4" cols="50"> </textarea>
+								</div>
+
+								<label for="product-category">Category:</label>
+								<select name="category-select" id="product-category">
+									<option value="1">Andhwejfewf</option>
+									<option value="2">fwefwefw</option>
+									<option value="3">fawefwefwef</option>
+									<option value="4">fwaefwefew</option>
+								</select>
+								<div
+									class="btn btn-primary"
+									onclick="handleAction()"
+									id="btn-create-update"
+								>
+									Update
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 		<div class="container-fluid">
 			<section class="product-management">
 				<div class="product-management__wrapper">
@@ -117,7 +212,12 @@
 										<a class="dropdown-item" href="#">Something else here</a>
 									</div>
 								</div>
-								<button class="btn btn-primary">Create</button>
+								<button
+									class="btn btn-primary"
+									onclick="displayProductWorkingOverlay('create')"
+								>
+									Create
+								</button>
 							</div>
 						</div>
 					</section>
