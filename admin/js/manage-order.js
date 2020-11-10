@@ -29,13 +29,11 @@ var order = [
     },
 ]
 
-status = ["wait for accept", "wait for take", "deliver","received"]
+var statuses = ['wait for accept', 'wait for take', 'deliver','received']
 
-checkData();
-show();
-function show(mess) {
+function showOder(mess) {
     document.querySelector(".table-order").innerHTML = ""
-    // order = getOrder();
+    // order = getOrderFromStorage();
     switch (mess) {
         case "all": 
             document.querySelector(".apply").style.display = "none";
@@ -69,8 +67,8 @@ function show(mess) {
                         '<td>' +item.phone+ '</td>'+
                         '<td>' +item.date+ '</td>'+
                         '<td>' +item.status+ '</td>'+
-                        '<td><input class="btn btn-outline-dark" type="button" value="OK" onclick="apply(' + item.IdOrder + ')"></td>'+
-                        '<td><input class="btn btn-outline-dark" type="button" value="Hủy" onclick="reject(' + item.IdOrder + ')"></td>'+
+                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.IdOrder + ')"></td>'+
+                        '<td><input class="btn btn-danger" type="button" value="Hủy" onclick="reject(' + item.IdOrder + ')"></td>'+
                     '</tr>'
                         document.querySelector(".table-order").innerHTML += row;
                     
@@ -91,7 +89,7 @@ function show(mess) {
                         '<td>' +item.phone+ '</td>'+
                         '<td>' +item.date+ '</td>'+
                         '<td>' +item.status+ '</td>'+
-                        '<td><input class="btn btn-outline-dark" type="button" value="Duyệt" onclick="apply(' + item.IdOrder + ')"></td>'+
+                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.IdOrder + ')"></td>'+
                     '</tr>'
                         document.querySelector(".table-order").innerHTML += row;
                     
@@ -112,7 +110,7 @@ function show(mess) {
                         '<td>' +item.phone+ '</td>'+
                         '<td>' +item.date+ '</td>'+
                         '<td>' +item.status+ '</td>'+
-                        '<td><input class="btn btn-outline-dark" type="button" value="Duyệt" onclick="apply(' + item.IdOrder + ')"></td>'+
+                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.IdOrder + ')"></td>'+
                     '</tr>'
                         document.querySelector(".table-order").innerHTML += row;
                     
@@ -133,7 +131,6 @@ function show(mess) {
                         '<td>' +item.phone+ '</td>'+
                         '<td>' +item.date+ '</td>'+
                         '<td>' +item.status+ '</td>'+
-                        '<td><input class="btn btn-outline-dark" type="button" value="Duyệt" onclick="apply(' + item.IdOrder + ')"></td>'+
                     '</tr>'
                         document.querySelector(".table-order").innerHTML += row;
                     
@@ -161,31 +158,41 @@ function show(mess) {
 }
 
 function apply(id){
-    order = getOrder();
+    console.log(order);
     order.map(item => {
         if (item.IdOrder === id) {
-            console.log(status[0]);
-            item.status = status[status.indexOf(item.status)+1]
-            show(item.status);
+            item.status = statuses[statuses.indexOf(item.status)+1]
+            showOder(statuses[statuses.indexOf(item.status)-1]);
         }
     });
+    console.log(order);
+    saveOrderToStorage();
    
 }
 
 function reject(id){
-    alert(id)
+    order = getOrderFromStorage();
+    order.map(item => {
+        if (item.IdOrder === id) {
+            item.status = "canceled"
+            showOder(statuses[statuses.indexOf(item.status)-1]);
+        }
+    });
+    saveOrderToStorage();
 }
 
-function getOrder(){
-    var data = localStorage.getItem("order");
-    data = JSON.parse(data);
-    return data;
+function getOrderFromStorage(){
+    let orderString = localStorage.getItem("order");
+  order = JSON.parse(orderString) || [];
 }
 
-function checkData(){
-    if(!order){
-        order = getOrder();
-    }else{
-        localStorage.setItem("order", JSON.stringify(order));
-    }
+function saveOrderToStorage() {
+    let orderString = JSON.stringify(order);
+    localStorage.setItem("order", orderString);
 }
+
+function loadData() {
+    getOrderFromStorage();
+    showOder("all");
+}
+  

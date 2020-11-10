@@ -1,17 +1,9 @@
-.title {
-    margin-left: 10%;
-}
-.table-head {
-    width: 80%;
-    margin: auto;
-}
 .btn-group {
     width: 80%;
-    margin-left: 10%;
+    margin-left: 30rem;
+    margin-top: 100px;
 }
 .button {
-    /* margin-left: 20%; */
-    
     text-align: center;
     background-color: white;
     outline: none;
@@ -29,7 +21,7 @@ input:focus {
 
 .table {
     width: 80% !important;
-    margin: 50px 10% 0 10%;
+    margin: 1rem 0 0 30rem;
     border-bottom: 1px solid #ebebe0;
     border-top: 1px solid #ebebe0;
 }
