@@ -1,8 +1,8 @@
 const productManagementShowcase = document.getElementById(
-  'product-management__showcase'
+	'product-management__showcase'
 );
 const productWorkingOverlay = document.querySelector(
-  '.product-working-overlay'
+	'.product-working-overlay'
 );
 const closeQuickViewBtn = document.querySelector('.close-button');
 
@@ -27,17 +27,17 @@ const searchField = document.querySelector('#search');
 
 /**********  Fetch Data **********/
 const fetchData = async (url = '', dataProperty) => {
-  const response = await fetch(url);
-  const dataJSON = await response.json();
-  const dataList = dataJSON[dataProperty];
+	const response = await fetch(url);
+	const dataJSON = await response.json();
+	const dataList = dataJSON[dataProperty];
 
-  return dataList;
+	return dataList;
 };
 
 const createProductElementRow = (product = {}) => {
-  const tempProduct = JSON.stringify(product).replace(/"/g, "'");
+	const tempProduct = JSON.stringify(product).replace(/"/g, "'");
 
-  const productElementRow = `
+	const productElementRow = `
         <tr id="${product.maSP}">
             <th scope="row">
                 <div class="card mb-3" style="max-width: 540px">
@@ -75,106 +75,105 @@ const createProductElementRow = (product = {}) => {
             </td>
         </tr>`;
 
-  return productElementRow;
+	return productElementRow;
 };
 
 const displayData = (productList = []) => {
-  let productElementRows = '';
+	let productElementRows = '';
 
-  productList.forEach(
-    (product) => (productElementRows += createProductElementRow(product))
-  );
+	productList.forEach(
+		(product) => (productElementRows += createProductElementRow(product))
+	);
 
-  productManagementShowcase.innerHTML = productElementRows;
+	productManagementShowcase.innerHTML = productElementRows;
 };
 
 const fetchProductList = () => {
-  fetchData('../../data/products.json', 'products').then((productList) => {
-    localStorage.setItem('products', JSON.stringify(productList));
-    localStorage.setItem('currentPage', '1');
-    localStorage.setItem('numberOfItemsOfEachPage', '10');
+	fetchData('../../data/products.json', 'products').then((productList) => {
+		localStorage.setItem('products', JSON.stringify(productList));
+		localStorage.setItem('currentPage', '1');
+		localStorage.setItem('numberOfItemsOfEachPage', '10');
 
-    createPaginationToolbar('products', productList.length, 10);
+		createPaginationToolbar('products', productList.length, 10);
 
-    displayData(productList.slice(0, 10));
-  });
+		displayData(productList.slice(0, 10));
+	});
 
-  fetchData('../../data/categories.json', 'categories').then((categories) => {
-    localStorage.setItem('categories', JSON.stringify(categories));
+	fetchData('../../data/categories.json', 'categories').then((categories) => {
+		localStorage.setItem('categories', JSON.stringify(categories));
 
-    let options = '';
-    categories.forEach((category) => {
-      options += `<option value="${category.maDM}">${category.tenDM}</option>`;
-    });
-    document.getElementById('product-category').innerHTML = options;
-  });
+		let options = '';
+		categories.forEach((category) => {
+			options += `<option value="${category.maDM}">${category.tenDM}</option>`;
+		});
+		document.getElementById('product-category').innerHTML = options;
+	});
 };
 
 /**********  Pagination **********/
 const moveToPage = (nameInLocalStorage = '', page, type = 'changePage') => {
-  let numberOfItemsOfEachPage = parseInt(
-    localStorage.getItem('numberOfItemsOfEachPage')
-  );
-  let currentPage = parseInt(localStorage.getItem('currentPage'));
-  let data = JSON.parse(localStorage.getItem(nameInLocalStorage));
+	let numberOfItemsOfEachPage = parseInt(
+		localStorage.getItem('numberOfItemsOfEachPage')
+	);
+	let currentPage = parseInt(localStorage.getItem('currentPage'));
+	let data = JSON.parse(localStorage.getItem(nameInLocalStorage));
 
-  let numberOfPage = Math.ceil(data.length / numberOfItemsOfEachPage);
+	let numberOfPage = Math.ceil(data.length / numberOfItemsOfEachPage);
 
-  if (page) {
-    const pageLink = document.querySelectorAll('.pagination .page-link');
+	if (page) {
+		const pageLink = document.querySelectorAll('.pagination .page-link');
 
-    pageLink[2].textContent =
-      parseInt(page) - 1 <= 0 ? numberOfPage : parseInt(page) - 1;
-    pageLink[3].textContent = page;
-    pageLink[4].textContent =
-      parseInt(page) + 1 > numberOfPage ? 1 : parseInt(page) + 1;
+		pageLink[2].textContent =
+			parseInt(page) - 1 <= 0 ? numberOfPage : parseInt(page) - 1;
+		pageLink[3].textContent = page;
+		pageLink[4].textContent =
+			parseInt(page) + 1 > numberOfPage ? 1 : parseInt(page) + 1;
 
-    let begin = (parseInt(page) - 1) * numberOfItemsOfEachPage;
-    let end =
-      (parseInt(page) - 1) * numberOfItemsOfEachPage + numberOfItemsOfEachPage;
+		let begin = (parseInt(page) - 1) * numberOfItemsOfEachPage;
+		let end =
+			(parseInt(page) - 1) * numberOfItemsOfEachPage + numberOfItemsOfEachPage;
 
-    displayData(data.slice(begin, end));
-    localStorage.setItem('currentPage', page);
-  }
+		displayData(data.slice(begin, end));
+		localStorage.setItem('currentPage', page);
+	}
 
-  switch (type) {
-    case 'updateMoveToLastPage':
-      document.getElementById('last-page').innerHTML = `
+	switch (type) {
+		case 'updateMoveToLastPage':
+			document.getElementById('last-page').innerHTML = `
 		<a class="page-link" href="#" onclick="moveToPage('${nameInLocalStorage}',${numberOfPage})">Last Item</a>`;
-      break;
-    case 'previous':
-      --currentPage < 1
-        ? moveToPage(nameInLocalStorage, numberOfPage)
-        : moveToPage(nameInLocalStorage, currentPage);
-      break;
-    case 'next':
-      ++currentPage > numberOfPage
-        ? moveToPage(nameInLocalStorage, 1)
-        : moveToPage(nameInLocalStorage, currentPage);
-      break;
-  }
+			break;
+		case 'previous':
+			--currentPage < 1
+				? moveToPage(nameInLocalStorage, numberOfPage)
+				: moveToPage(nameInLocalStorage, currentPage);
+			break;
+		case 'next':
+			++currentPage > numberOfPage
+				? moveToPage(nameInLocalStorage, 1)
+				: moveToPage(nameInLocalStorage, currentPage);
+			break;
+	}
 };
 
 const findPage = (nameInLocalStorage = '') => {
-  const findPageInput = document.getElementById('find-page-input');
+	const findPageInput = document.getElementById('find-page-input');
 
-  console.log(findPageInput.max);
-  if (
-    findPageInput.value >= findPageInput.min &&
-    findPageInput.value <= findPageInput.max
-  ) {
-    moveToPage(nameInLocalStorage, findPageInput.value);
-  } else {
-    alert('Invalid Input!');
-  }
+	if (
+		findPageInput.value >= findPageInput.min &&
+		findPageInput.value <= findPageInput.max
+	) {
+		moveToPage(nameInLocalStorage, findPageInput.value);
+	} else {
+		alert('Invalid Input!');
+	}
 };
 
 const createPaginationToolbar = (
-  nameInLocalStorage = '',
-  numberOfProducts,
-  numberOfItemsOfEachPage = 10
+	nameInLocalStorage = '',
+	numberOfProducts,
+	numberOfItemsOfEachPage = 10
 ) => {
-  const toolbar = `
+	const toolbar = `
 	<li class="page-item">
 		<a class="page-link" href="#" onclick="moveToPage('${nameInLocalStorage}',1)">First Item</a>
 	</li>
@@ -185,8 +184,8 @@ const createPaginationToolbar = (
 	</li>
 	<li class="page-item ">
 		<a class="page-link" onclick="moveToPage('${nameInLocalStorage}',this.textContent)">${Math.ceil(
-    numberOfProducts / numberOfItemsOfEachPage
-  )}</a>
+		numberOfProducts / numberOfItemsOfEachPage
+	)}</a>
 	</li>
 	<li class="page-item active disabled-click">
 		<a class="page-link" onclick="moveToPage('${nameInLocalStorage}',this.textContent)">1</a>
@@ -201,8 +200,8 @@ const createPaginationToolbar = (
 	</li>
 	<li class="page-item" id="last-page">
 		<a class="page-link" href="#" onclick="moveToPage('${nameInLocalStorage}', ${Math.ceil(
-    numberOfProducts / numberOfItemsOfEachPage
-  )})">Last Item</a>
+		numberOfProducts / numberOfItemsOfEachPage
+	)})">Last Item</a>
 	</li>
 
 	<li class="page-item">
@@ -228,199 +227,199 @@ const createPaginationToolbar = (
   </li>
 	`;
 
-  const paginationE = document.querySelector('.pagination');
-  paginationE.innerHTML = toolbar;
+	const paginationE = document.querySelector('.pagination');
+	paginationE.innerHTML = toolbar;
 };
 
 /**********  Handle data **********/
 const pushNewProductToLocalStorage = (newProduct = {}) => {
-  let products = JSON.parse(localStorage.getItem('products'));
-  let currentPage = localStorage.getItem('currentPage');
-  let numberOfItemsOfEachPage = parseInt(
-    localStorage.getItem('numberOfItemsOfEachPage')
-  );
+	let products = JSON.parse(localStorage.getItem('products'));
+	let currentPage = localStorage.getItem('currentPage');
+	let numberOfItemsOfEachPage = parseInt(
+		localStorage.getItem('numberOfItemsOfEachPage')
+	);
 
-  const lastProductCode = products[products.length - 1].maSP;
-  const newMaSP =
-    parseInt(lastProductCode.slice(2, lastProductCode.length)) + 1;
+	const lastProductCode = products[products.length - 1].maSP;
+	const newMaSP =
+		parseInt(lastProductCode.slice(2, lastProductCode.length)) + 1;
 
-  newProduct.maSP = 'SP' + newMaSP;
-  products.push(newProduct);
-  localStorage.setItem('products', JSON.stringify(products));
+	newProduct.maSP = 'SP' + newMaSP;
+	products.push(newProduct);
+	localStorage.setItem('products', JSON.stringify(products));
 
-  createPaginationToolbar(products.length, numberOfItemsOfEachPage);
-  moveToPage('products', currentPage, 'updateMoveToLastPage');
+	createPaginationToolbar(products.length, numberOfItemsOfEachPage);
+	moveToPage('products', currentPage, 'updateMoveToLastPage');
 };
 
 const handleAction = () => {
-  const btnCreateUpdate = document.getElementById('btn-create-update');
-  if (btnCreateUpdate.textContent === 'Create') {
-    addProduct();
-  } else {
-    updateProduct();
-  }
+	const btnCreateUpdate = document.getElementById('btn-create-update');
+	if (btnCreateUpdate.textContent === 'Create') {
+		addProduct();
+	} else {
+		updateProduct();
+	}
 };
 
 const changeImage = (inProductImg) => {
-  const imageObject = inProductImg.files[0];
+	const imageObject = inProductImg.files[0];
 
-  if (imageObject) {
-    // Make sure `file.name` matches our extensions criteria
-    if (/\.(jpe?g|png|gif|webp)$/i.test(imageObject.name)) {
-      const reader = new FileReader();
-      reader.addEventListener(
-        'load',
-        function () {
-          imgProduct.src = this.result;
-        },
-        false
-      );
-      reader.readAsDataURL(imageObject);
-    }
-  }
+	if (imageObject) {
+		// Make sure `file.name` matches our extensions criteria
+		if (/\.(jpe?g|png|gif|webp)$/i.test(imageObject.name)) {
+			const reader = new FileReader();
+			reader.addEventListener(
+				'load',
+				function () {
+					imgProduct.src = this.result;
+				},
+				false
+			);
+			reader.readAsDataURL(imageObject);
+		}
+	}
 };
 
 const addProduct = () => {
-  const newProduct = {
-    tenSP: inProductName.value,
-    maDM: seProductCate.value,
-    gia: inProductPrice.value,
-    soLuong: inProductQuantity.value,
-    hanSuDung: inProductExpiryDate.value,
-    ngaySanXuat: inProductManuDate.value,
-    thuongHieu: inProductBrand.value,
-    moTa: taProductDes.value,
-    anh: imgProduct.src,
-    ngayNhap: inProductInputDate.value
-  };
+	const newProduct = {
+		tenSP: inProductName.value,
+		maDM: seProductCate.value,
+		gia: inProductPrice.value,
+		soLuong: inProductQuantity.value,
+		hanSuDung: inProductExpiryDate.value,
+		ngaySanXuat: inProductManuDate.value,
+		thuongHieu: inProductBrand.value,
+		moTa: taProductDes.value,
+		anh: imgProduct.src,
+		ngayNhap: inProductInputDate.value,
+	};
 
-  pushNewProductToLocalStorage(newProduct);
+	pushNewProductToLocalStorage(newProduct);
 };
 
 const updateDisplayProduct = (updatedProduct = {}) => {
-  const imgE = document.querySelector(
-    `#${updatedProduct.maSP} #product-img-${updatedProduct.maSP}`
-  );
-  const tenSPE = document.querySelector(
-    `#${updatedProduct.maSP} #product-name-${updatedProduct.maSP}`
-  );
-  const maDME = document.querySelector(
-    `#${updatedProduct.maSP} #product-cate-${updatedProduct.maSP}`
-  );
-  const giaE = document.querySelector(
-    `#${updatedProduct.maSP} #product-price-${updatedProduct.maSP}`
-  );
-  const soLuongE = document.querySelector(
-    `#${updatedProduct.maSP} #product-quantity-${updatedProduct.maSP}`
-  );
+	const imgE = document.querySelector(
+		`#${updatedProduct.maSP} #product-img-${updatedProduct.maSP}`
+	);
+	const tenSPE = document.querySelector(
+		`#${updatedProduct.maSP} #product-name-${updatedProduct.maSP}`
+	);
+	const maDME = document.querySelector(
+		`#${updatedProduct.maSP} #product-cate-${updatedProduct.maSP}`
+	);
+	const giaE = document.querySelector(
+		`#${updatedProduct.maSP} #product-price-${updatedProduct.maSP}`
+	);
+	const soLuongE = document.querySelector(
+		`#${updatedProduct.maSP} #product-quantity-${updatedProduct.maSP}`
+	);
 
-  imgE.src = updatedProduct.anh;
-  tenSPE.textContent = updatedProduct.tenSP;
-  giaE.textContent = updatedProduct.gia;
-  soLuongE.textContent = updatedProduct.soLuong;
-  maDME.textContent = updatedProduct.maDM;
+	imgE.src = updatedProduct.anh;
+	tenSPE.textContent = updatedProduct.tenSP;
+	giaE.textContent = updatedProduct.gia;
+	soLuongE.textContent = updatedProduct.soLuong;
+	maDME.textContent = updatedProduct.maDM;
 };
 
 const updateProduct = () => {
-  const updatedProduct = {
-    maSP: inProductCode.value,
-    tenSP: inProductName.value,
-    maDM: seProductCate.value,
-    gia: inProductPrice.value,
-    soLuong: inProductQuantity.value,
-    hanSuDung: inProductExpiryDate.value,
-    ngaySanXuat: inProductManuDate.value,
-    thuongHieu: inProductBrand.value,
-    moTa: taProductDes.value,
-    anh: imgProduct.src,
-    ngayNhap: inProductInputDate.value
-  };
+	const updatedProduct = {
+		maSP: inProductCode.value,
+		tenSP: inProductName.value,
+		maDM: seProductCate.value,
+		gia: inProductPrice.value,
+		soLuong: inProductQuantity.value,
+		hanSuDung: inProductExpiryDate.value,
+		ngaySanXuat: inProductManuDate.value,
+		thuongHieu: inProductBrand.value,
+		moTa: taProductDes.value,
+		anh: imgProduct.src,
+		ngayNhap: inProductInputDate.value,
+	};
 
-  let products = JSON.parse(localStorage.getItem('products'));
+	let products = JSON.parse(localStorage.getItem('products'));
 
-  products.forEach((product, index) =>
-    product.maSP == updatedProduct.maSP
-      ? (products[index] = { ...updatedProduct })
-      : null
-  );
+	products.forEach((product, index) =>
+		product.maSP == updatedProduct.maSP
+			? (products[index] = { ...updatedProduct })
+			: null
+	);
 
-  updateDisplayProduct(updatedProduct);
-  localStorage.setItem('products', JSON.stringify(products));
+	updateDisplayProduct(updatedProduct);
+	localStorage.setItem('products', JSON.stringify(products));
 };
 
 const deleteProduct = (maSP = '') => {
-  let products = JSON.parse(localStorage.getItem('products'));
-  let currentPage = localStorage.getItem('currentPage');
+	let products = JSON.parse(localStorage.getItem('products'));
+	let currentPage = localStorage.getItem('currentPage');
 
-  let newProducts = products.filter((product) =>
-    product.maSP == maSP ? false : true
-  );
+	let newProducts = products.filter((product) =>
+		product.maSP == maSP ? false : true
+	);
 
-  localStorage.setItem('products', JSON.stringify(newProducts));
-  moveToPage('products', currentPage, 'updateMoveToLastPage');
+	localStorage.setItem('products', JSON.stringify(newProducts));
+	moveToPage('products', currentPage, 'updateMoveToLastPage');
 };
 
 /**********  Search **********/
 const search = (value) => {
-  let products = JSON.parse(localStorage.getItem('products'));
-  let selectedSearchField = localStorage.getItem('selectedSearchField');
+	let products = JSON.parse(localStorage.getItem('products'));
+	let selectedSearchField = localStorage.getItem('selectedSearchField');
 
-  let filteredProducts = products.filter((product) => {
-    if (product[selectedSearchField].includes(value)) return true;
+	let filteredProducts = products.filter((product) => {
+		if (product[selectedSearchField].includes(value)) return true;
 
-    return false;
-  });
+		return false;
+	});
 
-  localStorage.setItem('filteredProducts', JSON.stringify(filteredProducts));
+	localStorage.setItem('filteredProducts', JSON.stringify(filteredProducts));
 
-  createPaginationToolbar('filteredProducts', filteredProducts.length, 10);
+	createPaginationToolbar('filteredProducts', filteredProducts.length, 10);
 
-  displayData(filteredProducts.slice(0, 10));
+	displayData(filteredProducts.slice(0, 10));
 };
 
 const selectSearchField = (selectedSearchField = 'name') => {
-  localStorage.setItem('selectedSearchField', selectedSearchField);
-  search(searchField.value);
+	localStorage.setItem('selectedSearchField', selectedSearchField);
+	search(searchField.value);
 };
 
 searchField.addEventListener('keyup', (e) => {
-  search(e.target.value);
+	search(e.target.value);
 });
 // Close & show product working overlay
 const displayProductWorkingOverlay = (type = 'create', product = {}) => {
-  if (type === 'create') {
-    btnCreateUpdate.textContent = 'Create';
+	if (type === 'create') {
+		btnCreateUpdate.textContent = 'Create';
 
-    inProductName.value = '';
-    inProductCode.value = '';
-    inProductPrice.value = 0;
-    inProductQuantity.value = 0;
-    inProductExpiryDate.value = '';
-    inProductManuDate.value = '';
-    inProductBrand.value = '';
-    inProductInputDate.value = '';
-    taProductDes.value = '';
-    imgProduct.src = '#';
-    seProductCate.value = '';
-  } else {
-    btnCreateUpdate.textContent = 'Update';
+		inProductName.value = '';
+		inProductCode.value = '';
+		inProductPrice.value = 0;
+		inProductQuantity.value = 0;
+		inProductExpiryDate.value = '';
+		inProductManuDate.value = '';
+		inProductBrand.value = '';
+		inProductInputDate.value = '';
+		taProductDes.value = '';
+		imgProduct.src = '#';
+		seProductCate.value = '';
+	} else {
+		btnCreateUpdate.textContent = 'Update';
 
-    inProductName.value = product.tenSP;
-    inProductCode.value = product.maSP;
-    inProductPrice.value = product.gia;
-    inProductQuantity.value = product.soLuong;
-    inProductExpiryDate.value = product.hanSuDung;
-    inProductManuDate.value = product.ngaySanXuat;
-    inProductBrand.value = product.thuongHieu;
-    inProductInputDate.value = product.ngayNhap;
-    taProductDes.value = product.moTa;
-    imgProduct.src = product.anh;
-    seProductCate.value = product.maDM;
-  }
+		inProductName.value = product.tenSP;
+		inProductCode.value = product.maSP;
+		inProductPrice.value = product.gia;
+		inProductQuantity.value = product.soLuong;
+		inProductExpiryDate.value = product.hanSuDung;
+		inProductManuDate.value = product.ngaySanXuat;
+		inProductBrand.value = product.thuongHieu;
+		inProductInputDate.value = product.ngayNhap;
+		taProductDes.value = product.moTa;
+		imgProduct.src = product.anh;
+		seProductCate.value = product.maDM;
+	}
 
-  productWorkingOverlay.style.display = 'block';
+	productWorkingOverlay.style.display = 'block';
 };
 
 closeQuickViewBtn.addEventListener('click', (e) => {
-  productWorkingOverlay.style.display = 'none';
+	productWorkingOverlay.style.display = 'none';
 });
