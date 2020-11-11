@@ -5,6 +5,7 @@ const productWorkingOverlay = document.querySelector(
   '.product-working-overlay'
 );
 const closeQuickViewBtn = document.querySelector('.close-button');
+
 const btnCreateUpdate = document.getElementById('btn-create-update');
 const btnDelete = document.getElementById('btn-delete');
 
@@ -22,6 +23,9 @@ const inProductExpiryDate = document.getElementById('product-expiry-date');
 const taProductDes = document.getElementById('product-des');
 const seProductCate = document.getElementById('product-category');
 
+const searchField = document.querySelector('#search');
+
+/**********  Fetch Data **********/
 const fetchData = async (url = '', dataProperty) => {
   const response = await fetch(url);
   const dataJSON = await response.json();
@@ -90,21 +94,31 @@ const fetchProductList = () => {
     localStorage.setItem('currentPage', '1');
     localStorage.setItem('numberOfItemsOfEachPage', '10');
 
-    createPaginationToolbar(productList.length, 10);
+    createPaginationToolbar('products', productList.length, 10);
 
     displayData(productList.slice(0, 10));
+  });
+
+  fetchData('../../data/categories.json', 'categories').then((categories) => {
+    localStorage.setItem('categories', JSON.stringify(categories));
+
+    let options = '';
+    categories.forEach((category) => {
+      options += `<option value="${category.maDM}">${category.tenDM}</option>`;
+    });
+    document.getElementById('product-category').innerHTML = options;
   });
 };
 
 /**********  Pagination **********/
-const moveToPage = (page, type = 'changePage') => {
+const moveToPage = (nameInLocalStorage = '', page, type = 'changePage') => {
   let numberOfItemsOfEachPage = parseInt(
     localStorage.getItem('numberOfItemsOfEachPage')
   );
-  let products = JSON.parse(localStorage.getItem('products'));
   let currentPage = parseInt(localStorage.getItem('currentPage'));
+  let data = JSON.parse(localStorage.getItem(nameInLocalStorage));
 
-  let numberOfPage = Math.ceil(products.length / numberOfItemsOfEachPage);
+  let numberOfPage = Math.ceil(data.length / numberOfItemsOfEachPage);
 
   if (page) {
     const pageLink = document.querySelectorAll('.pagination .page-link');
@@ -119,70 +133,76 @@ const moveToPage = (page, type = 'changePage') => {
     let end =
       (parseInt(page) - 1) * numberOfItemsOfEachPage + numberOfItemsOfEachPage;
 
-    displayData(products.slice(begin, end));
+    displayData(data.slice(begin, end));
     localStorage.setItem('currentPage', page);
   }
 
   switch (type) {
     case 'updateMoveToLastPage':
       document.getElementById('last-page').innerHTML = `
-		<a class="page-link" href="#" onclick="moveToPage(${numberOfPage})">Last Item</a>`;
+		<a class="page-link" href="#" onclick="moveToPage('${nameInLocalStorage}',${numberOfPage})">Last Item</a>`;
       break;
     case 'previous':
-      --currentPage < 1 ? moveToPage(numberOfPage) : moveToPage(currentPage);
+      --currentPage < 1
+        ? moveToPage(nameInLocalStorage, numberOfPage)
+        : moveToPage(nameInLocalStorage, currentPage);
       break;
     case 'next':
-      ++currentPage > numberOfPage ? moveToPage(1) : moveToPage(currentPage);
+      ++currentPage > numberOfPage
+        ? moveToPage(nameInLocalStorage, 1)
+        : moveToPage(nameInLocalStorage, currentPage);
       break;
   }
 };
 
-const findPage = () => {
+const findPage = (nameInLocalStorage = '') => {
   const findPageInput = document.getElementById('find-page-input');
+
   console.log(findPageInput.max);
   if (
     findPageInput.value >= findPageInput.min &&
     findPageInput.value <= findPageInput.max
   ) {
-    moveToPage(findPageInput.value);
+    moveToPage(nameInLocalStorage, findPageInput.value);
   } else {
-    alert('fuck');
+    alert('Invalid Input!');
   }
 };
 
 const createPaginationToolbar = (
-  numberOfProducts = 1,
+  nameInLocalStorage = '',
+  numberOfProducts,
   numberOfItemsOfEachPage = 10
 ) => {
   const toolbar = `
 	<li class="page-item">
-		<a class="page-link" href="#" onclick="moveToPage(1)">First Item</a>
+		<a class="page-link" href="#" onclick="moveToPage('${nameInLocalStorage}',1)">First Item</a>
 	</li>
 	<li class="page-item" id="previous-page">
-		<a class="page-link" href="#" aria-label="Previous" onclick="moveToPage(null, 'previous')">
+		<a class="page-link" href="#" aria-label="Previous" onclick="moveToPage('${nameInLocalStorage}',null, 'previous')">
 		<span aria-hidden="true">&laquo;</span>
 		</a>
 	</li>
 	<li class="page-item ">
-		<a class="page-link" onclick="moveToPage(this.textContent)">${Math.ceil(
-      numberOfProducts / numberOfItemsOfEachPage
-    )}</a>
+		<a class="page-link" onclick="moveToPage('${nameInLocalStorage}',this.textContent)">${Math.ceil(
+    numberOfProducts / numberOfItemsOfEachPage
+  )}</a>
 	</li>
 	<li class="page-item active disabled-click">
-		<a class="page-link" onclick="moveToPage(this.textContent)">1</a>
+		<a class="page-link" onclick="moveToPage('${nameInLocalStorage}',this.textContent)">1</a>
 	</li>
 	<li class="page-item">
-		<a class="page-link" onclick="moveToPage(this.textContent)">2</a>
+		<a class="page-link" onclick="moveToPage('${nameInLocalStorage}',this.textContent)">2</a>
 	</li>
 	<li class="page-item" id="next-page">
-		<a class="page-link" href="#" aria-label="Next" onclick="moveToPage(null, 'next')">
+		<a class="page-link" href="#" aria-label="Next" onclick="moveToPage('${nameInLocalStorage}',null, 'next')">
 		<span aria-hidden="true">&raquo;</span>
 		</a>
 	</li>
 	<li class="page-item" id="last-page">
-		<a class="page-link" href="#" onclick="moveToPage(${Math.ceil(
-      numberOfProducts / numberOfItemsOfEachPage
-    )})">Last Item</a>
+		<a class="page-link" href="#" onclick="moveToPage('${nameInLocalStorage}', ${Math.ceil(
+    numberOfProducts / numberOfItemsOfEachPage
+  )})">Last Item</a>
 	</li>
 
 	<li class="page-item">
@@ -199,7 +219,7 @@ const createPaginationToolbar = (
 		<button
 		  class="btn btn-outline-secondary"
 		  type="button"
-		  onclick="findPage()"
+		  onclick="findPage('${nameInLocalStorage}')"
 		>
 		  Go
 		</button>
@@ -229,7 +249,7 @@ const pushNewProductToLocalStorage = (newProduct = {}) => {
   localStorage.setItem('products', JSON.stringify(products));
 
   createPaginationToolbar(products.length, numberOfItemsOfEachPage);
-  moveToPage(currentPage, 'updateMoveToLastPage');
+  moveToPage('products', currentPage, 'updateMoveToLastPage');
 };
 
 const handleAction = () => {
@@ -337,9 +357,35 @@ const deleteProduct = (maSP = '') => {
   );
 
   localStorage.setItem('products', JSON.stringify(newProducts));
-  moveToPage(currentPage, 'updateMoveToLastPage');
+  moveToPage('products', currentPage, 'updateMoveToLastPage');
 };
 
+/**********  Search **********/
+const search = (value) => {
+  let products = JSON.parse(localStorage.getItem('products'));
+  let selectedSearchField = localStorage.getItem('selectedSearchField');
+
+  let filteredProducts = products.filter((product) => {
+    if (product[selectedSearchField].includes(value)) return true;
+
+    return false;
+  });
+
+  localStorage.setItem('filteredProducts', JSON.stringify(filteredProducts));
+
+  createPaginationToolbar('filteredProducts', filteredProducts.length, 10);
+
+  displayData(filteredProducts.slice(0, 10));
+};
+
+const selectSearchField = (selectedSearchField = 'name') => {
+  localStorage.setItem('selectedSearchField', selectedSearchField);
+  search(searchField.value);
+};
+
+searchField.addEventListener('keyup', (e) => {
+  search(e.target.value);
+});
 // Close & show product working overlay
 const displayProductWorkingOverlay = (type = 'create', product = {}) => {
   if (type === 'create') {
@@ -355,7 +401,7 @@ const displayProductWorkingOverlay = (type = 'create', product = {}) => {
     inProductInputDate.value = '';
     taProductDes.value = '';
     imgProduct.src = '#';
-    // seProductCate.value;
+    seProductCate.value = '';
   } else {
     btnCreateUpdate.textContent = 'Update';
 
@@ -369,7 +415,7 @@ const displayProductWorkingOverlay = (type = 'create', product = {}) => {
     inProductInputDate.value = product.ngayNhap;
     taProductDes.value = product.moTa;
     imgProduct.src = product.anh;
-    // seProductCate.value;
+    seProductCate.value = product.maDM;
   }
 
   productWorkingOverlay.style.display = 'block';
