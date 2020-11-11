@@ -6,9 +6,8 @@
 } */
 .form-category {
     display: none;
-    margin: auto;
     border: 2px gray;
-    margin: 0 0 0 30rem;
+    margin: 10rem 0 0 30rem;
 }
 /* .title {
     margin-left: 10%;

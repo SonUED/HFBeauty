@@ -1,35 +1,36 @@
+
 var order = [
     {
-        IdOrder: 0,
-        IdCustomer: 111,
-        receiver: "Nguyen van a",
-        address: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-        phone: "0123456789",
-        date: "23/05/2020",
-        status:"wait for accept"
+      maDH: 0,
+      tenTaiKhoan: "nva",
+      nguoiNhan: "Nguyen van a",
+      diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
+      SDT: "0123456789",
+      ngayDat: "23/05/2020",
+      trangThai: "wait for take",
     },
     {
-        IdOrder: 1,
-        IdCustomer: 111,
-        receiver: "Nguyen van a",
-        address: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-        phone: "0123456789",
-        date: "23/05/2020",
-        status:"wait for take"
-
+      maDH: 1,
+      tenTaiKhoan: "nva",
+      nguoiNhan: "Nguyen van a",
+      diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
+      SDT: "0123456789",
+      ngayDat: "23/05/2020",
+      trangThai: "wait for accept",
     },
     {
-        IdOrder: 2,
-        IdCustomer: 111,
-        receiver: "Nguyen van a",
-        address: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-        phone: "0123456789",
-        date: "23/05/2020",
-        status:"deliver"
+      maDH: 2,
+      tenTaiKhoan: "nva",
+      nguoiNhan: "Nguyen van a",
+      diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
+      SDT: "0123456789",
+      ngayDat: "23/05/2020",
+      trangThai: "wait for accept",
     },
-]
+  ];
 
-var statuses = ['wait for accept', 'wait for take', 'deliver','received']
+var trangThaies = ['wait for accept', 'wait for take', 'deliver','received']
+// localStorage.setItem("order", JSON.stringify(order));
 
 function showOder(mess) {
     document.querySelector(".table-order").innerHTML = ""
@@ -41,13 +42,13 @@ function showOder(mess) {
 
             order.map(item => { 
                 var row = '<tr>' + 
-                        '<td>' +item.IdOrder+ '</td>'+
-                        '<td>' +item.IdCustomer+ '</td>'+
-                        '<td>' +item.receiver+ '</td>'+
-                        '<td>' +item.address+ '</td>'+
-                        '<td>' +item.phone+ '</td>'+
-                        '<td>' +item.date+ '</td>'+
-                        '<td>' +item.status+ '</td>'+
+                        '<td>' +item.maDH+ '</td>'+
+                        '<td>' +item.tenTaiKhoan+ '</td>'+
+                        '<td>' +item.nguoiNhan+ '</td>'+
+                        '<td>' +item.diaChi+ '</td>'+
+                        '<td>' +item.SDT+ '</td>'+
+                        '<td>' +item.ngayDat+ '</td>'+
+                        '<td>' +item.trangThai+ '</td>'+
                     '</tr>'
                 document.querySelector(".table-order").innerHTML += row;
             })
@@ -56,19 +57,18 @@ function showOder(mess) {
             document.querySelector(".apply").style.display = " table-cell";
             document.querySelector(".reject").style.display = " table-cell";
 
-
             order.map(item => { 
-                if (item.status === "wait for accept"){
+                if (item.trangThai === "wait for accept"){
                     var row = '<tr>' + 
-                        '<td>' +item.IdOrder+ '</td>'+
-                        '<td>' +item.IdCustomer+ '</td>'+
-                        '<td>' +item.receiver+ '</td>'+
-                        '<td>' +item.address+ '</td>'+
-                        '<td>' +item.phone+ '</td>'+
-                        '<td>' +item.date+ '</td>'+
-                        '<td>' +item.status+ '</td>'+
-                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.IdOrder + ')"></td>'+
-                        '<td><input class="btn btn-danger" type="button" value="Hủy" onclick="reject(' + item.IdOrder + ')"></td>'+
+                        '<td>' +item.maDH+ '</td>'+
+                        '<td>' +item.tenTaiKhoan+ '</td>'+
+                        '<td>' +item.nguoiNhan+ '</td>'+
+                        '<td>' +item.diaChi+ '</td>'+
+                        '<td>' +item.SDT+ '</td>'+
+                        '<td>' +item.ngayDat+ '</td>'+
+                        '<td>' +item.trangThai+ '</td>'+
+                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.maDH + ')"></td>'+
+                        '<td><input class="btn btn-danger" type="button" value="Hủy" onclick="reject(' + item.maDH + ')"></td>'+
                     '</tr>'
                         document.querySelector(".table-order").innerHTML += row;
                     
@@ -80,16 +80,16 @@ function showOder(mess) {
             document.querySelector(".reject").style.display = "none";
 
             order.map(item => { 
-                if (item.status === "wait for take"){
+                if (item.trangThai === "wait for take"){
                     var row = '<tr>' + 
-                        '<td>' +item.IdOrder+ '</td>'+
-                        '<td>' +item.IdCustomer+ '</td>'+
-                        '<td>' +item.receiver+ '</td>'+
-                        '<td>' +item.address+ '</td>'+
-                        '<td>' +item.phone+ '</td>'+
-                        '<td>' +item.date+ '</td>'+
-                        '<td>' +item.status+ '</td>'+
-                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.IdOrder + ')"></td>'+
+                        '<td>' +item.maDH+ '</td>'+
+                        '<td>' +item.tenTaiKhoan+ '</td>'+
+                        '<td>' +item.nguoiNhan+ '</td>'+
+                        '<td>' +item.diaChi+ '</td>'+
+                        '<td>' +item.SDT+ '</td>'+
+                        '<td>' +item.ngayDat+ '</td>'+
+                        '<td>' +item.trangThai+ '</td>'+
+                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.maDH + ')"></td>'+
                     '</tr>'
                         document.querySelector(".table-order").innerHTML += row;
                     
@@ -101,16 +101,16 @@ function showOder(mess) {
             document.querySelector(".reject").style.display = "none";
                 
             order.map(item => { 
-                if (item.status === "deliver"){
+                if (item.trangThai === "deliver"){
                     var row = '<tr>' + 
-                        '<td>' +item.IdOrder+ '</td>'+
-                        '<td>' +item.IdCustomer+ '</td>'+
-                        '<td>' +item.receiver+ '</td>'+
-                        '<td>' +item.address+ '</td>'+
-                        '<td>' +item.phone+ '</td>'+
-                        '<td>' +item.date+ '</td>'+
-                        '<td>' +item.status+ '</td>'+
-                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.IdOrder + ')"></td>'+
+                        '<td>' +item.maDH+ '</td>'+
+                        '<td>' +item.tenTaiKhoan+ '</td>'+
+                        '<td>' +item.nguoiNhan+ '</td>'+
+                        '<td>' +item.diaChi+ '</td>'+
+                        '<td>' +item.SDT+ '</td>'+
+                        '<td>' +item.ngayDat+ '</td>'+
+                        '<td>' +item.trangThai+ '</td>'+
+                        '<td><input class="btn btn-success" type="button" value="OK" onclick="apply(' + item.maDH + ')"></td>'+
                     '</tr>'
                         document.querySelector(".table-order").innerHTML += row;
                     
@@ -122,15 +122,15 @@ function showOder(mess) {
             document.querySelector(".reject").style.display = "none";
                 
             order.map(item => { 
-                if (item.status === "received"){
+                if (item.trangThai === "received"){
                     var row = '<tr>' + 
-                        '<td>' +item.IdOrder+ '</td>'+
-                        '<td>' +item.IdCustomer+ '</td>'+
-                        '<td>' +item.receiver+ '</td>'+
-                        '<td>' +item.address+ '</td>'+
-                        '<td>' +item.phone+ '</td>'+
-                        '<td>' +item.date+ '</td>'+
-                        '<td>' +item.status+ '</td>'+
+                        '<td>' +item.maDH+ '</td>'+
+                        '<td>' +item.tenTaiKhoan+ '</td>'+
+                        '<td>' +item.nguoiNhan+ '</td>'+
+                        '<td>' +item.diaChi+ '</td>'+
+                        '<td>' +item.SDT+ '</td>'+
+                        '<td>' +item.ngayDat+ '</td>'+
+                        '<td>' +item.trangThai+ '</td>'+
                     '</tr>'
                         document.querySelector(".table-order").innerHTML += row;
                     
@@ -143,13 +143,13 @@ function showOder(mess) {
 
             order.map(item => { 
                 var row = '<tr>' + 
-                        '<td>' +item.IdOrder+ '</td>'+
-                        '<td>' +item.IdCustomer+ '</td>'+
-                        '<td>' +item.receiver+ '</td>'+
-                        '<td>' +item.address+ '</td>'+
-                        '<td>' +item.phone+ '</td>'+
-                        '<td>' +item.date+ '</td>'+
-                        '<td>' +item.status+ '</td>'+
+                        '<td>' +item.maDH+ '</td>'+
+                        '<td>' +item.tenTaiKhoan+ '</td>'+
+                        '<td>' +item.nguoiNhan+ '</td>'+
+                        '<td>' +item.diaChi+ '</td>'+
+                        '<td>' +item.SDT+ '</td>'+
+                        '<td>' +item.ngayDat+ '</td>'+
+                        '<td>' +item.trangThai+ '</td>'+
                     '</tr>'
                 document.querySelector(".table-order").innerHTML += row;
             })
@@ -160,9 +160,9 @@ function showOder(mess) {
 function apply(id){
     console.log(order);
     order.map(item => {
-        if (item.IdOrder === id) {
-            item.status = statuses[statuses.indexOf(item.status)+1]
-            showOder(statuses[statuses.indexOf(item.status)-1]);
+        if (item.maDH === id) {
+            item.trangThai = trangThaies[trangThaies.indexOf(item.trangThai)+1]
+            showOder(trangThaies[trangThaies.indexOf(item.trangThai)-1]);
         }
     });
     console.log(order);
@@ -173,9 +173,9 @@ function apply(id){
 function reject(id){
     order = getOrderFromStorage();
     order.map(item => {
-        if (item.IdOrder === id) {
-            item.status = "canceled"
-            showOder(statuses[statuses.indexOf(item.status)-1]);
+        if (item.maDH === id) {
+            item.trangThai = "canceled"
+            showOder(trangThaies[trangThaies.indexOf(item.trangThai)-1]);
         }
     });
     saveOrderToStorage();
