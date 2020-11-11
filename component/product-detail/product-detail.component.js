@@ -36,10 +36,10 @@ productDetailTemplate.innerHTML = `
 				</div>
 				<div class="price-box">
 					<span class="old-price">
-						<del class="text-muted">Rs. 845.00</del>
+						<del class="text-muted">Rs. <span id="product-old-price"></span></del>
 					</span>
 					&nbsp;
-					<span class="new-price">Rs. <span id="product-price"></span>.00</span>
+					<span class="new-price">Rs. <span id="product-price"></span></span>
 				</div>
 				<div class="product-detail__des">
 					<p id="product-des">
@@ -74,13 +74,13 @@ productDetailTemplate.innerHTML = `
 </div>`;
 
 class Product extends HTMLElement {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	connectedCallback() {
-		this.innerHTML = productDetailTemplate.innerHTML;
-	}
+  connectedCallback() {
+    this.innerHTML = productDetailTemplate.innerHTML;
+  }
 }
 
 customElements.define('product-detail-element', Product);
