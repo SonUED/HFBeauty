@@ -280,7 +280,7 @@
               </div>
               <div class="collection__list">
                 <div class="row">
-                  <div class="col-lg-3 collection__item">
+                  <div class="col-lg-3 collection__item" onclick="pushToRecent('SP2')">
                     <div class="card text-center">
                       <div class="card-top">
                         <div class="card-label"><strong>-15%</strong></div>
@@ -370,6 +370,30 @@
       <recently-viewed-products-element></recently-viewed-products-element>
     </main>
     <section-brand-element></section-brand-element>
+    <script>
+      const pushToRecent = (iDRecent) => {
+      const products = JSON.parse(localStorage.getItem("products"));
+      const recentlyViewdArr = JSON.parse(localStorage.getItem("recently"));
+        var newArr=[];
+        const findProductFromId = (maSPToAdd) => {
+          return products.filter((product) => {
+            return product.maSP == maSPToAdd;
+          });
+        };
+          console.log("AAAAAAAAAAAAAA");
+            console.log(iDRecent);
+          const product = findProductFromId(iDRecent);
+          console.log(product);
+          newArr.push(product);
+    
+            localStorage.setItem(
+              "recentlyViewed",
+              JSON.stringify(Array.from(new Set( ...newArr)))
+            );
+        };
+
+    </script>
+    <!-- <script src="../js/recentlyViewed.js"></script> -->
     <script src="../js/cart.js"></script>
     <script src="../js/product-page.animation.js"></script>
     <script src="../../component/product-detail/product-detail.component.js"></script>
