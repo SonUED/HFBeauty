@@ -1,7 +1,9 @@
 const productDetailTemplate = document.createElement("template");
 
 productDetailTemplate.innerHTML = `
-<link rel="stylesheet" type="text/css" href="../../component/product-detail/product-detail.style.css">
+
+<link rel="stylesheet" type="text/css" href="/component/product-detail/product-detail.style.css">
+
 <div class="product-detail product-quick-view">
 	<input type="hidden" value="SP2" id="maSP">
 	<div class="row">
@@ -9,7 +11,9 @@ productDetailTemplate.innerHTML = `
 			<div class="card-top">
 				<div class="card-label"><strong>-15%</strong></div>
 				<img
-					src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
+					id="product-img"
+					src="#"
+
 					class="img-fluid"
 					alt="product-img"
 					id="img"
@@ -18,7 +22,8 @@ productDetailTemplate.innerHTML = `
 		</div>
 		<div class="col-lg-6">
 			<div class="card-body">
-				<h5 class="card-title" id="name">Chambor Rouge Plum+ Lipstick</h5>
+				<h5 class="card-title" id="product-name"></h5>
+
 				<div class="product-detail__reviews">
 					<i class="fas fa-star"></i>
 					<i class="fas fa-star"></i>
@@ -27,22 +32,25 @@ productDetailTemplate.innerHTML = `
 					<i class="fas fa-star"></i>
 				</div>
 				<div class="product-detail__brand">
-					<span class="strong-text-700">Brand:</span> Chambor
+					<span class="strong-text-700">Brand:</span> <span id="product-brand"></span> 
 				</div>
 				<div class="product-detail__code">
-					<span class="strong-text-700" id="code">Product Code:</span> CHM000138a
+					<span class="strong-text-700">Product Code:</span> <span id="product-code"></span>  
+				</div>
+				<div class="product-detail__cate">
+					<span class="strong-text-700">Category:</span> <span id="product-cate"></span>  
 				</div>
 				<div class="price-box">
 					<span class="old-price">
-						<del class="text-muted">Rs. 845.00</del>
+						<del class="text-muted">Rs. <span id="product-old-price"></span></del>
 					</span>
 					&nbsp;
-					<span class="new-price">Rs. <span id="price">718.00</span></span>
+
+					<span class="new-price">Rs. <span id="product-price"></span></span>
+
 				</div>
 				<div class="product-detail__des">
-					<p>
-						A lipstick isn't just a lipstick anymore. With Chambor, it
-						becomes your beauty secret that helps you get the desired...
+					<p id="product-des">
 					</p>
 				</div>
 				<div class="quantity">

@@ -1,7 +1,7 @@
 const recentlyViewedProductsTemplate = document.createElement("template");
 
 recentlyViewedProductsTemplate.innerHTML = `
-<link rel="stylesheet" type="text/css" href="/components/recently-viewd-products/recently-viewed-product.style.css">
+<link rel="stylesheet" type="text/css" href="/component/recently-viewd-products/recently-viewed-product.style.css">
 <section class="recently-viewed-products">
     <div class="recently-viewed-products__title">
     <h3>RECENTLY VIEWED PRODUCTS</h3>
@@ -30,6 +30,7 @@ recentlyViewedProductsTemplate.innerHTML = `
                 <span class="new-price">Rs. 718.00</span>
             </div>
             <a href="#" class="btn btn-primary" onclick="addToCart('SP2')">ADD TO CART</a>
+
             </div>
         </div>
         </div>

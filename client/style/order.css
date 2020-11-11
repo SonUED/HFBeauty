@@ -1,43 +1,118 @@
 .title {
-    margin-left: 10%;
+  margin-left: 10%;
 }
 .table-head {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 .btn-group {
-    width: 80%;
-    margin-left: 10%;
+  width: 80%;
+  margin-left: 10%;
 }
 .button {
-    /* margin-left: 20%; */
-    
-    text-align: center;
-    background-color: white;
-    outline: none;
-    border: none;
-    width: 100%;
+  /* margin-left: 20%; */
 
+  text-align: center;
+  background-color: white;
+  outline: none;
+  border: none;
+  width: 100%;
 }
 .button:hover {
-    color: orange;
+  color: orange;
 }
 
 input:focus {
-    border-bottom: 3px solid orange;
+  border-bottom: 3px solid orange;
 }
 
 table {
-    width: 70%;
-    margin: 50px 15% 0 15%;
-    border-bottom: 1px solid #ebebe0;
-    border-top: 1px solid #ebebe0;
+  /* border: 3px solid #f1f1f1; */
+
+  width: 70%;
+  margin: 50px 15% 0 15%;
+  /* border-bottom: 1px solid #ebebe0;
+  border-top: 1px solid #ebebe0; */
 }
 table tr {
-   
-    border-bottom: 1px solid #ebebe0;
-    border-top: 1px solid #ebebe0;
+  border: 3px solid #f1f1f1;
+}
+table .table-head {
+  border: none !important;
 }
 img {
-    width: 100px;
+  width: 100px;
+}
+
+table th {
+  margin-bottom: 10px;
+}
+.total {
+    background-color: #f1f1f1;
+}
+
+.form-judge {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 400px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container input,
+textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+.form-container .btn {
+  width: 49%;
+  margin: auto;
+}
+.maSp {
+    display: none;
+}
+.rate {
+  width: 100%;
+  height: 46px;
+  padding: 0 100px;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+.rate:not(:checked) > label:before {
+  content: "★";
+}
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
 }

@@ -1,7 +1,7 @@
 const displayPageUrlTemplate = document.createElement('template');
 
 displayPageUrlTemplate.innerHTML = `
-<link href="/components/display-page-url/display-page-url.style.css" rel="stylesheet" type="text/css">
+<link href="/component/display-page-url/display-page-url.style.css" rel="stylesheet" type="text/css">
 <section class="display-page-url">
     <span> <a href="#">Home</a> </span>
     <span class="arrow"
@@ -12,13 +12,13 @@ displayPageUrlTemplate.innerHTML = `
 `;
 
 class DisplayPageUrl extends HTMLElement {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 
-  connectedCallback() {
-    this.innerHTML = displayPageUrlTemplate.innerHTML;
-  }
+	connectedCallback() {
+		this.innerHTML = displayPageUrlTemplate.innerHTML;
+	}
 }
 
 customElements.define('display-page-url-element', DisplayPageUrl);

@@ -61,119 +61,6 @@ ul {
           REUSED COMPONENT
 ****************************************/
 
-/******* TOOLBAR *******/
-.toolbar {
-	display: flex;
-	justify-content: space-between;
-	height: 56px;
-	padding: 9px 9px 9px 20px;
-	margin-bottom: 20px;
-
-	font-size: 12px;
-	text-transform: uppercase;
-
-	background-color: #f7f7f7;
-
-	&--left,
-	&--right {
-		display: flex;
-		height: 38px;
-		align-items: center;
-
-		line-height: 22px;
-	}
-
-	span {
-		margin: 0 15px;
-	}
-
-	.view-mode {
-		display: flex;
-		width: 73px;
-		height: 38px;
-		padding: 1px;
-
-		.view-mode--grid,
-		.view-mode--list {
-			width: 36px;
-			height: 36px;
-
-			color: $borderColor;
-			background-color: #fff;
-			border: 1px solid $borderColor;
-
-			i {
-				font-size: 17px;
-				pointer-events: none;
-			}
-		}
-
-		.view-mode--grid:focus,
-		.view-mode--list:focus {
-			outline: none;
-		}
-
-		$borderRadiusViewMode: 3px;
-
-		.view-mode--grid {
-			padding-right: 1px;
-			border-top-left-radius: $borderRadiusViewMode;
-			border-bottom-left-radius: $borderRadiusViewMode;
-		}
-
-		.view-mode--list {
-			margin-left: -1px;
-			border-top-right-radius: $borderRadiusViewMode;
-			border-bottom-right-radius: $borderRadiusViewMode;
-		}
-
-		.active {
-			color: black;
-		}
-	}
-
-	.dropdown:first-of-type {
-		width: 80px;
-		margin-right: 15px;
-	}
-
-	.dropdown:last-of-type {
-		width: 170px;
-	}
-
-	.btn,
-	.dropdown-menu {
-		width: 100%;
-		min-width: 0;
-
-		color: $primaryColor;
-		background-color: #fff;
-		border: 1px solid $borderColor;
-
-		text-align: left;
-		font-family: $secondaryFont, sans-serif;
-		font-size: 12px;
-	}
-
-	.show > .btn-secondary.dropdown-toggle {
-		color: $primaryColor;
-		background-color: #fff;
-		border: 1px solid $borderColor;
-	}
-
-	.show > .btn-secondary.dropdown-toggle:focus {
-		box-shadow: none;
-	}
-
-	.dropdown-item {
-		text-transform: none;
-
-		&:hover {
-			background-color: $borderColor;
-		}
-	}
-}
-
 /******* CARD *******/
 .card {
 	border: none;
@@ -322,5 +209,33 @@ ul {
 
 	&__content {
 		width: 40%;
+	}
+}
+
+/******* COLLECTION ITEM *******/
+.collection__item {
+	margin-bottom: 5px;
+
+	&:hover {
+		padding: -15px;
+		box-shadow: 0 0 5px 0.1px #b8bab9;
+
+		.add-to-cart-btn,
+		.card-quick-view-btn {
+			visibility: visible;
+		}
+	}
+
+	&--featured {
+		width: 95%;
+		margin: 0 auto;
+
+		.add-to-cart-btn {
+			visibility: visible;
+		}
+
+		&:hover {
+			box-shadow: none;
+		}
 	}
 }

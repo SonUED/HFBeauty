@@ -1,6 +1,5 @@
 .product-detail {
   width: 100%;
-  max-height: 70vh;
   padding: 40px;
   font-family: 'Arimo', sans-serif;
   font-size: 12px;
@@ -25,7 +24,7 @@
 .product-detail .btn,
 .product-detail .card-title,
 .product-detail .price-box,
-.product-detail .quantity, .product-detail__brand, .product-detail__code, .product-detail__des, .product-detail__seen, .product-detail__reviews {
+.product-detail .quantity, .product-detail__brand, .product-detail__code, .product-detail__des, .product-detail__seen, .product-detail__reviews, .product-detail__cate {
   margin-bottom: 20px;
   line-height: 20px;
 }
