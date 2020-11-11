@@ -1,0 +1,82 @@
+body {
+  background-color: gray;
+}
+section {
+  border: gray;
+  width: 80%;
+  margin: 50px 10% 0 10%;
+  background-color: white;
+  height: 1000px;
+}
+section * {
+  margin: 10px;
+}
+.form-user {
+  display: none;
+  width: 80%;
+  margin: auto;
+}
+
+.name {
+  border-bottom: 2px solid;
+  text-align: center;
+}
+
+.profile {
+  padding-top: 20px;
+  width: 80%;
+  margin: auto;
+}
+
+.form-user input {
+  background-color: white !important;
+  outline: none !important;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  width: 200px;
+}
+
+.image {
+  left: 100px;
+  display: block;
+  width: 200px;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 250px;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #008cba;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.profile button {
+  margin-left: 40%;
+}
+.btn-group {
+  margin-left: 40%;
+}

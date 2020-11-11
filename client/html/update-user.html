@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../style/update-user.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+    <div class="show-data">
+    </div>
+
+      <div class="form-user">
+        <form>
+          <div class="form-group">
+            <label for="name"><b>Họ và Tên</b></label>
+            <input type="text" class="form-control" id="name" />
+          </div>
+          <div class="form-group">
+            <label for="date"><b>Ngày sinh</b></label>0
+            <input type="date" class="form-control" id="date" />
+          </div>
+          <div class="form-group">
+            <label for="mail"><b>Email</b></label>
+            <input type="mail" class="form-control" id="mail" />
+          </div>
+          <div class="form-group">
+            <label for="phone"><b>Số điện thoại</b></label>
+            <input type="number" class="form-control" id="phone" />
+          </div>
+          <div class="form-group">
+            <label for="adress"><b>địa chỉ</b></label>
+            <input type="text" class="form-control" id="adress" />
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-success" onclick="save()">
+              Lưu
+            </button>
+            <button type="button" class="btn btn-danger" onclick="hiddenForm()">
+              Hủy
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <script src="../js/update-user.js"></script>
+  </body>
+</html>
