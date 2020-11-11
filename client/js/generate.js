@@ -33,9 +33,9 @@ for (let i = 1; i <= 200; i++) {
     ngaySanXuat: 'Xem trên bao bì sản phẩm.',
     thuongHieu: thuongHieu,
     moTa:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam laboriosam fugiat eum nihil deserunt odio velit iure repellendus hic suscipit eius voluptas repudiandae enim ex consectetur assumenda commodi, nisi alias.',
-    anh: '../../img/Chambor_Rouge_Plum+_Lipstick.webp',
-    ngayNhap: ngayNhap
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam laboriosam fugiat eum nihil deserunt odio velit iure repellendus hic suscipit eius voluptas repudiandae enim ex consectetur assumenda commodi, nisi alias.",
+    ngayNhap: ngayNhap,
+    anh: "../../img/product-img/product1.webp",
   };
 
   products.push(product);

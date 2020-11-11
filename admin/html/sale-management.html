@@ -35,42 +35,46 @@
   </head>
 
   <body onload="loadData()">
-    <div class="tool-area">
-      <div class="search-box">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          id="search"
-        />
+    <div class="show-sales">
+      <div class="tool-area">
+        <div class="search-box">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            id="search"
+            onkeyup="searching(this.value)"
+          />
+        </div>
+        <div class="btns">
+          <button class="btn btn-primary" onclick="showForm(null)">
+            Thêm mới
+          </button>
+        </div>
       </div>
-      <div class="btns">
-        <button class="btn btn-primary">Thêm mới</button>
-      </div>
-    </div>
-    <div class="content">
-      <div class="tbl-box">
-        <table class="table" id="tbl">
-          <thead class="thead-dark">
-            <tr>
-              <th>Mã khuyến mãi</th>
-              <th>Tên đợt khuyến mãi</th>
-              <th>Giảm giá</th>
-              <th>Ngày bắt đầu</th>
-              <th>Ngày kết thúc</th>
-              <th>Ghi chú</th>
-              <th>Các danh mục</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="tblBody"></tbody>
-        </table>
+      <div class="content">
+        <div class="tbl-box">
+          <table class="table" id="tbl">
+            <thead class="thead-dark">
+              <tr>
+                <th>Mã khuyến mãi</th>
+                <th>Tên đợt khuyến mãi</th>
+                <th>Giảm giá</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Ghi chú</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="tblBody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <div class="input-frm">
-      <h1>TẠO KHUYẾN MÃI</h1>
+    <div class="input-frm d-none">
+      <h1 class="title-article">TẠO KHUYẾN MÃI</h1>
       <div>
         <form name="frm">
           <div class="form-group">
@@ -108,10 +112,17 @@
           </div>
 
           <div id="cateSelecting" class="select-cate">
-            <h5>Chọn thể loại áp dụng</h5>
+            <h5>Chọn sản phẩm áp dụng</h5>
+            <div class="tab" id="cateTab"></div>
+            <div id="contentTab"></div>
           </div>
           <div class="btns-group">
-            <button type="button" class="btn btn-primary" onclick="clickAdd()">
+            <button
+              type="button"
+              id="btnAdd"
+              class="btn btn-primary"
+              onclick="clickFinish()"
+            >
               Thêm
             </button>
             <button
@@ -125,6 +136,7 @@
         </form>
       </div>
     </div>
+
     <script src="../js/sale-management.js"></script>
   </body>
 </html>
