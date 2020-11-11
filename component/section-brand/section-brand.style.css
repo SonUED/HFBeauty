@@ -1,6 +1,12 @@
 /****************************************
 		SECTION brands
 ****************************************/
+.col-20 {
+  width: 20%;
+  padding-left: 15px;
+  padding-right: 10px;
+}
+
 .brand .brand__block {
   padding: 38px 0;
 }

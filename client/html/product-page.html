@@ -32,7 +32,7 @@
 		<link rel="stylesheet" href="../style/product-page.css" />
 		<title>HF Beauty</title>
 	</head>
-	<body>
+	<body onload="fetchProductList()">
 		<section class="quick-view-overlay">
 			<div class="quick-view">
 				<a href="#" class="close-button"><i class="fas fa-times"></i></a>
@@ -168,34 +168,169 @@
 									<h3><span>FEATURED PRODUCTS</span></h3>
 								</div>
 								<div class="featured-product__product">
-									<div class="collection__item collection__item--featured">
-										<div class="card text-center">
-											<div class="card-top">
-												<div class="card-label"><strong>-15%</strong></div>
-												<div class="card-quick-view-btn">
-													<span>QUICK VIEW</span>
-												</div>
-												<img
-													src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
-													class="card-img-top"
-													alt="..."
-												/>
-											</div>
-											<div class="card-body">
-												<h6 class="card-subtitle">Chambor</h6>
-												<h5 class="card-title">Chambor Rouge Plum+ Lipstick</h5>
-												<div class="price-box">
-													<span class="old-price">
-														<del class="text-muted">Rs. 845.00</del>
-													</span>
-													&nbsp;
-													<span class="new-price">Rs. 718.00</span>
-												</div>
-												<a href="#" class="btn btn-primary add-to-cart-btn"
-													>ADD TO CART</a
+									<div
+										id="carouselExampleIndicators"
+										class="carousel slide"
+										data-ride="carousel"
+									>
+										<ol class="carousel-indicators">
+											<li
+												data-target="#carouselExampleIndicators"
+												data-slide-to="0"
+												class="active"
+											></li>
+											<li
+												data-target="#carouselExampleIndicators"
+												data-slide-to="1"
+											></li>
+											<li
+												data-target="#carouselExampleIndicators"
+												data-slide-to="2"
+											></li>
+										</ol>
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<div
+													class="collection__item collection__item--featured"
 												>
+													<div class="card text-center">
+														<div class="card-top">
+															<div class="card-label">
+																<strong>-15%</strong>
+															</div>
+															<div class="card-quick-view-btn">
+																<span>QUICK VIEW</span>
+															</div>
+															<img
+																src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
+																class="card-img-top"
+																alt="..."
+															/>
+														</div>
+														<div class="card-body">
+															<h6 class="card-subtitle">Chambor</h6>
+															<h5 class="card-title">
+																Chambor Rouge Plum+ Lipstick
+															</h5>
+															<div class="price-box">
+																<span class="old-price">
+																	<del class="text-muted">Rs. 845.00</del>
+																</span>
+																&nbsp;
+																<span class="new-price">Rs. 718.00</span>
+															</div>
+															<a
+																href="#"
+																class="btn btn-primary add-to-cart-btn"
+																>ADD TO CART</a
+															>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="carousel-item">
+												<div
+													class="collection__item collection__item--featured"
+												>
+													<div class="card text-center">
+														<div class="card-top">
+															<div class="card-label">
+																<strong>-15%</strong>
+															</div>
+															<div class="card-quick-view-btn">
+																<span>QUICK VIEW</span>
+															</div>
+															<img
+																src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
+																class="card-img-top"
+																alt="..."
+															/>
+														</div>
+														<div class="card-body">
+															<h6 class="card-subtitle">Chambor</h6>
+															<h5 class="card-title">
+																Chambor Rouge Plum+ Lipstick
+															</h5>
+															<div class="price-box">
+																<span class="old-price">
+																	<del class="text-muted">Rs. 845.00</del>
+																</span>
+																&nbsp;
+																<span class="new-price">Rs. 718.00</span>
+															</div>
+															<a
+																href="#"
+																class="btn btn-primary add-to-cart-btn"
+																>ADD TO CART</a
+															>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="carousel-item">
+												<div
+													class="collection__item collection__item--featured"
+												>
+													<div class="card text-center">
+														<div class="card-top">
+															<div class="card-label">
+																<strong>-15%</strong>
+															</div>
+															<div class="card-quick-view-btn">
+																<span>QUICK VIEW</span>
+															</div>
+															<img
+																src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
+																class="card-img-top"
+																alt="..."
+															/>
+														</div>
+														<div class="card-body">
+															<h6 class="card-subtitle">Chambor</h6>
+															<h5 class="card-title">
+																Chambor Rouge Plum+ Lipstick
+															</h5>
+															<div class="price-box">
+																<span class="old-price">
+																	<del class="text-muted">Rs. 845.00</del>
+																</span>
+																&nbsp;
+																<span class="new-price">Rs. 718.00</span>
+															</div>
+															<a
+																href="#"
+																class="btn btn-primary add-to-cart-btn"
+																>ADD TO CART</a
+															>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
+										<a
+											class="carousel-control-prev"
+											href="#carouselExampleIndicators"
+											role="button"
+											data-slide="prev"
+										>
+											<span
+												class="carousel-control-prev-icon"
+												aria-hidden="true"
+											></span>
+											<span class="sr-only">Previous</span>
+										</a>
+										<a
+											class="carousel-control-next"
+											href="#carouselExampleIndicators"
+											role="button"
+											data-slide="next"
+										>
+											<span
+												class="carousel-control-next-icon"
+												aria-hidden="true"
+											></span>
+											<span class="sr-only">Next</span>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -231,7 +366,7 @@
 									<span>items per page</span>
 									<div class="dropdown">
 										<button
-											class="btn btn-secondary dropdown-toggle"
+											class="btn btn-secondary dropdown-toggle drop-toggle-pagination"
 											type="button"
 											id="dropdownMenuButton"
 											data-toggle="dropdown"
@@ -241,7 +376,7 @@
 											24
 										</button>
 										<div
-											class="dropdown-menu"
+											class="dropdown-menu drop-pagination"
 											aria-labelledby="dropdownMenuButton"
 										>
 											<a class="dropdown-item" href="#">12</a>
@@ -279,38 +414,9 @@
 									</div>
 								</div>
 							</div>
+							<div class="pagination"></div>
 							<div class="collection__list">
-								<div class="row">
-									<div class="col-lg-3 collection__item">
-										<div class="card text-center">
-											<div class="card-top">
-												<div class="card-label"><strong>-15%</strong></div>
-												<div class="card-quick-view-btn">
-													<span>QUICK VIEW</span>
-												</div>
-												<img
-													src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
-													class="card-img-top"
-													alt="..."
-												/>
-											</div>
-											<div class="card-body">
-												<h6 class="card-subtitle">Chambor</h6>
-												<h5 class="card-title">Chambor Rouge Plum+ Lipstick</h5>
-												<div class="price-box">
-													<span class="old-price">
-														<del class="text-muted">Rs. 845.00</del>
-													</span>
-													&nbsp;
-													<span class="new-price">Rs. 718.00</span>
-												</div>
-												<a href="#" class="btn btn-primary add-to-cart-btn"
-													>ADD TO CART</a
-												>
-											</div>
-										</div>
-									</div>
-								</div>
+								<div class="row"></div>
 							</div>
 
 							<div class="collection__des">
@@ -376,6 +482,6 @@
 		<script src="../../component/display-page-url/display-page-url.component.js"></script>
 		<script src="../../component/recently-viewd-products/recently-viewed-products.component.js"></script>
 		<script src="../../component/section-brand/section-brand.component.js"></script>
-		<script src="../js/product-page.animation.js"></script>
+		<script src="../js/product-page.page.js"></script>
 	</body>
 </html>
