@@ -1,5 +1,5 @@
 body {
-  font-family: "Montserrat";
+  font-family: "Oswald", sans-serif !important;
 }
 * {
   outline: none;
@@ -23,10 +23,10 @@ body {
   margin-top: 2rem;
 }
 
-.container-fluid .main {
+.container .main {
   margin: 0 auto;
-  max-width: 90%;
-  width: 70%;
+  max-width: 100%;
+  width: 100%;
 }
 .collection-section {
   display: flex;
@@ -49,13 +49,13 @@ body {
   transition: border-bottom 0.3s linear;
 }
 .collection-section .collection:hover > .collection__title {
-  border-bottom: 4px solid black;
+  border-bottom: 2px solid black;
 }
 .collection-section .collection img {
-  transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in-out;
 }
 .collection-section .collection img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05) rotate(3deg);
   position: relative;
   z-index: 1;
 }
@@ -150,12 +150,16 @@ body {
   outline: none;
   font-size: 1.4rem;
   font-weight: bold;
-  font-family: "Montserrat";
+  font-family: "Oswald", sans-serif;
   transition: display 0.2s linear;
 }
 .img {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: center;
+}
+.img img {
+  width: 50%;
 }
 .product:hover {
   opacity: 0.5;
@@ -167,9 +171,21 @@ body {
 #instagram {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
-#instagram img {
-  width: calc(100% / 4 - 50px);
+#instagram div {
+  width: 25rem;
+  height: 25rem;
+  overflow: hidden;
+  text-align: center;
+}
+#instagram div img {
+  height: 100%;
+  object-fit: cover;
+}
+#instagram span {
+  font-size: 4rem;
+  color: #c7c7c7;
 }
 .trending {
   display: flex;
@@ -181,14 +197,28 @@ body {
 }
 .trending .trending-item {
   position: relative;
-  width: calc(100% / 3 - 30px);
+  width: calc(100% / 3 - 10px);
   overflow: hidden;
   text-align: center;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.07);
+}
+.trending .trending-item .trending-img {
+  width: 100%;
+  height: 40rem;
+  overflow: hidden;
+  background: #000;
+}
+.trending .trending-item .trending-img img {
+  transition: all 0.3s ease-in-out;
+}
+.trending .trending-item:hover > .trending-img img {
+  opacity: 0.8;
+  transform: scale(1.05) rotate(3deg);
 }
 .trending .trending-content {
   text-align: center;
 }
-.trending .trending-content .content-title {
+.trending .trending-content .content {
   margin: 0 auto;
   max-width: 80%;
   margin-top: -4rem;
@@ -196,9 +226,16 @@ body {
   background: #fff;
   padding: 2rem 0rem;
 }
-.trending .trending-content .content-title span {
-  font-size: 3rem;
+.trending .trending-content .content span {
+  text-transform: uppercase;
+  font-size: 2.8rem;
+  font-weight: 400;
 }
-.trending .trending-content .content-title h5 {
+.trending .trending-content .content h4 {
+  text-transform: uppercase;
   margin-bottom: 4px;
+}
+.trending .trending-content {
+  font-size: 14px;
+  font-weight: 200;
 }

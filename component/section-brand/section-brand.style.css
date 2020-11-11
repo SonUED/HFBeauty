@@ -4,4 +4,9 @@
 .brand .brand__block {
   padding: 38px 0;
 }
+.col-20 {
+  width: 20%;
+  padding-left: 15px;
+  padding-right: 10px;
+}
 /*# sourceMappingURL=section-brand.style.css.map */

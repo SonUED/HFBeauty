@@ -1,4 +1,4 @@
-const recentlyViewedProductsTemplate = document.createElement('template');
+const recentlyViewedProductsTemplate = document.createElement("template");
 
 recentlyViewedProductsTemplate.innerHTML = `
 <link rel="stylesheet" type="text/css" href="/components/recently-viewd-products/recently-viewed-product.style.css">
@@ -14,7 +14,7 @@ recentlyViewedProductsTemplate.innerHTML = `
             <div class="card-label"><strong>-15%</strong></div>
             <div class="card-quick-view-btn"><span>QUICK VIEW</span></div>
             <img
-                src="../img/Chambor_Rouge_Plum+_Lipstick.webp"
+                src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
                 class="card-img-top"
                 alt="..."
             />
@@ -29,7 +29,7 @@ recentlyViewedProductsTemplate.innerHTML = `
                 &nbsp;
                 <span class="new-price">Rs. 718.00</span>
             </div>
-            <a href="#" class="btn btn-primary">ADD TO CART</a>
+            <a href="#" class="btn btn-primary" onclick="addToCart('SP2')">ADD TO CART</a>
             </div>
         </div>
         </div>
@@ -49,6 +49,6 @@ class RecentlyViewedProducts extends HTMLElement {
 }
 
 customElements.define(
-  'recently-viewed-products-element',
+  "recently-viewed-products-element",
   RecentlyViewedProducts
 );

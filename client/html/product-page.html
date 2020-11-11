@@ -29,7 +29,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css//normalize.css" />
-    <link rel="stylesheet" href="../css/product-page.css" />
+    <link rel="stylesheet" href="../style/product-page.css" />
     <title>HF Beauty</title>
   </head>
   <body>
@@ -192,7 +192,7 @@
                           <span class="new-price">Rs. 718.00</span>
                         </div>
                         <a href="#" class="btn btn-primary add-to-cart-btn"
-                          >ADD TO CART</a
+                         onclick="addToCart('SP3')" >ADD TO CART</a
                         >
                       </div>
                     </div>
@@ -304,7 +304,7 @@
                           &nbsp;
                           <span class="new-price">Rs. 718.00</span>
                         </div>
-                        <a href="#" class="btn btn-primary add-to-cart-btn"
+                        <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('SP1')"
                           >ADD TO CART</a
                         >
                       </div>
@@ -371,11 +371,11 @@
       <recently-viewed-products-element></recently-viewed-products-element>
     </main>
     <section-brand-element></section-brand-element>
-
+    <script src="../js/cart.js"></script>
     <script src="../js/product-page.animation.js"></script>
-    <script src="../components/product-detail/product-detail.component.js"></script>
-    <script src="../components/display-page-url/display-page-url.component.js"></script>
-    <script src="../components/recently-viewd-products/recently-viewed-products.component.js"></script>
-    <script src="../components/section-brand/section-brand.component.js"></script>
+    <script src="../../component/product-detail/product-detail.component.js"></script>
+    <script src="../../component/display-page-url/display-page-url.component.js"></script>
+    <script src="../../component/recently-viewd-products/recently-viewed-products.component.js"></script>
+    <script src="../../component/section-brand/section-brand.component.js"></script>
   </body>
 </html>
