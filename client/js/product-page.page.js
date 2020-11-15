@@ -1,5 +1,6 @@
 const viewModeGrid = document.querySelector('.view-mode--grid');
 const viewModeList = document.querySelector('.view-mode--list');
+const collectionRow = document.querySelector('.collection__row');
 
 const closeQuickViewBtn = document.querySelector('.close-button');
 const quickViewOverlay = document.querySelector('.quick-view-overlay');
@@ -15,15 +16,35 @@ const dropItemsPagination = document.querySelectorAll(
 let filterPrice = { id: 'filter-price', isAngleUp: true };
 let filterBrand = { id: 'filter-brand', isAngleUp: true };
 
+let direction = 'horizontal';
+
 // Toggle choosing display mode of list of products;
+const changeDisplayStyle = (direct = 'horizontal') => {
+	const currentPage = parseInt(localStorage.getItem('currentPage'));
+
+	if (direct == 'horizontal') {
+		direction = 'horizontal';
+	} else {
+		direction = 'vertical';
+	}
+
+	moveToPage(currentPage, true);
+};
+
 viewModeGrid.addEventListener('click', (e) => {
 	e.target.classList.add('active');
 	viewModeList.classList.remove('active');
+	collectionRow.classList.remove('change-direction');
+
+	changeDisplayStyle('horizontal');
 });
 
 viewModeList.addEventListener('click', (e) => {
 	e.target.classList.add('active');
 	viewModeGrid.classList.remove('active');
+	collectionRow.classList.add('change-direction');
+
+	changeDisplayStyle('vertical');
 });
 
 // Rotate Z 180 deg to angle up of filter title
@@ -126,7 +147,7 @@ const updateToolbar = (currentPage = 1, numberOfPages = 1) => {
 		currentPage + 1 > numberOfPages ? 1 : currentPage + 1;
 };
 
-const moveToPage = (page = 1) => {
+const moveToPage = (page = 1, isMoveToCurent = false) => {
 	const products = JSON.parse(localStorage.getItem('currentList'));
 	const numberOfItemsOfEachPage = JSON.parse(
 		localStorage.getItem('numberOfItemsOfEachPage')
@@ -150,9 +171,11 @@ const moveToPage = (page = 1) => {
 	}
 
 	displayData(products.slice(begin, end));
-	localStorage.setItem('currentPage', page);
 
-	updateToolbar(page, numberOfPages);
+	if (!isMoveToCurent) {
+		localStorage.setItem('currentPage', page);
+		updateToolbar(page, numberOfPages);
+	}
 };
 
 const moveToPrePage = () => {
@@ -168,15 +191,14 @@ const moveToNextPage = () => {
 
 const findPage = () => {
 	const findPageInput = document.getElementById('find-page-input');
-	console.log(findPageInput.max);
+	const inputValue = parseInt(findPageInput.value);
+	const minValue = parseInt(findPageInput.min);
+	const maxValue = parseInt(findPageInput.max);
 
-	if (
-		findPageInput.value >= findPageInput.min &&
-		findPageInput.value <= findPageInput.max
-	) {
-		moveToPage(findPageInput.value);
-	} else {
+	if (inputValue < minValue || inputValue > maxValue) {
 		alert('Invalid Input!');
+	} else {
+		moveToPage(inputValue);
 	}
 };
 
@@ -190,10 +212,10 @@ const createPaginationToolbar = () => {
 	const toolbar = `
     <div class="pagination__move-bar">
       <li class="page-item">
-        <a class="page-link" href="#" onclick="moveToPage(1)">First Item</a>
+        <a class="page-link" onclick="moveToPage(1)">First Item</a>
       </li>
       <li class="page-item" id="previous-page">
-        <a class="page-link" href="#" aria-label="Previous" onclick="moveToPrePage()">
+        <a class="page-link" aria-label="Previous" onclick="moveToPrePage()">
         <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -207,12 +229,12 @@ const createPaginationToolbar = () => {
         <a class="page-link" onclick="moveToPage(this.textContent)">2</a>
       </li>
       <li class="page-item" id="next-page">
-        <a class="page-link" href="#" aria-label="Next" onclick="moveToNextPage()">
+        <a class="page-link" aria-label="Next" onclick="moveToNextPage()">
         <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
       <li class="page-item" id="last-page">
-        <a class="page-link" href="#" onclick="moveToPage(${numberOfPages})">Last Item</a>
+        <a class="page-link" onclick="moveToPage(${numberOfPages})">Last Item</a>
       </li>
     </div>
 
@@ -257,8 +279,8 @@ const fetchData = async (url = '', dataProperty) => {
 	return dataList;
 };
 
-const createProductElementRow = (product = {}) => {
-	const productElementRow = `
+const createHorProductElement = (product = {}) => {
+	const productElement = `
     <div class="col-lg-3 collection__item" onclick="directToDetailPage('${
 			product.maSP
 		}')">
@@ -296,14 +318,104 @@ const createProductElementRow = (product = {}) => {
         </div>
     </div>`;
 
-	return productElementRow;
+	return productElement;
+};
+
+const createVerProductElement = (product = {}) => {
+	const categories = JSON.parse(localStorage.getItem('categories'));
+	let productCate = '';
+
+	for (let index = 0; index < categories.length; index++) {
+		if (categories[index].maDM === product.maDM) {
+			productCate = categories[index].tenDM;
+			break;
+		}
+	}
+
+	const productElement = `
+  <div class="product-detail product-detail--inside-collection">
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="card-top">
+				<div class="card-label"><strong>-15%</strong></div>
+				<img
+					id="product-img"
+					src="${product.anh}"
+					class="img-fluid"
+					alt="product-img"
+				/>
+			</div>
+		</div>
+		<div class="col-lg-8">
+			<div class="card-body">
+				<h5 class="card-title"> ${product.tenSP}</h5>
+				<div class="product-detail__reviews">
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+				</div>
+				<div class="product-detail__brand">
+					<span class="strong-text-700">Brand:</span> ${product.thuongHieu}</span> 
+				</div>
+				<div class="product-detail__code">
+					<span class="strong-text-700">Product Code:</span> ${product.maSP}</span>  
+				</div>
+				<div class="product-detail__cate">
+					<span class="strong-text-700">Category:</span>${productCate}</span>  
+				</div>
+				<div class="price-box">
+					<span class="old-price">
+						<del class="text-muted">Rs. ${product.gia}</del>
+					</span>
+					&nbsp;
+					<span class="new-price">Rs. ${((parseInt(product.gia) / 100) * 85).toFixed(
+						2
+					)}</span>
+				</div>
+				<div class="product-detail__des">
+            ${product.moTa}
+				</div>
+				<div class="quantity">
+					<p class="quantity__title strong-text-700">Quantity:</p>
+
+					<div class="quantity__group">
+						<button class="quantity__minus">
+							<i class="fas fa-minus"></i>
+						</button>
+						<input class="quantity__content" type="number" value="0" />
+						<button class="quantity__plus">
+							<i class="fas fa-plus"></i>
+						</button>
+					</div>
+
+					<p class="quantity__subtotal">
+						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
+					</p>
+				</div>
+				<a href="#" class="btn btn-primary add-to-cart-btn">ADD TO CART</a>
+			</div>
+		</div>
+	</div>
+</div>
+  `;
+
+	return productElement;
 };
 
 const displayData = (productList = []) => {
 	let productElementRows = '';
-	productList.forEach(
-		(product, index) => (productElementRows += createProductElementRow(product))
-	);
+
+	if (direction == 'horizontal') {
+		productList.forEach(
+			(product) => (productElementRows += createHorProductElement(product))
+		);
+	} else {
+		productList.forEach(
+			(product) => (productElementRows += createVerProductElement(product))
+		);
+	}
 
 	collectionList.innerHTML = productElementRows;
 };

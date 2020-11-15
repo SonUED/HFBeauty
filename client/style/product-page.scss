@@ -12,6 +12,11 @@
 	background: #000;
 }
 
+.change-direction {
+	display: flex;
+	flex-direction: column;
+}
+
 /******* TOOLBAR *******/
 .toolbar {
 	display: flex;
@@ -129,7 +134,7 @@
 .sub-toolbar {
 	position: sticky;
 	top: 20px;
-	z-index: 10;
+	z-index: 5;
 	height: 56px;
 	padding: 9px 9px 9px 20px;
 	margin-bottom: 10px;
@@ -209,24 +214,21 @@
 			font-weight: 600;
 		}
 	}
-}
 
-/****************************************
-		SECTION description
-****************************************/
-.collection__des {
-	h2 {
-		margin-bottom: 24px;
-		font-size: 24px;
-		font-weight: 700;
-		line-height: 30px;
-	}
+	&__des {
+		h2 {
+			margin-bottom: 24px;
+			font-size: 24px;
+			font-weight: 700;
+			line-height: 30px;
+		}
 
-	p {
-		margin-bottom: 10px;
-		font-family: $secondaryFont, sans-serif;
-		font-size: 12px;
-		font-weight: 400;
+		p {
+			margin-bottom: 10px;
+			font-family: $secondaryFont, sans-serif;
+			font-size: 12px;
+			font-weight: 400;
+		}
 	}
 }
 
