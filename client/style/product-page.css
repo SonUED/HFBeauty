@@ -1,3 +1,4 @@
+@import url(d:\Tran Thanh Khang\HFBeauty\client\style\reset.css);
 body {
   font-family: "Oswald", sans-serif;
   font-weight: 500;
@@ -348,6 +349,67 @@ ul {
   background-color: #e0e5e2;
 }
 
+/******* SUB TOOLBAR *******/
+.sub-toolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  z-index: 10;
+  height: 56px;
+  padding: 9px 9px 9px 20px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  background-color: #f7f7f7;
+}
+
+.sub-toolbar .pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.sub-toolbar .pagination__move-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sub-toolbar .pagination .page-link {
+  padding: 9px 12px;
+  color: #000000;
+}
+
+.sub-toolbar .pagination .page-item.active .page-link {
+  color: white;
+  background-color: #ff416a;
+  border-color: #ff416a;
+}
+
+.sub-toolbar .pagination__find-bar {
+  width: 20%;
+}
+
+.sub-toolbar .pagination__find-bar .form-control,
+.sub-toolbar .pagination__find-bar .input-group-append {
+  height: auto;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.sub-toolbar .pagination__find-bar .btn-outline-secondary {
+  color: #e7040f;
+  border-color: #e7040f;
+}
+
+.sub-toolbar .pagination__find-bar .btn-outline-secondary:hover {
+  color: white;
+  background-color: #e7040f;
+  border-color: #e7040f;
+}
+
 /****************************************
 		SECTION collection content
 ****************************************/
@@ -359,7 +421,17 @@ ul {
   margin-bottom: 33px;
 }
 
+.collection__image .img-fluid {
+  width: 100%;
+}
+
 .collection__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-bottom: 35px;
 }
 
