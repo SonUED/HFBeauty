@@ -28,6 +28,11 @@
 			href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Oswald:wght@500;600;700&display=swap"
 			rel="stylesheet"
 		/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="../style/product-management.css" />
 		<title>Document</title>
 	</head>
@@ -131,63 +136,55 @@
 						<div
 							class="product-management__title d-flex justify-content-between"
 						>
-							<h1>Product Management</h1>
-							<nav class="navbar navbar-light bg-light">
-								<form class="form-inline">
-									<div class="btn-group">
-										<input
-											id="search"
-											class="form-control"
-											type="search"
-											placeholder="Search"
-											aria-label="Search"
-										/>
-										<button
-											type="button"
-											class="btn btn-outline-success my-2 my-sm-0 dropdown-toggle dropdown-toggle-split"
-											data-toggle="dropdown"
-											aria-haspopup="true"
-											aria-expanded="false"
-										>
-											<span class="sr-only">Toggle Dropdown</span>
-										</button>
-										<div class="dropdown-menu">
-											<a
-												class="dropdown-item"
-												href="#"
-												onclick="selectSearchField('tenSP')"
-												>Name</a
-											>
-											<a
-												class="dropdown-item"
-												href="#"
-												onclick="selectSearchField('maSP')"
-												>Code</a
-											>
-											<a
-												class="dropdown-item"
-												href="#"
-												onclick="selectSearchField('thuongHieu')"
-												>Brand</a
-											>
-											<a
-												class="dropdown-item"
-												href="#"
-												onclick="selectSearchField('maDM')"
-												>Category</a
-											>
-										</div>
-									</div>
-								</form>
-							</nav>
+							<div>
+								<h1>Product Management</h1>
+							</div>
+							<search-nav-element></search-nav-element>
 						</div>
 						<div class="product-management__nav d-flex justify-content-between">
 							<p>More than 400+ products</p>
 
 							<div class="product-management__nav-item d-flex">
-								<nav aria-label="Page navigation example">
-									<ul class="pagination"></ul>
-								</nav>
+								<button
+									class="btn btn-primary"
+									onclick="displayProductWorkingOverlay('create')"
+								>
+									Create
+								</button>
+							</div>
+						</div>
+						<div class="toolbar">
+							<div class="toolbar--left">
+								<div class="sub-toolbar">
+									<div class="pagination"></div>
+								</div>
+							</div>
+							<div class="toolbar--right">
+								<span>items per page</span>
+								<div class="dropdown">
+									<button
+										class="btn btn-secondary dropdown-toggle drop-toggle-pagination"
+										type="button"
+										id="dropdownMenuButton"
+										data-toggle="dropdown"
+										aria-haspopup="true"
+										aria-expanded="false"
+									>
+										24
+									</button>
+									<div
+										class="dropdown-menu drop-pagination"
+										aria-labelledby="dropdownMenuButton"
+									>
+										<a class="dropdown-item" href="#">12</a>
+										<a class="dropdown-item" href="#">16</a>
+										<a class="dropdown-item" href="#">20</a>
+										<a class="dropdown-item" href="#">24</a>
+										<a class="dropdown-item" href="#">30</a>
+										<a class="dropdown-item" href="#">50</a>
+									</div>
+								</div>
+								<span>sort by</span>
 								<div class="dropdown">
 									<button
 										class="btn btn-secondary dropdown-toggle"
@@ -197,23 +194,21 @@
 										aria-haspopup="true"
 										aria-expanded="false"
 									>
-										Filter
+										Featured
 									</button>
 									<div
 										class="dropdown-menu"
 										aria-labelledby="dropdownMenuButton"
 									>
-										<a class="dropdown-item" href="#">Action</a>
-										<a class="dropdown-item" href="#">Another action</a>
-										<a class="dropdown-item" href="#">Something else here</a>
+										<a class="dropdown-item" href="#">PRICE, low to high</a>
+										<a class="dropdown-item" href="#">PRICE, high to low</a>
+										<a class="dropdown-item" href="#">ALPHABETICALLY, A-Z</a>
+										<a class="dropdown-item" href="#">ALPHABETICALLY, Z-A</a>
+										<a class="dropdown-item" href="#">DATE, old to new</a>
+										<a class="dropdown-item" href="#">DATE, new to old</a>
+										<a class="dropdown-item" href="#">Best Selling</a>
 									</div>
 								</div>
-								<button
-									class="btn btn-primary"
-									onclick="displayProductWorkingOverlay('create')"
-								>
-									Create
-								</button>
 							</div>
 						</div>
 					</section>
@@ -272,7 +267,7 @@
 				</div>
 			</section>
 		</div>
-
+		<script src="../../component/search-nav/search-nav.component.js"></script>
 		<script src="../js/product-management.js"></script>
 	</body>
 </html>

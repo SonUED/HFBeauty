@@ -7,6 +7,8 @@ const quickViewOverlay = document.querySelector('.quick-view-overlay');
 
 const collectionList = document.querySelector('.collection__list .row');
 
+const featureProductInner = document.querySelector('.carousel-inner');
+
 const searchField = document.querySelector('#search');
 
 const dropItemsPagination = document.querySelectorAll(
@@ -122,6 +124,187 @@ let quickView = (event, productCode) => {
 	}
 };
 
+/**********  Display Data **********/
+const createCardbody = (product) => {
+	const cardBody = `
+	<div class="card text-center">
+            <div class="card-top">
+                <div class="card-label"><strong>-15%</strong></div>
+                <div class="card-quick-view-btn" onclick="quickView(event,'${
+									product.maSP
+								}')">
+                    <span>QUICK VIEW</span>
+                </div>
+                <img
+                    src="${product.anh}"
+                    class="card-img-top"
+                    alt="product image"
+                />
+            </div>
+            <div class="card-body">
+                <h6 class="card-subtitle">${product.thuongHieu}</h6>
+                <h5 class="card-title">${product.tenSP}</h5>
+                <div class="price-box">
+                    <span class="old-price">
+                        <del class="text-muted">Rs. ${product.gia}.00</del>
+                    </span>
+                    &nbsp;
+                    <span class="new-price">Rs. ${(
+											(parseInt(product.gia) / 100) *
+											85
+										).toFixed(2)}</span>
+                </div>
+                <a href="#" class="btn btn-primary add-to-cart-btn"
+                    >ADD TO CART</a
+                >
+            </div>
+        </div>
+	`;
+
+	return cardBody;
+};
+
+const createHorProductElement = (product = {}) => {
+	const cardBody = createCardbody(product);
+
+	const productElement = `
+    <div class="col-lg-3 collection__item" onclick="directToDetailPage('${product.maSP}')">
+        ${cardBody}
+    </div>`;
+
+	return productElement;
+};
+
+const createVerProductElement = (product = {}) => {
+	const categories = JSON.parse(localStorage.getItem('categories'));
+	let productCate = '';
+
+	for (let index = 0; index < categories.length; index++) {
+		if (categories[index].maDM === product.maDM) {
+			productCate = categories[index].tenDM;
+			break;
+		}
+	}
+
+	const productElement = `
+  <div class="product-detail product-detail--inside-collection">
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="card-top">
+				<div class="card-label"><strong>-15%</strong></div>
+				<img
+					id="product-img"
+					src="${product.anh}"
+					class="img-fluid"
+					alt="product-img"
+				/>
+			</div>
+		</div>
+		<div class="col-lg-8">
+			<div class="card-body">
+				<h5 class="card-title"> ${product.tenSP}</h5>
+				<div class="product-detail__reviews">
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+				</div>
+				<div class="product-detail__brand">
+					<span class="strong-text-700">Brand:</span> ${product.thuongHieu}</span> 
+				</div>
+				<div class="product-detail__code">
+					<span class="strong-text-700">Product Code:</span> ${product.maSP}</span>  
+				</div>
+				<div class="product-detail__cate">
+					<span class="strong-text-700">Category:</span>${productCate}</span>  
+				</div>
+				<div class="price-box">
+					<span class="old-price">
+						<del class="text-muted">Rs. ${product.gia}</del>
+					</span>
+					&nbsp;
+					<span class="new-price">Rs. ${((parseInt(product.gia) / 100) * 85).toFixed(
+						2
+					)}</span>
+				</div>
+				<div class="product-detail__des">
+            ${product.moTa}
+				</div>
+				<div class="quantity">
+					<p class="quantity__title strong-text-700">Quantity:</p>
+
+					<div class="quantity__group">
+						<button class="quantity__minus">
+							<i class="fas fa-minus"></i>
+						</button>
+						<input class="quantity__content" type="number" value="0" />
+						<button class="quantity__plus">
+							<i class="fas fa-plus"></i>
+						</button>
+					</div>
+
+					<p class="quantity__subtotal">
+						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
+					</p>
+				</div>
+				<a href="#" class="btn btn-primary add-to-cart-btn">ADD TO CART</a>
+			</div>
+		</div>
+	</div>
+</div>
+  `;
+
+	return productElement;
+};
+
+const displayData = (productList = []) => {
+	let productElementRows = '';
+
+	if (direction == 'horizontal') {
+		productList.forEach(
+			(product) => (productElementRows += createHorProductElement(product))
+		);
+	} else {
+		productList.forEach(
+			(product) => (productElementRows += createVerProductElement(product))
+		);
+	}
+
+	collectionList.innerHTML = productElementRows;
+};
+
+/**********  Display Featured Products **********/
+const createFeaProductElement = (product = {}, isFirst = false) => {
+	const cardBody = createCardbody(product);
+
+	const productElement = `
+	<div class="carousel-item ${isFirst ? 'active' : ''}">
+		<div
+			class="collection__item collection__item--featured" onclick="directToDetailPage('${
+				product.maSP
+			}')"
+		>
+			${cardBody}
+		</div>
+	</div>
+	`;
+
+	return productElement;
+};
+
+const displayFeatureFroducts = (productList = []) => {
+	let productElementRows = '';
+
+	productList.forEach((product, index) => {
+		index == 0
+			? (productElementRows += createFeaProductElement(product, true))
+			: (productElementRows += createFeaProductElement(product));
+	});
+
+	featureProductInner.innerHTML = productElementRows;
+};
+
 /**********  Pagination **********/
 dropItemsPagination.forEach((item) => {
 	item.addEventListener('click', (e) => {
@@ -160,7 +343,7 @@ const moveToPage = (page = 1, isMoveToCurent = false) => {
 	}
 
 	if (page <= 0) {
-		page = 9;
+		page = numberOfPages;
 	}
 
 	let begin = (page - 1) * numberOfItemsOfEachPage;
@@ -270,7 +453,6 @@ const createPaginationToolbar = () => {
 };
 
 /**********  Fetch Data **********/
-
 const fetchData = async (url = '', dataProperty) => {
 	const response = await fetch(url);
 	const dataJSON = await response.json();
@@ -279,157 +461,19 @@ const fetchData = async (url = '', dataProperty) => {
 	return dataList;
 };
 
-const createHorProductElement = (product = {}) => {
-	const productElement = `
-    <div class="col-lg-3 collection__item" onclick="directToDetailPage('${
-			product.maSP
-		}')">
-        <div class="card text-center">
-            <div class="card-top">
-                <div class="card-label"><strong>-15%</strong></div>
-                <div class="card-quick-view-btn" onclick="quickView(event,'${
-									product.maSP
-								}')">
-                    <span>QUICK VIEW</span>
-                </div>
-                <img
-                    src="${product.anh}"
-                    class="card-img-top"
-                    alt="product image"
-                />
-            </div>
-            <div class="card-body">
-                <h6 class="card-subtitle">${product.thuongHieu}</h6>
-                <h5 class="card-title">${product.tenSP}</h5>
-                <div class="price-box">
-                    <span class="old-price">
-                        <del class="text-muted">Rs. ${product.gia}.00</del>
-                    </span>
-                    &nbsp;
-                    <span class="new-price">Rs. ${(
-											(parseInt(product.gia) / 100) *
-											85
-										).toFixed(2)}</span>
-                </div>
-                <a href="#" class="btn btn-primary add-to-cart-btn"
-                    >ADD TO CART</a
-                >
-            </div>
-        </div>
-    </div>`;
-
-	return productElement;
-};
-
-const createVerProductElement = (product = {}) => {
-	const categories = JSON.parse(localStorage.getItem('categories'));
-	let productCate = '';
-
-	for (let index = 0; index < categories.length; index++) {
-		if (categories[index].maDM === product.maDM) {
-			productCate = categories[index].tenDM;
-			break;
-		}
-	}
-
-	const productElement = `
-  <div class="product-detail product-detail--inside-collection">
-	<div class="row">
-		<div class="col-lg-4">
-			<div class="card-top">
-				<div class="card-label"><strong>-15%</strong></div>
-				<img
-					id="product-img"
-					src="${product.anh}"
-					class="img-fluid"
-					alt="product-img"
-				/>
-			</div>
-		</div>
-		<div class="col-lg-8">
-			<div class="card-body">
-				<h5 class="card-title"> ${product.tenSP}</h5>
-				<div class="product-detail__reviews">
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-				</div>
-				<div class="product-detail__brand">
-					<span class="strong-text-700">Brand:</span> ${product.thuongHieu}</span> 
-				</div>
-				<div class="product-detail__code">
-					<span class="strong-text-700">Product Code:</span> ${product.maSP}</span>  
-				</div>
-				<div class="product-detail__cate">
-					<span class="strong-text-700">Category:</span>${productCate}</span>  
-				</div>
-				<div class="price-box">
-					<span class="old-price">
-						<del class="text-muted">Rs. ${product.gia}</del>
-					</span>
-					&nbsp;
-					<span class="new-price">Rs. ${((parseInt(product.gia) / 100) * 85).toFixed(
-						2
-					)}</span>
-				</div>
-				<div class="product-detail__des">
-            ${product.moTa}
-				</div>
-				<div class="quantity">
-					<p class="quantity__title strong-text-700">Quantity:</p>
-
-					<div class="quantity__group">
-						<button class="quantity__minus">
-							<i class="fas fa-minus"></i>
-						</button>
-						<input class="quantity__content" type="number" value="0" />
-						<button class="quantity__plus">
-							<i class="fas fa-plus"></i>
-						</button>
-					</div>
-
-					<p class="quantity__subtotal">
-						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
-					</p>
-				</div>
-				<a href="#" class="btn btn-primary add-to-cart-btn">ADD TO CART</a>
-			</div>
-		</div>
-	</div>
-</div>
-  `;
-
-	return productElement;
-};
-
-const displayData = (productList = []) => {
-	let productElementRows = '';
-
-	if (direction == 'horizontal') {
-		productList.forEach(
-			(product) => (productElementRows += createHorProductElement(product))
-		);
-	} else {
-		productList.forEach(
-			(product) => (productElementRows += createVerProductElement(product))
-		);
-	}
-
-	collectionList.innerHTML = productElementRows;
-};
-
 const fetchProductList = () => {
 	fetchData('../../data/products.json', 'products').then((productList) => {
 		localStorage.setItem('products', JSON.stringify(productList));
 		localStorage.setItem('currentList', JSON.stringify(productList));
 		localStorage.setItem('currentPage', '1');
 		localStorage.setItem('numberOfItemsOfEachPage', '24');
+		localStorage.setItem('selectedSearchField', 'tenSP');
 
+		displayFeatureFroducts(productList.slice(0, 3));
 		createPaginationToolbar();
 	});
 
+	// Fetch Ca
 	fetchData('../../data/categories.json', 'categories').then((categories) =>
 		localStorage.setItem('categories', JSON.stringify(categories))
 	);

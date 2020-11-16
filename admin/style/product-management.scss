@@ -1,6 +1,18 @@
 @import 'reset.css';
 
+$primaryFont: 'Poppins';
+$primaryColor: #3f4254;
+$secondaryColor: #b5b5c3;
+
 $bgc: #eef0f8;
+
+body {
+	font-family: $primaryFont, sans-serif;
+	font-weight: 500;
+	background-color: #fff;
+	color: $primaryColor;
+	letter-spacing: 0.02rem;
+}
 
 .container-fluid {
 	padding-left: 0;
