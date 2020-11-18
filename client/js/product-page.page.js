@@ -346,7 +346,22 @@ searchField.addEventListener("keyup", (e) => {
 });
 
 /**********  Move to Page Detailed Product **********/
+const products = JSON.parse(localStorage.getItem("products"));
+const recentlyViewdArr = JSON.parse(localStorage.getItem("recently"));
+const findProductFromId = (maSPToAdd) => {
+  return products.filter((product) => {
+    return product.maSP == maSPToAdd;
+  });
+};
 const directToDetailPage = (productCode) => {
   localStorage.setItem("detailProductCode", productCode);
   window.location.href = "../../client/html/product-detail-page.html";
+  //  push to recently view
+  var newArr = [];
+  const product = findProductFromId(productCode);
+  newArr.push(product);
+  localStorage.setItem(
+    "recentlyViewed",
+    JSON.stringify(Array.from(new Set(...newArr)))
+  );
 };

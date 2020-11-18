@@ -28,11 +28,8 @@
       href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Oswald:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="../css//normalize.css" />
-=======
-    <link rel="stylesheet" href="../style/reset.css" />
->>>>>>> dev
     <link rel="stylesheet" href="../style/product-page.css" />
     <title>HF Beauty</title>
   </head>
@@ -262,16 +259,17 @@
                                 &nbsp;
                                 <span class="new-price">Rs. 718.00</span>
                               </div>
-                              <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('SP3')">ADD TO CART</a>
+                              <a
+                                href="#"
+                                class="btn btn-primary add-to-cart-btn"
+                                >ADD TO CART</a
+                              >
                             </div>
                           </div>
                         </div>
-                       
 
-                      </div>
-                      <div class="carousel-item">
-                        <div
-                          class="collection__item collection__item--featured"
+                        <a href="#" class="btn btn-primary add-to-cart-btn"
+                         onclick="addToCart('SP3')" >ADD TO CART</a
                         >
                           <div class="card text-center">
                             <div class="card-top">
@@ -299,7 +297,11 @@
                                 &nbsp;
                                 <span class="new-price">Rs. 718.00</span>
                               </div>
-                              <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('SP3')">ADD TO CART</a>
+                              <a
+                                href="#"
+                                class="btn btn-primary add-to-cart-btn"
+                                >ADD TO CART</a
+                              >
                             </div>
                           </div>
                         </div>
@@ -412,6 +414,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="sub-toolbar">
                 <div class="pagination"></div>
 
@@ -526,31 +529,8 @@
       <recently-viewed-products-element></recently-viewed-products-element>
     </main>
     <section-brand-element></section-brand-element>
-    <script>
-      const pushToRecent = (iDRecent) => {
-      const products = JSON.parse(localStorage.getItem("products"));
-      const recentlyViewdArr = JSON.parse(localStorage.getItem("recently"));
-        var newArr=[];
-        const findProductFromId = (maSPToAdd) => {
-          return products.filter((product) => {
-            return product.maSP == maSPToAdd;
-          });
-        };
-            console.log(iDRecent);
-          const product = findProductFromId(iDRecent);
-          console.log(product);
-          newArr.push(product);
-    
-            localStorage.setItem(
-              "recentlyViewed",
-              JSON.stringify(Array.from(new Set( ...newArr)))
-            );
-        };
-
-
-    </script>
-    <!-- <script src="../js/recentlyViewed.js"></script> -->
     <script src="../js/cart.js"></script>
+    <script src="../js/product-page.animation.js"></script>
 
     <script src="../../component/product-detail/product-detail.component.js"></script>
     <script src="../../component/display-page-url/display-page-url.component.js"></script>
