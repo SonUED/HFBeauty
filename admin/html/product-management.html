@@ -39,54 +39,99 @@
 	<body onload="fetchProductList()">
 		<section class="product-working-overlay">
 			<div class="product-working">
-				<a href="#" class="close-button"><i class="fas fa-times"></i></a>
-				<div class="product-detail">
+				<div class="product-detail d-flex flex-column">
+					<div class="product-detail__header d-flex justify-content-between">
+						<h2 class="product-detail__heading">Edit Product</h2>
+						<a href="#" class="close-button"><i class="fas fa-times"></i></a>
+					</div>
+
 					<div class="row">
 						<div class="col-lg-6">
-							<div class="card-top">
-								<img
-									id="product-img-display"
-									class="img-fluid"
-									src="#"
-									alt="product-img"
-								/>
-								<input
-									id="product-img"
-									type="file"
-									onchange="changeImage(this)"
-								/>
+							<div
+								class="card-top d-flex flex-column justify-content-between product-detail__body--top"
+							>
+								<div class="product-detail__img">
+									<img
+										id="product-img-display"
+										class="img-fluid"
+										src="../../img/product-thumbnail_400x400.png"
+										alt="product image"
+									/>
+								</div>
+
+								<div
+									class="product-detail__reviews d-flex justify-content-center"
+								>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<div class="product-detail__upload-img">
+									<label
+										class="input-img d-flex justify-content-around align-items-center"
+										for="product-img"
+									>
+										<i class="fas fa-upload"></i> Upload an image!
+										<input
+											id="product-img"
+											type="file"
+											onchange="changeImage(this)"
+										/>
+									</label>
+									<p class="product-img-name">No file uploaded!</p>
+								</div>
 							</div>
 						</div>
 						<div class="col-lg-6">
-							<div class="card-body">
-								<label for="product-name">Product Name:</label>
-								<input id="product-name" type="text" />
-								<div class="product-detail__reviews">
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-								</div>
-								<div class="product-detail__code">
-									<label for="product-brand">Code:</label>
-									<input id="product-code" type="text" disabled />
-								</div>
-
-								<div class="product-detail__brand">
-									<label for="product-brand">Brand:</label>
-									<input id="product-brand" type="text" />
+							<div
+								class="card-body d-flex flex-column justify-content-between product-detail__body--bottom"
+							>
+								<div
+									class="d-flex justify-content-between prodcut-detail__name"
+								>
+									<label for="product-name">Product Name</label>
+									<input
+										id="product-name"
+										type="text"
+										placeholder="Product's Name"
+									/>
 								</div>
 
-								<div class="price-box">
-									<label for="product-price">Price:</label
-									><input id="product-price" type="number" />
+								<div
+									class="d-flex justify-content-between product-detail__code"
+								>
+									<label for="product-brand">Code</label>
+									<input
+										id="product-code"
+										type="text"
+										disabled
+										placeholder="Product's Code (Auto Generate)"
+									/>
 								</div>
 
-								<div class="quantity">
-									<label for="product-quantity">Product Quantity:</label>
+								<div
+									class="d-flex justify-content-between product-detail__brand"
+								>
+									<label for="product-brand">Brand</label>
+									<input
+										id="product-brand"
+										type="text"
+										placeholder="Product's Brand"
+									/>
+								</div>
 
-									<div class="quantity__group">
+								<div class="d-flex justify-content-between price-box">
+									<label for="product-price">Price</label
+										placeholder="Product's Name"
+									><input id="product-price" type="number" placeholder="Product's price"/>
+								</div>
+
+								<div class="d-flex justify-content-between quantity">
+									<label for="product-quantity">Product Quantity</label>
+
+									<div class="d-flex justify-content-between quantity__group">
 										<button class="quantity__minus">
 											<i class="fas fa-minus"></i>
 										</button>
@@ -100,24 +145,40 @@
 										</button>
 									</div>
 								</div>
-								<label for="product-input-date">Input Date:</label>
-								<input id="product-input-date" type="date" />
-
-								<label for="product-manu-date">Manufacture Date:</label>
-								<input id="product-manu-date" type="date" />
-
-								<label for="product-expiry-date">Expiry Date:</label>
-								<input id="product-expiry-date" type="text" />
-
-								<div class="product-detail__des">
-									<label for="product-des">Product Description:</label>
-									<textarea id="product-des" rows="4" cols="50"> </textarea>
+								<div
+									class="d-flex justify-content-between prodcut-detail__input-date"
+								>
+									<label for="product-input-date">Input Date</label>
+									<input id="product-input-date" type="date" />
+								</div>
+								<div
+									class="d-flex justify-content-between prodcut-detail__manu-date"
+								>
+									<label for="product-manu-date">Manufacture Date</label>
+									<input id="product-manu-date" type="date" />
 								</div>
 
-								<label for="product-category">Category:</label>
-								<select name="category-select" id="product-category"></select>
 								<div
-									class="btn btn-primary"
+									class="d-flex justify-content-between prodcut-detail__expiry-date"
+								>
+									<label for="product-expiry-date">Expiry Date</label>
+									<input id="product-expiry-date" type="text" />
+								</div>
+
+								<div class="product-detail__des">
+									<label for="product-des">Product Description</label>
+									<textarea id="product-des" rows="4"> </textarea>
+								</div>
+
+								<div
+									class="d-flex justify-content-between product-detail__category"
+								>
+									<label for="product-category">Category</label>
+									<select name="category-select" id="product-category"></select>
+								</div>
+
+								<div
+									class="btn create-update-btn"
 									onclick="handleAction()"
 									id="btn-create-update"
 								>
@@ -148,7 +209,7 @@
 
 							<div class="product-management__nav-item d-flex">
 								<button
-									class="btn product-management__add-product-btn"
+									class="btn create-update-btn"
 									onclick="displayProductWorkingOverlay('create')"
 								>
 									Create

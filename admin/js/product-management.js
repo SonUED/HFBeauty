@@ -14,7 +14,9 @@ const closeQuickViewBtn = document.querySelector('.close-button');
 const btnCreateUpdate = document.getElementById('btn-create-update');
 const btnDelete = document.getElementById('btn-delete');
 
+// using for updating displaying image in product working section
 const imgProduct = document.getElementById('product-img-display');
+const imgProductName = document.querySelector('.product-img-name');
 
 const inProductName = document.getElementById('product-name');
 const inProductCode = document.getElementById('product-code');
@@ -59,7 +61,7 @@ const createProductElementRow = (product = {}) => {
             <td>
                 <div class="card">
                     <div class="row no-gutters">
-                        <div>
+                        <div class="col-lg-2">
                           <img
                             id="product-img-${product.maSP}"
                             src="${product.anh}"
@@ -67,7 +69,7 @@ const createProductElementRow = (product = {}) => {
                             alt="Product Image"
                           />
                         </div>
-                        <div>
+                        <div class="col-lg-10">
                             <div class="card-body">
                                 <h5 class="card-title" id="product-name-${product.maSP}">
                                     ${product.tenSP}
@@ -339,8 +341,10 @@ const addProduct = () => {
 	pushNewProductToLocalStorage(newProduct);
 };
 
+// Running when the onchange event happens at imgProduct above in product-management.html
 const changeImage = (inProductImg) => {
 	const imageObject = inProductImg.files[0];
+	imgProductName.textContent = imageObject.name;
 
 	if (imageObject) {
 		// Make sure `file.name` matches our extensions criteria
@@ -466,7 +470,7 @@ const displayProductWorkingOverlay = (type = 'create', product = {}) => {
 		inProductBrand.value = '';
 		inProductInputDate.value = '';
 		taProductDes.value = '';
-		imgProduct.src = '#';
+		imgProduct.src = '../../img/product-thumbnail_400x400.png';
 		seProductCate.value = '';
 	} else {
 		btnCreateUpdate.textContent = 'Update';
