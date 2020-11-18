@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/login.js"></script>
+</head>
+<body>
+<div class="sign-up">
+    <div class="circle circle--red"></div>
+    <div class="circle circle--yellow"></div>
+    <div class="circle circle--green"></div>
+    <div class="circle circle--purple"></div>
+    <form class="sign-up__form" action="" onsubmit="login(); return false;">
+        <div class="sign-up__content">
+            <h2 class="sign-up__title">Login</h2>
+            <input class="sign-up__inp" id="username" type="text" placeholder="Username" required/>
+            <input class="sign-up__inp" id="password" type="password" placeholder="Password" required/>
+            <a class="forgot__password">Forgot your password</a>
+        </div>
+        <div class="sign-up__buttons">
+            <a class="btn btn--register" href="register.html">Register</a>
+            <input class="btn btn--signin" type="submit" value="Sign In">
+        </div>
+    </form>
+</div>
+</body>
+</html>

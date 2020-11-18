@@ -1,14 +1,20 @@
 const viewModeGrid = document.querySelector(".view-mode--grid");
 const viewModeList = document.querySelector(".view-mode--list");
+<<<<<<< HEAD
 const collectionRow = document.querySelector(".collection__row");
+=======
+>>>>>>> add to cart
 
 const closeQuickViewBtn = document.querySelector(".close-button");
 const quickViewOverlay = document.querySelector(".quick-view-overlay");
 
 const collectionList = document.querySelector(".collection__list .row");
 
+<<<<<<< HEAD
 const featureProductInner = document.querySelector(".carousel-inner");
 
+=======
+>>>>>>> add to cart
 const searchField = document.querySelector("#search");
 
 const dropItemsPagination = document.querySelectorAll(
@@ -17,6 +23,7 @@ const dropItemsPagination = document.querySelectorAll(
 
 let filterPrice = { id: "filter-price", isAngleUp: true };
 let filterBrand = { id: "filter-brand", isAngleUp: true };
+<<<<<<< HEAD
 
 let direction = "horizontal";
 
@@ -39,14 +46,24 @@ viewModeGrid.addEventListener("click", (e) => {
   collectionRow.classList.remove("change-direction");
 
   changeDisplayStyle("horizontal");
+=======
+
+// Toggle choosing display mode of list of products;
+viewModeGrid.addEventListener("click", (e) => {
+  e.target.classList.add("active");
+  viewModeList.classList.remove("active");
+>>>>>>> add to cart
 });
 
 viewModeList.addEventListener("click", (e) => {
   e.target.classList.add("active");
   viewModeGrid.classList.remove("active");
+<<<<<<< HEAD
   collectionRow.classList.add("change-direction");
 
   changeDisplayStyle("vertical");
+=======
+>>>>>>> add to cart
 });
 
 // Rotate Z 180 deg to angle up of filter title
@@ -330,6 +347,7 @@ const updateToolbar = (currentPage = 1, numberOfPages = 1) => {
     currentPage + 1 > numberOfPages ? 1 : currentPage + 1;
 };
 
+
 const moveToPage = (page = 1, isMoveToCurent = false) => {
   const products = JSON.parse(localStorage.getItem("currentList"));
   const numberOfItemsOfEachPage = JSON.parse(
@@ -354,6 +372,8 @@ const moveToPage = (page = 1, isMoveToCurent = false) => {
   }
 
   displayData(products.slice(begin, end));
+
+  localStorage.setItem("currentPage", page);
 
   if (!isMoveToCurent) {
     localStorage.setItem("currentPage", page);
@@ -461,6 +481,58 @@ const fetchData = async (url = "", dataProperty) => {
   return dataList;
 };
 
+const createProductElementRow = (product = {}) => {
+  const productElementRow = `
+    <div class="col-lg-3 collection__item" onclick="directToDetailPage('${
+      product.maSP
+    }')">
+        <div class="card text-center">
+            <div class="card-top">
+                <div class="card-label"><strong>-15%</strong></div>
+                <div class="card-quick-view-btn" onclick="quickView(event,'${
+                  product.maSP
+                }')">
+                    <span>QUICK VIEW</span>
+                </div>
+                <img
+                    src="${product.anh}"
+                    class="card-img-top"
+                    alt="product image"
+                />
+            </div>
+            <div class="card-body">
+                <h6 class="card-subtitle">${product.thuongHieu}</h6>
+                <h5 class="card-title">${product.tenSP}</h5>
+                <div class="price-box">
+                    <span class="old-price">
+                        <del class="text-muted">Rs. ${product.gia}.00</del>
+                    </span>
+                    &nbsp;
+                    <span class="new-price">Rs. ${(
+                      (parseInt(product.gia) / 100) *
+                      85
+                    ).toFixed(2)}</span>
+                </div>
+                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('${
+                   product.maSP
+                 }')"
+                          >ADD TO CART</a>
+            </div>
+        </div>
+    </div>`;
+
+  return productElementRow;
+};
+
+const displayData = (productList = []) => {
+  let productElementRows = "";
+  productList.forEach(
+    (product, index) => (productElementRows += createProductElementRow(product))
+  );
+
+  collectionList.innerHTML = productElementRows;
+};
+
 const fetchProductList = () => {
   fetchData("../../data/products.json", "products").then((productList) => {
     localStorage.setItem("products", JSON.stringify(productList));
@@ -523,4 +595,5 @@ const directToDetailPage = (productCode) => {
     "recentlyViewed",
     JSON.stringify(Array.from(new Set(...newArr)))
   );
+
 };
