@@ -1,6 +1,11 @@
+const quantityTitle = document.querySelector(
+	'.product-management__quantity-title p'
+);
+
 const productManagementShowcase = document.getElementById(
 	'product-management__showcase'
 );
+
 const productWorkingOverlay = document.querySelector(
 	'.product-working-overlay'
 );
@@ -26,7 +31,6 @@ const seProductCate = document.getElementById('product-category');
 const dropItemsPagination = document.querySelectorAll(
 	'.drop-pagination .dropdown-item'
 );
-
 const searchField = document.querySelector('#search');
 
 /**********  Fetch Data **********/
@@ -40,21 +44,30 @@ const fetchData = async (url = '', dataProperty) => {
 
 const createProductElementRow = (product = {}) => {
 	const tempProduct = JSON.stringify(product).replace(/"/g, "'");
+	const categories = JSON.parse(localStorage.getItem('categories'));
+	let productCate;
+
+	for (let index = 0; index < categories.length; index++) {
+		if (categories[index].maDM === product.maDM) {
+			productCate = categories[index].tenDM;
+			break;
+		}
+	}
 
 	const productElementRow = `
         <tr id="${product.maSP}">
-            <th scope="row">
-                <div class="card mb-3" style="max-width: 540px">
+            <td>
+                <div class="card">
                     <div class="row no-gutters">
-                        <div class="col-md-4">
-							<img
-								id="product-img-${product.maSP}"
-                                src="${product.anh}"
-                                class="card-img img-thumbnail"
-                                alt="..."
-                            />
+                        <div>
+                          <img
+                            id="product-img-${product.maSP}"
+                            src="${product.anh}"
+                            class="card-img img-thumbnail responsive-img"
+                            alt="Product Image"
+                          />
                         </div>
-                        <div class="col-md-8">
+                        <div>
                             <div class="card-body">
                                 <h5 class="card-title" id="product-name-${product.maSP}">
                                     ${product.tenSP}
@@ -64,18 +77,29 @@ const createProductElementRow = (product = {}) => {
                         </div>
                     </div>
                 </div>
-            </th>
-            <td id="product-price-${product.maSP}">${product.gia}</td>
+            </td>
+            <td id="product-price-${product.maSP}">$${product.gia},00</td>
             <td id="product-quantity-${product.maSP}">${product.soLuong}</td>
             <td>
                 <i class="fas fa-star"></i><i class="fas fa-star"></i
                 ><i class="fas fa-star"></i><i class="fas fa-star"></i
                 ><i class="fas fa-star"></i>
-            </td>
-            <td id="product-cate-${product.maSP}">${product.maDM}</td>
-            <td>
-                <div class="btn btn-primary" onclick="displayProductWorkingOverlay('update',  ${tempProduct});">Update</div>
-                <div class="btn btn-primary" onclick="deleteProduct('${product.maSP}')">Delete</div>
+			</td>
+			<td id="product-cate-${product.maSP}">${productCate}</td>
+			<td>
+				<p>
+					${product.moTa}
+				</p>
+			</td>
+			<td>
+				<div>
+					<div class="product-btn" onclick="displayProductWorkingOverlay('update',  ${tempProduct});">
+						<i class="fas fa-edit"></i>
+					</div>
+					<div class="product-btn" onclick="deleteProduct('${product.maSP}')">
+						<i class="fas fa-trash"></i>
+					</div>
+				</div>
             </td>
         </tr>`;
 
@@ -100,13 +124,13 @@ const fetchProductList = () => {
 		localStorage.setItem('numberOfItemsOfEachPage', '24');
 		localStorage.setItem('selectedSearchField', 'tenSP');
 
+		quantityTitle.textContent = `More than ${productList.length}+ products`;
 		createPaginationToolbar();
 		displayData(productList.slice(0, 24));
 	});
 
 	fetchData('../../data/categories.json', 'categories').then((categories) => {
 		localStorage.setItem('categories', JSON.stringify(categories));
-
 		let options = '';
 		categories.forEach((category) => {
 			options += `<option value="${category.maDM}">${category.tenDM}</option>`;
@@ -298,6 +322,23 @@ const handleAction = () => {
 	}
 };
 
+const addProduct = () => {
+	const newProduct = {
+		tenSP: inProductName.value,
+		maDM: seProductCate.value,
+		gia: inProductPrice.value,
+		soLuong: inProductQuantity.value,
+		hanSuDung: inProductExpiryDate.value,
+		ngaySanXuat: inProductManuDate.value,
+		thuongHieu: inProductBrand.value,
+		moTa: taProductDes.value,
+		anh: imgProduct.src,
+		ngayNhap: inProductInputDate.value,
+	};
+
+	pushNewProductToLocalStorage(newProduct);
+};
+
 const changeImage = (inProductImg) => {
 	const imageObject = inProductImg.files[0];
 
@@ -315,23 +356,6 @@ const changeImage = (inProductImg) => {
 			reader.readAsDataURL(imageObject);
 		}
 	}
-};
-
-const addProduct = () => {
-	const newProduct = {
-		tenSP: inProductName.value,
-		maDM: seProductCate.value,
-		gia: inProductPrice.value,
-		soLuong: inProductQuantity.value,
-		hanSuDung: inProductExpiryDate.value,
-		ngaySanXuat: inProductManuDate.value,
-		thuongHieu: inProductBrand.value,
-		moTa: taProductDes.value,
-		anh: imgProduct.src,
-		ngayNhap: inProductInputDate.value,
-	};
-
-	pushNewProductToLocalStorage(newProduct);
 };
 
 const updateDisplayProduct = (updatedProduct = {}) => {

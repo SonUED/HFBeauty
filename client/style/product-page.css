@@ -390,6 +390,7 @@ ul {
 .sub-toolbar .pagination .page-link {
   padding: 9px 12px;
   color: #000000;
+  cursor: pointer;
 }
 
 .sub-toolbar .pagination .page-item.active .page-link {

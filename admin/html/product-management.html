@@ -133,20 +133,22 @@
 			<section class="product-management">
 				<div class="product-management__wrapper">
 					<section class="product-management__header">
-						<div
-							class="product-management__title d-flex justify-content-between"
-						>
-							<div>
-								<h1>Product Management</h1>
+						<div class="d-flex justify-content-between">
+							<div class="d-flex flex-column justify-content-center">
+								<h1 class="product-management__title">Product Management</h1>
 							</div>
 							<search-nav-element></search-nav-element>
 						</div>
 						<div class="product-management__nav d-flex justify-content-between">
-							<p>More than 400+ products</p>
+							<div
+								class="d-flex flex-column justify-content-center product-management__quantity-title"
+							>
+								<p>More than 400+ products</p>
+							</div>
 
 							<div class="product-management__nav-item d-flex">
 								<button
-									class="btn btn-primary"
+									class="btn product-management__add-product-btn"
 									onclick="displayProductWorkingOverlay('create')"
 								>
 									Create
@@ -154,12 +156,12 @@
 							</div>
 						</div>
 						<div class="toolbar">
-							<div class="toolbar--left">
-								<div class="sub-toolbar">
+							<div class="toolbar-left">
+								<div class="toolbar-change-page">
 									<div class="pagination"></div>
 								</div>
 							</div>
-							<div class="toolbar--right">
+							<div class="toolbar-right">
 								<span>items per page</span>
 								<div class="dropdown">
 									<button
@@ -200,8 +202,6 @@
 										class="dropdown-menu"
 										aria-labelledby="dropdownMenuButton"
 									>
-										<a class="dropdown-item" href="#">PRICE, low to high</a>
-										<a class="dropdown-item" href="#">PRICE, high to low</a>
 										<a class="dropdown-item" href="#">ALPHABETICALLY, A-Z</a>
 										<a class="dropdown-item" href="#">ALPHABETICALLY, Z-A</a>
 										<a class="dropdown-item" href="#">DATE, old to new</a>
@@ -213,30 +213,34 @@
 						</div>
 					</section>
 					<section class="product-management__body">
-						<table class="table table-borderless table-hover">
-							<thead>
+						<table class="table table-borderless table-hover product-table">
+							<thead class="product-table__header">
 								<tr>
 									<th scope="col">Product</th>
-									<th scope="col">Gia</th>
-									<th scope="col">So luong</th>
+									<th scope="col">Price</th>
+									<th scope="col">Quantity</th>
 									<th scope="col">Rating</th>
-									<th scope="col">Danhmuc</th>
+									<th scope="col">Category</th>
+									<th scope="col">Description</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
-							<tbody id="product-management__showcase">
+							<tbody
+								id="product-management__showcase"
+								class="product-table__body"
+							>
 								<tr>
-									<th scope="row">
-										<div class="card mb-3" style="max-width: 540px">
+									<td>
+										<div class="card">
 											<div class="row no-gutters">
-												<div class="col-md-4">
+												<div>
 													<img
 														src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
-														class="card-img img-thumbnail"
+														class="card-img img-thumbnail responsive-img"
 														alt="..."
 													/>
 												</div>
-												<div class="col-md-8">
+												<div>
 													<div class="card-body">
 														<h5 class="card-title">
 															Chambor_Rouge_Plum+_Lipstick
@@ -246,7 +250,7 @@
 												</div>
 											</div>
 										</div>
-									</th>
+									</td>
 									<td>50</td>
 									<td>30</td>
 									<td>
@@ -256,9 +260,21 @@
 									</td>
 									<td>Son gac cao cap</td>
 									<td>
-										<div class="btn btn-primary">Detail</div>
-										<div class="btn btn-primary">Update</div>
-										<div class="btn btn-primary">Delete</div>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+											Accusamus, blanditiis maxime vel nulla officiis
+											consequatur doloribus hic excepturi quo. Amet. >
+										</p>
+									</td>
+									<td>
+										<div>
+											<div class="product-btn">
+												<i class="fas fa-edit"></i>
+											</div>
+											<div class="product-btn">
+												<i class="fas fa-trash"></i>
+											</div>
+										</div>
 									</td>
 								</tr>
 							</tbody>

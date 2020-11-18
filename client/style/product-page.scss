@@ -153,6 +153,8 @@
 		.page-link {
 			padding: 9px 12px;
 			color: $secondaryColor;
+
+			cursor: pointer;
 		}
 
 		.page-item.active .page-link {
