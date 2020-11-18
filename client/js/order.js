@@ -242,31 +242,31 @@ function sentJudge() {
   var maSP = document.querySelector("#maSP").value;
   var title = document.querySelector("#title").value;
   var content = document.querySelector("#content").value;
-  var rate
+  var rate;
   console.log(maSP);
 
-  if (document.getElementById('star1').checked) {
-    rate = document.getElementById('star1').value;
-  }  
-  if (document.getElementById('star2').checked) {
-    rate = document.getElementById('star2').value;
-  }  
-  if (document.getElementById('star3').checked) {
-    rate = document.getElementById('star3').value;
-  }  
-  if (document.getElementById('star4').checked) {
-    rate = document.getElementById('star4').value;
-  }  
-  if (document.getElementById('star5').checked) {
-    rate = document.getElementById('star5').value;
-  }  
+  if (document.getElementById("star1").checked) {
+    rate = document.getElementById("star1").value;
+  }
+  if (document.getElementById("star2").checked) {
+    rate = document.getElementById("star2").value;
+  }
+  if (document.getElementById("star3").checked) {
+    rate = document.getElementById("star3").value;
+  }
+  if (document.getElementById("star4").checked) {
+    rate = document.getElementById("star4").value;
+  }
+  if (document.getElementById("star5").checked) {
+    rate = document.getElementById("star5").value;
+  }
   var jud = {
     maKH: customer[0].tenKH,
     maSP: maSP,
     thoiGian: new Date(),
     tieuDe: title,
     noiDung: content,
-    soSao: rate
+    soSao: rate,
   };
   console.log(jud);
   judge.push(jud);

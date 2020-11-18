@@ -1,37 +1,37 @@
-const viewModeGrid = document.querySelector('.view-mode--grid');
-const viewModeList = document.querySelector('.view-mode--list');
+const viewModeGrid = document.querySelector(".view-mode--grid");
+const viewModeList = document.querySelector(".view-mode--list");
 
-const closeQuickViewBtn = document.querySelector('.close-button');
-const quickViewOverlay = document.querySelector('.quick-view-overlay');
+const closeQuickViewBtn = document.querySelector(".close-button");
+const quickViewOverlay = document.querySelector(".quick-view-overlay");
 
-const collectionList = document.querySelector('.collection__list .row');
+const collectionList = document.querySelector(".collection__list .row");
 
-const searchField = document.querySelector('#search');
+const searchField = document.querySelector("#search");
 
 const dropItemsPagination = document.querySelectorAll(
-  '.drop-pagination .dropdown-item'
+  ".drop-pagination .dropdown-item"
 );
 
-let filterPrice = { id: 'filter-price', isAngleUp: true };
-let filterBrand = { id: 'filter-brand', isAngleUp: true };
+let filterPrice = { id: "filter-price", isAngleUp: true };
+let filterBrand = { id: "filter-brand", isAngleUp: true };
 
 // Toggle choosing display mode of list of products;
-viewModeGrid.addEventListener('click', (e) => {
-  e.target.classList.add('active');
-  viewModeList.classList.remove('active');
+viewModeGrid.addEventListener("click", (e) => {
+  e.target.classList.add("active");
+  viewModeList.classList.remove("active");
 });
 
-viewModeList.addEventListener('click', (e) => {
-  e.target.classList.add('active');
-  viewModeGrid.classList.remove('active');
+viewModeList.addEventListener("click", (e) => {
+  e.target.classList.add("active");
+  viewModeGrid.classList.remove("active");
 });
 
 // Rotate Z 180 deg to angle up of filter title
 const rotateAngle = (filter, angle) => {
   if (filter.isAngleUp) {
-    angle.style.transform = 'rotateZ(180deg)';
+    angle.style.transform = "rotateZ(180deg)";
   } else {
-    angle.style.transform = 'none';
+    angle.style.transform = "none";
   }
 
   filter.isAngleUp = !filter.isAngleUp;
@@ -50,15 +50,15 @@ const rotateZAngleUp = (element) => {
 
 // Close & show quick view overlay
 
-closeQuickViewBtn.addEventListener('click', (e) => {
-  quickViewOverlay.style.display = 'none';
+closeQuickViewBtn.addEventListener("click", (e) => {
+  quickViewOverlay.style.display = "none";
 });
 
 let quickView = (event, productCode) => {
   event.stopPropagation();
-  quickViewOverlay.style.display = 'block';
+  quickViewOverlay.style.display = "block";
 
-  const products = JSON.parse(localStorage.getItem('currentList'));
+  const products = JSON.parse(localStorage.getItem("currentList"));
   let product = {};
 
   for (let index = 0; index < products.length; index++) {
@@ -68,20 +68,20 @@ let quickView = (event, productCode) => {
     }
   }
 
-  const imgE = document.querySelector('product-detail-element #product-img');
-  const nameE = document.querySelector('product-detail-element #product-name');
+  const imgE = document.querySelector("product-detail-element #product-img");
+  const nameE = document.querySelector("product-detail-element #product-name");
   const brandE = document.querySelector(
-    'product-detail-element #product-brand'
+    "product-detail-element #product-brand"
   );
-  const codeE = document.querySelector('product-detail-element #product-code');
+  const codeE = document.querySelector("product-detail-element #product-code");
   const priceE = document.querySelector(
-    'product-detail-element #product-price'
+    "product-detail-element #product-price"
   );
   const oldPriceE = document.querySelector(
-    'product-detail-element #product-old-price'
+    "product-detail-element #product-old-price"
   );
-  const desE = document.querySelector('product-detail-element #product-des');
-  const cateE = document.querySelector('product-detail-element #product-cate');
+  const desE = document.querySelector("product-detail-element #product-des");
+  const cateE = document.querySelector("product-detail-element #product-cate");
 
   imgE.src = product.anh;
   nameE.textContent = product.tenSP;
@@ -91,7 +91,7 @@ let quickView = (event, productCode) => {
   priceE.textContent = ((parseInt(product.gia) / 100) * 85).toFixed(2);
   desE.textContent = product.moTa;
 
-  const categories = JSON.parse(localStorage.getItem('categories'));
+  const categories = JSON.parse(localStorage.getItem("categories"));
 
   for (let index = 0; index < categories.length; index++) {
     if (categories[index].maDM === product.maDM) {
@@ -103,12 +103,12 @@ let quickView = (event, productCode) => {
 
 /**********  Pagination **********/
 dropItemsPagination.forEach((item) => {
-  item.addEventListener('click', (e) => {
+  item.addEventListener("click", (e) => {
     const dropdownTogglePagination = document.querySelector(
-      '.drop-toggle-pagination'
+      ".drop-toggle-pagination"
     );
 
-    localStorage.setItem('numberOfItemsOfEachPage', e.target.textContent);
+    localStorage.setItem("numberOfItemsOfEachPage", e.target.textContent);
 
     dropdownTogglePagination.textContent = e.target.textContent;
 
@@ -117,7 +117,7 @@ dropItemsPagination.forEach((item) => {
 });
 
 const updateToolbar = (currentPage = 1, numberOfPages = 1) => {
-  const pageLink = document.querySelectorAll('.pagination .page-link');
+  const pageLink = document.querySelectorAll(".pagination .page-link");
 
   pageLink[2].textContent =
     currentPage - 1 <= 0 ? numberOfPages : currentPage - 1;
@@ -127,9 +127,9 @@ const updateToolbar = (currentPage = 1, numberOfPages = 1) => {
 };
 
 const moveToPage = (page = 1) => {
-  const products = JSON.parse(localStorage.getItem('currentList'));
+  const products = JSON.parse(localStorage.getItem("currentList"));
   const numberOfItemsOfEachPage = JSON.parse(
-    localStorage.getItem('numberOfItemsOfEachPage')
+    localStorage.getItem("numberOfItemsOfEachPage")
   );
   const numberOfPages = Math.ceil(products.length / numberOfItemsOfEachPage);
 
@@ -150,24 +150,24 @@ const moveToPage = (page = 1) => {
   }
 
   displayData(products.slice(begin, end));
-  localStorage.setItem('currentPage', page);
+  localStorage.setItem("currentPage", page);
 
   updateToolbar(page, numberOfPages);
 };
 
 const moveToPrePage = () => {
-  const currentPage = parseInt(localStorage.getItem('currentPage'));
+  const currentPage = parseInt(localStorage.getItem("currentPage"));
 
   moveToPage(currentPage - 1);
 };
 const moveToNextPage = () => {
-  const currentPage = parseInt(localStorage.getItem('currentPage'));
+  const currentPage = parseInt(localStorage.getItem("currentPage"));
 
   moveToPage(currentPage + 1);
 };
 
 const findPage = () => {
-  const findPageInput = document.getElementById('find-page-input');
+  const findPageInput = document.getElementById("find-page-input");
   console.log(findPageInput.max);
 
   if (
@@ -176,14 +176,14 @@ const findPage = () => {
   ) {
     moveToPage(findPageInput.value);
   } else {
-    alert('Invalid Input!');
+    alert("Invalid Input!");
   }
 };
 
 const createPaginationToolbar = () => {
-  const products = JSON.parse(localStorage.getItem('currentList'));
+  const products = JSON.parse(localStorage.getItem("currentList"));
   const numberOfItemsOfEachPage = JSON.parse(
-    localStorage.getItem('numberOfItemsOfEachPage')
+    localStorage.getItem("numberOfItemsOfEachPage")
   );
   const numberOfPages = Math.ceil(products.length / numberOfItemsOfEachPage);
 
@@ -237,7 +237,7 @@ const createPaginationToolbar = () => {
   </li>
 	`;
 
-  const paginationE = document.querySelector('.pagination');
+  const paginationE = document.querySelector(".pagination");
   paginationE.innerHTML = toolbar;
 
   displayData(products.slice(0, numberOfItemsOfEachPage));
@@ -245,7 +245,7 @@ const createPaginationToolbar = () => {
 
 /**********  Fetch Data **********/
 
-const fetchData = async (url = '', dataProperty) => {
+const fetchData = async (url = "", dataProperty) => {
   const response = await fetch(url);
   const dataJSON = await response.json();
   const dataList = dataJSON[dataProperty];
@@ -285,9 +285,10 @@ const createProductElementRow = (product = {}) => {
                       85
                     ).toFixed(2)}</span>
                 </div>
-                <a href="#" class="btn btn-primary add-to-cart-btn"
-                    >ADD TO CART</a
-                >
+                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('${
+                   product.maSP
+                 }')"
+                          >ADD TO CART</a>
             </div>
         </div>
     </div>`;
@@ -296,7 +297,7 @@ const createProductElementRow = (product = {}) => {
 };
 
 const displayData = (productList = []) => {
-  let productElementRows = '';
+  let productElementRows = "";
   productList.forEach(
     (product, index) => (productElementRows += createProductElementRow(product))
   );
@@ -305,24 +306,24 @@ const displayData = (productList = []) => {
 };
 
 const fetchProductList = () => {
-  fetchData('../../data/products.json', 'products').then((productList) => {
-    localStorage.setItem('products', JSON.stringify(productList));
-    localStorage.setItem('currentList', JSON.stringify(productList));
-    localStorage.setItem('currentPage', '1');
-    localStorage.setItem('numberOfItemsOfEachPage', '24');
+  fetchData("../../data/products.json", "products").then((productList) => {
+    localStorage.setItem("products", JSON.stringify(productList));
+    localStorage.setItem("currentList", JSON.stringify(productList));
+    localStorage.setItem("currentPage", "1");
+    localStorage.setItem("numberOfItemsOfEachPage", "24");
 
     createPaginationToolbar();
   });
 
-  fetchData('../../data/categories.json', 'categories').then((categories) =>
-    localStorage.setItem('categories', JSON.stringify(categories))
+  fetchData("../../data/categories.json", "categories").then((categories) =>
+    localStorage.setItem("categories", JSON.stringify(categories))
   );
 };
 
 /**********  Search **********/
 const search = (value) => {
-  let products = JSON.parse(localStorage.getItem('products'));
-  let selectedSearchField = localStorage.getItem('selectedSearchField');
+  let products = JSON.parse(localStorage.getItem("products"));
+  let selectedSearchField = localStorage.getItem("selectedSearchField");
 
   let filteredProducts = products.filter((product) => {
     if (product[selectedSearchField].includes(value)) return true;
@@ -330,22 +331,22 @@ const search = (value) => {
     return false;
   });
 
-  localStorage.setItem('currentList', JSON.stringify(filteredProducts));
+  localStorage.setItem("currentList", JSON.stringify(filteredProducts));
 
   createPaginationToolbar();
 };
 
-const selectSearchField = (selectedSearchField = 'name') => {
-  localStorage.setItem('selectedSearchField', selectedSearchField);
+const selectSearchField = (selectedSearchField = "name") => {
+  localStorage.setItem("selectedSearchField", selectedSearchField);
   search(searchField.value);
 };
 
-searchField.addEventListener('keyup', (e) => {
+searchField.addEventListener("keyup", (e) => {
   search(e.target.value);
 });
 
 /**********  Move to Page Detailed Product **********/
 const directToDetailPage = (productCode) => {
-  localStorage.setItem('detailProductCode', productCode);
-  window.location.href = '../../client/html/product-detail-page.html';
+  localStorage.setItem("detailProductCode", productCode);
+  window.location.href = "../../client/html/product-detail-page.html";
 };
