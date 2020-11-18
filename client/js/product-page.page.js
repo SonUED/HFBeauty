@@ -595,5 +595,8 @@ const directToDetailPage = (productCode) => {
     "recentlyViewed",
     JSON.stringify(Array.from(new Set(...newArr)))
   );
+<<<<<<< HEAD
 
+=======
+>>>>>>> add push to recnet
 };
