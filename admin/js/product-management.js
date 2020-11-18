@@ -17,6 +17,7 @@ const closeQuickViewBtn = document.querySelector('.close-button');
 // using for create or update product
 const btnCreateUpdate = document.getElementById('btn-create-update');
 
+<<<<<<< HEAD
 // using for increase quantity in working overlay
 const minusProductBtn = document.querySelector(
   '.quantity__group .quantity__minus'
@@ -28,6 +29,8 @@ const plusProductBtn = document.querySelector(
   '.quantity__group .quantity__plus'
 );
 
+=======
+>>>>>>> 7e79441 (making style edit product form)
 // using for updating displaying image in product working section
 const imgProduct = document.getElementById('product-img-display');
 const imgProductName = document.querySelector('.product-img-name');
@@ -398,7 +401,11 @@ const updateDisplayProduct = (updatedProduct = {}) => {
 
   imgE.src = updatedProduct.anh;
   tenSPE.textContent = updatedProduct.tenSP;
+<<<<<<< HEAD
   giaE.textContent = `$${updatedProduct.gia}`;
+=======
+  giaE.textContent = updatedProduct.gia;
+>>>>>>> 7e79441 (making style edit product form)
   soLuongE.textContent = updatedProduct.soLuong;
   maDME.textContent = updatedProduct.maDM;
 };
