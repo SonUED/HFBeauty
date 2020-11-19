@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../style/reset.css" />
+    <link rel="stylesheet" href="../style/home.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600;700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 
@@ -20,7 +19,7 @@
             <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/hf-logo.png" alt="Logo" />HFTEAM
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container">
         <div class="main">
             <div class="slides">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -75,7 +74,7 @@
             </div>
             <div class="products">
                 <h3>NEW PRODUCTS</h3>
-                <div class="items" id="section-product">
+                <div class="items" id="new-product">
                 </div>
                 <hr>
                 <div class="img">
@@ -90,34 +89,55 @@
                 <hr>
             </div>
             <div class="products">
+                <h3>EDITOR'S PICK</h3>
+                <div class="items" id="editor-pick">
+                </div>
+                <hr>
+            </div>
+            <div class="products">
                 <h3>#TRENDING NOW</h3>
                 <div class="trending" id="#trending">
-                   <div class="trending-item"><img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Banner-Schwarzkopf_800x800_crop_center.jpg?v=1597382509"
-                    alt="">
-                        <div class="trending-content">
-                            <div class="content-title">
-                                <h4>HAIR CARE</h4>
-                                <span>SCHWARZKOPF</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="trending-item">
-                        <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Banner-Tresemme_800x800_crop_center.jpg?v=1597382524"
+                   <div class="trending-item">
+                       <div class="trending-img">
+                        <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Banner-Schwarzkopf_800x800_crop_center.jpg?v=1597382509"
                             alt="">
+                       </div>
                         <div class="trending-content">
-                            <div class="content-title">
+                            <div class="content">
                                 <h4>HAIR CARE</h4>
                                 <span>SCHWARZKOPF</span>
+                                <p >Explore the world of Schwarzkopf - a hair cosmetic brand that represents quality, expertise and innovation for more
+                                    than
+                                    120 years.</p>
                             </div>
                         </div>
                     </div>
                     <div class="trending-item">
-                        <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Banner-Loreal_800x800_crop_center.jpg?v=1597382536"
-                         alt="">
+                        <div class="trending-img">
+                            <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Banner-Tresemme_800x800_crop_center.jpg?v=1597382524"
+                                alt="">
+                        </div>
                         <div class="trending-content">
-                            <div class="content-title">
+                            <div class="content">
+                                <h4>New Arrivals</h4>
+                                <span>Tresemmé</span>
+                                <p>Explore the world of Schwarzkopf - a hair cosmetic brand that represents quality, expertise and innovation for more
+                                    than
+                                    120 years.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trending-item">
+                       <div class="trending-img">
+                            <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Banner-Loreal_800x800_crop_center.jpg?v=1597382536"
+                                alt="">
+                       </div>
+                        <div class="trending-content">
+                            <div class="content">
                                 <h5>HAIR CARE</h5>
                                 <span>SCHWARZKOPF</span>
+                                <p>Explore the world of Schwarzkopf - a hair cosmetic brand that represents quality, expertise and innovation for more than
+                                120 years.</p>
                             </div>
                         </div>
                     </div>
@@ -127,46 +147,36 @@
             <div class="products">
                 <h3>ON INSTAGRAM</h3>
                 <div class="items" id="instagram">
-                 
-                        <img src="https://scontent-iad3-1.cdninstagram.com/v/t51.2885-15/24125589_1852117031767462_8300182942727012352_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=7szSvSrk_CAAX_rOD7U&_nc_ht=scontent-iad3-1.cdninstagram.com&oh=e188331a8bb2ac427ab8f35e648e193e&oe=5FA84095"
-                            alt="">
-                        <img  src="https://scontent-iad3-1.cdninstagram.com/v/t51.2885-15/23970090_2226480417377911_6013253925807849472_n.jpg?_nc_cat=110&_nc_sid=8ae9d6&_nc_ohc=lEiioNNxxdQAX-0qUur&_nc_ht=scontent-iad3-1.cdninstagram.com&oh=00a0b04f1ae7e2ab56653d832c8c3257&oe=5FA87A9D" alt="">
-
-                        <img src="https://scontent-iad3-1.cdninstagram.com/v/t51.2885-15/24124868_1912734125408518_2911479800776359936_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=f7WygUM9vdcAX9Ws1qy&_nc_ht=scontent-iad3-1.cdninstagram.com&oh=f9fea7c15bb3e901c134e1f8708bdcc0&oe=5FA867CC"
-                            alt="">
-
-                        <img src="https://scontent-iad3-1.cdninstagram.com/v/t51.2885-15/23507687_1948086855458453_7566171734760488960_n.jpg?_nc_cat=106&_nc_sid=8ae9d6&_nc_ohc=ctIutUe1ErcAX-H8DFu&_nc_ht=scontent-iad3-1.cdninstagram.com&oh=6ed0e1654f2f0467036f3cef5aa453b2&oe=5FA997ED"
-                            alt="">
+                        <span><i class="fas fa-chevron-left"></i></span>
+                        <div>
+                            <img src="../../img/instagram-img/1.jpg" alt="">
+                        </div>
+                        <div>
+                            <img src="../../img/instagram-img/2.jpg" alt="">
+                        </div>
+                        <div>
+                            <img src="../../img/instagram-img/3.jpg" alt="">
+                        </div>
+                        <div>
+                            <img src="../../img/instagram-img/4.jpg" alt="">
+                        </div>
+                        <span><i class="fas fa-chevron-right"></i></span>
+                    
                 </div>
                 <hr>
             </div>
             <div class="products">
                 <h3>BRANDS</h3>
-                <div class="items" id="brands">
-                    <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Brand-Loreal_200x.jpg?v=1596788165"
-                        alt="">
-                    <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Brand-Nivea_200x.jpg?v=1596788198"
-                        alt="">
-                    <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Brand-Schwarzkopf_200x.jpg?v=1596788210"
-                        alt="">
-                    <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Brand-Suave_200x.jpg?v=1596788227"
-                        alt="">
-                    <img src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Brand-Tresemme_200x.jpg?v=1596788246" alt="">
-                </div>
+                <section-brand-element></section-brand-element>
                 <hr>
             </div>
         </div>
    
     </div>
     <script src="../js/home.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="../../component/section-brand/section-brand.component.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

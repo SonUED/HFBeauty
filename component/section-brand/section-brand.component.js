@@ -1,8 +1,7 @@
-const sectionBrandTemplate = document.createElement('template');
+const sectionBrandTemplate = document.createElement("template");
 
 sectionBrandTemplate.innerHTML = `
 <link rel="stylesheet" type="text/css" href="/component/section-brand/section-brand.style.css">
-
 <section class="brand">
     <div class="container">
     <div class="brand__block">
@@ -49,13 +48,13 @@ sectionBrandTemplate.innerHTML = `
 `;
 
 class SectionBrand extends HTMLElement {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	connectedCallback() {
-		this.innerHTML = sectionBrandTemplate.innerHTML;
-	}
+  connectedCallback() {
+    this.innerHTML = sectionBrandTemplate.innerHTML;
+  }
 }
 
-customElements.define('section-brand-element', SectionBrand);
+customElements.define("section-brand-element", SectionBrand);

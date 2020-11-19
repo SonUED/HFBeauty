@@ -2,7 +2,10 @@ var qualityInp = document.getElementById("quality");
 // const maSP = document.getElementById("maSP").value;
 const subTotalSpan = document.getElementById("subtotal");
 const products = JSON.parse(localStorage.getItem("products"));
+<<<<<<< HEAD
 const recentlyViewdArr = JSON.parse(localStorage.getItem("recentlyViewed"));
+=======
+>>>>>>> added cart func
 var quality = 0;
 
 var cartArr = [];

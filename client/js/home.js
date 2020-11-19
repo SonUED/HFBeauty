@@ -35,6 +35,38 @@ var products = [
     price: 300000,
   },
 ];
+var editorPick = [
+  {
+    id: "SP1",
+    name: "SON MÔI HANDMADE",
+    img: "../../img/home-img/1.png",
+    price: 300000,
+  },
+  {
+    id: "SP2",
+    name: "SON MÔI HANDMADE",
+    img: "../../img/home-img/2.jpg",
+    price: 300000,
+  },
+  {
+    id: "SP3",
+    name: "SON MÔI HANDMADE",
+    img: "../../img/home-img/3.jpg",
+    price: 300000,
+  },
+  {
+    id: "SP4",
+    name: "SON MÔI HANDMADE",
+    img: "../../img/home-img/4.jpg",
+    price: 300000,
+  },
+  {
+    id: "SP5",
+    name: "SON MÔI HANDMADE",
+    img: "../../img/home-img/5.png",
+    price: 300000,
+  },
+];
 const createNewRow = (product) => {
   var row = `<div class="wrapper">
   <div class="product">
@@ -45,10 +77,15 @@ const createNewRow = (product) => {
        </div>  <button class="buy">Đặt mua</button></div>`;
   return row;
 };
-const displayProduct = (dataArr) => {
+const displayProduct = (dataArr, id) => {
   dataArr.map((product) => {
     var row = createNewRow(product);
-    document.getElementById("section-product").innerHTML += row;
+    document.getElementById(id).innerHTML += row;
+    // document.getElementById("new-product").innerHTML += row;
+    // document.getElementById("featured-product").innerHTML += row;
+    // document.getElementById("editor-pick").innerHTML += row;
   });
 };
-displayProduct(products);
+displayProduct(products, "new-product");
+displayProduct(products, "featured-product");
+displayProduct(editorPick, "editor-pick");

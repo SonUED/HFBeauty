@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,47 +19,44 @@
     <link rel="stylesheet" href="../style/cart.css">
     <title>Cart</title>
 </head>
-
 <body>
     <div class="container">
         <h3 class="title font-weight-bold">YOUR CART</h3>
         <div class="row cart">
             <div class="col-8  gray p-5 ">
+
                 <h5>PRODUCT(s)</h5>
                 <div class="products" id="products"></div>
                 <div class="secure col-20">
                     <span class="secure_text"><i class="fas fa-user-shield"></i>Secure Shopping Guarantee.</span>
                     <div class="scure_brand ">
-                        <img class="col-20"
-                            src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Trust-Image-Payment_800x.png?v=1598361508"
-                            alt="">
+                        <img class="col-20" src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Trust-Image-Payment_800x.png?v=1598361508" alt="">
                     </div>
                 </div>
             </div>
-
+            
             <div class="col payment gray  p-5">
                 <h5>PAYMENT</h5>
                 <div class="payment-section row bg-white ">
                     <div class="col-lg-12 price-text">
-                        <div>
-                            <span class="sub-text">Subtotal :</span> <span id="price">718.00</span>
-                        </div>
-
-                        <hr>
-                        <div>
-                            <span class="sub-text">Total :</span> <span id="total">309.00</span>
-                        </div>
-                        <a href="#" class="btn btn-primary payment-btn" onclick="checkout()">CHECKOUT</a>
+                    <div>
+                        <span class="sub-text">Subtotal :</span> <span id="price">718.00</span>
+                    </div>
+                
+                    <hr>
+                    <div>
+                        <span class="sub-text">Total :</span> <span id="total">309.00</span>
+                    </div>
+                    <a href="#" class="btn btn-primary payment-btn" onclick="checkout()">CHECKOUT</a>
                     </div>
                 </div>
             </div>
         </div>
-
+       
     </div>
     <section-brand-element></section-brand-element>
-
+     
     <script src="../../component/section-brand/section-brand.component.js"></script>
     <script src="../js/cartAndCheckout.js"></script>
 </body>
-
 </html>
