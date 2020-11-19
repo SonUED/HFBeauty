@@ -1,20 +1,14 @@
 const viewModeGrid = document.querySelector(".view-mode--grid");
 const viewModeList = document.querySelector(".view-mode--list");
-<<<<<<< HEAD
 const collectionRow = document.querySelector(".collection__row");
-=======
->>>>>>> add to cart
 
 const closeQuickViewBtn = document.querySelector(".close-button");
 const quickViewOverlay = document.querySelector(".quick-view-overlay");
 
 const collectionList = document.querySelector(".collection__list .row");
 
-<<<<<<< HEAD
 const featureProductInner = document.querySelector(".carousel-inner");
 
-=======
->>>>>>> add to cart
 const searchField = document.querySelector("#search");
 
 const dropItemsPagination = document.querySelectorAll(
@@ -23,7 +17,6 @@ const dropItemsPagination = document.querySelectorAll(
 
 let filterPrice = { id: "filter-price", isAngleUp: true };
 let filterBrand = { id: "filter-brand", isAngleUp: true };
-<<<<<<< HEAD
 
 let direction = "horizontal";
 
@@ -46,24 +39,14 @@ viewModeGrid.addEventListener("click", (e) => {
   collectionRow.classList.remove("change-direction");
 
   changeDisplayStyle("horizontal");
-=======
-
-// Toggle choosing display mode of list of products;
-viewModeGrid.addEventListener("click", (e) => {
-  e.target.classList.add("active");
-  viewModeList.classList.remove("active");
->>>>>>> add to cart
 });
 
 viewModeList.addEventListener("click", (e) => {
   e.target.classList.add("active");
   viewModeGrid.classList.remove("active");
-<<<<<<< HEAD
   collectionRow.classList.add("change-direction");
 
   changeDisplayStyle("vertical");
-=======
->>>>>>> add to cart
 });
 
 // Rotate Z 180 deg to angle up of filter title
@@ -347,7 +330,6 @@ const updateToolbar = (currentPage = 1, numberOfPages = 1) => {
     currentPage + 1 > numberOfPages ? 1 : currentPage + 1;
 };
 
-
 const moveToPage = (page = 1, isMoveToCurent = false) => {
   const products = JSON.parse(localStorage.getItem("currentList"));
   const numberOfItemsOfEachPage = JSON.parse(
@@ -595,8 +577,4 @@ const directToDetailPage = (productCode) => {
     "recentlyViewed",
     JSON.stringify(Array.from(new Set(...newArr)))
   );
-<<<<<<< HEAD
-
-=======
->>>>>>> add push to recnet
 };
