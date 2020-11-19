@@ -2,18 +2,17 @@ var quality = 0;
 var qualityInp;
 const DISCOUNT = 50;
 const CART_ARR = JSON.parse(localStorage.getItem("cartArr"));
-const increase = (maSP) => {
-  qualityInp = document.getElementById(`quality${maSP}`);
-  qualityInp.value++;
-};
-const decrease = (maSP) => {
-  qualityInp = document.getElementById(`quality${maSP}`);
-  console.log(typeof qualityInp.value);
-
-  qualityInp.value * 1 == 0
-    ? (qualityInp.value = 0)
-    : (qualityInp.value = qualityInp.value * 1 - 1);
-};
+var totalSpan = document.getElementById("total");
+// const increase = (maSP) => {
+//   qualityInp = document.getElementById(`quality${maSP}`);
+//   qualityInp.value++;
+// };
+// const decrease = (maSP) => {
+//   qualityInp = document.getElementById(`quality${maSP}`);
+//   qualityInp.value * 1 == 0
+//     ? (qualityInp.value = 0)
+//     : (qualityInp.value = qualityInp.value * 1 - 1);
+// };
 const createNewRow = (cartItem, DISCOUNT) => {
   const {
     maSP,
@@ -68,6 +67,7 @@ const createNewRow = (cartItem, DISCOUNT) => {
                                     </button>
                                 </div>
                                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick="removeItemToCart(${maSP})">REMOVE</a>
+                                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('${maSP}')">ADD TO CART</a>
                             </div>
                             
                         </div>
@@ -81,3 +81,11 @@ const displayCart = () => {
   });
 };
 displayCart();
+const total = () => {
+  var total = 0;
+  const cartArr = JSON.parse(localStorage.getItem("cartArr"));
+  cartArr.map((item) => {
+    total += item.gia * item.quantity;
+  });
+  totalSpan.innerHTML = total;
+};

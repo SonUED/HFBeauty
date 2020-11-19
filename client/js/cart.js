@@ -1,4 +1,5 @@
 var qualityInp = document.getElementById("quality");
+
 // const maSP = document.getElementById("maSP").value;
 const subTotalSpan = document.getElementById("subtotal");
 const products = JSON.parse(localStorage.getItem("products"));
