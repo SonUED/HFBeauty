@@ -19,8 +19,10 @@ function sent() {
   var newContact = {
     id: "CT" + contact.length,
     name: name,
-    email:email,
-    message:message
+    email: email,
+    message: message,
+    date: new Date(),
+    status: "unseen"
   }
 
   contact.push(newContact);
