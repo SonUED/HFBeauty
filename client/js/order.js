@@ -1,15 +1,13 @@
-var customer = [
-  {
-    tenTaiKhoan: "nva",
-    tenKH: "Nguyen Van A",
-    ngaySinh: "1/1/1999",
-    anhDaiDien:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX-g7iDC3RkcWjMYAEJ-ogKQwfsJnPXns4aQ&usqp=CAU",
-    mail: "nva@gmail.com",
-    soDienThoai: "0123456789",
-    diaChi: "1 Hoa Lien Hoa Vang",
-  },
-];
+var currentCustomer = {
+  tenTaiKhoan: "nva",
+  tenKH: "Nguyen Van A",
+  ngaySinh: "1/1/1999",
+  anhDaiDien:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX-g7iDC3RkcWjMYAEJ-ogKQwfsJnPXns4aQ&usqp=CAU",
+  mail: "nva@gmail.com",
+  soDienThoai: "0123456789",
+  diaChi: "1 Hoa Lien Hoa Vang",
+};
 
 var order = [
   {
@@ -19,7 +17,7 @@ var order = [
     diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
     SDT: "0123456789",
     ngayDat: "23/05/2020",
-    trangThai: "wait for accept",
+    trangThai: "received",
   },
   {
     maDH: 1,
@@ -28,7 +26,7 @@ var order = [
     diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
     SDT: "0123456789",
     ngayDat: "23/05/2020",
-    trangThai: "deliver",
+    trangThai: "received",
   },
   {
     maDH: 2,
@@ -54,7 +52,7 @@ var detailOrder = [
   },
   {
     maDH: 2,
-    maSP: "SP1",
+    maSP: "SP3",
     soLuong: 1,
   },
   {
@@ -112,10 +110,10 @@ var products = [
   },
 ];
 
-// localStorage.setItem("customer", JSON.stringify(customer));
-// localStorage.setItem("order", JSON.stringify(order));
-// localStorage.setItem("detailOrder", JSON.stringify(detailOrder));
-// localStorage.setItem("products", JSON.stringify(products));
+localStorage.setItem("currentCustomer", JSON.stringify(currentCustomer));
+localStorage.setItem("order", JSON.stringify(order));
+localStorage.setItem("detailOrder", JSON.stringify(detailOrder));
+localStorage.setItem("products", JSON.stringify(products));
 
 var judge = [];
 var myDetailOrder = [];
@@ -165,9 +163,16 @@ function showDataTable(mess) {
 
     item.map((detail) => {
       if (mess === "received") {
-        btnJudge = `<td>
+        if (checkJudge(detail.maSP) === false) {
+          btnJudge = `<td>
             <button class="open-button btn btn-primary" onclick="showFormJudge('${detail.maSP}')">Đánh giá</button>
           </td>`;
+        } else {
+          btnJudge = `<td>
+            <p><b>Đã Đánh giá</b></p>
+          </td>`;
+        }
+        
       }
       products.map((prd) => {
         if (prd.maSP === detail.maSP) {
@@ -197,12 +202,13 @@ function showDataTable(mess) {
 function getMyDetailOrder(mess) {
   if (mess === "all") {
     myOrder = order.filter(
-      (item) => item.tenTaiKhoan === customer[0].tenTaiKhoan
+      (item) => item.tenTaiKhoan === currentCustomer.tenTaiKhoan
     );
   } else {
     myOrder = order.filter(
       (item) =>
-        item.tenTaiKhoan === customer[0].tenTaiKhoan && item.trangThai === mess
+        item.tenTaiKhoan === currentCustomer.tenTaiKhoan &&
+        item.trangThai === mess
     );
   }
 
@@ -230,6 +236,7 @@ function cancel(maDH) {
 function showFormJudge(maSP) {
   var display = document.querySelector(".form-judge").style.display;
   document.querySelector("#maSP").value = maSP;
+
   if (display === "block") {
     document.querySelector(".form-judge").style.display = "none";
   } else {
@@ -242,45 +249,61 @@ function sentJudge() {
   var maSP = document.querySelector("#maSP").value;
   var title = document.querySelector("#title").value;
   var content = document.querySelector("#content").value;
-  var rate
+  var rate;
   console.log(maSP);
 
-  if (document.getElementById('star1').checked) {
-    rate = document.getElementById('star1').value;
-  }  
-  if (document.getElementById('star2').checked) {
-    rate = document.getElementById('star2').value;
-  }  
-  if (document.getElementById('star3').checked) {
-    rate = document.getElementById('star3').value;
-  }  
-  if (document.getElementById('star4').checked) {
-    rate = document.getElementById('star4').value;
-  }  
-  if (document.getElementById('star5').checked) {
-    rate = document.getElementById('star5').value;
-  }  
+  if (document.getElementById("star1").checked) {
+    rate = document.getElementById("star1").value;
+  }
+  if (document.getElementById("star2").checked) {
+    rate = document.getElementById("star2").value;
+  }
+  if (document.getElementById("star3").checked) {
+    rate = document.getElementById("star3").value;
+  }
+  if (document.getElementById("star4").checked) {
+    rate = document.getElementById("star4").value;
+  }
+  if (document.getElementById("star5").checked) {
+    rate = document.getElementById("star5").value;
+  }
   var jud = {
-    maKH: customer[0].tenKH,
+    tenTaiKhoan: currentCustomer.tenTaiKhoan,
     maSP: maSP,
     thoiGian: new Date(),
     tieuDe: title,
     noiDung: content,
-    soSao: rate
+    soSao: rate,
   };
-  console.log(jud);
   judge.push(jud);
   saveJudgeToStorage();
   showFormJudge();
+  show("received");
+}
+
+function checkJudge(maSP) {
+  getDataFromStorage();
+  var check = [];
+  judge.map((item) => {
+    if (item.tenTaiKhoan === currentCustomer.tenTaiKhoan) {
+      check.push(item.maSP);
+    }
+  });
+  console.log(check);
+  if (check.indexOf(maSP) < 0) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 function getDataFromStorage() {
-  let customerString = localStorage.getItem("customer");
+  let customerString = localStorage.getItem("currentCustomer");
   let orderString = localStorage.getItem("order");
   let detailOderString = localStorage.getItem("detailOrder");
   let productsString = localStorage.getItem("products");
 
-  customer = JSON.parse(customerString) || [];
+  currentCustomer = JSON.parse(customerString) || [];
   order = JSON.parse(orderString) || [];
   detailOrder = JSON.parse(detailOderString) || [];
   products = JSON.parse(productsString) || [];
@@ -300,3 +323,7 @@ function saveJudgeToStorage() {
   let judgeString = JSON.stringify(judge);
   localStorage.setItem("judge", judgeString);
 }
+getJudgeFromStorage();
+console.log(checkJudge("SP1"));
+console.log(checkJudge("SP1"));
+console.log(checkJudge("SP3"));
