@@ -118,6 +118,8 @@ localStorage.setItem("products", JSON.stringify(products));
 var judge = [];
 var myDetailOrder = [];
 var myOrder = [];
+var trangThai = ['all','wait-for-accept', 'wait-for-take', 'deliver','received', 'canceled'];
+
 
 function show(mess) {
   document.querySelector(".table-order").innerHTML = "";
@@ -136,13 +138,15 @@ function saveOrderToStorage() {
   localStorage.setItem("order", orderString);
 }
 function showDataTable(mess) {
+  borderBottom(mess);
+
   var btnCancel = "";
   var btnJudge = "";
   var colth = 3;
   var coltt = 3;
 
   myDetailOrder.map((item) => {
-    if (mess === "wait for accept") {
+    if (mess === "wait-for-accept") {
       colth = 3;
       coltt = 2;
 
@@ -230,7 +234,7 @@ function cancel(maDH) {
   console.log(order);
 
   saveOrderToStorage();
-  show("wait for accept");
+  show("wait-for-accept");
 }
 
 function showFormJudge(maSP) {
@@ -295,6 +299,16 @@ function checkJudge(maSP) {
   } else {
     return true;
   }
+}
+
+function borderBottom(mess) {
+  trangThai.map((item) => {
+    if (item === mess) {
+      document.querySelector("." + item).style.borderBottom = "3px solid orange";
+    } else {
+      document.querySelector("." + item).style.borderBottom = "0";
+    }
+  });
 }
 
 function getDataFromStorage() {

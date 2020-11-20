@@ -7,7 +7,7 @@ var order = [
       diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
       SDT: "0123456789",
       ngayDat: "23/05/2020",
-      trangThai: "wait for take",
+      trangThai: "wait-for-take",
     },
     {
       maDH: 1,
@@ -16,7 +16,7 @@ var order = [
       diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
       SDT: "0123456789",
       ngayDat: "23/05/2020",
-      trangThai: "wait for accept",
+      trangThai: "wait-for-accept",
     },
     {
       maDH: 2,
@@ -25,16 +25,17 @@ var order = [
       diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
       SDT: "0123456789",
       ngayDat: "23/05/2020",
-      trangThai: "wait for accept",
+      trangThai: "wait-for-accept",
     },
   ];
 
-var trangThaies = ['wait for accept', 'wait for take', 'deliver','received']
+var trangThai = ['all','wait-for-accept', 'wait-for-take', 'deliver','received'];
 // localStorage.setItem("order", JSON.stringify(order));
 
 function showOder(mess) {
-    document.querySelector(".table-order").innerHTML = ""
-    // order = getOrderFromStorage();
+
+    document.querySelector(".table-order").innerHTML = "";
+    borderBottom(mess);
     switch (mess) {
         case "all": 
             document.querySelector(".apply").style.display = "none";
@@ -53,12 +54,12 @@ function showOder(mess) {
                 document.querySelector(".table-order").innerHTML += row;
             })
             break;
-        case "wait for accept": 
+        case "wait-for-accept": 
             document.querySelector(".apply").style.display = " table-cell";
             document.querySelector(".reject").style.display = " table-cell";
 
             order.map(item => { 
-                if (item.trangThai === "wait for accept"){
+                if (item.trangThai === "wait-for-accept"){
                     var row = '<tr>' + 
                         '<td>' +item.maDH+ '</td>'+
                         '<td>' +item.tenTaiKhoan+ '</td>'+
@@ -75,12 +76,12 @@ function showOder(mess) {
                     }
                 })
             break;
-        case "wait for take": 
+        case "wait-for-take": 
             document.querySelector(".apply").style.display = " table-cell";
             document.querySelector(".reject").style.display = "none";
 
             order.map(item => { 
-                if (item.trangThai === "wait for take"){
+                if (item.trangThai === "wait-for-take"){
                     var row = '<tr>' + 
                         '<td>' +item.maDH+ '</td>'+
                         '<td>' +item.tenTaiKhoan+ '</td>'+
@@ -161,8 +162,8 @@ function apply(id){
     console.log(order);
     order.map(item => {
         if (item.maDH === id) {
-            item.trangThai = trangThaies[trangThaies.indexOf(item.trangThai)+1]
-            showOder(trangThaies[trangThaies.indexOf(item.trangThai)-1]);
+            item.trangThai = trangThai[trangThai.indexOf(item.trangThai)+1]
+            showOder(trangThai[trangThai.indexOf(item.trangThai)-1]);
         }
     });
     console.log(order);
@@ -175,11 +176,21 @@ function reject(id){
     order.map(item => {
         if (item.maDH === id) {
             item.trangThai = "canceled"
-            showOder(trangThaies[trangThaies.indexOf(item.trangThai)-1]);
+            showOder(trangThai[trangThai.indexOf(item.trangThai)-1]);
         }
     });
     saveOrderToStorage();
 }
+
+function borderBottom(mess) {
+    trangThai.map((item) => {
+      if (item === mess) {
+        document.querySelector("." + item).style.borderBottom = "3px solid orange";
+      } else {
+        document.querySelector("." + item).style.borderBottom = "0";
+      }
+    });
+  }
 
 function getOrderFromStorage(){
     let orderString = localStorage.getItem("order");
