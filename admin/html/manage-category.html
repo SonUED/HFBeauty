@@ -28,7 +28,6 @@
     <div class="">aaa</div>
 
     <form class="form-category">
-      
       <input type="button" id="index" value="" />
       <div class="form-group">
         <label for="name">Tên Danh mục</label>
@@ -42,30 +41,49 @@
         <label for="image">ảnh</label>
         <input type="text" name="image" id="image" />
       </div>
-      <input
-        class="btn btn-primary"
-        type="button"
-        value="save"
-        onclick="save()"
-      />
-    </form>
-    <table class="table">
-      <div class="search-box">
+      <div class="btn-group">
         <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          id="search"
-          onkeyup="searching(this.value)"
+          class="btn btn-success"
+          type="button"
+          value="save"
+          onclick="save()"
+        />
+        <input
+          class="btn btn-danger"
+          type="button"
+          value="hủy"
+          onclick="showForm()"
         />
       </div>
-      <input
-        type="button"
-        class="btn btn-primary add"
-        onclick="showForm()"
-        value="Thêm mới"
-      />
+    </form>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <td colspan="6">
+            <input
+              type="button"
+              class="btn btn-primary add"
+              onclick="showForm()"
+              value="Thêm mới"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <div class="search-box">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                id="search"
+                onkeyup="searching(this.value)"
+              />
+            </div>
+          </td>
+        </tr>
+      </thead>
       <thead class="table-dark">
         <tr>
           <td>ID</td>
