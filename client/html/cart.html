@@ -13,7 +13,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Oswald:wght@500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;700&family=Oswald:wght@500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="../style/reset.css">
     <link rel="stylesheet" href="../style/cart.css">
@@ -33,8 +33,7 @@
                         <img class="col-20" src="https://cdn.shopify.com/s/files/1/0441/4970/2818/files/Trust-Image-Payment_800x.png?v=1598361508" alt="">
                     </div>
                 </div>
-            </div>
-            
+            </div>           
             <div class="col payment gray  p-5">
                 <h5>PAYMENT</h5>
                 <div class="payment-section row bg-white ">
@@ -51,11 +50,49 @@
                     </div>
                 </div>
             </div>
-        </div>
-       
+        </div> 
     </div>
+        <div class="modals">
+            <div class="modal__inner">
+                <div class="modal__header">
+                    <p><i class="fas fa-map-marker-alt"></i>Địa chỉ nhận hàng</p>
+                    <div class="info">
+                        <span><strong>Giang Sơn</strong> (+84)972053951</span>
+                        <span class="address">Đối diện 119/41/15/30 Phạm Như Xương,nhà
+                            nghỉ trọ New Na, Phường Hòa Khánh Nam, Quận Liên Chiểu, Đà Nẵng
+                        </span>
+                        <a href="#">Thay đổi</a>
+                    </div>
+                </div>
+                <div class="modal__items">
+                    <p>Danh sách sản phẩm</p>
+                    <div class="item-wrapper" id="item-wrapper">
+                        <div class="item">
+                            <span><img src="" alt="img">AAAAA</span>
+                            <span class="name">AAAAAAAAAAA</span>
+                            <span class="quantity">AAAAAAAAA</span>
+                            <span class="sub_total">123</span>
+                        </div>
+                    </div>
+                    <div class="modal__footer">
+                        <div class="shipper"><span>SHIPEPER</span></div>
+                        <div class="pay">
+                            <select name="" id="">
+                                <option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>
+                                <option value="Thanh toán trực tuyến">Thanh toán trực tuyến</option>
+                            </select>
+                        </div>
+                        <div class="total">
+                            <p>Tổng tiền hàng</p>
+                            <p>Tổng tiền vận chuyển</p>
+                            <p>Tổng thanh toán</p>
+                        </div>
+                    </div>
+                    <a href="#">Đặt hàng</a>
+                </div>
+            </div>
+        </div>
     <section-brand-element></section-brand-element>
-    <script src="../js/cart.js"></script>
     <script src="../../component/section-brand/section-brand.component.js"></script>
     <script src="../js/cartAndCheckout.js"></script>
 </body>
