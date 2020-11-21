@@ -1,24 +1,40 @@
+//using to show how many product there are
 const quantityTitle = document.querySelector(
 	'.product-management__quantity-title p'
 );
 
+//using for display all products
 const productManagementShowcase = document.getElementById(
 	'product-management__showcase'
 );
 
+// using for hide/show working overlay
 const productWorkingOverlay = document.querySelector(
 	'.product-working-overlay'
 );
 const closeQuickViewBtn = document.querySelector('.close-button');
 
+// using for create or update product
 const btnCreateUpdate = document.getElementById('btn-create-update');
-const btnDelete = document.getElementById('btn-delete');
+
+// using for increase quantity in working overlay
+const minusProductBtn = document.querySelector(
+	'.quantity__group .quantity__minus'
+);
+const quantityProductIn = document.querySelector(
+	'.quantity__group .quantity__content'
+);
+const plusProductBtn = document.querySelector(
+	'.quantity__group .quantity__plus'
+);
 
 // using for updating displaying image in product working section
 const imgProduct = document.getElementById('product-img-display');
 const imgProductName = document.querySelector('.product-img-name');
 
+// using for updating/creating product
 const inProductName = document.getElementById('product-name');
+const productCodeContainer = document.querySelector('.product-detail__code');
 const inProductCode = document.getElementById('product-code');
 const inProductImg = document.getElementById('product-img');
 const inProductBrand = document.getElementById('product-brand');
@@ -30,6 +46,7 @@ const inProductExpiryDate = document.getElementById('product-expiry-date');
 const taProductDes = document.getElementById('product-des');
 const seProductCate = document.getElementById('product-category');
 
+// using for pagination and search
 const dropItemsPagination = document.querySelectorAll(
 	'.drop-pagination .dropdown-item'
 );
@@ -381,7 +398,7 @@ const updateDisplayProduct = (updatedProduct = {}) => {
 
 	imgE.src = updatedProduct.anh;
 	tenSPE.textContent = updatedProduct.tenSP;
-	giaE.textContent = updatedProduct.gia;
+	giaE.textContent = `$${updatedProduct.gia}`;
 	soLuongE.textContent = updatedProduct.soLuong;
 	maDME.textContent = updatedProduct.maDM;
 };
@@ -461,8 +478,10 @@ const displayProductWorkingOverlay = (type = 'create', product = {}) => {
 	if (type === 'create') {
 		btnCreateUpdate.textContent = 'Create';
 
-		inProductName.value = '';
 		inProductCode.value = '';
+		productCodeContainer.classList.remove('d-flex', 'justify-content-between');
+
+		inProductName.value = '';
 		inProductPrice.value = 0;
 		inProductQuantity.value = 0;
 		inProductExpiryDate.value = '';
@@ -475,8 +494,10 @@ const displayProductWorkingOverlay = (type = 'create', product = {}) => {
 	} else {
 		btnCreateUpdate.textContent = 'Update';
 
-		inProductName.value = product.tenSP;
+		productCodeContainer.classList.add('d-flex', 'justify-content-between');
 		inProductCode.value = product.maSP;
+
+		inProductName.value = product.tenSP;
 		inProductPrice.value = product.gia;
 		inProductQuantity.value = product.soLuong;
 		inProductExpiryDate.value = product.hanSuDung;
@@ -493,4 +514,19 @@ const displayProductWorkingOverlay = (type = 'create', product = {}) => {
 
 closeQuickViewBtn.addEventListener('click', (e) => {
 	productWorkingOverlay.style.display = 'none';
+});
+
+// Increase the quantity on working overlay
+minusProductBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	let currentQuantity = parseInt(quantityProductIn.value);
+
+	quantityProductIn.value = --currentQuantity || 0;
+});
+
+plusProductBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	let currentQuantity = parseInt(quantityProductIn.value);
+
+	quantityProductIn.value = ++currentQuantity || 1;
 });

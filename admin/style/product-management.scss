@@ -394,7 +394,8 @@ h2 {
 		.responsive-img {
 			width: 100%;
 			height: auto;
-			max-width: 50px;
+			min-height: 65px;
+			max-height: 65px;
 			object-fit: cover;
 		}
 	}
@@ -460,11 +461,7 @@ h2 {
 	}
 }
 
-/****************************************
-		SECTION product working
-****************************************/
-.product-working-overlay {
-	//   display: none;
+%displayFullScreenAbove {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -472,15 +469,24 @@ h2 {
 	bottom: 0;
 	z-index: 10;
 	overflow: hidden;
+	z-index: 10;
+}
+
+/****************************************
+		SECTION product working
+****************************************/
+.product-working-overlay {
+	display: none;
+	@extend %displayFullScreenAbove;
 	background-color: rgba($color: black, $alpha: 0.7);
 }
 
 .product-working {
-	margin: 5% auto;
+	margin: 15vh auto;
 	max-width: (1200px/100 * 90);
 
-	height: 70%;
-	max-height: 70%;
+	height: 70vh;
+	max-height: 70vh;
 	background-color: white;
 
 	border-radius: 6px;
@@ -504,11 +510,15 @@ h2 {
 		margin-bottom: -15px;
 	}
 
+	&__form {
+		height: 100%;
+	}
+
 	&__header {
 		margin: -10px -10px 10px -10px;
 		padding: 5px 0;
 
-		background-color: rgba($color: $buttonColor, $alpha: 0.8);
+		background-color: $buttonColor;
 
 		border-top-left-radius: 6px;
 		border-top-right-radius: 6px;
@@ -580,7 +590,7 @@ h2 {
 				font-size: 14px;
 
 				color: white;
-				background-color: rgba($color: $buttonColor, $alpha: 0.8);
+				background-color: $buttonColor;
 
 				border-top-left-radius: 3px;
 				border-bottom-left-radius: 3px;
@@ -618,13 +628,17 @@ h2 {
 			> input,
 			select {
 				width: 60%;
-				padding: 0 10px;
 			}
 		}
 
 		> div > input,
 		> div select,
 		#{$self}__des textarea {
+			padding: 0 10px;
+
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 20px;
 			border-radius: 3px;
 			border: none;
 		}
@@ -635,8 +649,23 @@ h2 {
 			background-color: rgba($color: $buttonColor, $alpha: 0.1);
 		}
 
+		> div select {
+			option {
+				background-color: white;
+			}
+
+			option:checked {
+				color: white;
+				background: $buttonColor !important;
+			}
+		}
+
 		#{$self}__des textarea {
 			width: 100%;
+		}
+
+		#{$self}__code {
+			display: none;
 		}
 	}
 }
@@ -650,9 +679,11 @@ h2 {
 		#{$self}__minus,
 		#{$self}__plus,
 		#{$self}__content {
+			padding: 0 10px;
+			height: 100%;
+
 			border: none;
 			border-radius: 3px;
-			height: 100%;
 		}
 
 		#{$self}__minus,
@@ -674,4 +705,21 @@ h2 {
 			width: 75%;
 		}
 	}
+}
+
+/****************************************
+		SECTION confirm action
+****************************************/
+.confirm-action-overlay {
+	@extend %displayFullScreenAbove;
+}
+
+.confirm-action {
+	margin: 0 auto;
+	max-width: (1200px/100 * 10);
+	height: 30vh;
+	max-height: 30vh;
+
+	border-radius: 6px;
+	box-shadow: 0 0 20px 3px #242323;
 }
