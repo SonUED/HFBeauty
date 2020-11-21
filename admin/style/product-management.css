@@ -1,8 +1,212 @@
+@import url(d:\Tran Thanh Khang\HFBeauty\admin\style\reset.css);
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  background-color: #fff;
+  color: #3f4254;
+  letter-spacing: 0.02rem;
+}
+
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
 }
 
+/****************************************
+		SECTION TOOLBAR
+****************************************/
+.toolbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 56px;
+  padding: 9px 9px 9px 20px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: #f3f6f9;
+  border-radius: 6px;
+}
+
+.toolbar-left, .toolbar-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 38px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 22px;
+}
+
+.toolbar-left {
+  width: 70%;
+  max-width: 70%;
+  padding: 5px;
+}
+
+.toolbar-right {
+  width: 30%;
+  max-width: 30%;
+}
+
+.toolbar span {
+  margin: 0 15px;
+}
+
+.toolbar .view-mode {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 73px;
+  height: 38px;
+  padding: 1px;
+}
+
+.toolbar .view-mode .view-mode--grid,
+.toolbar .view-mode .view-mode--list {
+  width: 36px;
+  height: 36px;
+  color: #e0e5e2;
+  background-color: #fff;
+  border: 1px solid #e0e5e2;
+}
+
+.toolbar .view-mode .view-mode--grid i,
+.toolbar .view-mode .view-mode--list i {
+  font-size: 17px;
+  pointer-events: none;
+}
+
+.toolbar .view-mode .view-mode--grid:focus,
+.toolbar .view-mode .view-mode--list:focus {
+  outline: none;
+}
+
+.toolbar .view-mode .view-mode--grid {
+  padding-right: 1px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.toolbar .view-mode .view-mode--list {
+  margin-left: -1px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.toolbar .view-mode .active {
+  color: black;
+}
+
+.toolbar .dropdown:first-of-type {
+  width: 80px;
+  margin-right: 15px;
+}
+
+.toolbar .dropdown:last-of-type {
+  width: 170px;
+}
+
+.toolbar .btn,
+.toolbar .dropdown-menu {
+  width: 100%;
+  min-width: 0;
+  color: #3f4254;
+  background-color: #fff;
+  border: 1px solid #e0e5e2;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.toolbar .show > .btn-secondary.dropdown-toggle {
+  color: #3f4254;
+  background-color: #fff;
+  border: 1px solid #e0e5e2;
+}
+
+.toolbar .show > .btn-secondary.dropdown-toggle:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.toolbar .dropdown-item {
+  text-transform: none;
+  font-weight: 500;
+}
+
+.toolbar .dropdown-item:hover {
+  background-color: #e0e5e2;
+}
+
+/****************************************
+		SECTION changing page
+****************************************/
+.toolbar-change-page {
+  width: 100%;
+  font-size: 12px;
+}
+
+.toolbar-change-page .pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.toolbar-change-page .pagination__move-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 10px;
+}
+
+.toolbar-change-page .pagination .page-link {
+  padding: 9px 12px;
+  color: #3f4254;
+  cursor: pointer;
+}
+
+.toolbar-change-page .pagination .page-item.active .page-link {
+  color: white;
+  background-color: #f64e60;
+  border-color: #f64e60;
+}
+
+.toolbar-change-page .pagination__find-bar {
+  width: 20%;
+}
+
+.toolbar-change-page .pagination__find-bar .page-item,
+.toolbar-change-page .pagination__find-bar .page-item .input-group {
+  height: 100%;
+}
+
+.toolbar-change-page .pagination__find-bar .form-control,
+.toolbar-change-page .pagination__find-bar .input-group-append {
+  height: auto;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.toolbar-change-page .pagination__find-bar .btn-outline-secondary {
+  font-weight: 500;
+  color: #e7040f;
+  border-color: #e7040f;
+}
+
+.toolbar-change-page .pagination__find-bar .btn-outline-secondary:hover {
+  color: white;
+  background-color: #e7040f;
+  border-color: #e7040f;
+}
+
+/****************************************
+		SECTION product management
+****************************************/
 .product-management {
   width: 100%;
   padding: 20px;
@@ -15,8 +219,211 @@
   border-radius: 6px;
 }
 
-.product-management__body {
-  border: 2px solid red;
+.product-management__wrapper .search-navbar {
+  padding-right: 0;
+}
+
+.product-management__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 20px;
+  margin-bottom: 0;
+}
+
+.product-management__nav {
+  margin-bottom: 10px;
+}
+
+.product-management__nav .product-management__quantity-title {
+  color: #b5b5c3;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.product-management__nav .product-management__quantity-title p {
+  margin-bottom: 0;
+}
+
+.product-management__add-product-btn {
+  padding: 9px 13px;
+  font-weight: 600;
+  font-size: 12px;
+  color: white;
+  background-color: #f64e60;
+  border-color: #f64e60;
+}
+
+.product-management__add-product-btn:hover {
+  color: white;
+  background-color: #ee2d41;
+  border-color: #ee2d41;
+}
+
+/****************************************
+		SECTION product table
+****************************************/
+.table-hover tbody tr:hover .card {
+  background-color: #ececec;
+}
+
+.product-table__header {
+  font-size: 12px;
+  background-color: #f3f6f9;
+}
+
+.product-table__header tr th {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.product-table__header tr th:not(:first-child) {
+  color: #b5b5c3;
+  text-align: center;
+}
+
+.product-table__header tr th:first-child {
+  padding: 13px 23px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.product-table__header tr th:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.product-table__body {
+  font-size: 14px;
+}
+
+.product-table__body tr {
+  padding-top: 10px;
+}
+
+.product-table__body tr .card {
+  position: static;
+}
+
+.product-table td {
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.product-table td:first-child {
+  width: 20%;
+  max-width: 20%;
+  padding-left: 0;
+}
+
+.product-table td:first-child .card {
+  border: none;
+}
+
+.product-table td:first-child .card-body {
+  padding-top: 10px;
+}
+
+.product-table td:first-child .card-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.product-table td:first-child .card-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #b5b5c3;
+}
+
+.product-table td:first-child .img-thumbnail {
+  border-radius: 3px;
+  border: 2px solid #e0e5e2;
+}
+
+.product-table td:first-child .responsive-img {
+  width: 100%;
+  height: auto;
+  max-width: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.product-table td:not(:first-child) {
+  width: 13.33333%;
+  max-width: 13.33333%;
+  text-align: center;
+  color: #3f4254;
+}
+
+.product-table td:nth-of-type(4) i:nth-of-type(1) {
+  color: #ffab5a;
+}
+
+.product-table td:nth-of-type(4) i:nth-of-type(2) {
+  color: #ffa147;
+}
+
+.product-table td:nth-of-type(4) i:nth-of-type(3) {
+  color: #ff9e41;
+}
+
+.product-table td:nth-of-type(4) i:nth-of-type(4) {
+  color: #ff8a18;
+}
+
+.product-table td:nth-of-type(4) i:nth-of-type(5) {
+  color: #ff8004;
+}
+
+.product-table td:nth-of-type(6) p {
+  max-width: 200px;
+  margin-bottom: 0;
+  color: #b5b5c3;
+  font-weight: 500;
+  text-align: left;
+  line-height: 21px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-table td:last-of-type {
+  vertical-align: middle;
+}
+
+.product-table td:last-of-type > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.product-table td .product-btn {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  margin-left: 10px;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #f3f6f9;
+  border-radius: 6px;
+}
+
+.product-table td .product-btn i {
+  font-size: 18px;
+  line-height: 32px;
+  color: #3699ff;
+}
+
+.product-table td .product-btn:hover {
+  background-color: #3699ff;
+}
+
+.product-table td .product-btn:hover i {
+  color: white;
 }
 
 /****************************************
@@ -56,6 +463,6 @@
 }
 
 .product-working .close-button:hover {
-  background-color: red;
+  background-color: #ee2d41;
 }
 /*# sourceMappingURL=product-management.css.map */

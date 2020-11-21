@@ -32,4 +32,12 @@
 .product-detail .price-box {
   font-size: 20px;
 }
+
+.product-detail--inside-collection {
+  padding: 10px;
+}
+
+.product-detail--inside-collection .add-to-cart-btn {
+  max-width: 40%;
+}
 /*# sourceMappingURL=product-detail.style.css.map */

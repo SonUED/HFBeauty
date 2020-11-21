@@ -1,279 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Oswald:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../style/reset.css" />
-    <link rel="stylesheet" href="../style/product-management.css" />
-    <title>Document</title>
-  </head>
-  <body onload="fetchProductList()">
-    <section class="product-working-overlay">
-      <div class="product-working">
-        <a href="#" class="close-button"><i class="fas fa-times"></i></a>
-        <div class="product-detail">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="card-top">
-                <img
-                  id="product-img-display"
-                  class="img-fluid"
-                  src="#"
-                  alt="product-img"
-                />
-                <input
-                  id="product-img"
-                  type="file"
-                  onchange="changeImage(this)"
-                />
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card-body">
-                <label for="product-name">Product Name:</label>
-                <input id="product-name" type="text" />
-                <div class="product-detail__reviews">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <div class="product-detail__code">
-                  <label for="product-brand">Code:</label>
-                  <input id="product-code" type="text" disabled />
-                </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+			integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+			crossorigin="anonymous"
+		></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+			crossorigin="anonymous"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Oswald:wght@500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../style/product-management.css" />
+		<title>Document</title>
+	</head>
+	<body onload="fetchProductList()">
+		<section class="product-working-overlay">
+			<div class="product-working">
+				<a href="#" class="close-button"><i class="fas fa-times"></i></a>
+				<div class="product-detail">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card-top">
+								<img
+									id="product-img-display"
+									class="img-fluid"
+									src="#"
+									alt="product-img"
+								/>
+								<input
+									id="product-img"
+									type="file"
+									onchange="changeImage(this)"
+								/>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="card-body">
+								<label for="product-name">Product Name:</label>
+								<input id="product-name" type="text" />
+								<div class="product-detail__reviews">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<div class="product-detail__code">
+									<label for="product-brand">Code:</label>
+									<input id="product-code" type="text" disabled />
+								</div>
 
-                <div class="product-detail__brand">
-                  <label for="product-brand">Brand:</label>
-                  <input id="product-brand" type="text" />
-                </div>
+								<div class="product-detail__brand">
+									<label for="product-brand">Brand:</label>
+									<input id="product-brand" type="text" />
+								</div>
 
-                <div class="price-box">
-                  <label for="product-price">Price:</label
-                  ><input id="product-price" type="number" />
-                </div>
+								<div class="price-box">
+									<label for="product-price">Price:</label
+									><input id="product-price" type="number" />
+								</div>
 
-                <div class="quantity">
-                  <label for="product-quantity">Product Quantity:</label>
+								<div class="quantity">
+									<label for="product-quantity">Product Quantity:</label>
 
-                  <div class="quantity__group">
-                    <button class="quantity__minus">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <input
-                      id="product-quantity"
-                      class="quantity__content"
-                      type="number"
-                    />
-                    <button class="quantity__plus">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                  </div>
-                </div>
-                <label for="product-input-date">Input Date:</label>
-                <input id="product-input-date" type="date" />
+									<div class="quantity__group">
+										<button class="quantity__minus">
+											<i class="fas fa-minus"></i>
+										</button>
+										<input
+											id="product-quantity"
+											class="quantity__content"
+											type="number"
+										/>
+										<button class="quantity__plus">
+											<i class="fas fa-plus"></i>
+										</button>
+									</div>
+								</div>
+								<label for="product-input-date">Input Date:</label>
+								<input id="product-input-date" type="date" />
 
-                <label for="product-manu-date">Manufacture Date:</label>
-                <input id="product-manu-date" type="date" />
+								<label for="product-manu-date">Manufacture Date:</label>
+								<input id="product-manu-date" type="date" />
 
-                <label for="product-expiry-date">Expiry Date:</label>
-                <input id="product-expiry-date" type="text" />
+								<label for="product-expiry-date">Expiry Date:</label>
+								<input id="product-expiry-date" type="text" />
 
-                <div class="product-detail__des">
-                  <label for="product-des">Product Description:</label>
-                  <textarea id="product-des" rows="4" cols="50"> </textarea>
-                </div>
+								<div class="product-detail__des">
+									<label for="product-des">Product Description:</label>
+									<textarea id="product-des" rows="4" cols="50"> </textarea>
+								</div>
 
-                <label for="product-category">Category:</label>
-                <select name="category-select" id="product-category"></select>
-                <div
-                  class="btn btn-primary"
-                  onclick="handleAction()"
-                  id="btn-create-update"
-                >
-                  Update
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="container-fluid">
-      <section class="product-management">
-        <div class="product-management__wrapper">
-          <section class="product-management__header">
-            <div
-              class="product-management__title d-flex justify-content-between"
-            >
-              <h1>Product Management</h1>
-              <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                  <div class="btn-group">
-                    <input
-                      id="search"
-                      class="form-control"
-                      type="search"
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                    <button
-                      type="button"
-                      class="btn btn-outline-success my-2 my-sm-0 dropdown-toggle dropdown-toggle-split"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onclick="selectSearchField('tenSP')"
-                        >Name</a
-                      >
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onclick="selectSearchField('maSP')"
-                        >Code</a
-                      >
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onclick="selectSearchField('thuongHieu')"
-                        >Brand</a
-                      >
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onclick="selectSearchField('maDM')"
-                        >Category</a
-                      >
-                    </div>
-                  </div>
-                </form>
-              </nav>
-            </div>
-            <div class="product-management__nav d-flex justify-content-between">
-              <p>More than 400+ products</p>
+								<label for="product-category">Category:</label>
+								<select name="category-select" id="product-category"></select>
+								<div
+									class="btn btn-primary"
+									onclick="handleAction()"
+									id="btn-create-update"
+								>
+									Update
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="container-fluid">
+			<section class="product-management">
+				<div class="product-management__wrapper">
+					<section class="product-management__header">
+						<div class="d-flex justify-content-between">
+							<div class="d-flex flex-column justify-content-center">
+								<h1 class="product-management__title">Product Management</h1>
+							</div>
+							<search-nav-element></search-nav-element>
+						</div>
+						<div class="product-management__nav d-flex justify-content-between">
+							<div
+								class="d-flex flex-column justify-content-center product-management__quantity-title"
+							>
+								<p>More than 400+ products</p>
+							</div>
 
-              <div class="product-management__nav-item d-flex">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination"></ul>
-                </nav>
-                <div class="dropdown">
-                  <button
-                    class="btn btn-secondary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Filter
-                  </button>
-                  <div
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </div>
-                <button
-                  class="btn btn-primary"
-                  onclick="displayProductWorkingOverlay('create')"
-                >
-                  Create
-                </button>
-              </div>
-            </div>
-          </section>
-          <section class="product-management__body">
-            <table class="table table-borderless table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Product</th>
-                  <th scope="col">Gia</th>
-                  <th scope="col">So luong</th>
-                  <th scope="col">Rating</th>
-                  <th scope="col">Danhmuc</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody id="product-management__showcase">
-                <tr>
-                  <th scope="row">
-                    <div class="card mb-3" style="max-width: 540px">
-                      <div class="row no-gutters">
-                        <div class="col-md-4">
-                          <img
-                            src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
-                            class="card-img img-thumbnail"
-                            alt="..."
-                          />
-                        </div>
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <h5 class="card-title">
-                              Chambor_Rouge_Plum+_Lipstick
-                            </h5>
-                            <p class="card-text">123</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </th>
-                  <td>50</td>
-                  <td>30</td>
-                  <td>
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i
-                    ><i class="fas fa-star"></i><i class="fas fa-star"></i
-                    ><i class="fas fa-star"></i>
-                  </td>
-                  <td>Son gac cao cap</td>
-                  <td>
-                    <div class="btn btn-primary">Detail</div>
-                    <div class="btn btn-primary">Update</div>
-                    <div class="btn btn-primary">Delete</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-        </div>
-      </section>
-    </div>
-
-    <script src="../js/product-management.js"></script>
-  </body>
+							<div class="product-management__nav-item d-flex">
+								<button
+									class="btn product-management__add-product-btn"
+									onclick="displayProductWorkingOverlay('create')"
+								>
+									Create
+								</button>
+							</div>
+						</div>
+						<div class="toolbar">
+							<div class="toolbar-left">
+								<div class="toolbar-change-page">
+									<div class="pagination"></div>
+								</div>
+							</div>
+							<div class="toolbar-right">
+								<span>items per page</span>
+								<div class="dropdown">
+									<button
+										class="btn btn-secondary dropdown-toggle drop-toggle-pagination"
+										type="button"
+										id="dropdownMenuButton"
+										data-toggle="dropdown"
+										aria-haspopup="true"
+										aria-expanded="false"
+									>
+										24
+									</button>
+									<div
+										class="dropdown-menu drop-pagination"
+										aria-labelledby="dropdownMenuButton"
+									>
+										<a class="dropdown-item" href="#">12</a>
+										<a class="dropdown-item" href="#">16</a>
+										<a class="dropdown-item" href="#">20</a>
+										<a class="dropdown-item" href="#">24</a>
+										<a class="dropdown-item" href="#">30</a>
+										<a class="dropdown-item" href="#">50</a>
+									</div>
+								</div>
+								<span>sort by</span>
+								<div class="dropdown">
+									<button
+										class="btn btn-secondary dropdown-toggle"
+										type="button"
+										id="dropdownMenuButton"
+										data-toggle="dropdown"
+										aria-haspopup="true"
+										aria-expanded="false"
+									>
+										Featured
+									</button>
+									<div
+										class="dropdown-menu"
+										aria-labelledby="dropdownMenuButton"
+									>
+										<a class="dropdown-item" href="#">ALPHABETICALLY, A-Z</a>
+										<a class="dropdown-item" href="#">ALPHABETICALLY, Z-A</a>
+										<a class="dropdown-item" href="#">DATE, old to new</a>
+										<a class="dropdown-item" href="#">DATE, new to old</a>
+										<a class="dropdown-item" href="#">Best Selling</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="product-management__body">
+						<table class="table table-borderless table-hover product-table">
+							<thead class="product-table__header">
+								<tr>
+									<th scope="col">Product</th>
+									<th scope="col">Price</th>
+									<th scope="col">Quantity</th>
+									<th scope="col">Rating</th>
+									<th scope="col">Category</th>
+									<th scope="col">Description</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody
+								id="product-management__showcase"
+								class="product-table__body"
+							>
+								<tr>
+									<td>
+										<div class="card">
+											<div class="row no-gutters">
+												<div>
+													<img
+														src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
+														class="card-img img-thumbnail responsive-img"
+														alt="..."
+													/>
+												</div>
+												<div>
+													<div class="card-body">
+														<h5 class="card-title">
+															Chambor_Rouge_Plum+_Lipstick
+														</h5>
+														<p class="card-text">123</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</td>
+									<td>50</td>
+									<td>30</td>
+									<td>
+										<i class="fas fa-star"></i><i class="fas fa-star"></i
+										><i class="fas fa-star"></i><i class="fas fa-star"></i
+										><i class="fas fa-star"></i>
+									</td>
+									<td>Son gac cao cap</td>
+									<td>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+											Accusamus, blanditiis maxime vel nulla officiis
+											consequatur doloribus hic excepturi quo. Amet. >
+										</p>
+									</td>
+									<td>
+										<div>
+											<div class="product-btn">
+												<i class="fas fa-edit"></i>
+											</div>
+											<div class="product-btn">
+												<i class="fas fa-trash"></i>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</div>
+			</section>
+		</div>
+		<script src="../../component/search-nav/search-nav.component.js"></script>
+		<script src="../js/product-management.js"></script>
+	</body>
 </html>
