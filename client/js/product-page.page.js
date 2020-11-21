@@ -155,7 +155,7 @@ const createCardbody = (product) => {
                     ).toFixed(2)}</span>
                 </div>
                 <a href="#" class="btn btn-primary add-to-cart-btn"
-                    >ADD TO CART</a
+>ADD TO CART</a
                 >
             </div>
         </div>
@@ -233,7 +233,6 @@ const createVerProductElement = (product = {}) => {
 				</div>
 				<div class="quantity">
 					<p class="quantity__title strong-text-700">Quantity:</p>
-
 					<div class="quantity__group">
 						<button class="quantity__minus">
 							<i class="fas fa-minus"></i>
@@ -243,7 +242,6 @@ const createVerProductElement = (product = {}) => {
 							<i class="fas fa-plus"></i>
 						</button>
 					</div>
-
 					<p class="quantity__subtotal">
 						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
 					</p>
@@ -355,8 +353,6 @@ const moveToPage = (page = 1, isMoveToCurent = false) => {
 
   displayData(products.slice(begin, end));
 
-  localStorage.setItem("currentPage", page);
-
   if (!isMoveToCurent) {
     localStorage.setItem("currentPage", page);
     updateToolbar(page, numberOfPages);
@@ -422,7 +418,6 @@ const createPaginationToolbar = () => {
         <a class="page-link" onclick="moveToPage(${numberOfPages})">Last Item</a>
       </li>
     </div>
-
     <div class="pagination__find-bar">
       <li class="page-item">
         <div class="input-group">
@@ -461,58 +456,6 @@ const fetchData = async (url = "", dataProperty) => {
   const dataList = dataJSON[dataProperty];
 
   return dataList;
-};
-
-const createProductElementRow = (product = {}) => {
-  const productElementRow = `
-    <div class="col-lg-3 collection__item" onclick="directToDetailPage('${
-      product.maSP
-    }')">
-        <div class="card text-center">
-            <div class="card-top">
-                <div class="card-label"><strong>-15%</strong></div>
-                <div class="card-quick-view-btn" onclick="quickView(event,'${
-                  product.maSP
-                }')">
-                    <span>QUICK VIEW</span>
-                </div>
-                <img
-                    src="${product.anh}"
-                    class="card-img-top"
-                    alt="product image"
-                />
-            </div>
-            <div class="card-body">
-                <h6 class="card-subtitle">${product.thuongHieu}</h6>
-                <h5 class="card-title">${product.tenSP}</h5>
-                <div class="price-box">
-                    <span class="old-price">
-                        <del class="text-muted">Rs. ${product.gia}.00</del>
-                    </span>
-                    &nbsp;
-                    <span class="new-price">Rs. ${(
-                      (parseInt(product.gia) / 100) *
-                      85
-                    ).toFixed(2)}</span>
-                </div>
-                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('${
-                   product.maSP
-                 }')"
-                          >ADD TO CART</a>
-            </div>
-        </div>
-    </div>`;
-
-  return productElementRow;
-};
-
-const displayData = (productList = []) => {
-  let productElementRows = "";
-  productList.forEach(
-    (product, index) => (productElementRows += createProductElementRow(product))
-  );
-
-  collectionList.innerHTML = productElementRows;
 };
 
 const fetchProductList = () => {

@@ -35,108 +35,121 @@
   </head>
 
   <body onload="loadData()">
-    <div class="show-sales">
-      <div class="tool-area">
-        <div class="search-box">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            id="search"
-            onkeyup="searching(this.value)"
-          />
-        </div>
-        <div class="btns">
-          <button class="btn btn-primary" onclick="showForm(null)">
-            Thêm mới
-          </button>
-        </div>
-      </div>
-      <div class="content">
-        <div class="tbl-box">
-          <table class="table" id="tbl">
-            <thead class="thead-dark">
-              <tr>
-                <th>Mã khuyến mãi</th>
-                <th>Tên đợt khuyến mãi</th>
-                <th>Giảm giá</th>
-                <th>Ngày bắt đầu</th>
-                <th>Ngày kết thúc</th>
-                <th>Ghi chú</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="tblBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div class="input-frm d-none">
-      <h1 class="title-article">TẠO KHUYẾN MÃI</h1>
-      <div>
-        <form name="frm">
-          <div class="form-group">
-            <label for="salename">Tên đợt khuyến mãi</label>
-            <input
-              type="text"
-              class="form-control"
-              name="salenem"
-              id="salename"
-            />
-          </div>
-          <div class="form-group">
-            <label for="description">Mô tả</label>
-            <textarea class="form-control" id="description" rows="3"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="discount">Giảm giá</label>
-            <input
-              type="number"
-              class="form-control"
-              id="discount"
-              min="0"
-              max="100"
-            />
-          </div>
-          <div class="date-container row">
-            <div class="form-group col-md-6">
-              <label for="beginDate">Ngày bắt đầu</label>
-              <input type="date" class="form-control" id="beginDate" />
+    <div class="container-fluid">
+      <header-element></header-element>
+      <div class="row">
+        <div class="col-3 pd-l"><sidebar-element></sidebar-element></div>
+        <div class="col-9" style="margin-top: 100px">
+          <div class="show-sales">
+            <div class="tool-area">
+              <div class="search-box">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  id="search"
+                  onkeyup="searching(this.value)"
+                />
+              </div>
+              <div class="btns">
+                <button class="btn btn-primary" onclick="showForm(null)">
+                  Thêm mới
+                </button>
+              </div>
             </div>
-            <div class="form-group col-md-6">
-              <label for="endDate">Ngày kết thúc</label>
-              <input type="date" class="form-control" id="endDate" />
+            <div class="content">
+              <div class="tbl-box">
+                <table class="table" id="tbl">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>Mã khuyến mãi</th>
+                      <th>Tên đợt khuyến mãi</th>
+                      <th>Giảm giá</th>
+                      <th>Ngày bắt đầu</th>
+                      <th>Ngày kết thúc</th>
+                      <th>Ghi chú</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tblBody"></tbody>
+                </table>
+              </div>
             </div>
           </div>
 
-          <div id="cateSelecting" class="select-cate">
-            <h5>Chọn sản phẩm áp dụng</h5>
-            <div class="tab" id="cateTab"></div>
-            <div id="contentTab"></div>
+          <div class="input-frm d-none">
+            <h1 class="title-article">TẠO KHUYẾN MÃI</h1>
+            <div>
+              <form name="frm">
+                <div class="form-group">
+                  <label for="salename">Tên đợt khuyến mãi</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="salenem"
+                    id="salename"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="description">Mô tả</label>
+                  <textarea
+                    class="form-control"
+                    id="description"
+                    rows="3"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="discount">Giảm giá</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="discount"
+                    min="0"
+                    max="100"
+                  />
+                </div>
+                <div class="date-container row">
+                  <div class="form-group col-md-6">
+                    <label for="beginDate">Ngày bắt đầu</label>
+                    <input type="date" class="form-control" id="beginDate" />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="endDate">Ngày kết thúc</label>
+                    <input type="date" class="form-control" id="endDate" />
+                  </div>
+                </div>
+
+                <div id="cateSelecting" class="select-cate">
+                  <h5>Chọn sản phẩm áp dụng</h5>
+                  <div class="tab" id="cateTab"></div>
+                  <div id="contentTab"></div>
+                </div>
+                <div class="btns-group">
+                  <button
+                    type="button"
+                    id="btnAdd"
+                    class="btn btn-primary"
+                    onclick="clickFinish()"
+                  >
+                    Thêm
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    onclick="clickCancel()"
+                  >
+                    Huỷ
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-          <div class="btns-group">
-            <button
-              type="button"
-              id="btnAdd"
-              class="btn btn-primary"
-              onclick="clickFinish()"
-            >
-              Thêm
-            </button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              onclick="clickCancel()"
-            >
-              Huỷ
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-
+    <script src="../../component/sidebar.component.js"></script>
+    <script src="../../component/header.component.js"></script>
     <script src="../js/sale-management.js"></script>
   </body>
 </html>

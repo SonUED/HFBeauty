@@ -1,18 +1,17 @@
 .btn-group {
-    width: 80%;
-    margin-left: 30rem;
-    margin-top: 100px;
+  width: 100%;
+  margin-top: 100px;
 }
 .button {
-    font-size: 15px;
-    text-align: center;
-    background-color: white;
-    outline: none;
-    border: none;
-    width: 100%;
+  font-size: 15px;
+  text-align: center;
+  background-color: white;
+  outline: none;
+  border: none;
+  width: 100%;
 }
 .button:hover {
-    color: orange;
+  color: orange;
 }
 
 /* input:focus {
@@ -20,13 +19,15 @@
 } */
 
 .table {
-    font-size: 15px;
-    width: 80% !important;
-    margin: 1rem 0 0 30rem;
-    border-bottom: 1px solid #ebebe0;
-    border-top: 1px solid #ebebe0;
+  font-size: 15px;
+  width: 100% !important;
+  border-bottom: 1px solid #ebebe0;
+  border-top: 1px solid #ebebe0;
 }
 table tr {
-    border-bottom: 1px solid #ebebe0;
-    border-top: 1px solid #ebebe0;
+  border-bottom: 1px solid #ebebe0;
+  border-top: 1px solid #ebebe0;
+}
+.contact .col-3 {
+  padding-left: 0;
 }

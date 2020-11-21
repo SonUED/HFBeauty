@@ -1,4 +1,4 @@
-const searchNavTemplate = document.createElement('template');
+const searchNavTemplate = document.createElement("template");
 
 searchNavTemplate.innerHTML = `
 <link rel="stylesheet" type="text/css" href="/component/search-nav/search-nav.style.css">
@@ -54,13 +54,13 @@ searchNavTemplate.innerHTML = `
 `;
 
 class SearchNav extends HTMLElement {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	connectedCallback() {
-		this.innerHTML = searchNavTemplate.innerHTML;
-	}
+  connectedCallback() {
+    this.innerHTML = searchNavTemplate.innerHTML;
+  }
 }
 
-customElements.define('search-nav-element', SearchNav);
+customElements.define("search-nav-element", SearchNav);

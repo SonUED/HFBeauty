@@ -14,6 +14,7 @@ body {
 .header {
   position: absolute;
   display: flex;
+  z-index: 30;
   justify-content: flex-end;
   align-items: center;
   height: 8rem;
@@ -56,10 +57,12 @@ body {
 /* SIDEBAR */
 .sidebar {
   background: #2c2e3e;
-  position: absolute;
-  height: 100%;
-  width: 30rem;
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  margin-right: -15px;
   color: #868aa8;
+  height: 937px;
 }
 .sidebar__head {
   background: #282a3c;
@@ -74,6 +77,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.sidebar__items ul a {
+  color: #868aa8;
+  text-decoration: none;
 }
 .sidebar__items ul {
   list-style: none;
@@ -92,4 +99,7 @@ body {
   background: #282a3c;
   color: #afb5e0;
   border-bottom: 1px solid;
+}
+.row {
+  margin-right: 0;
 }

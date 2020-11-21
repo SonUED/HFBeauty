@@ -32,37 +32,51 @@
 
     <!-- Your CSS -->
     <link rel="stylesheet" href="../style/user-management.css" />
+    <link rel="stylesheet" href="../style/reset.css" />
   </head>
   <script src="../js/user-management.js"></script>
 
   <body onload="loadTable(gUsers)">
-    <div class="search-box">
-      <input
-        type="text"
-        name="search"
-        id="search"
-        onkeyup="searching(this.value)"
-      />
-    </div>
-    <div class="content">
-      <div class="tbl-box">
-        <table class="table" id="tbl">
-          <thead class="thead-dark">
-            <tr>
-              <th>STT</th>
-              <th>Ảnh</th>
-              <th>Họ và tên</th>
-              <th>Ngày sinh</th>
-              <th>Mail</th>
-              <th>Phone</th>
-              <th>Địa Chỉ</th>
-              <th>Tài khoản</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="tblBody"></tbody>
-        </table>
+    <!--  -->
+    <div class="container-fluid">
+      <header-element></header-element>
+      <div class="row">
+        <div class="col-3 pd-l">
+          <sidebar-element></sidebar-element>
+        </div>
+        <div class="col-9" style="margin-top: 100px">
+          <div class="search-box">
+            <input
+              type="text"
+              name="search"
+              id="search"
+              onkeyup="searching(this.value)"
+            />
+          </div>
+          <div class="content">
+            <div class="tbl-box">
+              <table class="table" id="tbl">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>STT</th>
+                    <th>Ảnh</th>
+                    <th>Họ và tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Mail</th>
+                    <th>Phone</th>
+                    <th>Địa Chỉ</th>
+                    <th>Tài khoản</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="tblBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="../../component/sidebar.component.js"></script>
+    <script src="../../component/header.component.js"></script>
   </body>
 </html>

@@ -1,16 +1,22 @@
 const SideBarElement = document.createElement("template");
-SideBarElement.innerHTML = ` <div class="sidebar">
+SideBarElement.innerHTML = ` 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/admin/style/sidebar.css">
+<link rel="stylesheet" type="text/css" href="/admin/style/reset.css">
+<div class="sidebar">
         <div class="sidebar__head">
            <p class="title">HF BEAUTY</p>
         </div>
         <div class="sidebar__items">
             <ul>
-                <li class="item"><i  class="fa fa-user"></i> Quản lý người dùng</li>
-                <li class="item"><i  class="fa fa-box-tissue"></i>Quản lý sản phẩm</li>
-                <li class="item"><i  class="fa fa-tag"></i>Quản lý khuyến mãi</li>
-                <li class="item"><i  class="fa fa-info"></i>Quản lý tài khoản</li>
-                <li class="item"><i class="fa fa-list-alt"></i>Quản lý danh mục</li>
-                <li class="item"><i class="fa fa-chart-line"></i>Thống kê</li>
+             
+               <a href="./user-management.html"> <li class="item"><i  class="fa fa-user"></i> Quản lý người dùng</li></a>
+               <a href="./product-management.html"><li class="item"><i class="fa fa-box-tissue"></i>Quản lý sản phẩm</li></a>
+               <a href="./sale-management.html"><li class="item"><i class="fa fa-tag"></i>Quản lý khuyến mãi</li></a>
+               <a href="./manage-category.html"><li class="item"><i class="fa fa-list-alt"></i>Quản lý danh mục</li></a>
+                <a href="./manage-contact.html"><li class="item"><i class="fa fa-list-alt"></i>Quản lý liên hệ</li></a>
+               <a href="#"><li class="item"><i class="fa fa-chart-line"></i>Thống kê</li></a>
             </ul>
         </div>
     </div>`;
