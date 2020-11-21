@@ -1,4 +1,4 @@
-var customer = [
+var currentCustomer = 
   {
     tenTaiKhoan: "nva",
     tenKH: "Nguyen Van A",
@@ -8,15 +8,14 @@ var customer = [
     mail: "nva@gmail.com",
     soDienThoai: "0123456789",
     diaChi: "1 Hoa Lien Hoa Vang",
-  },
-];
+  }
 
 showData();
 
 function showData() {
   document.querySelector(".show-data").innerHTML = "";
   var data = `<div class="container">
-    <img alt="Avatar" class="image" src="${customer[0].anhDaiDien}" />
+    <img alt="Avatar" class="image" src="${currentCustomer.anhDaiDien}" />
     <div class="overlay">
       <label for="avatar" class="text" onclick="updateAvatar()">
         Cập nhật ảnh đại diện
@@ -25,17 +24,17 @@ function showData() {
     </div>
   </div>
   <div class="name">
-    <h2>${customer[0].tenKH}</h2>
+    <h2>${currentCustomer.tenKH}</h2>
   </div>
   <div class="profile">
       <h4>Ngày sinh:</h4>
-      <p>${customer[0].ngaySinh}</p>
+      <p>${currentCustomer.ngaySinh}</p>
       <h4>Email:</h4>
-      <p>${customer[0].mail} </p>
+      <p>${currentCustomer.mail} </p>
       <h4>Số điện thoại:</h4>
-      <p>${customer[0].soDienThoai}</p>
+      <p>${currentCustomer.soDienThoai}</p>
       <h4>Địa chỉ:</h4>
-      <p>${customer[0].diaChi}</p>
+      <p>${currentCustomer.diaChi}</p>
       <button type="button" class="btn btn-primary" onclick="showForm()">
         update
       </button>
@@ -46,11 +45,11 @@ function showForm() {
   document.querySelector(".form-user").style.display = "block";
   document.querySelector(".profile").style.display = "none";
 
-  document.querySelector("#name").value = customer[0].tenKH;
-  document.querySelector("#date").value = customer[0].ngaySinh;
-  document.querySelector("#mail").value = customer[0].mail;
-  document.querySelector("#phone").value = customer[0].soDienThoai;
-  document.querySelector("#adress").value = customer[0].diaChi;
+  document.querySelector("#name").value = currentCustomer.tenKH;
+  document.querySelector("#date").value = currentCustomer.ngaySinh;
+  document.querySelector("#mail").value = currentCustomer.mail;
+  document.querySelector("#phone").value = currentCustomer.soDienThoai;
+  document.querySelector("#adress").value = currentCustomer.diaChi;
 }
 function hiddenForm() {
   document.querySelector(".form-user").style.display = "none";
@@ -60,12 +59,12 @@ function hiddenForm() {
 }
 
 function save() {
-  customer[0].tenKH = document.querySelector("#name").value;
-  customer[0].ngaySinh = document.querySelector("#date").value;
-  customer[0].mail = document.querySelector("#mail").value;
-  customer[0].soDienThoai = document.querySelector("#phone").value;
-  customer[0].diaChi = document.querySelector("#adress").value;
-  console.log(customer[0].ngaySinh);
+  currentCustomer.tenKH = document.querySelector("#name").value;
+  currentCustomer.ngaySinh = document.querySelector("#date").value;
+  currentCustomer.mail = document.querySelector("#mail").value;
+  currentCustomer.soDienThoai = document.querySelector("#phone").value;
+  currentCustomer.diaChi = document.querySelector("#adress").value;
+  console.log(currentCustomer.ngaySinh);
   hiddenForm();
   showData();
 }

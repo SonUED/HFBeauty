@@ -241,11 +241,18 @@ function showFormJudge(maSP) {
   var display = document.querySelector(".form-judge").style.display;
   document.querySelector("#maSP").value = maSP;
 
+  clearForm();
+
   if (display === "block") {
     document.querySelector(".form-judge").style.display = "none";
   } else {
     document.querySelector(".form-judge").style.display = "block";
   }
+}
+function clearForm() {
+  document.querySelector("#title").value = "";
+  document.querySelector("#star5").checked = true;
+  document.querySelector("#content").value = "";
 }
 
 function sentJudge() {
@@ -293,7 +300,6 @@ function checkJudge(maSP) {
       check.push(item.maSP);
     }
   });
-  console.log(check);
   if (check.indexOf(maSP) < 0) {
     return false;
   } else {
@@ -337,7 +343,4 @@ function saveJudgeToStorage() {
   let judgeString = JSON.stringify(judge);
   localStorage.setItem("judge", judgeString);
 }
-getJudgeFromStorage();
-console.log(checkJudge("SP1"));
-console.log(checkJudge("SP1"));
-console.log(checkJudge("SP3"));
+
