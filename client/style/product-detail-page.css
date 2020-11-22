@@ -1,4 +1,4 @@
-@import url(d:\UED - Senior - 2020 - 2021\Semester 1\Javascript Programming\HFBeauty\client\style\reset.css);
+@import url(d:\Tran Thanh Khang\HFBeauty\client\style\reset.css);
 body {
   font-family: "Oswald", sans-serif;
   font-weight: 500;
@@ -300,7 +300,7 @@ ul {
   visibility: visible;
 }
 
-.tab-content .customer-reviews button[type='submit'] {
+.tab-content .customer-reviews button[type="submit"] {
   width: 15%;
   padding-top: 10px;
   padding-bottom: 10px;

@@ -8,11 +8,19 @@ const productManagementShowcase = document.getElementById(
 	'product-management__showcase'
 );
 
-// using for hide/show working overlay
+// using for hide/show working (creating/updating product) overlay
 const productWorkingOverlay = document.querySelector(
 	'.product-working-overlay'
 );
 const closeQuickViewBtn = document.querySelector('.close-button');
+
+// using for hide/show confirm action overlay
+const confirmActionOverlay = document.querySelector('.confirm-action-overlay');
+
+// using for confirm customer's action
+const confirmMessage = document.querySelector('.confirm-action__message');
+const confirmYesBtn = document.querySelector('.confirm-action__yes');
+const confirmNoBtn = document.querySelector('.confirm-action__no');
 
 // using for create or update product
 const btnCreateUpdate = document.getElementById('btn-create-update');
@@ -314,7 +322,25 @@ const createPaginationToolbar = () => {
 	paginationE.innerHTML = toolbar;
 };
 
+/**********  Confirm action **********/
+const confirmAction = (callback, maSP) => {
+	confirmActionOverlay.style.display = 'block';
+	confirmMessage.textContent = `Are you sure to delete product ${maSP}?`;
+
+	confirmYesBtn.addEventListener('click', function runCallback(e) {
+		callback(maSP);
+		confirmActionOverlay.style.display = 'none';
+		confirmYesBtn.removeEventListener('click', runCallback);
+	});
+
+	confirmNoBtn.addEventListener('click', function runCallback(e) {
+		confirmActionOverlay.style.display = 'none';
+		confirmNoBtn.removeEventListener('click', runCallback);
+	});
+};
+
 /**********  Handle data **********/
+
 const pushNewProductToLocalStorage = (newProduct = {}) => {
 	let products = JSON.parse(localStorage.getItem('products'));
 	let currentPage = localStorage.getItem('currentPage');
@@ -358,7 +384,7 @@ const addProduct = () => {
 	pushNewProductToLocalStorage(newProduct);
 };
 
-// Running when the onchange event happens at imgProduct above in product-management.html
+// Running when the onchange event happens at imgProduct element above in product-management.html
 const changeImage = (inProductImg) => {
 	const imageObject = inProductImg.files[0];
 	imgProductName.textContent = imageObject.name;
@@ -398,14 +424,14 @@ const updateDisplayProduct = (updatedProduct = {}) => {
 
 	imgE.src = updatedProduct.anh;
 	tenSPE.textContent = updatedProduct.tenSP;
-
 	giaE.textContent = `$${updatedProduct.gia}`;
-
 	soLuongE.textContent = updatedProduct.soLuong;
 	maDME.textContent = updatedProduct.maDM;
 };
 
 const updateProduct = () => {
+	const updateCallback = () => {};
+
 	const updatedProduct = {
 		maSP: inProductCode.value,
 		tenSP: inProductName.value,
@@ -434,18 +460,19 @@ const updateProduct = () => {
 };
 
 const deleteProduct = (maSP = '') => {
-	let products = JSON.parse(localStorage.getItem('products'));
-	let currentPage = localStorage.getItem('currentPage');
+	const deleteCallback = (maSP) => {
+		let products = JSON.parse(localStorage.getItem('products'));
+		let currentPage = localStorage.getItem('currentPage');
+		let newProducts = products.filter((product) =>
+			product.maSP == maSP ? false : true
+		);
+		localStorage.setItem('currentList', JSON.stringify(newProducts));
+		localStorage.setItem('products', JSON.stringify(newProducts));
+		createPaginationToolbar();
+		moveToPage(currentPage, true);
+	};
 
-	let newProducts = products.filter((product) =>
-		product.maSP == maSP ? false : true
-	);
-
-	localStorage.setItem('currentList', JSON.stringify(newProducts));
-	localStorage.setItem('products', JSON.stringify(newProducts));
-
-	createPaginationToolbar();
-	moveToPage(currentPage, true);
+	confirmAction(deleteCallback, maSP);
 };
 
 /**********  Search **********/

@@ -1,4 +1,4 @@
-@import url(d:\UED - Senior - 2020 - 2021\Semester 1\Javascript Programming\HFBeauty\client\style\reset.css);
+@import url(d:\Tran Thanh Khang\HFBeauty\client\style\reset.css);
 body {
   font-family: "Oswald", sans-serif;
   font-weight: 500;
@@ -224,7 +224,7 @@ ul {
 
 /******* BLUR GRAY BORDER BOTTOM *******/
 .featured-product__title h3 span::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -9px;
