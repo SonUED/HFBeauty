@@ -1,8 +1,10 @@
-const productDetailTemplate = document.createElement('template');
+const productDetailTemplate = document.createElement("template");
 
 productDetailTemplate.innerHTML = `
-<link rel="stylesheet" type="text/css" href="/component/product-detail/product-detail.style.css">
+
+<link rel="stylesheet" type="text/css" href="../../component/product-detail/product-detail.style.css">
 <div class="product-detail product-quick-view">
+	<input type="hidden" value="SP2" id="maSP">
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="card-top">
@@ -10,8 +12,11 @@ productDetailTemplate.innerHTML = `
 				<img
 					id="product-img"
 					src="#"
+
+					src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
 					class="img-fluid"
 					alt="product-img"
+					id="img"
 				/>
 			</div>
 		</div>
@@ -33,6 +38,7 @@ productDetailTemplate.innerHTML = `
 				</div>
 				<div class="product-detail__cate">
 					<span class="strong-text-700">Category:</span> <span id="product-cate"></span>  
+
 				</div>
 				<div class="price-box">
 					<span class="old-price">
@@ -40,6 +46,8 @@ productDetailTemplate.innerHTML = `
 					</span>
 					&nbsp;
 					<span class="new-price">Rs. <span id="product-price"></span></span>
+
+
 				</div>
 				<div class="product-detail__des">
 					<p id="product-des">
@@ -49,20 +57,20 @@ productDetailTemplate.innerHTML = `
 					<p class="quantity__title strong-text-700">Quantity:</p>
 
 					<div class="quantity__group">
-						<button class="quantity__minus">
+						<button class="quantity__minus" onclick="decrease()">
 							<i class="fas fa-minus"></i>
 						</button>
-						<input class="quantity__content" type="number" value="0" />
-						<button class="quantity__plus">
+						<input class="quantity__content" id="quality" type="number" value="1" /> 
+						<button class="quantity__plus" onclick="increase()">
 							<i class="fas fa-plus"></i>
 						</button>
 					</div>
 
 					<p class="quantity__subtotal">
-						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
+						Subtotal: <span class="strong-text-700">Rs.<span id="subtotal"></span></span>
 					</p>
 				</div>
-				<a href="#" class="btn btn-primary add-to-cart-btn">ADD TO CART</a>
+				<a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('SP2')">ADD TO CART</a>
 				<slot name="buy-it-now-btn"></slot>
 				<div class="product-detail__seen">
 					<i class="fas fa-eye"></i>
@@ -83,4 +91,4 @@ class Product extends HTMLElement {
   }
 }
 
-customElements.define('product-detail-element', Product);
+customElements.define("product-detail-element", Product);

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="../style/manage-contact.css" />
+    <link rel="stylesheet" href="../../client/style/reset.css" />
+    <!-- <link rel="stylesheet" href="../style/sidebar.css" /> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <title>Manage Contact</title>
+  </head>
+  <body onload="showContact('all')">
+    <div class="container-fluid">
+      <header-element></header-element>
+      <div class="row contact">
+        <div class="col-3">
+          <sidebar-element></sidebar-element>
+        </div>
+        <div class="col-9">
+          <div class="btn-group">
+            <input
+              type="button"
+              onclick="showContact('all')"
+              class="all button"
+              value="Tất Cả"
+            />
+            <input
+              type="button"
+              onclick="showContact('unseen')"
+              class="unseen button"
+              value="Chưa Đọc"
+            />
+            <input
+              type="button"
+              onclick="showContact('seen')"
+              class="seen button"
+              value="Đã đọc"
+            />
+          </div>
+          <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <td>ID</td>
+                <td>Tên</td>
+                <td>Email</td>
+                <td>Nội Dung</td>
+                <td>Ngày</td>
+                <td>Đã Đọc</td>
+              </tr>
+            </thead>
+            <tbody class="table-contact"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../component/sidebar.component.js"></script>
+    <script src="../../component/header.component.js"></script>
+    <script type="text/javascript" src="../js/manage-contact.js"></script>
+  </body>
+</html>

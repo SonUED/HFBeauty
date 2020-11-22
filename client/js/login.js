@@ -1,9 +1,20 @@
-const username = document.getElementById("username").value;
-const password = document.getElementById("password").value;
-const accountData = localStorage.getItem("account");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+// const accountData = localStorage.getItem("account");
+const accountData = [
+  {
+    tenTaiKhoan: "user291",
+    matKhau: "123456",
+  },
+  {
+    tenTaiKhoan: "user271",
+    matKhau: "123456",
+  },
+];
 const isExist = (username, password) => {
-  return accountData.some(
-    (user) => user.TenTK === username && user.MatKhau === password
+  // return true;
+  return accountData.find(
+    (user) => user.tenTaiKhoan == username && user.matKhau == password
   );
 };
 const handleChange = (self) => {
@@ -13,9 +24,10 @@ const handleChange = (self) => {
     document.getElementById(self.id).classList.remove("error");
   }
 };
-const login = () => {
-  console.log(user + password);
-  if (isExist(user, password)) {
+const login = (event) => {
+  event.preventDefault();
+  console.log(username.value + password.value);
+  if (isExist(username.value, password.value)) {
     alert("Dang nhap thanh cong");
   } else {
     alert("Dang nhap that bai");

@@ -1,6 +1,5 @@
 body {
-  font-family: "Oswald", sans-serif;
-  font-weight: 500;
+  position: relative;
   background-color: #fff;
   color: #2d2d2d;
   letter-spacing: 0.02rem;
@@ -197,4 +196,41 @@ body {
   font-size: 14px;
   font-weight: 200;
   padding: 10px 0px;
+}
+/* MODAL */
+.modals {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: 50%;
+  font-size: 1.6rem;
+}
+.modal__inner {
+  padding: 2rem 2rem;
+}
+.item-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+.item-wrapper .item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.info .address {
+  font-weight: 300 !important;
+}
+.modal__items {
+  padding: 2rem 0rem;
 }

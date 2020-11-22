@@ -155,7 +155,7 @@ const createCardbody = (product) => {
                     ).toFixed(2)}</span>
                 </div>
                 <a href="#" class="btn btn-primary add-to-cart-btn"
-                    >ADD TO CART</a
+>ADD TO CART</a
                 >
             </div>
         </div>
@@ -233,7 +233,6 @@ const createVerProductElement = (product = {}) => {
 				</div>
 				<div class="quantity">
 					<p class="quantity__title strong-text-700">Quantity:</p>
-
 					<div class="quantity__group">
 						<button class="quantity__minus">
 							<i class="fas fa-minus"></i>
@@ -243,7 +242,6 @@ const createVerProductElement = (product = {}) => {
 							<i class="fas fa-plus"></i>
 						</button>
 					</div>
-
 					<p class="quantity__subtotal">
 						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
 					</p>
@@ -420,7 +418,6 @@ const createPaginationToolbar = () => {
         <a class="page-link" onclick="moveToPage(${numberOfPages})">Last Item</a>
       </li>
     </div>
-
     <div class="pagination__find-bar">
       <li class="page-item">
         <div class="input-group">

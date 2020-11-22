@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../style/reset.css" />
+    <link rel="stylesheet" href="../style/home.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
@@ -22,7 +22,7 @@
     </div>
     <div class="form-section">
       <h1 class="form__title">ĐĂNG NHẬP</h1>
-      <form name="form_login" action="" onsubmit="login(); return false;">
+      <form name="form_login" action="" onsubmit="login(event);">
         <label for="username"><strong>Tên đăng nhập</strong></label>
         <input
           type="text"
@@ -32,6 +32,7 @@
           onchange="handleChange(this)"
           autocomplete="none"
           required
+          autocomplete 
         />
         <label for="password"><strong>Mật khẩu</strong></label>
         <input
@@ -41,6 +42,7 @@
           class="form__input"
           placeholder="Nhập mật khẩu..."
           required
+          autocomplete 
         />
         <input type="submit" value="ĐĂNG NHẬP" class="form__input" />
       </form>

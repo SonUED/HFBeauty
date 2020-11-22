@@ -18,7 +18,10 @@ function showData() {
   var data = `<div class="container">
     <img alt="Avatar" class="image" src="${customer[0].anhDaiDien}" />
     <div class="overlay">
-      <div class="text" onclick="updateAvatar()">Cập nhật ảnh đại diện</div>
+      <label for="avatar" class="text" onclick="updateAvatar()">
+        Cập nhật ảnh đại diện
+        <input type="file" id="avatar" class="avatar-upload-file" onchange="changeImage(this)">
+      </label>
     </div>
   </div>
   <div class="name">
@@ -68,5 +71,25 @@ function save() {
 }
 
 function updateAvatar() {
-  alert("update avatar");
+  // alert("update avatar");
 }
+
+function changeImage (inProductImg) {
+  const imageObject = inProductImg.files[0];
+
+  if (imageObject) {
+    // Make sure `file.name` matches our extensions criteria
+    if (/\.(jpe?g|png|gif|webp)$/i.test(imageObject.name)) {
+      const reader = new FileReader();
+      reader.addEventListener(
+        'load',
+        function () {
+          document.querySelector(".image").src = this.result
+          
+        },
+        false
+      );
+      reader.readAsDataURL(imageObject);
+    }
+  }
+};

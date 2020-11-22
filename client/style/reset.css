@@ -12,6 +12,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+.pd-l {
+  padding-left: 0px !important;
+}
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */

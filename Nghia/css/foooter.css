@@ -1,0 +1,108 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+.site-footer {
+    background: #141414;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.site-footer .newsletter .input-group-field {
+    background-color: #ffffff;
+    color: #919191;
+    border-color: #ffffff;
+}
+
+.site-footer .newsletter .block-content{
+    background-color: #ffffff;
+}
+
+.site-footer .newsletter ::-webkit-input-placeholder {
+    color: #919191;
+}
+
+.site-footer .newsletter ::-moz-placeholder {
+    color: #919191;
+}
+
+.site-footer .newsletter :-ms-input-placeholder {
+    color: #919191;
+}
+
+.site-footer .newsletter :-moz-placeholder {
+    color: #919191;
+}
+
+.site-footer .newsletter .btn {
+    background-color: #141414;
+    border: 1px solid #141414;
+    color: #ffffff;
+}
+.site-footer .newsletter .btn:hover {
+    background-color: #ffffff;
+    border: 1px solid #141414;
+    color: #141414;
+}
+
+.site-footer .policy-item a,
+.footer-default .newsletter-title,
+.foot-title {
+    color: #ffffff;
+}
+
+.site-footer .policy-item a:hover {
+    color: #ffffff;
+}
+
+.site-footer,
+.site-footer a {
+    color: #ffffff;
+}
+
+.footer-default .footer-social .social-icons li:hover a {
+    color: #ffffff !important;
+}
+
+.site-footer a:hover {
+    color: #ffffff;
+}
+
+.site-footer .foot-link>span:before {
+    background-color: #ffffff;
+}
+
+.footer-social li a {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    background-color: #141414;
+}
+
+.footer-bottom>.container .line-top:before{
+    background: #2a2a2a;
+}
+
+.site-footer .policy-item a {
+    border-color: none;
+}
+
+.footer-bottom,
+.footer-bottom address,
+.footer-bottom address a {
+    color: #969696;
+}
+
+.footer-bottom address a:hover {
+    color: #969696;
+}
+
+@media (max-width: 767px) {
+    .footer-top .col-footer .dropdow-mb {
+        border-bottom: 1px solid #2a2a2a;
+    }
+}

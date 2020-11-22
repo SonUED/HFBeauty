@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="../style/manage-category.css" />
     <link rel="stylesheet" href="../../client/style/reset.css" />
-    <link rel="stylesheet" href="../style/sidebar.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
@@ -19,66 +18,87 @@
     <title>Category</title>
   </head>
   <body onload="loadData()">
-    <header-element></header-element>
-    <sidebar-element></sidebar-element>
+    <div class="container-fluid">
+      <header-element></header-element>
+      <div class="row">
+        <div class="col-3 pd-l">
+          <sidebar-element></sidebar-element>
+        </div>
+        <div class="col-9">
+          <form class="form-category">
+            <input type="button" id="index" value="" />
+            <div class="form-group">
+              <label for="name">Tên Danh mục</label>
+              <input type="text" name="name" id="name" />
+            </div>
+            <div class="form-group">
+              <label for="description">Mô tả</label>
+              <input type="text" name="description" id="description" />
+            </div>
+            <div class="form-group">
+              <label for="image">ảnh</label>
+              <input type="text" name="image" id="image" />
+            </div>
+            <div class="btn-group">
+              <input
+                class="btn btn-success"
+                type="button"
+                value="save"
+                onclick="save()"
+              />
+              <input
+                class="btn btn-danger"
+                type="button"
+                value="hủy"
+                onclick="showForm()"
+              />
+            </div>
+          </form>
+          <table class="table">
+            <thead>
+              <tr>
+                <td colspan="6">
+                  <input
+                    type="button"
+                    class="btn btn-primary add"
+                    onclick="showForm()"
+                    value="Thêm mới"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <div class="search-box">
+                    <input
+                      class="form-control mr-sm-2"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                      id="search"
+                      onkeyup="searching(this.value)"
+                    />
+                  </div>
+                </td>
+              </tr>
+            </thead>
+            <thead class="table-dark">
+              <tr>
+                <td>ID</td>
+                <td>Tên Danh Mục</td>
+                <td>Mô Tả</td>
+                <td>Ảnh</td>
+                <td>Chỉnh Sửa</td>
+                <td>Xóa</td>
+              </tr>
+            </thead>
+            <tbody class="table-category"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
     <script src="../../component/sidebar.component.js"></script>
     <script src="../../component/header.component.js"></script>
-
-    <div class="">aaa</div>
-
-    <form class="form-category">
-      
-      <input type="button" id="index" value="" />
-      <div class="form-group">
-        <label for="name">Tên Danh mục</label>
-        <input type="text" name="name" id="name" />
-      </div>
-      <div class="form-group">
-        <label for="description">Mô tả</label>
-        <input type="text" name="description" id="description" />
-      </div>
-      <div class="form-group">
-        <label for="image">ảnh</label>
-        <input type="text" name="image" id="image" />
-      </div>
-      <input
-        class="btn btn-primary"
-        type="button"
-        value="save"
-        onclick="save()"
-      />
-    </form>
-    <table class="table">
-      <div class="search-box">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          id="search"
-          onkeyup="searching(this.value)"
-        />
-      </div>
-      <input
-        type="button"
-        class="btn btn-primary add"
-        onclick="showForm()"
-        value="Thêm mới"
-      />
-      <thead class="table-dark">
-        <tr>
-          <td>ID</td>
-          <td>Tên Danh Mục</td>
-          <td>Mô Tả</td>
-          <td>Ảnh</td>
-          <td>Chỉnh Sửa</td>
-          <td>Xóa</td>
-        </tr>
-      </thead>
-      <tbody class="table-category"></tbody>
-    </table>
-
     <script type="text/javascript" src="../js/manage-category.js"></script>
   </body>
 </html>

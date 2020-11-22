@@ -2,17 +2,34 @@ var quality = 0;
 var qualityInp;
 const DISCOUNT = 50;
 const CART_ARR = JSON.parse(localStorage.getItem("cartArr"));
+var totalSpan = document.getElementById("total");
 const increase = (maSP) => {
   qualityInp = document.getElementById(`quality${maSP}`);
   qualityInp.value++;
 };
 const decrease = (maSP) => {
   qualityInp = document.getElementById(`quality${maSP}`);
-  console.log(typeof qualityInp.value);
-
   qualityInp.value * 1 == 0
     ? (qualityInp.value = 0)
     : (qualityInp.value = qualityInp.value * 1 - 1);
+};
+const total = () => {
+  var total = 0;
+  const cartArr = JSON.parse(localStorage.getItem("cartArr"));
+  cartArr.map((item) => {
+    total += item.gia * item.quantity;
+  });
+  totalSpan.innerHTML = total + ".00";
+};
+const addToCart = (maSP) => {
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+  qualityInp = document.getElementById(`quality${maSP}`);
+  CART_ARR.map((item) => {
+    item.quantity =
+      item.maSP == maSP ? parseInt(qualityInp.value) : item.quantity;
+  });
+  localStorage.setItem("cartArr", JSON.stringify(CART_ARR));
+  total();
 };
 const createNewRow = (cartItem, DISCOUNT) => {
   const {
@@ -43,7 +60,7 @@ const createNewRow = (cartItem, DISCOUNT) => {
                             </div>
                             <div class="price-box">
                                 <span class="old-price">
-                                    <del class="text-muted">${gia}</del>
+                                    <del class="text-muted">${gia}.000</del>
                                 </span>
                                 <div>
                                     <span class="sub-text">Discount :</span> <span id="discount">${DISCOUNT}%</span>
@@ -68,6 +85,7 @@ const createNewRow = (cartItem, DISCOUNT) => {
                                     </button>
                                 </div>
                                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick="removeItemToCart(${maSP})">REMOVE</a>
+                                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('${maSP}')">ADD TO CART</a>
                             </div>
                             
                         </div>
