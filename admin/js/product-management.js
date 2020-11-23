@@ -14,6 +14,11 @@ const productWorkingOverlay = document.querySelector(
 );
 const closeQuickViewBtn = document.querySelector('.close-button');
 
+// using for showing product's star on working overlay
+const productStarOnWorkingOverlay = document.querySelector(
+	'.product-detail__reviews'
+);
+
 // using for hide/show confirm action overlay
 let isDoNotShowAgain = false;
 const confirmActionOverlay = document.querySelector('.confirm-action-overlay');
@@ -90,6 +95,17 @@ const createProductElementRow = (product = {}) => {
 		}
 	}
 
+	// create star element
+	let starE = '';
+	for (let i = 1; i <= 5; i++) {
+		if (product.soSao > 0) {
+			starE += '<i class="fas fa-star"></i>';
+			product.soSao--;
+		} else {
+			starE += '<i class="far fa-star"></i>';
+		}
+	}
+
 	const productElementRow = `
         <tr id="${product.maSP}">
             <td>
@@ -116,10 +132,8 @@ const createProductElementRow = (product = {}) => {
             </td>
             <td id="product-price-${product.maSP}">$${product.gia},00</td>
             <td id="product-quantity-${product.maSP}">${product.soLuong}</td>
-            <td>
-                <i class="fas fa-star"></i><i class="fas fa-star"></i
-                ><i class="fas fa-star"></i><i class="fas fa-star"></i
-                ><i class="fas fa-star"></i>
+			<td>
+				${starE}
 			</td>
 			<td id="product-cate-${product.maSP}">${productCate}</td>
 			<td>
@@ -152,28 +166,52 @@ const displayData = (productList = []) => {
 	productManagementShowcase.innerHTML = productElementRows;
 };
 
-const fetchProductList = () => {
-	fetchData('../../data/products.json', 'products').then((productList) => {
-		localStorage.setItem('products', JSON.stringify(productList));
-		localStorage.setItem('currentList', JSON.stringify(productList));
-		localStorage.setItem('currentPage', '1');
-		localStorage.setItem('numberOfItemsOfEachPage', '24');
-		localStorage.setItem('selectedSearchField', 'tenSP');
+// fetch product list, category list, review list
+const fetchProductList = async () => {
+	localStorage.setItem('currentPage', '1');
+	localStorage.setItem('numberOfItemsOfEachPage', '24');
+	localStorage.setItem('selectedSearchField', 'tenSP');
 
-		quantityTitle.textContent = `HFBeauty: ${productList.length} products! Tada!`;
-
-		createPaginationToolbar();
-		displayData(productList.slice(0, 24));
-	});
-
-	fetchData('../../data/categories.json', 'categories').then((categories) => {
-		localStorage.setItem('categories', JSON.stringify(categories));
+	fetchData('../../data/categories.json', 'categories').then((categoryList) => {
+		localStorage.setItem('categories', JSON.stringify(categoryList));
 		let options = '';
-		categories.forEach((category) => {
+		categoryList.forEach((category) => {
 			options += `<option value="${category.maDM}">${category.tenDM}</option>`;
 		});
 		document.getElementById('product-category').innerHTML = options;
 	});
+
+	let reviewList = await fetchData('../../data/reviews.json', 'reviews');
+	localStorage.setItem('reviews', JSON.stringify(reviewList));
+
+	let productList = await fetchData('../../data/products.json', 'products');
+
+	quantityTitle.textContent = `HFBeauty: ${productList.length} products! Tada!`;
+
+	// calculate product's review's stars
+	productList.forEach((product, index) => {
+		let tempReviewAcc = reviewList.reduce(
+			(acc, review) =>
+				review.maSP == product.maSP
+					? {
+							...acc,
+							total: acc.total + review.soSao,
+							quantity: ++acc.quantity,
+					  }
+					: acc,
+
+			{ total: 0, quantity: 0 }
+		);
+
+		productList[index]['soSao'] =
+			Math.ceil(tempReviewAcc.total / tempReviewAcc.quantity) || 0;
+	});
+
+	localStorage.setItem('currentList', JSON.stringify(productList));
+	localStorage.setItem('products', JSON.stringify(productList));
+
+	createPaginationToolbar();
+	displayData(productList.slice(0, 24));
 };
 
 /**********  Sort Data **********/
@@ -392,7 +430,7 @@ const createPaginationToolbar = () => {
 /**********  Confirm action **********/
 const confirmAction = (callback, message = '') => {
 	confirmActionOverlay.style.display = 'block';
-	confirmMessage.textContent = message;
+	confirmMessage.innerHTML = message;
 
 	confirmYesBtn.addEventListener('click', function runCallback(e) {
 		doNotShowAgainCheckbox.checked ? (isDoNotShowAgain = true) : null;
@@ -451,7 +489,7 @@ const pushNewProductToLocalStorage = (newProduct = {}) => {
 	} else {
 		confirmAction(
 			null,
-			`Create product "${newProduct.tenSP}" successfully! Do you create more products?`
+			`<p>Creating product "${newProduct.tenSP}" successfully!</p> <p> Would you like creating more products? </p> `
 		);
 	}
 };
@@ -645,6 +683,18 @@ const displayProductWorkingOverlay = (type = 'create', product = {}) => {
 
 		productCodeContainer.classList.add('d-flex', 'justify-content-between');
 		productManuContainer.classList.add('d-flex', 'justify-content-between');
+
+		// create star element
+		let starE = '';
+		for (let i = 1; i <= 5; i++) {
+			if (product.soSao > 0) {
+				starE += '<i class="fas fa-star"></i>';
+				product.soSao--;
+			} else {
+				starE += '<i class="far fa-star"></i>';
+			}
+		}
+		productStarOnWorkingOverlay.innerHTML = starE;
 
 		inProductCode.value = product.maSP;
 		inProductName.value = product.tenSP;

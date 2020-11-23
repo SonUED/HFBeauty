@@ -1,3 +1,13 @@
+$starColors: #ffab5a, #ffa147, #ff9e41, #ff8a18, #ff8004;
+
+@mixin setStarColor($colorList, $selector) {
+	@for $i from 1 through 5 {
+		#{ $selector }:nth-of-type(#{ $i }) {
+			color: nth($colorList, $i);
+		}
+	}
+}
+
 .product-detail {
 	width: 100%;
 	//   max-height: 70vh;
@@ -34,6 +44,10 @@
 	&__cate {
 		margin-bottom: 20px;
 		line-height: 20px;
+	}
+
+	&__reviews {
+		@include setStarColor($starColors, 'i');
 	}
 
 	.price-box {

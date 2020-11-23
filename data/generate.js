@@ -45,3 +45,37 @@ for (let i = 1; i <= 200; i++) {
 }
 
 console.log(JSON.stringify(products));
+
+function randomDate(start, end) {
+	return new Date(
+		start.getTime() + Math.random() * (end.getTime() - start.getTime())
+	);
+}
+
+const danhSachDanhGia = [];
+for (let i = 1; i <= 100; i++) {
+	const soSao = Math.floor(Math.random() * 5 + 1);
+	const tieuDe = 'Lorem ipsum dolor sit amet.';
+	const noiDung = 'Lorem ipsum dolor sit amet.';
+
+	let rdDate = randomDate(new Date(2020, 1, 1), new Date());
+	const thoiGian = `${rdDate.getFullYear()}-${
+		rdDate.getMonth() < 10 ? '0' + rdDate.getMonth() : rdDate.getMonth()
+	}-${rdDate.getDate() < 10 ? '0' + rdDate.getDate() : rdDate.getDate()}`;
+
+	const maSP = 'SP' + Math.floor(Math.random() * 200 + 1);
+	const maKH = 'KH' + Math.floor(Math.random() * 100 + 1);
+
+	const danhGia = {
+		maKH: maKH,
+		maSP: maSP,
+		thoiGian: thoiGian,
+		tieuDe: tieuDe,
+		noiDung: noiDung,
+		soSao: soSao,
+	};
+
+	danhSachDanhGia.push(danhGia);
+}
+
+console.log(JSON.stringify(danhSachDanhGia));
