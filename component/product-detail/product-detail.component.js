@@ -1,4 +1,4 @@
-const productDetailTemplate = document.createElement("template");
+const productDetailTemplate = document.createElement('template');
 
 productDetailTemplate.innerHTML = `
 
@@ -24,11 +24,13 @@ productDetailTemplate.innerHTML = `
 			<div class="card-body">
 				<h5 class="card-title" id="product-name"></h5>
 				<div class="product-detail__reviews">
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
+					<div>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
 				</div>
 				<div class="product-detail__brand">
 					<span class="strong-text-700">Brand:</span> <span id="product-brand"></span> 
@@ -40,14 +42,13 @@ productDetailTemplate.innerHTML = `
 					<span class="strong-text-700">Category:</span> <span id="product-cate"></span>  
 
 				</div>
-				<div class="price-box">
-					<span class="old-price">
+				<div class="price-box container-fluid">
+					<div class="row">
+						<span class="col-6 col-sm-3 col-md-3 col-lg-3 old-price">
 						<del class="text-muted">Rs. <span id="product-old-price"></span></del>
-					</span>
-					&nbsp;
-					<span class="new-price">Rs. <span id="product-price"></span></span>
-
-
+						</span>
+						<span class="col-6 col-sm-3 col-md-3 col-lg-3 new-price">Rs. <span id="product-price"></span></span>
+					</div>
 				</div>
 				<div class="product-detail__des">
 					<p id="product-des">
@@ -58,11 +59,11 @@ productDetailTemplate.innerHTML = `
 
 					<div class="quantity__group">
 						<button class="quantity__minus" onclick="decrease()">
-							<i class="fas fa-minus"></i>
+						<i class="fas fa-minus"></i>
 						</button>
 						<input class="quantity__content" id="quality" type="number" value="1" /> 
 						<button class="quantity__plus" onclick="increase()">
-							<i class="fas fa-plus"></i>
+						<i class="fas fa-plus"></i>
 						</button>
 					</div>
 
@@ -82,13 +83,13 @@ productDetailTemplate.innerHTML = `
 </div>`;
 
 class Product extends HTMLElement {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 
-  connectedCallback() {
-    this.innerHTML = productDetailTemplate.innerHTML;
-  }
+	connectedCallback() {
+		this.innerHTML = productDetailTemplate.innerHTML;
+	}
 }
 
-customElements.define("product-detail-element", Product);
+customElements.define('product-detail-element', Product);

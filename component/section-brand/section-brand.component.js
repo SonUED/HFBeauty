@@ -1,4 +1,4 @@
-const sectionBrandTemplate = document.createElement("template");
+const sectionBrandTemplate = document.createElement('template');
 
 sectionBrandTemplate.innerHTML = `
 <link rel="stylesheet" type="text/css" href="/component/section-brand/section-brand.style.css">
@@ -6,35 +6,35 @@ sectionBrandTemplate.innerHTML = `
     <div class="container">
     <div class="brand__block">
         <div class="row">
-        <div class="col-20">
+        <div class="col-12 col-sm-12 col-md-6 col-20">
             <div class="brand__item">
             <a href="#"
                 ><img src="../../img/Brand-Loreal_200x.jpg" alt=""
             /></a>
             </div>
         </div>
-        <div class="col-20">
+        <div class="col-12 col-sm-12 col-md-6 col-20">
             <div class="brand__item">
             <a href="#"
                 ><img src="../../img/Brand-Nivea_200x.webp" alt=""
             /></a>
             </div>
         </div>
-        <div class="col-20">
+        <div class="col-12 col-sm-12 col-md-6 col-20">
             <div class="brand__item">
             <a href="#"
                 ><img src="../../img/Brand-Schwarzkopf_200x.webp" alt=""
             /></a>
             </div>
         </div>
-        <div class="col-20">
+        <div class="col-12 col-sm-12 col-md-6 col-20">
             <div class="brand__item">
             <a href="#"
                 ><img src="../../img/Brand-Suave_200x.webp" alt=""
             /></a>
             </div>
         </div>
-        <div class="col-20">
+        <div class="col-12 col-sm-12 col-md-12 col-20">
             <div class="brand__item">
             <a href="#"
                 ><img src="../../img/Brand-Tresemme_200x.webp" alt=""
@@ -48,13 +48,13 @@ sectionBrandTemplate.innerHTML = `
 `;
 
 class SectionBrand extends HTMLElement {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super();
+	}
 
-  connectedCallback() {
-    this.innerHTML = sectionBrandTemplate.innerHTML;
-  }
+	connectedCallback() {
+		this.innerHTML = sectionBrandTemplate.innerHTML;
+	}
 }
 
-customElements.define("section-brand-element", SectionBrand);
+customElements.define('section-brand-element', SectionBrand);

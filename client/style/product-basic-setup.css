@@ -29,18 +29,6 @@ ul {
   max-width: 1230px;
 }
 
-.col-20 {
-  width: 20%;
-  padding-left: 15px;
-  padding-right: 10px;
-}
-
-.col-80 {
-  width: 80%;
-  padding-left: 10px;
-  padding-right: 15px;
-}
-
 .disabled-click {
   pointer-events: none;
 }
@@ -155,40 +143,6 @@ ul {
 .card-body .add-to-cart-btn:hover {
   background-color: #ff722e;
   border: 1px solid #ff416a;
-}
-
-.quantity__group {
-  padding: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.quantity__plus, .quantity__minus, .quantity__content {
-  display: inline-block;
-  margin: 0 0 0 -1px;
-  padding: 0 1px 0 0;
-  height: 50px;
-  width: 15%;
-  text-align: center;
-  background-color: #fff;
-  border: 1px solid #e0e5e2;
-}
-
-.quantity__plus:focus, .quantity__minus:focus, .quantity__content:focus {
-  outline: none;
-}
-
-.quantity__plus:hover, .quantity__minus:hover {
-  color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.quantity__content {
-  width: 40%;
 }
 
 /******* COLLECTION ITEM *******/

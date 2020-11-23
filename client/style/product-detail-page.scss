@@ -1,94 +1,99 @@
-@import "reset.css";
-@import "product-basic-setup";
+@import 'reset.css';
+@import 'product-basic-setup';
 
 .buy-it-now-btn {
-  width: 100%;
-  color: black;
-  background-color: #fff;
-  border: 1px solid $buttonColor;
+	width: 100%;
+	color: black;
+	background-color: #fff;
+	border: 1px solid $buttonColor;
 
-  &:hover {
-    background-color: $buttonColor;
-    border: 1px solid black;
-  }
+	&:hover {
+		background-color: $buttonColor;
+		border: 1px solid black;
+	}
 }
 
 .nav {
-  &-tabs {
-    font-weight: 600;
-    font-size: 14px;
+	&-tabs {
+		font-weight: 600;
+		font-size: 14px;
 
-    .nav-link {
-      text-transform: uppercase;
-    }
-    .nav-link.active {
-      color: black;
-    }
-  }
+		.nav-link {
+			text-transform: uppercase;
+		}
+		.nav-link.active {
+			color: black;
+		}
+	}
+}
+
+.product-detail-support {
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .tab-content {
-  padding: 25px 0;
-  font: 400 12px/20px $secondaryFont, sans-serif;
+	padding: 25px 0;
+	font: 400 12px/20px $secondaryFont, sans-serif;
 
-  .tab-pane:first-child,
-  .tab-pane:last-child {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
+	.tab-pane:first-child,
+	.tab-pane:last-child {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
 
-  .tab-pane:nth-of-type(2) {
-    padding: 24px;
-    border: 1.5px solid $borderColor;
-  }
+	.tab-pane:nth-of-type(2) {
+		padding: 24px;
+		border: 1.5px solid $borderColor;
+	}
 
-  .customer-reviews {
-    &__title {
-      font-size: 24px;
-      font-weight: 700;
-    }
+	.customer-reviews {
+		&__title {
+			font-size: 24px;
+			font-weight: 700;
+		}
 
-    &__write-review-btn {
-      padding: 5px 10px;
-      background-color: #fff;
-      border: 1.5px solid $borderColor;
-      line-height: 17px;
+		&__write-review-btn {
+			padding: 5px 10px;
+			background-color: #fff;
+			border: 1.5px solid $borderColor;
+			line-height: 17px;
 
-      &:focus {
-        outline: none;
-      }
-    }
+			&:focus {
+				outline: none;
+			}
+		}
 
-    div:nth-child(2) {
-      margin-bottom: 20px;
-    }
+		div:nth-child(2) {
+			margin-bottom: 20px;
+		}
 
-    .collapse {
-      border-top: 1.5px solid $borderColor;
-    }
-    label {
-      font-weight: 600;
-    }
+		.collapse {
+			border-top: 1.5px solid $borderColor;
+		}
+		label {
+			font-weight: 600;
+		}
 
-    input,
-    textarea {
-      font-size: 12px;
-    }
+		input,
+		textarea {
+			font-size: 12px;
+		}
 
-    .btn {
-      visibility: visible;
-    }
+		.btn {
+			visibility: visible;
+		}
 
-    button[type="submit"] {
-      width: 15%;
-      padding-top: 10px;
-      padding-bottom: 10px;
+		button[type='submit'] {
+			width: 15%;
+			padding-top: 10px;
+			padding-bottom: 10px;
 
-      font: 600 14px/20px $primaryFont, sans-serif;
+			font: 600 14px/20px $primaryFont, sans-serif;
 
-      color: black;
-      background-color: $borderColor;
-      border: none;
-    }
-  }
+			color: black;
+			background-color: $borderColor;
+			border: none;
+		}
+	}
 }

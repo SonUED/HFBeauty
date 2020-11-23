@@ -30,18 +30,6 @@ ul {
   max-width: 1230px;
 }
 
-.col-20 {
-  width: 20%;
-  padding-left: 15px;
-  padding-right: 10px;
-}
-
-.col-80 {
-  width: 80%;
-  padding-left: 10px;
-  padding-right: 15px;
-}
-
 .disabled-click {
   pointer-events: none;
 }
@@ -224,13 +212,25 @@ ul {
 
 /******* BLUR GRAY BORDER BOTTOM *******/
 .featured-product__title h3 span::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -9px;
   width: 100%;
   height: 2px;
   background: #000;
+}
+
+.col-20 {
+  width: 20%;
+  padding-left: 15px;
+  padding-right: 10px;
+}
+
+.col-80 {
+  width: 80%;
+  padding-left: 10px;
+  padding-right: 15px;
 }
 
 .change-direction {

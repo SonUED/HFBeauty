@@ -1,14 +1,30 @@
 /****************************************
 		SECTION brands
 ****************************************/
-.col-20 {
-	width: 20%;
-	padding-left: 15px;
-	padding-right: 10px;
+
+$bigger-tablet-width: 981px;
+
+@mixin tablet {
+	@media (min-width: #{$bigger-tablet-width}) {
+		@content;
+	}
 }
 
 .brand {
-	.brand__block {
+	&__block {
 		padding: 38px 0;
+	}
+
+	&__item {
+		padding: 10px;
+		text-align: center;
+	}
+
+	@include tablet() {
+		.col-20 {
+			max-width: 20%;
+			padding-left: 15px;
+			padding-right: 10px;
+		}
 	}
 }
