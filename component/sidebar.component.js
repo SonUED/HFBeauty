@@ -13,6 +13,7 @@ SideBarElement.innerHTML = `
              
                <a href="./user-management.html"> <li class="item"><i  class="fa fa-user"></i> Quản lý người dùng</li></a>
                <a href="./product-management.html"><li class="item"><i class="fa fa-box-tissue"></i>Quản lý sản phẩm</li></a>
+               <a href="./manage-order.html"><li class="item"><i class="fa fa-box-tissue"></i>Quản lý đơn hàng</li></a>
                <a href="./sale-management.html"><li class="item"><i class="fa fa-tag"></i>Quản lý khuyến mãi</li></a>
                <a href="./manage-category.html"><li class="item"><i class="fa fa-list-alt"></i>Quản lý danh mục</li></a>
                 <a href="./manage-contact.html"><li class="item"><i class="fa fa-list-alt"></i>Quản lý liên hệ</li></a>

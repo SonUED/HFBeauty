@@ -1,6 +1,6 @@
 .btn-group {
-    width: 80%;
-    margin-left: 30rem;
+    font-size: 15px;
+    width: 100%;
     margin-top: 100px;
 }
 .button {
@@ -20,16 +20,12 @@
 } */
 
 .table {
-    width: 80% !important;
-    margin: 1rem 0 0 30rem;
+    font-size: 14px;
+    width: 100%;
     border-bottom: 1px solid #ebebe0;
     border-top: 1px solid #ebebe0;
 }
 table tr {
-   
     border-bottom: 1px solid #ebebe0;
     border-top: 1px solid #ebebe0;
-}
-img {
-    width: 100px;
 }

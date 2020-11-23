@@ -1,119 +1,3 @@
-var currentCustomer = {
-  tenTaiKhoan: "nva",
-  tenKH: "Nguyen Van A",
-  ngaySinh: "1/1/1999",
-  anhDaiDien:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX-g7iDC3RkcWjMYAEJ-ogKQwfsJnPXns4aQ&usqp=CAU",
-  mail: "nva@gmail.com",
-  soDienThoai: "0123456789",
-  diaChi: "1 Hoa Lien Hoa Vang",
-};
-
-var order = [
-  {
-    maDH: 0,
-    tenTaiKhoan: "nva",
-    nguoiNhan: "Nguyen van a",
-    diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-    SDT: "0123456789",
-    ngayDat: "23/05/2020",
-    trangThai: "received",
-  },
-  {
-    maDH: 1,
-    tenTaiKhoan: "nva",
-    nguoiNhan: "Nguyen van a",
-    diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-    SDT: "0123456789",
-    ngayDat: "23/05/2020",
-    trangThai: "received",
-  },
-  {
-    maDH: 2,
-    tenTaiKhoan: "nva",
-    nguoiNhan: "Nguyen van a",
-    diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-    SDT: "0123456789",
-    ngayDat: "23/05/2020",
-    trangThai: "received",
-  },
-];
-
-var detailOrder = [
-  {
-    maDH: 0,
-    maSP: "SP1",
-    soLuong: 1,
-  },
-  {
-    maDH: 1,
-    maSP: "SP1",
-    soLuong: 1,
-  },
-  {
-    maDH: 2,
-    maSP: "SP3",
-    soLuong: 1,
-  },
-  {
-    maDH: 1,
-    maSP: "SP2",
-    soLuong: 1,
-  },
-];
-
-var products = [
-  {
-    maSP: "SP1",
-    tenSP: "Son kem đỏ Nivea 1",
-    maDM: "DM2",
-    gia: 21,
-    soLuong: 7,
-    hanSuDung: "2 năm kể từ ngày sản xuất.",
-    ngaySanXuat: "Xem trên bao bì sản phẩm.",
-    thuongHieu: "Nivea",
-    moTa:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam laboriosam fugiat eum nihil deserunt odio velit iure repellendus hic suscipit eius voluptas repudiandae enim ex consectetur assumenda commodi, nisi alias.",
-    ngayNhap: "2020-10-27T13:29:31.665Z",
-    anh:
-      "https://product.hstatic.net/200000135107/product/nars_63ec89ba528741d29bd3b7b1fedbbe6e_55624ac18ab04f268bfb6d2bc5f66a05_master.jpg",
-  },
-  {
-    maSP: "SP2",
-    tenSP: "Son kem đỏ Nivea 2",
-    maDM: "DM2",
-    gia: 21,
-    soLuong: 7,
-    hanSuDung: "2 năm kể từ ngày sản xuất.",
-    ngaySanXuat: "Xem trên bao bì sản phẩm.",
-    thuongHieu: "Nivea",
-    moTa:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam laboriosam fugiat eum nihil deserunt odio velit iure repellendus hic suscipit eius voluptas repudiandae enim ex consectetur assumenda commodi, nisi alias.",
-    ngayNhap: "2020-10-27T13:29:31.665Z",
-    anh:
-      "https://product.hstatic.net/200000135107/product/nars_63ec89ba528741d29bd3b7b1fedbbe6e_55624ac18ab04f268bfb6d2bc5f66a05_master.jpg",
-  },
-  {
-    maSP: "SP3",
-    tenSP: "Son kem đỏ Nivea 3",
-    maDM: "DM2",
-    gia: 21,
-    soLuong: 7,
-    hanSuDung: "2 năm kể từ ngày sản xuất.",
-    ngaySanXuat: "Xem trên bao bì sản phẩm.",
-    thuongHieu: "Nivea",
-    moTa:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam laboriosam fugiat eum nihil deserunt odio velit iure repellendus hic suscipit eius voluptas repudiandae enim ex consectetur assumenda commodi, nisi alias.",
-    ngayNhap: "2020-10-27T13:29:31.665Z",
-    anh:
-      "https://product.hstatic.net/200000135107/product/nars_63ec89ba528741d29bd3b7b1fedbbe6e_55624ac18ab04f268bfb6d2bc5f66a05_master.jpg",
-  },
-];
-
-localStorage.setItem("currentCustomer", JSON.stringify(currentCustomer));
-localStorage.setItem("order", JSON.stringify(order));
-localStorage.setItem("detailOrder", JSON.stringify(detailOrder));
-localStorage.setItem("products", JSON.stringify(products));
 
 var judge = [];
 var myDetailOrder = [];
@@ -123,7 +7,6 @@ var trangThai = ['all','wait-for-accept', 'wait-for-take', 'deliver','received',
 
 function show(mess) {
   document.querySelector(".table-order").innerHTML = "";
-
   getDataFromStorage();
   getMyDetailOrder(mess);
   showDataTable(mess);
@@ -216,9 +99,9 @@ function getMyDetailOrder(mess) {
     );
   }
 
-  myDetailOrder = myOrder.map((item) => {
-    return detailOrder.filter((myOrder) => myOrder.maDH === item.maDH);
-  });
+  myDetailOrder = myOrder.map((item) => 
+     detailOrder.filter((myOrder) => myOrder.maDH === item.maDH)
+  );
 
   myDetailOrder = myDetailOrder.filter((item) => item.length > 0);
 }

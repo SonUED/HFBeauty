@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Dashboard Template · Bootstrap</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!-- Custom styles for this template -->
+    <link href="../style/statistical.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../client/style/reset.css" />
+    <link rel="stylesheet" href="../style/sidebar.css" />
+  </head>
+  <body onload="showChart('products')">
+    <div class="div container-fluid">
+      <div class="row">
+        <header-element></header-element>
+        <div class="col-3 pd-l">
+          <sidebar-element></sidebar-element>
+        </div>
+        <div class="col-9">
+          <div class="btn-group">
+            <input
+              type="button"
+              onclick="showChart('order')"
+              class="order button"
+              value="thống kê đơn hàng"
+            />
+
+            <input
+              type="button"
+              onclick="showChart('products')"
+              class="products button"
+              value="thông kê nhập hàng"
+            />
+
+            <input
+              type="button"
+              onclick="showChart('wait-for-take')"
+              class="wait-for-take button"
+              value="Chờ lấy hàng"
+            />
+
+            <input
+              type="button"
+              onclick="showChart('deliver')"
+              class="deliver button"
+              value="Đang giao"
+            />
+            <input
+              type="button"
+              onclick="showChart('received')"
+              class="received button"
+              value="Đã giao"
+            />
+          </div>
+          <div class="btn-toolbar mb-2 mb-md-0 col-2">
+            <div class="btn-group mr-2">
+              <h4><b>filter:</b></h4>
+              <select id="year" onchange="filterSelection()">
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+
+              </select>
+              <select id="month" onchange="filterSelection()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+          </div>
+          
+          <canvas
+            class="my-4 w-100"
+            id="myChart"
+            width="900"
+            height="380"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="../../component/sidebar.component.js"></script>
+    <script src="../../component/header.component.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
+    <script src="../js/statistical.js"></script>
+  </body>
+</html>
