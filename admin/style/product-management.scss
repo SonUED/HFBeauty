@@ -516,7 +516,6 @@ input::-webkit-inner-spin-button {
 	right: 0;
 	bottom: 0;
 	overflow: hidden;
-	z-index: 40;
 }
 
 /****************************************
@@ -532,9 +531,9 @@ input::-webkit-inner-spin-button {
 }
 
 .product-working-overlay {
-	display: none;
 	@extend %displayFullScreenAbove;
 	background-color: rgba($color: black, $alpha: 0.7);
+	z-index: 40;
 }
 
 .product-working {
@@ -694,7 +693,7 @@ input::-webkit-inner-spin-button {
 			border: none;
 		}
 
-		> div:not(:nth-of-type(2)) input,
+		> div input,
 		> div select,
 		#{$self}__des textarea {
 			background-color: rgba($color: $buttonColor, $alpha: 0.1);
@@ -715,8 +714,13 @@ input::-webkit-inner-spin-button {
 			width: 100%;
 		}
 
-		#{$self}__code {
+		#{$self}__code,
+		#{$self}__manu {
 			display: none;
+
+			input {
+				background-color: #edf2ef;
+			}
 		}
 	}
 }
@@ -763,6 +767,7 @@ input::-webkit-inner-spin-button {
 ****************************************/
 .confirm-action-overlay {
 	@extend %displayFullScreenAbove;
+	z-index: 50;
 }
 
 .confirm-action {
@@ -774,7 +779,6 @@ input::-webkit-inner-spin-button {
 	transform: translate(-50%, -50%);
 
 	max-width: 20vw;
-	z-index: 50;
 
 	// overide css from sidebar.css
 	font-family: $primaryFont, sans-serif;

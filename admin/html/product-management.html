@@ -118,9 +118,7 @@
 								<div
 									class="card-body d-flex flex-column justify-content-between product-detail__body--bottom"
 								>
-									<div
-										class="d-flex justify-content-between prodcut-detail__name"
-									>
+									<div class="d-flex justify-content-between">
 										<label for="product-name">Product Name</label>
 										<input
 											id="product-name"
@@ -135,9 +133,7 @@
 										<input id="product-code" type="text" disabled />
 									</div>
 
-									<div
-										class="d-flex justify-content-between product-detail__brand"
-									>
+									<div class="d-flex justify-content-between">
 										<label for="product-brand">Brand</label>
 										<input
 											id="product-brand"
@@ -181,22 +177,16 @@
 											</button>
 										</div>
 									</div>
-									<div
-										class="d-flex justify-content-between prodcut-detail__input-date"
-									>
+									<div class="d-flex justify-content-between">
 										<label for="product-input-date">Input Date</label>
 										<input id="product-input-date" type="date" />
 									</div>
-									<div
-										class="d-flex justify-content-between prodcut-detail__manu-date"
-									>
+									<div class="product-detail__manu">
 										<label for="product-manu-date">Manufacture Date</label>
-										<input id="product-manu-date" type="date" />
+										<input id="product-manu-date" type="text" disabled />
 									</div>
 
-									<div
-										class="d-flex justify-content-between prodcut-detail__expiry-date"
-									>
+									<div class="d-flex justify-content-between">
 										<label for="product-expiry-date">Expiry Date</label>
 										<input id="product-expiry-date" type="text" />
 									</div>
@@ -206,9 +196,7 @@
 										<textarea id="product-des" rows="4"> </textarea>
 									</div>
 
-									<div
-										class="d-flex justify-content-between product-detail__category"
-									>
+									<div class="d-flex justify-content-between">
 										<label for="product-category">Category</label>
 										<select
 											name="category-select"
@@ -302,7 +290,7 @@
 											<span>sort by</span>
 											<div class="dropdown">
 												<button
-													class="btn btn-secondary dropdown-toggle"
+													class="btn btn-secondary dropdown-toggle drop-toggle-sorting"
 													type="button"
 													id="dropdownMenuButton"
 													data-toggle="dropdown"
@@ -312,17 +300,13 @@
 													Featured
 												</button>
 												<div
-													class="dropdown-menu"
+													class="dropdown-menu drop-sorting"
 													aria-labelledby="dropdownMenuButton"
 												>
-													<a class="dropdown-item" href="#"
-														>ALPHABETICALLY, A-Z</a
-													>
-													<a class="dropdown-item" href="#"
-														>ALPHABETICALLY, Z-A</a
-													>
-													<a class="dropdown-item" href="#">DATE, old to new</a>
-													<a class="dropdown-item" href="#">DATE, new to old</a>
+													<a class="dropdown-item" href="#">A-Z</a>
+													<a class="dropdown-item" href="#">Z-A</a>
+													<a class="dropdown-item" href="#">Old to New</a>
+													<a class="dropdown-item" href="#">New to Old</a>
 													<a class="dropdown-item" href="#">Best Selling</a>
 												</div>
 											</div>

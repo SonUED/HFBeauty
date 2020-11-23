@@ -15,7 +15,9 @@ const productWorkingOverlay = document.querySelector(
 const closeQuickViewBtn = document.querySelector('.close-button');
 
 // using for hide/show confirm action overlay
+let isDoNotShowAgain = false;
 const confirmActionOverlay = document.querySelector('.confirm-action-overlay');
+const doNotShowAgainCheckbox = document.getElementById('do-not-display-again');
 
 // using for confirm customer's action
 const confirmMessage = document.querySelector('.confirm-action__message');
@@ -41,8 +43,10 @@ const imgProduct = document.getElementById('product-img-display');
 const imgProductName = document.querySelector('.product-img-name');
 
 // using for updating/creating product
-const inProductName = document.getElementById('product-name');
 const productCodeContainer = document.querySelector('.product-detail__code');
+const productManuContainer = document.querySelector('.product-detail__manu');
+
+const inProductName = document.getElementById('product-name');
 const inProductCode = document.getElementById('product-code');
 const inProductImg = document.getElementById('product-img');
 const inProductBrand = document.getElementById('product-brand');
@@ -59,6 +63,11 @@ const dropItemsPagination = document.querySelectorAll(
 	'.drop-pagination .dropdown-item'
 );
 const searchField = document.querySelector('#search');
+
+// using for sorting data
+const dropItemsSorting = document.querySelectorAll(
+	'.drop-sorting .dropdown-item'
+);
 
 /**********  Fetch Data **********/
 const fetchData = async (url = '', dataProperty) => {
@@ -151,7 +160,8 @@ const fetchProductList = () => {
 		localStorage.setItem('numberOfItemsOfEachPage', '24');
 		localStorage.setItem('selectedSearchField', 'tenSP');
 
-		quantityTitle.textContent = `More than ${productList.length}+ products`;
+		quantityTitle.textContent = `HFBeauty: ${productList.length} products! Tada!`;
+
 		createPaginationToolbar();
 		displayData(productList.slice(0, 24));
 	});
@@ -164,6 +174,63 @@ const fetchProductList = () => {
 		});
 		document.getElementById('product-category').innerHTML = options;
 	});
+};
+
+/**********  Sort Data **********/
+
+dropItemsSorting.forEach((item) => {
+	item.addEventListener('click', (e) => {
+		const dropdownToggleSorting = document.querySelector(
+			'.drop-toggle-sorting'
+		);
+
+		dropdownToggleSorting.textContent = e.target.textContent;
+
+		sortProduct(e.target.textContent);
+	});
+});
+
+const sortProduct = (typeOfSort = 'A-Z') => {
+	const products = JSON.parse(localStorage.getItem('products'));
+	let newProductList = [...products];
+
+	//console.log(newProductList);
+	switch (typeOfSort) {
+		case 'A-Z':
+			newProductList.sort((a, b) => (a.tenSP < b.tenSP ? 1 : -1));
+			break;
+		case 'Z-A':
+			newProductList.sort((a, b) => (a.tenSP > b.tenSP ? 1 : -1));
+			break;
+		case 'Old to New':
+			newProductList.sort((a, b) => {
+				const tempA = new Date(a.ngayNhap);
+				const tempB = new Date(b.ngayNhap);
+
+				if (tempA.getTime() > tempB.getTime()) return 1;
+				else return -1;
+			});
+
+			break;
+		case 'New to Old':
+			newProductList.sort((a, b) => {
+				const tempA = new Date(a.ngayNhap);
+				const tempB = new Date(b.ngayNhap);
+
+				if (tempA.getTime() < tempB.getTime()) return 1;
+				else return -1;
+			});
+			console.log(newProductList);
+
+			break;
+		case 'Best Selling':
+			break;
+	}
+
+	localStorage.setItem('currentList', JSON.stringify(newProductList));
+	const currentPage = parseInt(localStorage.getItem('currentPage'));
+
+	moveToPage(currentPage);
 };
 
 /**********  Pagination **********/
@@ -323,23 +390,42 @@ const createPaginationToolbar = () => {
 };
 
 /**********  Confirm action **********/
-const confirmAction = (callback, maSP) => {
+const confirmAction = (callback, message = '') => {
 	confirmActionOverlay.style.display = 'block';
-	confirmMessage.textContent = `Are you sure to delete product ${maSP}?`;
+	confirmMessage.textContent = message;
 
 	confirmYesBtn.addEventListener('click', function runCallback(e) {
-		callback(maSP);
+		doNotShowAgainCheckbox.checked ? (isDoNotShowAgain = true) : null;
+
+		// Only "Add product process" sends callback as a null param
+		callback && callback();
+
 		confirmActionOverlay.style.display = 'none';
 		confirmYesBtn.removeEventListener('click', runCallback);
 	});
 
 	confirmNoBtn.addEventListener('click', function runCallback(e) {
+		doNotShowAgainCheckbox.checked ? (isDoNotShowAgain = true) : null;
+
+		// Only "Add product process" sends callback as a null param
+		// Hiding "Product Working Overlay" after the admin clicks button "No" => Do not want to create more products
+		callback ? null : (productWorkingOverlay.style.display = 'none');
+
 		confirmActionOverlay.style.display = 'none';
 		confirmNoBtn.removeEventListener('click', runCallback);
 	});
 };
 
 /**********  Handle data **********/
+// Decide whther that action is updating or creating
+const handleAction = () => {
+	const btnCreateUpdate = document.getElementById('btn-create-update');
+	if (btnCreateUpdate.textContent === 'Create') {
+		addProduct();
+	} else {
+		updateProduct();
+	}
+};
 
 const pushNewProductToLocalStorage = (newProduct = {}) => {
 	let products = JSON.parse(localStorage.getItem('products'));
@@ -354,31 +440,37 @@ const pushNewProductToLocalStorage = (newProduct = {}) => {
 	localStorage.setItem('currentList', JSON.stringify(products));
 	localStorage.setItem('products', JSON.stringify(products));
 
+	quantityTitle.textContent = `HFBeauty: ${newMaSP} products! Tada!`;
+
 	createPaginationToolbar();
 	moveToPage(currentPage, true);
-};
 
-const handleAction = () => {
-	const btnCreateUpdate = document.getElementById('btn-create-update');
-	if (btnCreateUpdate.textContent === 'Create') {
-		addProduct();
+	cleanWorkingOverlay();
+	if (isDoNotShowAgain) {
+		confirmActionOverlay.style.display = 'none';
 	} else {
-		updateProduct();
+		confirmAction(
+			null,
+			`Create product "${newProduct.tenSP}" successfully! Do you create more products?`
+		);
 	}
 };
 
 const addProduct = () => {
+	const today = new Date();
+	const ngayNhap = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+
 	const newProduct = {
-		tenSP: inProductName.value,
-		maDM: seProductCate.value,
-		gia: inProductPrice.value,
-		soLuong: inProductQuantity.value,
-		hanSuDung: inProductExpiryDate.value,
-		ngaySanXuat: inProductManuDate.value,
-		thuongHieu: inProductBrand.value,
-		moTa: taProductDes.value,
-		anh: imgProduct.src,
-		ngayNhap: inProductInputDate.value,
+		tenSP: inProductName.value || 'Tên sản phẩm',
+		maDM: seProductCate.value || 'DM1',
+		gia: inProductPrice.value || 0,
+		soLuong: inProductQuantity.value || 0,
+		hanSuDung: inProductExpiryDate.value || '1 năm kể từ ngày sản xuất',
+		ngaySanXuat: inProductManuDate.value || '1999-01-01',
+		thuongHieu: inProductBrand.value || 'Nivea',
+		moTa: taProductDes.value || 'Mô tả',
+		anh: imgProduct.src || '#',
+		ngayNhap: inProductInputDate.value || ngayNhap,
 	};
 
 	pushNewProductToLocalStorage(newProduct);
@@ -430,37 +522,52 @@ const updateDisplayProduct = (updatedProduct = {}) => {
 };
 
 const updateProduct = () => {
-	const updateCallback = () => {};
+	const maSP = inProductCode.value;
 
-	const updatedProduct = {
-		maSP: inProductCode.value,
-		tenSP: inProductName.value,
-		maDM: seProductCate.value,
-		gia: inProductPrice.value,
-		soLuong: inProductQuantity.value,
-		hanSuDung: inProductExpiryDate.value,
-		ngaySanXuat: inProductManuDate.value,
-		thuongHieu: inProductBrand.value,
-		moTa: taProductDes.value,
-		anh: imgProduct.src,
-		ngayNhap: inProductInputDate.value,
+	const processingUpdating = () => {
+		const updatedProduct = {
+			maSP: maSP,
+			tenSP: inProductName.value,
+			maDM: seProductCate.value,
+			gia: inProductPrice.value,
+			soLuong: inProductQuantity.value,
+			hanSuDung: inProductExpiryDate.value,
+			ngaySanXuat: inProductManuDate.value,
+			thuongHieu: inProductBrand.value,
+			moTa: taProductDes.value,
+			anh: imgProduct.src,
+			ngayNhap: inProductInputDate.value,
+		};
+
+		let products = JSON.parse(localStorage.getItem('products'));
+
+		products.forEach((product, index) =>
+			product.maSP == updatedProduct.maSP
+				? (products[index] = { ...updatedProduct })
+				: null
+		);
+
+		const tenDM = seProductCate.options[seProductCate.selectedIndex].text;
+		updateDisplayProduct({
+			...updatedProduct,
+			maDM: tenDM,
+		});
+		localStorage.setItem('currentList', JSON.stringify(products));
+		localStorage.setItem('products', JSON.stringify(products));
+
+		// hide working overlay after update product
+		productWorkingOverlay.style.display = 'none';
 	};
 
-	let products = JSON.parse(localStorage.getItem('products'));
-
-	products.forEach((product, index) =>
-		product.maSP == updatedProduct.maSP
-			? (products[index] = { ...updatedProduct })
-			: null
-	);
-
-	updateDisplayProduct(updatedProduct);
-	localStorage.setItem('currentList', JSON.stringify(products));
-	localStorage.setItem('products', JSON.stringify(products));
+	if (isDoNotShowAgain) {
+		processingUpdating();
+	} else {
+		confirmAction(processingUpdating, `Are you sure to update ${maSP}`);
+	}
 };
 
 const deleteProduct = (maSP = '') => {
-	const deleteCallback = (maSP) => {
+	const processingDeleting = (maSP) => {
 		let products = JSON.parse(localStorage.getItem('products'));
 		let currentPage = localStorage.getItem('currentPage');
 		let newProducts = products.filter((product) =>
@@ -472,7 +579,14 @@ const deleteProduct = (maSP = '') => {
 		moveToPage(currentPage, true);
 	};
 
-	confirmAction(deleteCallback, maSP);
+	if (isDoNotShowAgain) {
+		processingDeleting(maSP);
+	} else {
+		confirmAction(
+			processingDeleting.bind(this, maSP),
+			`Are you sure to delete product ${maSP}?`
+		);
+	}
 };
 
 /**********  Search **********/
@@ -502,30 +616,37 @@ searchField.addEventListener('keyup', (e) => {
 	search(e.target.value);
 });
 
+/**********  Cleaning Working Overlay **********/
+const cleanWorkingOverlay = () => {
+	inProductCode.value = '';
+	inProductName.value = '';
+	inProductPrice.value = 0;
+	inProductQuantity.value = 0;
+	inProductExpiryDate.value = '';
+	inProductManuDate.value = '';
+	inProductBrand.value = '';
+	inProductInputDate.value = '';
+	taProductDes.value = '';
+	imgProduct.src = '../../img/product-thumbnail_400x400.png';
+	seProductCate.value = '';
+};
+
 // Close & show product working overlay
 const displayProductWorkingOverlay = (type = 'create', product = {}) => {
 	if (type === 'create') {
 		btnCreateUpdate.textContent = 'Create';
 
-		inProductCode.value = '';
 		productCodeContainer.classList.remove('d-flex', 'justify-content-between');
+		productManuContainer.classList.remove('d-flex', 'justify-content-between');
 
-		inProductName.value = '';
-		inProductPrice.value = 0;
-		inProductQuantity.value = 0;
-		inProductExpiryDate.value = '';
-		inProductManuDate.value = '';
-		inProductBrand.value = '';
-		inProductInputDate.value = '';
-		taProductDes.value = '';
-		imgProduct.src = '../../img/product-thumbnail_400x400.png';
-		seProductCate.value = '';
+		cleanWorkingOverlay();
 	} else {
 		btnCreateUpdate.textContent = 'Update';
 
 		productCodeContainer.classList.add('d-flex', 'justify-content-between');
-		inProductCode.value = product.maSP;
+		productManuContainer.classList.add('d-flex', 'justify-content-between');
 
+		inProductCode.value = product.maSP;
 		inProductName.value = product.tenSP;
 		inProductPrice.value = product.gia;
 		inProductQuantity.value = product.soLuong;
@@ -550,7 +671,8 @@ minusProductBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	let currentQuantity = parseInt(quantityProductIn.value);
 
-	quantityProductIn.value = --currentQuantity || 0;
+	quantityProductIn.value =
+		(currentQuantity - 1 < 0 ? 0 : currentQuantity - 1) || 0;
 });
 
 plusProductBtn.addEventListener('click', (e) => {

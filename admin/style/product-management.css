@@ -489,7 +489,6 @@ input::-webkit-inner-spin-button {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  z-index: 40;
 }
 
 /****************************************
@@ -503,8 +502,8 @@ input::-webkit-inner-spin-button {
 }
 
 .product-working-overlay {
-  display: none;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 40;
 }
 
 .product-working {
@@ -689,7 +688,7 @@ input::-webkit-inner-spin-button {
   border: none;
 }
 
-.product-detail .product-detail__body--bottom > div:not(:nth-of-type(2)) input,
+.product-detail .product-detail__body--bottom > div input,
 .product-detail .product-detail__body--bottom > div select,
 .product-detail .product-detail__body--bottom .product-detail__des textarea {
   background-color: rgba(246, 78, 96, 0.1);
@@ -708,8 +707,14 @@ input::-webkit-inner-spin-button {
   width: 100%;
 }
 
-.product-detail .product-detail__body--bottom .product-detail__code {
+.product-detail .product-detail__body--bottom .product-detail__code,
+.product-detail .product-detail__body--bottom .product-detail__manu {
   display: none;
+}
+
+.product-detail .product-detail__body--bottom .product-detail__code input,
+.product-detail .product-detail__body--bottom .product-detail__manu input {
+  background-color: #edf2ef;
 }
 
 .quantity__group {
@@ -747,6 +752,10 @@ input::-webkit-inner-spin-button {
 /****************************************
 		SECTION confirm action
 ****************************************/
+.confirm-action-overlay {
+  z-index: 50;
+}
+
 .confirm-action {
   position: relative;
   top: 50%;
@@ -754,7 +763,6 @@ input::-webkit-inner-spin-button {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   max-width: 20vw;
-  z-index: 50;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   border-radius: 6px;
