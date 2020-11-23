@@ -521,3 +521,49 @@ const directToDetailPage = (productCode) => {
     JSON.stringify(Array.from(new Set(...newArr)))
   );
 };
+
+/**********  Sort product **********/
+function selectSort(selectElement) {
+  let products = JSON.parse(localStorage.getItem("products"));
+  let sortedProducts = null;
+
+  if (selectElement.value === "default") {
+    sortedProducts = products;
+  }
+
+  if (selectElement.value === "priceUp") {
+    sortedProducts = products.sort((p1, p2) => p1.gia - p2.gia);
+  }
+
+  if (selectElement.value === "priceDown") {
+    sortedProducts = products.sort((p1, p2) => p2.gia - p1.gia);
+  }
+
+  if (selectElement.value === "alphaUp") {
+    sortedProducts = products.sort((p1, p2) => {
+      if (p1.tenSP < p2.tenSP) return -1;
+      return p1.tenSP > p2.tenSP ? 1 : 0;
+    });
+  }
+
+  if (selectElement.value === "alphaDown") {
+    sortedProducts = products.sort((p1, p2) => {
+      if (p2.tenSP < p1.tenSP) return -1;
+      return p2.tenSP > p1.tenSP ? 1 : 0;
+    });
+  }
+
+  if (selectElement.value === "dateUp") {
+    sortedProducts = products.sort(
+      (p1, p2) => new Date(p1.ngayNhap) - new Date(p2.ngayNhap)
+    );
+  }
+
+  if (selectElement.value === "dateDown") {
+    sortedProducts = products.sort(
+      (p1, p2) => new Date(p2.ngayNhap) - new Date(p1.ngayNhap)
+    );
+  }
+  localStorage.setItem("currentList", JSON.stringify(sortedProducts));
+  createPaginationToolbar();
+}

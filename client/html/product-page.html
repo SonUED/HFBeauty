@@ -392,28 +392,19 @@
                   </div>
                   <span>sort by</span>
                   <div class="dropdown">
-                    <button
-                      class="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
+                    <select
+                      class="sort-select"
+                      id="sort-select"
+                      onchange="selectSort(this)"
                     >
-                      Filter
-                    </button>
-                    <div
-                      class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                    >
-                      <a class="dropdown-item" href="#">PRICE, low to high</a>
-                      <a class="dropdown-item" href="#">PRICE, high to low</a>
-                      <a class="dropdown-item" href="#">ALPHABETICALLY, A-Z</a>
-                      <a class="dropdown-item" href="#">ALPHABETICALLY, Z-A</a>
-                      <a class="dropdown-item" href="#">DATE, old to new</a>
-                      <a class="dropdown-item" href="#">DATE, new to old</a>
-                      <a class="dropdown-item" href="#">Best Selling</a>
-                    </div>
+                      <option selected value="default">Featured..</option>
+                      <option value="priceUp">Price, low to high</option>
+                      <option value="priceDown">Price, hight to low</option>
+                      <option value="alphaUp">Alphabetically, A-Z</option>
+                      <option value="alphaDown">Alphabetically, Z-A</option>
+                      <option value="dateUp">Date, old to new</option>
+                      <option value="dateDown">Date, new to old</option>
+                    </select>
                   </div>
                 </div>
               </div>
