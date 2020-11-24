@@ -1,6 +1,6 @@
 var label = [];
 var data = [];
-var tab = ["order", "products", "revenue", "deliver", "received"];
+var tab = ["order", "products", "revenue"];
 var order = [];
 var detailOrder = [];
 var products = [];

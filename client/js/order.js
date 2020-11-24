@@ -33,7 +33,7 @@ function showDataTable(mess) {
       coltt = 2;
 
       btnCancel = ` <td>
-            <button class="btn btn-danger" onclick="cancel(${item[0].maDH})">Hủy</button>
+            <button class="btn btn-danger" onclick="cancel('${item[0].maDH}')">Hủy</button>
           </td>`;
     }
     if (mess === "received") {
