@@ -6,7 +6,7 @@ class Sale {
   id = "";
   salename = "";
   description = "";
-  discount = "";
+  discount = 0;
   beginDate = "";
   endDate = "";
   products = [];
