@@ -4,7 +4,6 @@ var myDetailOrder = [];
 var myOrder = [];
 var trangThai = ['all','wait-for-accept', 'wait-for-take', 'deliver','received', 'canceled'];
 
-
 function show(mess) {
   document.querySelector(".table-order").innerHTML = "";
   getDataFromStorage();

@@ -17,7 +17,7 @@ SideBarElement.innerHTML = `
                <a href="./sale-management.html"><li class="item"><i class="fa fa-tag"></i>Quản lý khuyến mãi</li></a>
                <a href="./manage-category.html"><li class="item"><i class="fa fa-list-alt"></i>Quản lý danh mục</li></a>
                 <a href="./manage-contact.html"><li class="item"><i class="fa fa-list-alt"></i>Quản lý liên hệ</li></a>
-               <a href="#"><li class="item"><i class="fa fa-chart-line"></i>Thống kê</li></a>
+               <a href="./statistical.html"><li class="item"><i class="fa fa-chart-line"></i>Thống kê</li></a>
             </ul>
         </div>
     </div>`;
