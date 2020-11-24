@@ -14,14 +14,29 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../style/update-user.css" />
-    <title>Document</title>
+    <title>Cập nhật thông tin cá nhân</title>
   </head>
   <body>
     <section>
-    <div class="show-data">
-    </div>
+      <div >
+        <div class="container">
+          <img alt="Avatar" class="image" src="" />
+          <div class="overlay">
+            <label for="avatar" class="text">
+              Cập nhật ảnh đại diện
+              <input
+                type="file"
+                id="avatar"
+                class="avatar-upload-file"
+                onchange="changeImage(this)"
+              />
+            </label>
+          </div>
+        </div>
+        <div class="show-data"></div>
+      </div>
 
-      <div class="form-user">
+      <div class="form-customer">
         <form>
           <div class="form-group">
             <label for="name"><b>Họ và Tên</b></label>

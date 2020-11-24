@@ -97,7 +97,7 @@ for (let i = 1; i <= 400; i++) {
 	anhDaiDien: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX-g7iDC3RkcWjMYAEJ-ogKQwfsJnPXns4aQ&usqp=CAU",
 	mail: username + '@hfbeauty.com',
     soDienThoai: Math.floor(Math.random() * 10000000000),
-	diachi: orders[Math.floor(Math.random() * 200)].diaChi
+	diaChi: orders[Math.floor(Math.random() * 200)].diaChi
   };
 
   users.push(user);

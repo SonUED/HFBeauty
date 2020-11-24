@@ -1,5 +1,5 @@
-
 var judge = [];
+var currentCustomer = {};
 var myDetailOrder = [];
 var myOrder = [];
 var trangThai = ['all','wait-for-accept', 'wait-for-take', 'deliver','received', 'canceled'];
@@ -211,14 +211,14 @@ function getDataFromStorage() {
   products = JSON.parse(productsString) || [];
 }
 
-function getJudgeFromStorage() {
-  let judgeString = localStorage.getItem("judge");
-  judge = JSON.parse(judgeString) || [];
-}
-
 function saveOrderToStorage() {
   let orderString = JSON.stringify(order);
   localStorage.setItem("order", orderString);
+}
+
+function getJudgeFromStorage() {
+  let judgeString = localStorage.getItem("judge");
+  judge = JSON.parse(judgeString) || [];
 }
 
 function saveJudgeToStorage() {
