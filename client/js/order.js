@@ -1,9 +1,8 @@
-
 var judge = [];
+var currentCustomer = {};
 var myDetailOrder = [];
 var myOrder = [];
 var trangThai = ['all','wait-for-accept', 'wait-for-take', 'deliver','received', 'canceled'];
-
 
 function show(mess) {
   document.querySelector(".table-order").innerHTML = "";
@@ -34,7 +33,7 @@ function showDataTable(mess) {
       coltt = 2;
 
       btnCancel = ` <td>
-            <button class="btn btn-danger" onclick="cancel(${item[0].maDH})">Hủy</button>
+            <button class="btn btn-danger" onclick="cancel('${item[0].maDH}')">Hủy</button>
           </td>`;
     }
     if (mess === "received") {
@@ -212,14 +211,14 @@ function getDataFromStorage() {
   products = JSON.parse(productsString) || [];
 }
 
-function getJudgeFromStorage() {
-  let judgeString = localStorage.getItem("judge");
-  judge = JSON.parse(judgeString) || [];
-}
-
 function saveOrderToStorage() {
   let orderString = JSON.stringify(order);
   localStorage.setItem("order", orderString);
+}
+
+function getJudgeFromStorage() {
+  let judgeString = localStorage.getItem("judge");
+  judge = JSON.parse(judgeString) || [];
 }
 
 function saveJudgeToStorage() {

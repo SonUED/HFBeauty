@@ -1,7 +1,9 @@
 var label = [];
 var data = [];
-var tab = ["order", "products", "wait-for-take", "deliver", "received"];
+var tab = ["order", "products", "revenue"];
 var order = [];
+var detailOrder = [];
+var products = [];
 var listData = [];
 var nameOfDate = "";
 function showChart(mess) {
@@ -17,27 +19,63 @@ function filterSelection(mess) {
     case "products":
       nameOfDate = "ngayNhap";
       break;
+    case "revenue":
+      nameOfDate = "ngayDat";
+      break;
   }
 
+  var tab = document.querySelector(".revenue").style.borderBottom;
   var year = document.querySelector("#year").value;
   var month = document.querySelector("#month").value;
   label = [];
   data = [];
 
-  if (mess) {
-    listData = JSON.parse(localStorage.getItem(mess));
-  }
-  console.log(listData);
+  console.log(tab);
 
-  for (let i = 1; i < 32; i++) {
-    label.push(i);
-    var temp = listData.filter(
-      (item) =>
-        parseInt(item[nameOfDate].split("-")[2]) == i &&
-        parseInt(item[nameOfDate].split("-")[0]) == year &&
-        parseInt(item[nameOfDate].split("-")[1]) == month
-    );
-    data.push(temp.length);
+  if (mess) {
+    if (mess === "revenue") {
+      detailOrder = JSON.parse(localStorage.getItem("detailOrder"));
+      order = JSON.parse(localStorage.getItem("order"));
+      products = JSON.parse(localStorage.getItem("products"));
+    } else {
+      listData = JSON.parse(localStorage.getItem(mess));
+    }
+  }
+  if (tab !== "0px") {
+    for (let i = 1; i < 32; i++) {
+      var sum = 0;
+      label.push(i);
+      var temp = order.filter(
+        (item) =>
+          parseInt(item[nameOfDate].split("-")[2]) == i &&
+          parseInt(item[nameOfDate].split("-")[0]) == year &&
+          parseInt(item[nameOfDate].split("-")[1]) == month &&
+          item.trangThai !== "canceled"
+      );
+      temp = temp.filter((item) =>
+        detailOrder.filter((detail) => detail.maDH === item.maDH)
+      );
+      var detail = temp.map((order) =>
+        detailOrder.filter((detail) => detail.maDH === order.maDH)
+      );
+      detail.map((detail) => {
+        products.map((prd) => {
+          detail.map((dt) =>  sum += prd.gia * dt.soLuong)
+        });
+      });
+      data.push(sum);
+    }
+  }else {
+    for (let i = 1; i < 32; i++) {
+      label.push(i);
+      var temp = listData.filter(
+        (item) =>
+          parseInt(item[nameOfDate].split("-")[2]) == i &&
+          parseInt(item[nameOfDate].split("-")[0]) == year &&
+          parseInt(item[nameOfDate].split("-")[1]) == month
+      );
+      data.push(temp.length);
+    }
   }
 
   drawChart();
@@ -60,6 +98,7 @@ function drawChart() {
 
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
+    
     type: "line",
     data: {
       labels: label,
@@ -79,7 +118,7 @@ function drawChart() {
         yAxes: [
           {
             ticks: {
-              beginAtZero: false,
+              beginAtZero: true,
             },
           },
         ],
@@ -90,8 +129,10 @@ function drawChart() {
     },
   });
 }
-// fetch("../../data/order.json")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     localStorage.setItem("order", JSON.stringify(data["order"]));
-//   });
+function fetchOrderToLocalstorage() {
+  fetch("../../data/order.json")
+    .then((response) => response.json())
+    .then((data) => {
+      localStorage.setItem("order", JSON.stringify(data["order"]));
+    });
+}

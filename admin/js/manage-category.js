@@ -16,39 +16,45 @@ function showCategory() {
 }
 
 function save() {
-  getCategoryFromStorage()
+  getCategoryFromStorage();
 
   var index = document.getElementById("index").value;
   var name = document.getElementById("name").value;
   var description = document.getElementById("description").value;
   var image = document.getElementById("image").value;
 
-  var item = {
-    maDM: index,
-    tenDM: name,
-    moTa: description,
-    anh: image,
-  };
-  if (index == "") {
-    index = category[category.length - 1].maDM;
-    index = parseInt(index.slice(2, index.length));
-    index++;
-    index = "DM" + index;
-    item.maDM = index;
-    category.push(item);
+  if (!name || !description || !image) {
+    alert("Tất cả các trường không được để trống");
   } else {
-    category = category.map(cate => cate.maDM === item.maDM ?   item : cate);
+    var item = {
+      maDM: index,
+      tenDM: name,
+      moTa: description,
+      anh: image,
+    };
+
+    if (index == "") {
+      index = category[category.length - 1].maDM;
+      index = parseInt(index.slice(2, index.length));
+      index++;
+      index = "DM" + index;
+      item.maDM = index;
+      category.push(item);
+    } else {
+      category = category.map((cate) =>
+        cate.maDM === item.maDM ? item : cate
+      );
+    }
+
+    saveCategoryToStorage();
+    showCategory();
+    showForm();
   }
-
-
-  saveCategoryToStorage();
-  showCategory();
-  showForm();
 }
 function editCategory(index) {
   showForm();
   getCategoryFromStorage();
-  index = index.slice(2, index.length) - 1 ;
+  index = index.slice(2, index.length) - 1;
   document.getElementById("index").value = "DM" + index;
   document.getElementById("name").value = category[index].tenDM;
   document.getElementById("description").value = category[index].moTa;
@@ -78,7 +84,6 @@ function showForm() {
   }
 }
 
-
 function searching(inputText) {
   inputText = inputText.toLowerCase().trim();
   inputText = inputText.replace(/\s\s+/g, " ");
@@ -104,7 +109,7 @@ function searching(inputText) {
 
 function getCategoryFromStorage() {
   let categoryString = localStorage.getItem("category");
-  category = JSON.parse(categoryString) || [];  
+  category = JSON.parse(categoryString) || [];
 }
 
 function saveCategoryToStorage() {
@@ -118,9 +123,9 @@ function loadData() {
 }
 function fetchCategory() {
   fetch("../../data/categories.json")
-  .then((response) => response.json())
-  .then((data) => {
-    localStorage.setItem("category", JSON.stringify(data["categories"]));
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      localStorage.setItem("category", JSON.stringify(data["categories"]));
+    });
 }
 // fetchCategory()
