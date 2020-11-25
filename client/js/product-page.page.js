@@ -596,8 +596,15 @@ searchField.addEventListener('keyup', (e) => {
 });
 
 /**********  Move to Page Detailed Product **********/
-const products = JSON.parse(localStorage.getItem('products'));
+const products = JSON.parse(localStorage.getItem("products"));
+const existRecentlyViewedItem = (array, maSPToAdd) => {
+  var founnd = array.filter((item) => {
+    return item.maSP === maSPToAdd;
+  });
+  return founnd;
+};
 const findProductFromId = (maSPToAdd) => {
+  console.log(maSPToAdd);
   return products.filter((product) => {
     return product.maSP == maSPToAdd;
   });
@@ -606,13 +613,30 @@ const directToDetailPage = (productCode) => {
   localStorage.setItem('detailProductCode', productCode);
   window.location.href = '../../client/html/product-detail-page.html';
   //  push to recently view
-  var newArr = [];
   const product = findProductFromId(productCode);
-  newArr.push(product);
-  localStorage.setItem(
-    'recentlyViewed',
-    JSON.stringify(Array.from(new Set(...newArr)))
-  );
+  recentlyViewdArr =
+    existRecentlyViewedItem(recentlyViewdArr, productCode).length > 0
+      ? recentlyViewdArr
+      : (recentlyViewdArr = [...recentlyViewdArr, ...product]);
+  localStorage.setItem("recentlyViewed", JSON.stringify(recentlyViewdArr));
+};
+
+const addToCartInPage = (event, productCode) => {
+  event.stopPropagation();
+  const productToAdd = findProductFromId(productCode)[0];
+  if (existRecentlyViewedItem(cartArr, productCode).length > 0) {
+    cartArr = cartArr.map((cartItem) =>
+      cartItem.maSP == productToAdd.maSP
+        ? {
+            ...productToAdd,
+            quantity: Number(cartItem.quantity) + 1,
+          }
+        : cartItem
+    );
+  } else {
+    cartArr = [...cartArr, { ...productToAdd, quantity: 1 }];
+  }
+  localStorage.setItem("cartArr", JSON.stringify(cartArr));
 };
 
 /**********  Sort product **********/

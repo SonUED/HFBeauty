@@ -136,11 +136,13 @@ const displayProduct = (product) => {
 };
 
 const getProduct = () => {
+<<<<<<< HEAD
   const products = JSON.parse(localStorage.getItem('products'));
   const detailProductCode = localStorage.getItem('detailProductCode');
 
+=======
+>>>>>>> 23691ac... validate new sale and fix font size
   const product = products.find((product) => product.maSP == detailProductCode);
-
   displayProduct(product);
 
   const reviewList = getAllReviews(product.maSP);
