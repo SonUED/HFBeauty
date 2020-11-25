@@ -1,445 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-			integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-			crossorigin="anonymous"
-		/>
-		<script
-			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-			crossorigin="anonymous"
-		></script>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-			crossorigin="anonymous"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Oswald:wght@500;600;700&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="../style/product-management.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Oswald:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style/product-management.css" />
 
-		<title>Document</title>
-	</head>
-	<body onload="fetchProductList()">
-		<section class="confirm-action-overlay">
-			<div class="confirm-action d-flex flex-column">
-				<h3 class="confirm-action__header">Please confirm your action!</h3>
-				<div class="confirm-action__body">
-					<p class="confirm-action__message"></p>
-					<div class="d-flex justify-content-between">
-						<div
-							class="d-flex justify-content-end align-items-center confirm-action__not-display-container"
-						>
-							<input id="do-not-display-again" type="checkbox" />
-							<label
-								class="confirm-action__not-display-again"
-								for="do-not-display-again"
-								>Do not show this message again!</label
-							>
-						</div>
+    <title>Document</title>
+  </head>
+  <body onload="fetchProductList()">
+    <section class="confirm-action-overlay">
+      <div class="confirm-action d-flex flex-column">
+        <h3 class="confirm-action__header">Please confirm your action!</h3>
+        <div class="confirm-action__body">
+          <p class="confirm-action__message"></p>
+          <div class="d-flex justify-content-between">
+            <div
+              class="d-flex justify-content-end align-items-center confirm-action__not-display-container"
+            >
+              <input id="do-not-display-again" type="checkbox" />
+              <label
+                class="confirm-action__not-display-again"
+                for="do-not-display-again"
+                >Do not show this message again!</label
+              >
+            </div>
 
-						<div
-							class="d-flex justify-content-end align-items-center confirm-action__btn-container"
-						>
-							<button class="btn btn-outline-success confirm-action__yes">
-								Yes
-							</button>
-							<button class="btn confirm-action__no">No</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="product-working-overlay">
-			<div class="product-working">
-				<div class="product-detail d-flex flex-column">
-					<div class="product-detail__header d-flex justify-content-between">
-						<h2 class="product-detail__heading">HFBeauty</h2>
-						<a href="#" class="close-button"><i class="fas fa-times"></i></a>
-					</div>
-					<form action="#" class="product-detail__form">
-						<div class="row">
-							<div class="col-lg-6">
-								<div
-									class="card-top d-flex flex-column justify-content-between product-detail__body--top"
-								>
-									<div class="product-detail__img">
-										<img
-											id="product-img-display"
-											class="img-fluid"
-											src="../../img/product-thumbnail_400x400.png"
-											alt="product image"
-										/>
-									</div>
+            <div
+              class="d-flex justify-content-end align-items-center confirm-action__btn-container"
+            >
+              <button class="btn btn-outline-success confirm-action__yes">
+                Yes
+              </button>
+              <button class="btn confirm-action__no">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="product-working-overlay">
+      <div class="product-working">
+        <div class="product-detail d-flex flex-column">
+          <div class="product-detail__header d-flex justify-content-between">
+            <h2 class="product-detail__heading">HFBeauty</h2>
+            <a href="#" class="close-button"><i class="fas fa-times"></i></a>
+          </div>
+          <form action="#" class="product-detail__form">
+            <div class="row">
+              <div class="col-lg-6">
+                <div
+                  class="card-top d-flex flex-column justify-content-between product-detail__body--top"
+                >
+                  <div class="product-detail__img">
+                    <img
+                      id="product-img-display"
+                      class="img-fluid"
+                      src="../../img/product-thumbnail_400x400.png"
+                      alt="product image"
+                    />
+                  </div>
 
-									<div
-										class="product-detail__reviews d-flex justify-content-center"
-									>
-										<i class="far fa-star"></i>
-										<i class="far fa-star"></i>
-										<i class="far fa-star"></i>
-										<i class="far fa-star"></i>
-										<i class="far fa-star"></i>
-									</div>
-									<div class="product-detail__upload-img">
-										<label
-											class="input-img d-flex justify-content-around align-items-center"
-											for="product-img"
-										>
-											<i class="fas fa-upload"></i> Upload an image!
-											<input
-												id="product-img"
-												type="file"
-												onchange="changeImage(this)"
-											/>
-										</label>
-										<p class="product-img-name">No file uploaded!</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div
-									class="card-body d-flex flex-column justify-content-between product-detail__body--bottom"
-								>
-									<div
-										class="d-flex justify-content-between product-detail__name"
-									>
-										<label for="product-name">Product Name</label>
-										<input
-											id="product-name"
-											type="text"
-											placeholder="Product's Name"
-											onchange='handleValidate(this, "name")'
-										/>
-										<div class="validate-warning validate-warning--name">
-											<p class="validate-warning-message">
-												* This field can't be blank ! * "Tên sản phẩm" will be
-												the default name if this field doesn't match!
-											</p>
-										</div>
-									</div>
+                  <div
+                    class="product-detail__reviews d-flex justify-content-center"
+                  >
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                  <div class="product-detail__upload-img">
+                    <label
+                      class="input-img d-flex justify-content-around align-items-center"
+                      for="product-img"
+                    >
+                      <i class="fas fa-upload"></i> Upload an image!
+                      <input
+                        id="product-img"
+                        type="file"
+                        onchange="changeImage(this)"
+                      />
+                    </label>
+                    <p class="product-img-name">No file uploaded!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div
+                  class="card-body d-flex flex-column justify-content-between product-detail__body--bottom"
+                >
+                  <div
+                    class="d-flex justify-content-between product-detail__name"
+                  >
+                    <label for="product-name">Product Name</label>
+                    <input
+                      id="product-name"
+                      type="text"
+                      placeholder="Product's Name"
+                      onchange='handleValidate(this, "name")'
+                    />
+                    <div class="validate-warning validate-warning--name">
+                      <p class="validate-warning-message">
+                        * This field can't be blank ! * "Tên sản phẩm" will be
+                        the default name if this field doesn't match!
+                      </p>
+                    </div>
+                  </div>
 
-									<div class="product-detail__code">
-										<label for="product-brand">Code</label>
-										<input id="product-code" type="text" disabled />
-									</div>
+                  <div class="product-detail__code">
+                    <label for="product-brand">Code</label>
+                    <input id="product-code" type="text" disabled />
+                  </div>
 
-									<div
-										class="d-flex justify-content-between product-detail__brand"
-									>
-										<label for="product-brand">Brand</label>
-										<input
-											id="product-brand"
-											type="text"
-											placeholder="Product's Brand"
-											list="defaultBrand"
-											onchange='handleValidate(this, "brand")'
-										/>
-										<div class="validate-warning validate-warning--brand">
-											<p class="validate-warning-message">
-												* This field can't be blank ! * "Nevia" will be the
-												default name if this field doesn't match!
-											</p>
-										</div>
-										<datalist id="defaultBrand">
-											<option value="Nivea"></option>
-											<option value="Loreal"></option>
-											<option value="Schwarzkopf"></option>
-											<option value="Suave"></option>
-											<option value="Tresemme"></option>
-										</datalist>
-									</div>
+                  <div
+                    class="d-flex justify-content-between product-detail__brand"
+                  >
+                    <label for="product-brand">Brand</label>
+                    <input
+                      id="product-brand"
+                      type="text"
+                      placeholder="Product's Brand"
+                      list="defaultBrand"
+                      onchange='handleValidate(this, "brand")'
+                    />
+                    <div class="validate-warning validate-warning--brand">
+                      <p class="validate-warning-message">
+                        * This field can't be blank ! * "Nevia" will be the
+                        default name if this field doesn't match!
+                      </p>
+                    </div>
+                    <datalist id="defaultBrand">
+                      <option value="Nivea"></option>
+                      <option value="Loreal"></option>
+                      <option value="Schwarzkopf"></option>
+                      <option value="Suave"></option>
+                      <option value="Tresemme"></option>
+                    </datalist>
+                  </div>
 
-									<div class="d-flex justify-content-between price-box">
-										<label for="product-price">Price</label
-										><input
-											id="product-price"
-											type="number"
-											placeholder="Product's price"
-											onchange='handleValidate(this, "price", "checkIsPositiveNumber")'
-										/>
-										<div class="validate-warning validate-warning--price">
-											<p class="validate-warning-message">
-												* This field can't be blank and must be a positive
-												value! * "0" will be the default name if this field
-												doesn't match!
-											</p>
-										</div>
-									</div>
+                  <div class="d-flex justify-content-between price-box">
+                    <label for="product-price">Price</label
+                    ><input
+                      id="product-price"
+                      type="number"
+                      placeholder="Product's price"
+                      onchange='handleValidate(this, "price", "checkIsPositiveNumber")'
+                    />
+                    <div class="validate-warning validate-warning--price">
+                      <p class="validate-warning-message">
+                        * This field can't be blank and must be a positive
+                        value! * "0" will be the default name if this field
+                        doesn't match!
+                      </p>
+                    </div>
+                  </div>
 
-									<div class="d-flex justify-content-between quantity">
-										<label for="product-quantity">Product Quantity</label>
+                  <div class="d-flex justify-content-between quantity">
+                    <label for="product-quantity">Product Quantity</label>
 
-										<div class="d-flex justify-content-between quantity__group">
-											<button class="quantity__minus">
-												<i class="fas fa-minus"></i>
-											</button>
-											<input
-												id="product-quantity"
-												class="quantity__content"
-												type="number"
-												onchange='handleValidate(this, "quantity", "checkIsPositiveWholeNumber")'
-											/>
-											<button class="quantity__plus">
-												<i class="fas fa-plus"></i>
-											</button>
-										</div>
+                    <div class="d-flex justify-content-between quantity__group">
+                      <button class="quantity__minus">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <input
+                        id="product-quantity"
+                        class="quantity__content"
+                        type="number"
+                        onchange='handleValidate(this, "quantity", "checkIsPositiveWholeNumber")'
+                      />
+                      <button class="quantity__plus">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
 
-										<div class="validate-warning validate-warning--quantity">
-											<p class="validate-warning-message">
-												* This field can't be blank and must be a positive whole
-												value! * "0" will be the default name if this field
-												doesn't match!
-											</p>
-										</div>
-									</div>
-									<div class="d-flex justify-content-between">
-										<label for="product-input-date">Input Date</label>
-										<input id="product-input-date" type="date" />
-									</div>
-									<div class="product-detail__manu">
-										<label for="product-manu-date">Manufacture Date</label>
-										<input id="product-manu-date" type="text" disabled />
-									</div>
+                    <div class="validate-warning validate-warning--quantity">
+                      <p class="validate-warning-message">
+                        * This field can't be blank and must be a positive whole
+                        value! * "0" will be the default name if this field
+                        doesn't match!
+                      </p>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <label for="product-input-date">Input Date</label>
+                    <input id="product-input-date" type="date" />
+                  </div>
+                  <div class="product-detail__manu">
+                    <label for="product-manu-date">Manufacture Date</label>
+                    <input id="product-manu-date" type="text" disabled />
+                  </div>
 
-									<div
-										class="d-flex justify-content-between validate-warning--expriry-date"
-									>
-										<label for="product-expiry-date">Expiry Date</label>
-										<input
-											id="product-expiry-date"
-											type="text"
-											onchange='handleValidate(this, "expiry-date")'
-										/>
-										<div class="validate-warning validate-warning--expiry-date">
-											<p class="validate-warning-message">
-												* This field can't be blank ! * "1 năm kể từ ngày sản
-												xuất" will be the default name if this field doesn't
-												match!
-											</p>
-										</div>
-									</div>
+                  <div
+                    class="d-flex justify-content-between validate-warning--expriry-date"
+                  >
+                    <label for="product-expiry-date">Expiry Date</label>
+                    <input
+                      id="product-expiry-date"
+                      type="text"
+                      onchange='handleValidate(this, "expiry-date")'
+                    />
+                    <div class="validate-warning validate-warning--expiry-date">
+                      <p class="validate-warning-message">
+                        * This field can't be blank ! * "1 năm kể từ ngày sản
+                        xuất" will be the default name if this field doesn't
+                        match!
+                      </p>
+                    </div>
+                  </div>
 
-									<div class="product-detail__des">
-										<label for="product-des">Product Description</label>
-										<textarea id="product-des" rows="4"> </textarea>
-									</div>
+                  <div class="product-detail__des">
+                    <label for="product-des">Product Description</label>
+                    <textarea id="product-des" rows="4"> </textarea>
+                  </div>
 
-									<div
-										class="d-flex justify-content-between validate-warning--cate"
-									>
-										<label for="product-category">Category</label>
-										<select
-											name="category-select"
-											id="product-category"
-										></select>
-									</div>
+                  <div
+                    class="d-flex justify-content-between validate-warning--cate"
+                  >
+                    <label for="product-category">Category</label>
+                    <select
+                      name="category-select"
+                      id="product-category"
+                    ></select>
+                  </div>
 
-									<div
-										class="btn create-update-btn"
-										onclick="handleAction()"
-										id="btn-create-update"
-									>
-										Update
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</section>
-		<div class="container-fluid">
-			<header-element></header-element>
-			<div class="row">
-				<div class="col-3"><sidebar-element></sidebar-element></div>
-				<div class="col-9">
-					<section class="product-management abs">
-						<div class="product-management__wrapper">
-							<section class="product-management__header">
-								<div class="d-flex justify-content-between">
-									<div class="d-flex flex-column justify-content-center">
-										<h1 class="product-management__title">
-											Product Management
-										</h1>
-									</div>
-									<search-nav-element></search-nav-element>
-								</div>
-								<div
-									class="product-management__nav d-flex justify-content-between"
-								>
-									<div
-										class="d-flex flex-column justify-content-center product-management__quantity-title"
-									>
-										<p>More than 400+ products</p>
-									</div>
+                  <div
+                    class="btn create-update-btn"
+                    onclick="handleAction()"
+                    id="btn-create-update"
+                  >
+                    Update
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <div class="container-fluid">
+      <header-element></header-element>
+      <div class="row">
+        <div class="col-3"><sidebar-element></sidebar-element></div>
+        <div class="col-9">
+          <section class="product-management abs">
+            <div class="product-management__wrapper">
+              <section class="product-management__header">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-column justify-content-center">
+                    <h1 class="product-management__title">
+                      Product Management
+                    </h1>
+                  </div>
+                  <search-nav-element></search-nav-element>
+                </div>
+                <div
+                  class="product-management__nav d-flex justify-content-between"
+                >
+                  <div
+                    class="d-flex flex-column justify-content-center product-management__quantity-title"
+                  >
+                    <p>More than 400+ products</p>
+                  </div>
 
-									<div class="product-management__nav-item d-flex">
-										<button
-											class="btn create-update-btn"
-											onclick="displayProductWorkingOverlay('create')"
-										>
-											Create
-										</button>
-									</div>
-								</div>
-								<div class="toolbar">
-									<div class="toolbar-left d-flex">
-										<div class="toolbar-change-page">
-											<div class="pagination"></div>
-										</div>
-									</div>
-									<div class="toolbar-right d-flex justify-content-end">
-										<div class="partion-limit-item d-flex justify-content-end">
-											<span>items per page</span>
-											<div class="dropdown">
-												<button
-													class="btn btn-secondary dropdown-toggle drop-toggle-pagination"
-													type="button"
-													id="dropdownMenuButton"
-													data-toggle="dropdown"
-													aria-haspopup="true"
-													aria-expanded="false"
-												>
-													24
-												</button>
-												<div
-													class="dropdown-menu drop-pagination"
-													aria-labelledby="dropdownMenuButton"
-												>
-													<a class="dropdown-item" href="#">12</a>
-													<a class="dropdown-item" href="#">16</a>
-													<a class="dropdown-item" href="#">20</a>
-													<a class="dropdown-item" href="#">24</a>
-													<a class="dropdown-item" href="#">30</a>
-													<a class="dropdown-item" href="#">50</a>
-												</div>
-											</div>
-										</div>
+                  <div class="product-management__nav-item d-flex">
+                    <button
+                      class="btn create-update-btn"
+                      onclick="displayProductWorkingOverlay('create')"
+                    >
+                      Create
+                    </button>
+                  </div>
+                </div>
+                <div class="toolbar">
+                  <div class="toolbar-left d-flex">
+                    <div class="toolbar-change-page">
+                      <div class="pagination"></div>
+                    </div>
+                  </div>
+                  <div class="toolbar-right d-flex justify-content-end">
+                    <div class="partion-limit-item d-flex justify-content-end">
+                      <span>items per page</span>
+                      <div class="dropdown">
+                        <button
+                          class="btn btn-secondary dropdown-toggle drop-toggle-pagination"
+                          type="button"
+                          id="dropdownMenuButton"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          24
+                        </button>
+                        <div
+                          class="dropdown-menu drop-pagination"
+                          aria-labelledby="dropdownMenuButton"
+                        >
+                          <a class="dropdown-item" href="#">12</a>
+                          <a class="dropdown-item" href="#">16</a>
+                          <a class="dropdown-item" href="#">20</a>
+                          <a class="dropdown-item" href="#">24</a>
+                          <a class="dropdown-item" href="#">30</a>
+                          <a class="dropdown-item" href="#">50</a>
+                        </div>
+                      </div>
+                    </div>
 
-										<div class="partion-sort d-flex justify-content-end">
-											<span>sort by</span>
-											<div class="dropdown">
-												<button
-													class="btn btn-secondary dropdown-toggle drop-toggle-sorting"
-													type="button"
-													id="dropdownMenuButton"
-													data-toggle="dropdown"
-													aria-haspopup="true"
-													aria-expanded="false"
-												>
-													Featured
-												</button>
-												<div
-													class="dropdown-menu drop-sorting"
-													aria-labelledby="dropdownMenuButton"
-												>
-													<a class="dropdown-item" href="#">A-Z</a>
-													<a class="dropdown-item" href="#">Z-A</a>
-													<a class="dropdown-item" href="#">Old to New</a>
-													<a class="dropdown-item" href="#">New to Old</a>
-													<a class="dropdown-item" href="#">Best Selling</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</section>
-							<section class="product-management__body">
-								<table
-									class="table table-borderless table-hover table-responsive product-table"
-								>
-									<thead class="product-table__header">
-										<tr>
-											<th scope="col">Product</th>
-											<th scope="col">Price</th>
-											<th scope="col">Quantity</th>
-											<th scope="col">Rating</th>
-											<th scope="col">Category</th>
-											<th scope="col">Description</th>
-											<th scope="col"></th>
-										</tr>
-									</thead>
-									<tbody
-										id="product-management__showcase"
-										class="product-table__body"
-									>
-										<tr>
-											<td>
-												<div class="card">
-													<div class="row no-gutters">
-														<div>
-															<img
-																src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
-																class="card-img img-thumbnail responsive-img"
-																alt="..."
-															/>
-														</div>
-														<div>
-															<div class="card-body">
-																<h5 class="card-title">
-																	Chambor_Rouge_Plum+_Lipstick
-																</h5>
-																<p class="card-text">123</p>
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>50</td>
-											<td>30</td>
-											<td>
-												<i class="fas fa-star"></i><i class="fas fa-star"></i
-												><i class="fas fa-star"></i><i class="fas fa-star"></i
-												><i class="fas fa-star"></i>
-											</td>
-											<td>Son gac cao cap</td>
-											<td>
-												<p>
-													Lorem ipsum dolor sit amet, consectetur adipisicing
-													elit. Accusamus, blanditiis maxime vel nulla officiis
-													consequatur doloribus hic excepturi quo. Amet. >
-												</p>
-											</td>
-											<td>
-												<div>
-													<div class="product-btn">
-														<i class="fas fa-edit"></i>
-													</div>
-													<div class="product-btn">
-														<i class="fas fa-trash"></i>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</section>
-						</div>
-					</section>
-				</div>
-			</div>
-		</div>
-		<script src="../../component/header.component.js"></script>
-		<script src="../../component/search-nav/search-nav.component.js"></script>
-		<script src="../../component/sidebar.component.js"></script>
-		<script src="../js/product-management.js"></script>
-	</body>
+                    <div class="partion-sort d-flex justify-content-end">
+                      <span>sort by</span>
+                      <div class="dropdown">
+                        <button
+                          class="btn btn-secondary dropdown-toggle drop-toggle-sorting"
+                          type="button"
+                          id="dropdownMenuButton"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          Featured
+                        </button>
+                        <div
+                          class="dropdown-menu drop-sorting"
+                          aria-labelledby="dropdownMenuButton"
+                        >
+                          <a class="dropdown-item" href="#">A-Z</a>
+                          <a class="dropdown-item" href="#">Z-A</a>
+                          <a class="dropdown-item" href="#">Old to New</a>
+                          <a class="dropdown-item" href="#">New to Old</a>
+                          <a class="dropdown-item" href="#">Best Selling</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="product-management__body">
+                <table
+                  class="table table-borderless table-hover table-responsive product-table"
+                >
+                  <thead class="product-table__header">
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Rating</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Description</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="product-management__showcase"
+                    class="product-table__body"
+                  >
+                    <tr>
+                      <td>
+                        <div class="card">
+                          <div class="row no-gutters">
+                            <div>
+                              <img
+                                src="../../img/Chambor_Rouge_Plum+_Lipstick.webp"
+                                class="card-img img-thumbnail responsive-img"
+                                alt="..."
+                              />
+                            </div>
+                            <div>
+                              <div class="card-body">
+                                <h5 class="card-title">
+                                  Chambor_Rouge_Plum+_Lipstick
+                                </h5>
+                                <p class="card-text">123</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>50</td>
+                      <td>30</td>
+                      <td>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i
+                        ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                        ><i class="fas fa-star"></i>
+                      </td>
+                      <td>Son gac cao cap</td>
+                      <td>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Accusamus, blanditiis maxime vel nulla officiis
+                          consequatur doloribus hic excepturi quo. Amet. >
+                        </p>
+                      </td>
+                      <td>
+                        <div>
+                          <div class="product-btn">
+                            <i class="fas fa-edit"></i>
+                          </div>
+                          <div class="product-btn">
+                            <i class="fas fa-trash"></i>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="../../component/header.component.js"></script>
+    <script src="../../component/search-nav/search-nav.component.js"></script>
+    <script src="../../component/sidebar.component.js"></script>
+    <script src="../js/product-management.js"></script>
+  </body>
 </html>

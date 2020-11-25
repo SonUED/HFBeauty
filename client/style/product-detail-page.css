@@ -95,12 +95,12 @@ ul {
 }
 
 .card-top .card-quick-view-btn {
-  display: none;
+  visibility: hidden;
   cursor: pointer;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   padding: 5px 10px;
   font-weight: 400;
   line-height: 20px;
@@ -108,7 +108,7 @@ ul {
   border-radius: 3px;
   background-color: white;
   -webkit-box-shadow: 0 0 6px 0.1px #b8bab9;
-  box-shadow: 0 0 6px 0.1px #b8bab9;
+          box-shadow: 0 0 6px 0.1px #b8bab9;
 }
 
 .card-top .card-quick-view-btn:hover {
@@ -167,7 +167,7 @@ ul {
 }
 
 .card-body .add-to-cart-btn {
-  display: none;
+  visibility: hidden;
   width: 100%;
   background-color: #ff416a;
   border: 1px solid black;
@@ -187,11 +187,11 @@ ul {
   .collection__item:hover {
     padding: -15px;
     -webkit-box-shadow: 0 0 5px 0.1px #b8bab9;
-    box-shadow: 0 0 5px 0.1px #b8bab9;
+            box-shadow: 0 0 5px 0.1px #b8bab9;
   }
   .collection__item:hover .add-to-cart-btn,
   .collection__item:hover .card-quick-view-btn {
-    display: block;
+    visibility: visible;
   }
 }
 
@@ -206,7 +206,7 @@ ul {
 
 .collection__item--featured:hover {
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
 }
 
 .buy-it-now-btn {
@@ -291,9 +291,3 @@ ul {
   color: #ff8004;
 }
 /*# sourceMappingURL=product-detail-page.css.map */
-
-footer {
-  background-color: rgb(0, 0, 0);
-  font-size: 162%;
-  color: white;
-}

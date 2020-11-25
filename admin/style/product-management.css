@@ -50,7 +50,8 @@ input::-webkit-inner-spin-button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 56px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 9px 9px 9px 20px;
   margin-bottom: 20px;
   font-size: 12px;
@@ -68,14 +69,7 @@ input::-webkit-inner-spin-button {
 }
 
 .toolbar-left {
-  width: 50%;
-  max-width: 60%;
-  padding: 5px;
-}
-
-.toolbar-right {
-  width: 40%;
-  max-width: 40%;
+  padding: 5px 5px 5px 0;
 }
 
 .toolbar-right .partion-limit-item span,
@@ -90,6 +84,7 @@ input::-webkit-inner-spin-button {
       -ms-flex-align: center;
           align-items: center;
   width: 60%;
+  margin-right: 1.5rem;
   vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
@@ -120,10 +115,6 @@ input::-webkit-inner-spin-button {
 .toolbar-right .dropdown .dropdown-item {
   padding: 0.25rem 1.5rem;
   border: none;
-}
-
-.toolbar span {
-  margin: 0 15px;
 }
 
 .toolbar .view-mode {
@@ -172,12 +163,7 @@ input::-webkit-inner-spin-button {
 }
 
 .toolbar .dropdown:first-of-type {
-  width: 80px;
   margin-right: 15px;
-}
-
-.toolbar .dropdown:last-of-type {
-  width: 170px;
 }
 
 .toolbar .btn,
@@ -220,6 +206,12 @@ input::-webkit-inner-spin-button {
   font-size: 12px;
 }
 
+.toolbar-change-page .pagination {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .toolbar-change-page .pagination__move-bar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -228,9 +220,12 @@ input::-webkit-inner-spin-button {
 }
 
 .toolbar-change-page .pagination .page-link {
+  cursor: pointer;
   padding: 9px 12px;
   color: #3f4254;
-  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .toolbar-change-page .pagination .page-item.active .page-link {
@@ -240,11 +235,17 @@ input::-webkit-inner-spin-button {
 }
 
 .toolbar-change-page .pagination__find-bar {
+  display: none;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
   width: 20%;
 }
 
-.toolbar-change-page .pagination__find-bar #find-page-input {
-  min-width: 25%;
+@media (min-width: 576px) {
+  .toolbar-change-page .pagination__find-bar {
+    display: block;
+  }
 }
 
 .toolbar-change-page .pagination__find-bar .page-item,
@@ -286,6 +287,7 @@ input::-webkit-inner-spin-button {
   padding: 25px;
   background-color: white;
   border-radius: 6px;
+  margin-top: 7.5rem;
 }
 
 .product-management__wrapper .search-navbar {

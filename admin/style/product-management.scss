@@ -11,43 +11,58 @@ $toolbarBGC: #f3f6f9;
 
 $bgc: #eef0f8;
 
+$smallDevices: 576px;
+$mediumDevices: 768px;
+
 $starColors: #ffab5a, #ffa147, #ff9e41, #ff8a18, #ff8004;
 
 @mixin setStarColor($colorList, $selector) {
-	@for $i from 1 through 5 {
-		#{ $selector }:nth-of-type(#{ $i }) {
-			color: nth($colorList, $i);
-		}
-	}
+  @for $i from 1 through 5 {
+    #{ $selector }:nth-of-type(#{ $i }) {
+      color: nth($colorList, $i);
+    }
+  }
+}
+
+@mixin smallDevices {
+  @media (min-width: $smallDevices) {
+    @content;
+  }
+}
+
+@mixin mediumDevices {
+  @media (min-width: $mediumDevices) {
+    @content;
+  }
 }
 
 @mixin centeringVertical() {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 body {
-	font-family: $primaryFont, sans-serif;
-	font-weight: 500;
-	background-color: #fff;
-	color: $primaryColor;
-	letter-spacing: 0.02rem;
+  font-family: $primaryFont, sans-serif;
+  font-weight: 500;
+  background-color: #fff;
+  color: $primaryColor;
+  letter-spacing: 0.02rem;
 }
 
 h2 {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .container-fluid {
-	padding-left: 0;
-	padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /****************************************
@@ -56,306 +71,303 @@ input::-webkit-inner-spin-button {
 
 // create/update button
 .create-update-btn {
-	padding: 9px 13px;
+  padding: 9px 13px;
 
-	font-weight: 600;
-	font-size: 12px;
+  font-weight: 600;
+  font-size: 12px;
 
-	color: white;
-	background-color: $buttonColor;
-	border-color: $buttonColor;
+  color: white;
+  background-color: $buttonColor;
+  border-color: $buttonColor;
 
-	&:hover {
-		color: white;
-		background-color: $buttonHoverColor;
-		border-color: $buttonHoverColor;
-	}
+  &:hover {
+    color: white;
+    background-color: $buttonHoverColor;
+    border-color: $buttonHoverColor;
+  }
 }
 
 /****************************************
 		SECTION TOOLBAR
 ****************************************/
 .toolbar {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-	height: 56px;
-	padding: 9px 9px 9px 20px;
-	margin-bottom: 20px;
+  padding: 9px 9px 9px 20px;
+  margin-bottom: 20px;
 
-	font-size: 12px;
-	text-transform: uppercase;
+  font-size: 12px;
+  text-transform: uppercase;
 
-	background-color: $toolbarBGC;
+  background-color: $toolbarBGC;
 
-	border-radius: 6px;
+  border-radius: 6px;
 
-	&-left,
-	&-right {
-		height: 38px;
-		align-items: center;
+  &-left,
+  &-right {
+    height: 38px;
+    align-items: center;
 
-		line-height: 22px;
-	}
+    line-height: 22px;
+  }
 
-	&-left {
-		width: 50%;
-		max-width: 60%;
-		padding: 5px;
-	}
+  &-left {
+    padding: 5px 5px 5px 0;
+  }
 
-	&-right {
-		width: 40%;
-		max-width: 40%;
+  &-right {
+    .partion-limit-item span,
+    .partion-sort span {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
 
-		.partion-limit-item span,
-		.partion-sort span {
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
+      width: 60%;
+      margin-right: 1.5rem;
+      vertical-align: middle;
 
-			width: 60%;
-			vertical-align: middle;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
+    // overide css from sidebar.css
+    .dropdown,
+    .dropleft,
+    .dropright,
+    .dropup {
+      display: block;
+      padding: 0;
+      position: relative;
+      top: 0;
+      left: 0;
 
-		// overide css from sidebar.css
-		.dropdown,
-		.dropleft,
-		.dropright,
-		.dropup {
-			display: block;
-			padding: 0;
-			position: relative;
-			top: 0;
-			left: 0;
+      font-family: $primaryFont, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
 
-			font-family: $primaryFont, sans-serif;
-			font-size: 12px;
-			font-weight: 500;
+      color: red;
+      background-color: $toolbarBGC;
+    }
 
-			color: red;
-			background-color: $toolbarBGC;
-		}
+    button#dropdownMenuButton,
+    .dropdown .dropdown-item {
+      color: $primaryColor;
+    }
 
-		button#dropdownMenuButton,
-		.dropdown .dropdown-item {
-			color: $primaryColor;
-		}
+    .dropdown .dropdown-item {
+      padding: 0.25rem 1.5rem;
+      border: none;
+    }
+  }
 
-		.dropdown .dropdown-item {
-			padding: 0.25rem 1.5rem;
-			border: none;
-		}
-	}
+  .view-mode {
+    display: flex;
+    width: 73px;
+    height: 38px;
+    padding: 1px;
 
-	span {
-		margin: 0 15px;
-	}
+    .view-mode--grid,
+    .view-mode--list {
+      width: 36px;
+      height: 36px;
 
-	.view-mode {
-		display: flex;
-		width: 73px;
-		height: 38px;
-		padding: 1px;
+      color: $borderColor;
+      background-color: #fff;
+      border: 1px solid $borderColor;
 
-		.view-mode--grid,
-		.view-mode--list {
-			width: 36px;
-			height: 36px;
+      i {
+        font-size: 17px;
+        pointer-events: none;
+      }
+    }
 
-			color: $borderColor;
-			background-color: #fff;
-			border: 1px solid $borderColor;
+    .view-mode--grid:focus,
+    .view-mode--list:focus {
+      outline: none;
+    }
 
-			i {
-				font-size: 17px;
-				pointer-events: none;
-			}
-		}
+    $borderRadiusViewMode: 3px;
 
-		.view-mode--grid:focus,
-		.view-mode--list:focus {
-			outline: none;
-		}
+    .view-mode--grid {
+      padding-right: 1px;
+      border-top-left-radius: $borderRadiusViewMode;
+      border-bottom-left-radius: $borderRadiusViewMode;
+    }
 
-		$borderRadiusViewMode: 3px;
+    .view-mode--list {
+      margin-left: -1px;
+      border-top-right-radius: $borderRadiusViewMode;
+      border-bottom-right-radius: $borderRadiusViewMode;
+    }
 
-		.view-mode--grid {
-			padding-right: 1px;
-			border-top-left-radius: $borderRadiusViewMode;
-			border-bottom-left-radius: $borderRadiusViewMode;
-		}
+    .active {
+      color: black;
+    }
+  }
 
-		.view-mode--list {
-			margin-left: -1px;
-			border-top-right-radius: $borderRadiusViewMode;
-			border-bottom-right-radius: $borderRadiusViewMode;
-		}
+  .dropdown {
+    &:first-of-type {
+      margin-right: 15px;
+    }
+  }
 
-		.active {
-			color: black;
-		}
-	}
+  .btn,
+  .dropdown-menu {
+    width: 100%;
+    min-width: 0;
 
-	.dropdown {
-		&:first-of-type {
-			width: 80px;
-			margin-right: 15px;
-		}
+    color: $primaryColor;
+    background-color: #fff;
+    border: 1px solid $borderColor;
 
-		&:last-of-type {
-			width: 170px;
-		}
-	}
+    text-align: left;
+    font-size: 12px;
+    font-weight: 500;
+  }
 
-	.btn,
-	.dropdown-menu {
-		width: 100%;
-		min-width: 0;
+  .show > .btn-secondary.dropdown-toggle {
+    color: $primaryColor;
+    background-color: #fff;
+    border: 1px solid $borderColor;
+  }
 
-		color: $primaryColor;
-		background-color: #fff;
-		border: 1px solid $borderColor;
+  .show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: none;
+  }
 
-		text-align: left;
-		font-size: 12px;
-		font-weight: 500;
-	}
+  .dropdown-item {
+    text-transform: none;
+    font-weight: 500;
 
-	.show > .btn-secondary.dropdown-toggle {
-		color: $primaryColor;
-		background-color: #fff;
-		border: 1px solid $borderColor;
-	}
-
-	.show > .btn-secondary.dropdown-toggle:focus {
-		box-shadow: none;
-	}
-
-	.dropdown-item {
-		text-transform: none;
-		font-weight: 500;
-
-		&:hover {
-			background-color: $borderColor;
-		}
-	}
+    &:hover {
+      background-color: $borderColor;
+    }
+  }
 }
 
 /****************************************
 		SECTION changing page
 ****************************************/
 .toolbar-change-page {
-	width: 100%;
-	font-size: 12px;
+  width: 100%;
+  font-size: 12px;
 
-	.pagination {
-		&__move-bar {
-			display: flex;
-			margin-right: 10px;
-		}
+  .pagination {
+    align-items: center;
 
-		.page-link {
-			padding: 9px 12px;
-			color: $primaryColor;
+    &__move-bar {
+      display: flex;
+      margin-right: 10px;
+    }
 
-			cursor: pointer;
-		}
+    .page-link {
+      cursor: pointer;
 
-		.page-item.active .page-link {
-			color: white;
-			background-color: $buttonColor;
-			border-color: $buttonColor;
-		}
+      padding: 9px 12px;
+      color: $primaryColor;
 
-		&__find-bar {
-			width: 20%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-			#find-page-input {
-				min-width: 25%;
-			}
+    .page-item.active .page-link {
+      color: white;
+      background-color: $buttonColor;
+      border-color: $buttonColor;
+    }
 
-			.page-item,
-			.page-item .input-group {
-				height: 100%;
-			}
+    &__find-bar {
+      display: none;
 
-			.form-control,
-			.input-group-append {
-				height: auto;
-				font-weight: 500;
-				font-size: 12px;
-			}
+      @include smallDevices() {
+        display: block;
+      }
 
-			.btn-outline-secondary {
-				font-weight: 500;
+      align-self: stretch;
+      width: 20%;
 
-				color: #e7040f;
-				border-color: #e7040f;
+      .page-item,
+      .page-item .input-group {
+        height: 100%;
+      }
 
-				&:hover {
-					color: white;
-					background-color: #e7040f;
-					border-color: #e7040f;
-				}
-			}
-		}
-	}
+      .form-control,
+      .input-group-append {
+        height: auto;
+        font-weight: 500;
+        font-size: 12px;
+      }
+
+      .btn-outline-secondary {
+        font-weight: 500;
+
+        color: #e7040f;
+        border-color: #e7040f;
+
+        &:hover {
+          color: white;
+          background-color: #e7040f;
+          border-color: #e7040f;
+        }
+      }
+    }
+  }
 }
 
 /****************************************
 		SECTION product management
 ****************************************/
 .product-management {
-	$self: &;
+  $self: &;
 
-	width: 100%;
-	margin-left: -15px;
-	margin-right: -15px;
-	padding: 20px;
-	background-color: $bgc;
+  width: 100%;
+  margin-left: -15px;
+  margin-right: -15px;
+  padding: 20px;
+  background-color: $bgc;
 
-	&__wrapper {
-		padding: 25px;
-		background-color: white;
-		border-radius: 6px;
+  &__wrapper {
+    padding: 25px;
+    background-color: white;
+    border-radius: 6px;
+    margin-top: 7.5rem;
 
-		.search-navbar {
-			padding-right: 0;
-		}
-	}
+    .search-navbar {
+      padding-right: 0;
+    }
+  }
 
-	&__title {
-		font-size: 24px;
-		font-weight: 600;
-		line-height: 20px;
-		margin-bottom: 0;
-	}
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 20px;
+    margin-bottom: 0;
+  }
 
-	&__nav {
-		margin-bottom: 10px;
+  &__nav {
+    margin-bottom: 10px;
 
-		#{ $self }__quantity-title {
-			color: $secondaryColor;
-			font-size: 12px;
-			font-weight: 500;
-			line-height: 14px;
+    #{ $self }__quantity-title {
+      color: $secondaryColor;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 14px;
 
-			p {
-				margin-bottom: 0;
-			}
-		}
-	}
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
 
-	&__body {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
+  &__body {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 /****************************************
@@ -363,507 +375,507 @@ input::-webkit-inner-spin-button {
 ****************************************/
 
 .table-hover {
-	tbody tr:hover .card {
-		background-color: #ececec;
-	}
+  tbody tr:hover .card {
+    background-color: #ececec;
+  }
 }
 
 .product-table {
-	&__header {
-		font-size: 12px;
-		background-color: $toolbarBGC;
+  &__header {
+    font-size: 12px;
+    background-color: $toolbarBGC;
 
-		tr {
-			th {
-				text-transform: uppercase;
-				font-weight: 600;
-			}
+    tr {
+      th {
+        text-transform: uppercase;
+        font-weight: 600;
+      }
 
-			th:not(:first-child) {
-				color: $secondaryColor;
-				text-align: center;
-			}
+      th:not(:first-child) {
+        color: $secondaryColor;
+        text-align: center;
+      }
 
-			th:first-child {
-				padding: 13px 23px;
-				border-top-left-radius: 6px;
-				border-bottom-left-radius: 6px;
-			}
+      th:first-child {
+        padding: 13px 23px;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+      }
 
-			th:last-child {
-				border-top-right-radius: 6px;
-				border-bottom-right-radius: 6px;
-			}
-		}
-	}
+      th:last-child {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+    }
+  }
 
-	&__body {
-		font-size: 14px;
+  &__body {
+    font-size: 14px;
 
-		tr {
-			padding-top: 10px;
+    tr {
+      padding-top: 10px;
 
-			.card {
-				position: static;
-			}
-		}
-	}
+      .card {
+        position: static;
+      }
+    }
+  }
 }
 
 .product-table td {
-	font-weight: 600;
-	vertical-align: middle;
+  font-weight: 600;
+  vertical-align: middle;
 
-	&:first-child {
-		width: 20%;
-		max-width: 20%;
-		padding-left: 0;
+  &:first-child {
+    width: 20%;
+    max-width: 20%;
+    padding-left: 0;
 
-		.card {
-			border: none;
-		}
+    .card {
+      border: none;
+    }
 
-		.card-body {
-			padding-top: 10px;
-		}
+    .card-body {
+      padding-top: 10px;
+    }
 
-		.card-title {
-			font-size: 14px;
-			font-weight: 600;
-			margin-bottom: 5px;
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
 
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-		.card-text {
-			font-size: 13px;
-			font-weight: 500;
-			color: $secondaryColor;
-		}
+    .card-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: $secondaryColor;
+    }
 
-		.img-thumbnail {
-			border-radius: 3px;
-			border: 2px solid $borderColor;
-		}
+    .img-thumbnail {
+      border-radius: 3px;
+      border: 2px solid $borderColor;
+    }
 
-		.responsive-img {
-			width: 100%;
-			height: auto;
-			min-height: 65px;
-			max-height: 65px;
-			object-fit: cover;
-		}
-	}
+    .responsive-img {
+      width: 100%;
+      height: auto;
+      min-height: 65px;
+      max-height: 65px;
+      object-fit: cover;
+    }
+  }
 
-	&:not(:first-child) {
-		width: (80% / 6);
-		max-width: (80% / 6);
-		text-align: center;
-		color: $primaryColor;
-	}
+  &:not(:first-child) {
+    width: (80% / 6);
+    max-width: (80% / 6);
+    text-align: center;
+    color: $primaryColor;
+  }
 
-	&:nth-of-type(4) {
-		@include setStarColor($starColors, 'i');
-	}
+  &:nth-of-type(4) {
+    @include setStarColor($starColors, 'i');
+  }
 
-	&:nth-of-type(6) p {
-		max-width: 200px;
-		margin-bottom: 0;
+  &:nth-of-type(6) p {
+    max-width: 200px;
+    margin-bottom: 0;
 
-		color: $secondaryColor;
-		font-weight: 500;
-		text-align: left;
-		line-height: 21px;
+    color: $secondaryColor;
+    font-weight: 500;
+    text-align: left;
+    line-height: 21px;
 
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-	&:last-of-type {
-		vertical-align: middle;
-		> div {
-			display: flex;
-			justify-content: center;
-		}
-	}
+  &:last-of-type {
+    vertical-align: middle;
+    > div {
+      display: flex;
+      justify-content: center;
+    }
+  }
 
-	.product-btn {
-		cursor: pointer;
+  .product-btn {
+    cursor: pointer;
 
-		width: 32px;
-		height: 32px;
-		margin-left: 10px;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
 
-		vertical-align: middle;
-		text-align: center;
-		background-color: $toolbarBGC;
-		border-radius: 6px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: $toolbarBGC;
+    border-radius: 6px;
 
-		i {
-			font-size: 18px;
-			line-height: 32px;
-			color: #3699ff;
-		}
+    i {
+      font-size: 18px;
+      line-height: 32px;
+      color: #3699ff;
+    }
 
-		&:hover {
-			background-color: #3699ff;
+    &:hover {
+      background-color: #3699ff;
 
-			i {
-				color: white;
-			}
-		}
-	}
+      i {
+        color: white;
+      }
+    }
+  }
 }
 
 %displayFullScreenAbove {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	overflow: hidden;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
 /****************************************
 		SECTION product working
 ****************************************/
 %overlayHeader {
-	padding: 5px 5px;
+  padding: 5px 5px;
 
-	background-color: $buttonColor;
+  background-color: $buttonColor;
 
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .product-working-overlay {
-	@extend %displayFullScreenAbove;
-	background-color: rgba($color: black, $alpha: 0.7);
-	z-index: 40;
+  @extend %displayFullScreenAbove;
+  background-color: rgba($color: black, $alpha: 0.7);
+  z-index: 40;
 }
 
 .product-working {
-	margin: 12.5vh auto;
-	max-width: (1200px/100 * 90);
+  margin: 12.5vh auto;
+  max-width: (1200px/100 * 90);
 
-	height: 75vh;
-	max-height: 75vh;
-	background-color: white;
+  height: 75vh;
+  max-height: 75vh;
+  background-color: white;
 
-	border-radius: 6px;
-	box-shadow: 0 0 20px 3px #242323;
+  border-radius: 6px;
+  box-shadow: 0 0 20px 3px #242323;
 
-	// using for display validation warning as an absolute element
-	.price-box,
-	.quantity,
-	.product-detail__brand,
-	.product-detail__name,
-	.validate-warning--expriry-date {
-		position: relative;
-	}
+  // using for display validation warning as an absolute element
+  .price-box,
+  .quantity,
+  .product-detail__brand,
+  .product-detail__name,
+  .validate-warning--expriry-date {
+    position: relative;
+  }
 
-	.validate-warning {
-		display: none;
-		position: absolute;
-		top: 30px;
-		width: 100%;
-		height: 20px;
+  .validate-warning {
+    display: none;
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    height: 20px;
 
-		font-size: 10px;
-		line-height: 20px;
-		color: $buttonHoverColor;
-	}
+    font-size: 10px;
+    line-height: 20px;
+    color: $buttonHoverColor;
+  }
 }
 
 .product-detail,
 .product-detail .row,
 .product-detail .card-top,
 .product-detail .card-body {
-	height: 100%;
+  height: 100%;
 }
 
 .product-detail {
-	$self: &;
-	padding: 10px;
+  $self: &;
+  padding: 10px;
 
-	.card-body {
-		padding: 0;
-		margin-right: -10px;
-		margin-bottom: -15px;
-	}
+  .card-body {
+    padding: 0;
+    margin-right: -10px;
+    margin-bottom: -15px;
+  }
 
-	&__form {
-		height: 100%;
-	}
+  &__form {
+    height: 100%;
+  }
 
-	&__header {
-		margin: -10px -10px 10px -10px;
-		@extend %overlayHeader;
+  &__header {
+    margin: -10px -10px 10px -10px;
+    @extend %overlayHeader;
 
-		#{$self}__heading {
-			@include centeringVertical;
+    #{$self}__heading {
+      @include centeringVertical;
 
-			padding-left: 10px;
+      padding-left: 10px;
 
-			font-size: 20px;
-			font-weight: 600;
-			color: white;
-		}
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+    }
 
-		.close-button {
-			width: 36px;
-			z-index: 5;
+    .close-button {
+      width: 36px;
+      z-index: 5;
 
-			height: 36px;
-			padding: 3px 0;
+      height: 36px;
+      padding: 3px 0;
 
-			font-size: 30px;
-			line-height: 30px;
-			text-align: center;
+      font-size: 30px;
+      line-height: 30px;
+      text-align: center;
 
-			color: white;
+      color: white;
 
-			&:hover {
-				color: black;
-			}
-		}
-	}
+      &:hover {
+        color: black;
+      }
+    }
+  }
 }
 
 .product-detail .product-detail__body {
-	$self: '.product-detail';
+  $self: '.product-detail';
 
-	&--top {
-		#{$self}__img {
-			@include centeringVertical;
-			align-items: center;
+  &--top {
+    #{$self}__img {
+      @include centeringVertical;
+      align-items: center;
 
-			height: 85%;
+      height: 85%;
 
-			border-radius: 6px;
-			background-color: rgba($color: $buttonColor, $alpha: 0.1);
+      border-radius: 6px;
+      background-color: rgba($color: $buttonColor, $alpha: 0.1);
 
-			img {
-				max-height: 450px;
-			}
-		}
+      img {
+        max-height: 450px;
+      }
+    }
 
-		#{$self}__reviews {
-			@include setStarColor($starColors, 'i');
-		}
+    #{$self}__reviews {
+      @include setStarColor($starColors, 'i');
+    }
 
-		#{$self}__upload-img {
-			display: flex;
-			height: 5%;
-			margin-bottom: 5px;
+    #{$self}__upload-img {
+      display: flex;
+      height: 5%;
+      margin-bottom: 5px;
 
-			.input-img {
-				cursor: pointer;
+      .input-img {
+        cursor: pointer;
 
-				width: 50%;
-				padding: 2px 5px;
-				margin-bottom: 0;
+        width: 50%;
+        padding: 2px 5px;
+        margin-bottom: 0;
 
-				font-size: 14px;
+        font-size: 14px;
 
-				color: white;
-				background-color: $buttonColor;
+        color: white;
+        background-color: $buttonColor;
 
-				border-top-left-radius: 3px;
-				border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
 
-				input {
-					display: none;
-				}
-			}
+        input {
+          display: none;
+        }
+      }
 
-			.product-img-name {
-				@include centeringVertical;
+      .product-img-name {
+        @include centeringVertical;
 
-				height: 100%;
-				width: 100%;
-				padding-left: 5px;
+        height: 100%;
+        width: 100%;
+        padding-left: 5px;
 
-				border: 1px solid $buttonColor;
-				border-top-right-radius: 3px;
-				border-bottom-right-radius: 3px;
+        border: 1px solid $buttonColor;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
 
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-			}
-		}
-	}
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 
-	&--bottom {
-		padding-right: 15px;
+  &--bottom {
+    padding-right: 15px;
 
-		> div {
-			margin-bottom: 5px;
-			font-size: 14px;
+    > div {
+      margin-bottom: 5px;
+      font-size: 14px;
 
-			> input,
-			select {
-				width: 60%;
-			}
-		}
+      > input,
+      select {
+        width: 60%;
+      }
+    }
 
-		> div > input,
-		> div select,
-		#{$self}__des textarea {
-			padding: 0 10px;
+    > div > input,
+    > div select,
+    #{$self}__des textarea {
+      padding: 0 10px;
 
-			font-size: 12px;
-			font-weight: 500;
-			line-height: 20px;
-			border-radius: 3px;
-			border: none;
-		}
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 20px;
+      border-radius: 3px;
+      border: none;
+    }
 
-		> div input,
-		> div select,
-		#{$self}__des textarea {
-			background-color: rgba($color: $buttonColor, $alpha: 0.1);
-		}
+    > div input,
+    > div select,
+    #{$self}__des textarea {
+      background-color: rgba($color: $buttonColor, $alpha: 0.1);
+    }
 
-		> div select {
-			option {
-				background-color: white;
-			}
+    > div select {
+      option {
+        background-color: white;
+      }
 
-			option:checked {
-				color: white;
-				background: $buttonColor !important;
-			}
-		}
+      option:checked {
+        color: white;
+        background: $buttonColor !important;
+      }
+    }
 
-		#{$self}__des textarea {
-			width: 100%;
-		}
+    #{$self}__des textarea {
+      width: 100%;
+    }
 
-		#{$self}__code,
-		#{$self}__manu {
-			display: none;
+    #{$self}__code,
+    #{$self}__manu {
+      display: none;
 
-			input {
-				background-color: #edf2ef;
-			}
-		}
-	}
+      input {
+        background-color: #edf2ef;
+      }
+    }
+  }
 }
 
 .quantity {
-	$self: &;
+  $self: &;
 
-	&__group {
-		width: 60%;
+  &__group {
+    width: 60%;
 
-		#{$self}__minus,
-		#{$self}__plus,
-		#{$self}__content {
-			padding: 0 10px;
-			height: 100%;
+    #{$self}__minus,
+    #{$self}__plus,
+    #{$self}__content {
+      padding: 0 10px;
+      height: 100%;
 
-			border: none;
-			border-radius: 3px;
-		}
+      border: none;
+      border-radius: 3px;
+    }
 
-		#{$self}__minus,
-		#{$self}__plus {
-			width: 10%;
+    #{$self}__minus,
+    #{$self}__plus {
+      width: 10%;
 
-			text-align: center;
-			color: white;
-			background-color: $buttonColor;
+      text-align: center;
+      color: white;
+      background-color: $buttonColor;
 
-			&:hover {
-				color: white;
-				background-color: $buttonHoverColor;
-				border-color: $buttonHoverColor;
-			}
-		}
+      &:hover {
+        color: white;
+        background-color: $buttonHoverColor;
+        border-color: $buttonHoverColor;
+      }
+    }
 
-		#{$self}__content {
-			width: 75%;
-		}
-	}
+    #{$self}__content {
+      width: 75%;
+    }
+  }
 }
 
 /****************************************
 		SECTION confirm action
 ****************************************/
 .confirm-action-overlay {
-	@extend %displayFullScreenAbove;
-	z-index: 50;
+  @extend %displayFullScreenAbove;
+  z-index: 50;
 }
 
 .confirm-action {
-	$self: &;
+  $self: &;
 
-	position: relative;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-	max-width: 20vw;
+  max-width: 20vw;
 
-	// overide css from sidebar.css
-	font-family: $primaryFont, sans-serif;
-	font-weight: 500;
+  // overide css from sidebar.css
+  font-family: $primaryFont, sans-serif;
+  font-weight: 500;
 
-	border-radius: 6px;
-	background-color: white;
+  border-radius: 6px;
+  background-color: white;
 
-	box-shadow: 0 0 20px 3px #242323;
+  box-shadow: 0 0 20px 3px #242323;
 
-	&__header,
-	&__message {
-		margin-bottom: 20px;
-	}
+  &__header,
+  &__message {
+    margin-bottom: 20px;
+  }
 
-	&__header {
-		font-size: 18px;
-		font-weight: 500;
-		color: white;
-		@extend %overlayHeader;
-	}
+  &__header {
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    @extend %overlayHeader;
+  }
 
-	&__body {
-		padding: 10px;
-		font-size: 16px;
+  &__body {
+    padding: 10px;
+    font-size: 16px;
 
-		#do-not-display-again {
-			margin-right: 5px;
-		}
+    #do-not-display-again {
+      margin-right: 5px;
+    }
 
-		#{$self}__not-display-again {
-			font-size: 12px;
-			margin-bottom: 0;
-		}
+    #{$self}__not-display-again {
+      font-size: 12px;
+      margin-bottom: 0;
+    }
 
-		#{$self}__yes,
-		#{$self}__no {
-			width: 60px;
-		}
-		#{$self}__yes {
-			margin-right: 5px;
-		}
-		#{$self}__no {
-			color: white;
-			background-color: $buttonColor;
-			border-color: $buttonColor;
-			border: 1px solid $buttonColor;
+    #{$self}__yes,
+    #{$self}__no {
+      width: 60px;
+    }
+    #{$self}__yes {
+      margin-right: 5px;
+    }
+    #{$self}__no {
+      color: white;
+      background-color: $buttonColor;
+      border-color: $buttonColor;
+      border: 1px solid $buttonColor;
 
-			&:hover {
-				color: white;
-				background-color: $buttonHoverColor;
-				border-color: $buttonHoverColor;
-				border: 1px solid $buttonHoverColor;
-			}
-		}
-	}
+      &:hover {
+        color: white;
+        background-color: $buttonHoverColor;
+        border-color: $buttonHoverColor;
+        border: 1px solid $buttonHoverColor;
+      }
+    }
+  }
 }
