@@ -1,4 +1,4 @@
-@import url(d:\UED - Senior - 2020 - 2021\Semester 1\Javascript Programming\HFBeauty\admin\style\reset.css);
+@import url(d:\Tran Thanh Khang\HFBeauty\admin\style\reset.css);
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -507,14 +507,33 @@ input::-webkit-inner-spin-button {
 }
 
 .product-working {
-  margin: 15vh auto;
+  margin: 12.5vh auto;
   max-width: 1080px;
-  height: 70vh;
-  max-height: 70vh;
+  height: 75vh;
+  max-height: 75vh;
   background-color: white;
   border-radius: 6px;
   -webkit-box-shadow: 0 0 20px 3px #242323;
           box-shadow: 0 0 20px 3px #242323;
+}
+
+.product-working .price-box,
+.product-working .quantity,
+.product-working .product-detail__brand,
+.product-working .product-detail__name,
+.product-working .validate-warning--expriry-date {
+  position: relative;
+}
+
+.product-working .validate-warning {
+  display: none;
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  height: 20px;
+  font-size: 10px;
+  line-height: 20px;
+  color: #ee2d41;
 }
 
 .product-detail,

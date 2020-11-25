@@ -71,7 +71,7 @@
 			<div class="product-working">
 				<div class="product-detail d-flex flex-column">
 					<div class="product-detail__header d-flex justify-content-between">
-						<h2 class="product-detail__heading">Edit Product</h2>
+						<h2 class="product-detail__heading">HFBeauty</h2>
 						<a href="#" class="close-button"><i class="fas fa-times"></i></a>
 					</div>
 					<form action="#" class="product-detail__form">
@@ -118,14 +118,22 @@
 								<div
 									class="card-body d-flex flex-column justify-content-between product-detail__body--bottom"
 								>
-									<div class="d-flex justify-content-between">
+									<div
+										class="d-flex justify-content-between product-detail__name"
+									>
 										<label for="product-name">Product Name</label>
 										<input
 											id="product-name"
 											type="text"
 											placeholder="Product's Name"
-											required
+											onchange='handleValidate(this, "name")'
 										/>
+										<div class="validate-warning validate-warning--name">
+											<p class="validate-warning-message">
+												* This field can't be blank ! * "Tên sản phẩm" will be
+												the default name if this field doesn't match!
+											</p>
+										</div>
 									</div>
 
 									<div class="product-detail__code">
@@ -133,15 +141,23 @@
 										<input id="product-code" type="text" disabled />
 									</div>
 
-									<div class="d-flex justify-content-between">
+									<div
+										class="d-flex justify-content-between product-detail__brand"
+									>
 										<label for="product-brand">Brand</label>
 										<input
 											id="product-brand"
 											type="text"
 											placeholder="Product's Brand"
 											list="defaultBrand"
+											onchange='handleValidate(this, "brand")'
 										/>
-
+										<div class="validate-warning validate-warning--brand">
+											<p class="validate-warning-message">
+												* This field can't be blank ! * "Nevia" will be the
+												default name if this field doesn't match!
+											</p>
+										</div>
 										<datalist id="defaultBrand">
 											<option value="Nivea"></option>
 											<option value="Loreal"></option>
@@ -157,7 +173,15 @@
 											id="product-price"
 											type="number"
 											placeholder="Product's price"
+											onchange='handleValidate(this, "price", "checkIsPositiveNumber")'
 										/>
+										<div class="validate-warning validate-warning--price">
+											<p class="validate-warning-message">
+												* This field can't be blank and must be a positive
+												value! * "0" will be the default name if this field
+												doesn't match!
+											</p>
+										</div>
 									</div>
 
 									<div class="d-flex justify-content-between quantity">
@@ -171,10 +195,19 @@
 												id="product-quantity"
 												class="quantity__content"
 												type="number"
+												onchange='handleValidate(this, "quantity", "checkIsPositiveWholeNumber")'
 											/>
 											<button class="quantity__plus">
 												<i class="fas fa-plus"></i>
 											</button>
+										</div>
+
+										<div class="validate-warning validate-warning--quantity">
+											<p class="validate-warning-message">
+												* This field can't be blank and must be a positive whole
+												value! * "0" will be the default name if this field
+												doesn't match!
+											</p>
 										</div>
 									</div>
 									<div class="d-flex justify-content-between">
@@ -186,9 +219,22 @@
 										<input id="product-manu-date" type="text" disabled />
 									</div>
 
-									<div class="d-flex justify-content-between">
+									<div
+										class="d-flex justify-content-between validate-warning--expriry-date"
+									>
 										<label for="product-expiry-date">Expiry Date</label>
-										<input id="product-expiry-date" type="text" />
+										<input
+											id="product-expiry-date"
+											type="text"
+											onchange='handleValidate(this, "expiry-date")'
+										/>
+										<div class="validate-warning validate-warning--expiry-date">
+											<p class="validate-warning-message">
+												* This field can't be blank ! * "1 năm kể từ ngày sản
+												xuất" will be the default name if this field doesn't
+												match!
+											</p>
+										</div>
 									</div>
 
 									<div class="product-detail__des">
@@ -196,7 +242,9 @@
 										<textarea id="product-des" rows="4"> </textarea>
 									</div>
 
-									<div class="d-flex justify-content-between">
+									<div
+										class="d-flex justify-content-between validate-warning--cate"
+									>
 										<label for="product-category">Category</label>
 										<select
 											name="category-select"
