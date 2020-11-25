@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style/reset.css" />
-    <link rel="stylesheet" href="../style/home.css" />
+    <link rel="stylesheet" href="../style/login.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
@@ -12,43 +12,116 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="header">
-      <div class="logo">
-        <img
-          src="https://cdn.freebiesupply.com/logos/thumbs/2x/hf-logo.png"
-          alt="Logo"
-        />HFTEAM
+    <div class="wrapper">
+      <div class="form-section">
+        <h1 class="form__title">
+          <a
+            href="#"
+            class="active"
+            id="lableSignIn"
+            onclick="active('lableSignIn', 'lableSignUp')"
+            >ĐĂNG NHẬP</a
+          >
+          /
+          <a
+            href="#"
+            id="lableSignUp"
+            onclick="active('lableSignUp', 'lableSignIn')"
+            >ĐĂNG KÝ</a
+          >
+        </h1>
+        <div class="sign-in" id="sign-in">
+          <form name="form_login" action="" onsubmit="login(event);">
+            <label for="username"><strong>Tên đăng nhập</strong></label>
+            <input
+              type="text"
+              id="username"
+              class="form__input"
+              placeholder="Nhập tên đăng nhập..."
+              onchange="handleChange(this)"
+              autocomplete="none"
+              required
+              autocomplete
+            />
+            <label for="password"><strong>Mật khẩu</strong></label>
+            <input
+              type="password"
+              id="password"
+              onchange="handleChange(this)"
+              class="form__input"
+              placeholder="Nhập mật khẩu..."
+              required
+              autocomplete
+            />
+            <input
+              type="submit"
+              value="ĐĂNG NHẬP"
+              class="form__input"
+              id="btn__login"
+            />
+          </form>
+          <a href="#" style="color: #adadad">Quên mật khẩu ?</a>
+        </div>
+        <div class="sign-up" id="sign-up" style="display: none">
+          <form name="form_login" action="" onsubmit="signup(event);">
+            <label for="usernameToSignUp"
+              ><strong>Tên người dùng</strong></label
+            >
+            <input
+              type="text"
+              id="usernameToSignUp"
+              class="form__input"
+              placeholder="Nhập tên đăng nhập..."
+              onchange="handleChange(this)"
+              autocomplete="none"
+              required
+              autocomplete
+            />
+            <label for="email"><strong>Email</strong></label>
+            <input
+              type="email"
+              id="email"
+              class="form__input"
+              placeholder="example@gmail.com..."
+              onchange="handleChange(this)"
+              autocomplete="none"
+              required
+              autocomplete
+            />
+
+            <label for="passwordSignUp"><strong>Mật khẩu</strong></label>
+            <input
+              type="password"
+              id="passwordSignUp"
+              onchange="handleChange(this)"
+              class="form__input"
+              placeholder="Nhập mật khẩu..."
+              required
+              autocomplete
+            />
+            <label for="confirmPassword"
+              ><strong>Xác thực mật khẩu</strong></label
+            >
+            <input
+              type="password"
+              id="confirmPassword"
+              onchange="handleChange(this)"
+              class="form__input"
+              placeholder="Nhập lại mật khẩu..."
+              required
+              autocomplete
+            />
+            <input
+              type="submit"
+              value="ĐĂNG KÝ"
+              class="form__input"
+              id="btn__signup"
+            />
+          </form>
+        </div>
+        <p id="error" style="color: rgb(218, 20, 20)"></p>
       </div>
     </div>
-    <div class="form-section">
-      <h1 class="form__title">ĐĂNG NHẬP</h1>
-      <form name="form_login" action="" onsubmit="login(event);">
-        <label for="username"><strong>Tên đăng nhập</strong></label>
-        <input
-          type="text"
-          id="username"
-          class="form__input"
-          placeholder="Nhập tên đăng nhập..."
-          onchange="handleChange(this)"
-          autocomplete="none"
-          required
-          autocomplete 
-        />
-        <label for="password"><strong>Mật khẩu</strong></label>
-        <input
-          type="password"
-          id="password"
-          onchange="handleChange(this)"
-          class="form__input"
-          placeholder="Nhập mật khẩu..."
-          required
-          autocomplete 
-        />
-        <input type="submit" value="ĐĂNG NHẬP" class="form__input" />
-      </form>
-      <a href="#">Quên mật khẩu ?</a>
-    </div>
-    <footer>Copyright by HFTeam | 2020</footer>
     <script src="../js/login.js"></script>
   </body>
 </html>

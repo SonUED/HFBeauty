@@ -23,6 +23,9 @@ body {
   margin: 0 auto;
   padding: 3rem;
 }
+.scure_brand img {
+  width: 100%;
+}
 .payment-section .sub-text {
   font-size: 14px;
   font-weight: normal;
@@ -182,11 +185,31 @@ body {
 .payment-btn {
   visibility: visible;
   padding: 10px 0px;
-  margin-top: 20px;
   width: 100%;
   background-color: #ff416a;
   color: white;
   border: 1px solid #ff416a;
+}
+.order__btn {
+  visibility: visible;
+  padding: 5px 10px;
+  background-color: #ff416a;
+  color: white;
+  border: 1px solid #ff416a;
+}
+.order__btn:hover {
+  text-decoration: none !important;
+  color: white;
+}
+textarea {
+  visibility: visible;
+  padding: 10px 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  color: #000;
+  border: 1px solid #ff416a;
+  outline: none;
+  font-size: 14px;
 }
 .secure {
   padding: 10px 0px;
@@ -200,15 +223,17 @@ body {
 /* MODAL */
 .modals {
   position: absolute;
-  top: 50%;
+  display: none;
+  top: 5%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   background: #fff;
-  width: 50%;
+  width: 60%;
   font-size: 1.6rem;
+  border: 1px solid #ff416a;
 }
 .modal__inner {
-  padding: 2rem 2rem;
+  padding: 5px 2rem;
 }
 .item-wrapper {
   display: flex;
@@ -222,6 +247,9 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.item-wrapper .item span img {
+  width: 80px;
+}
 .info {
   display: flex;
   flex-direction: row;
@@ -233,4 +261,26 @@ body {
 }
 .modal__items {
   padding: 2rem 0rem;
+}
+.modal__footer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.modal__footer div:nth-child(n) {
+  padding: 1rem 0rem;
+}
+.modal__footer .pay select {
+  padding: 0.5rem 0rem;
+}
+
+.modals .header__modals {
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+}
+.modals .header__modals p {
+  padding: 1rem 1rem;
+  color: #fff;
 }

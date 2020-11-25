@@ -1,5 +1,5 @@
-$primaryFont: "Oswald";
-$secondaryFont: "Arimo";
+$primaryFont: 'Oswald';
+$secondaryFont: 'Arimo';
 
 $primaryColor: #2d2d2d;
 $secondaryColor: #000000;
@@ -9,6 +9,10 @@ $labelColor: #e7040f;
 $buttonColor: #ff416a;
 $hoverButtonColor: #ff722e;
 $borderColor: #e0e5e2;
+
+html {
+  font-size: 62.5%;
+}
 
 body {
   font-family: $primaryFont, sans-serif;
@@ -41,27 +45,54 @@ ul {
   max-width: 1230px;
 }
 
-.col-20 {
-  width: 20%;
-  padding-left: 15px;
-  padding-right: 10px;
-}
-
-.col-80 {
-  width: 80%;
-  padding-left: 10px;
-  padding-right: 15px;
-}
-
 .disabled-click {
   pointer-events: none;
 }
 
+$smallDevices: 576px;
+$mediumDevices: 768px;
+$largeDevices: 992px;
+
+@mixin smallDevices {
+  @media (min-width: $smallDevices) {
+    @content;
+  }
+}
+
+@mixin mediumDevices {
+  @media (min-width: $mediumDevices) {
+    @content;
+  }
+}
+
+@mixin largeDevices {
+  @media (min-width: $largeDevices) {
+    @content;
+  }
+}
 /****************************************
           REUSED COMPONENT
 ****************************************/
 
 /******* CARD *******/
+.collection__list {
+  .card {
+    padding: 0 20%;
+
+    @include smallDevices() {
+      padding: 0 50px;
+    }
+
+    @include mediumDevices() {
+      padding: 0 25px;
+    }
+
+    @include largeDevices() {
+      padding: 0;
+    }
+  }
+}
+
 .card {
   border: none;
 
@@ -143,9 +174,15 @@ ul {
       text-transform: uppercase;
     }
 
-    .card-title:hover {
-      cursor: pointer;
-      color: $hoverTextColor;
+    .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        cursor: pointer;
+        color: $hoverTextColor;
+      }
     }
 
     .price-box {
@@ -176,53 +213,19 @@ ul {
   }
 }
 
-.quantity {
-  &__group {
-    padding: 5px;
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  &__plus,
-  &__minus,
-  &__content {
-    display: inline-block;
-    margin: 0 0 0 -1px;
-    padding: 0 1px 0 0;
-    height: 50px;
-    width: 15%;
-    text-align: center;
-
-    background-color: #fff;
-    border: 1px solid $borderColor;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &__plus:hover,
-  &__minus:hover {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-
-  &__content {
-    width: 40%;
-  }
-}
-
 /******* COLLECTION ITEM *******/
 .collection__item {
   margin-bottom: 5px;
 
-  &:hover {
-    padding: -15px;
-    box-shadow: 0 0 5px 0.1px #b8bab9;
+  @include mediumDevices() {
+    &:hover {
+      padding: -15px;
+      box-shadow: 0 0 5px 0.1px #b8bab9;
 
-    .add-to-cart-btn,
-    .card-quick-view-btn {
-      visibility: visible;
+      .add-to-cart-btn,
+      .card-quick-view-btn {
+        visibility: visible;
+      }
     }
   }
 

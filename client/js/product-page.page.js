@@ -1,60 +1,61 @@
-const viewModeGrid = document.querySelector(".view-mode--grid");
-const viewModeList = document.querySelector(".view-mode--list");
-const collectionRow = document.querySelector(".collection__row");
+const viewModeGrid = document.querySelector('.view-mode--grid');
+const viewModeList = document.querySelector('.view-mode--list');
+const collectionRow = document.querySelector('.collection__row');
 
-const closeQuickViewBtn = document.querySelector(".close-button");
-const quickViewOverlay = document.querySelector(".quick-view-overlay");
+const closeQuickViewBtn = document.querySelector('.close-button');
+const quickViewOverlay = document.querySelector('.quick-view-overlay');
 
-const collectionList = document.querySelector(".collection__list .row");
+const collectionList = document.querySelector('.collection__list .row');
 
-const featureProductInner = document.querySelector(".carousel-inner");
+const featureProductInner = document.querySelector('.carousel-inner');
 
-const searchField = document.querySelector("#search");
+const searchField = document.querySelector('#search');
 
 const dropItemsPagination = document.querySelectorAll(
-  ".drop-pagination .dropdown-item"
+  '.drop-pagination .dropdown-item'
 );
 
-let filterPrice = { id: "filter-price", isAngleUp: true };
-let filterBrand = { id: "filter-brand", isAngleUp: true };
+var cartArr = JSON.parse(localStorage.getItem('cartArr')) || [];
+let filterPrice = { id: 'filter-price', isAngleUp: true };
+let filterBrand = { id: 'filter-brand', isAngleUp: true };
 
-let direction = "horizontal";
+let direction = 'horizontal';
 
 // Toggle choosing display mode of list of products;
-const changeDisplayStyle = (direct = "horizontal") => {
-  const currentPage = parseInt(localStorage.getItem("currentPage"));
+const changeDisplayStyle = (direct = 'horizontal') => {
+  const currentPage = parseInt(localStorage.getItem('currentPage'));
 
-  if (direct == "horizontal") {
-    direction = "horizontal";
+  if (direct == 'horizontal') {
+    direction = 'horizontal';
   } else {
-    direction = "vertical";
+    direction = 'vertical';
   }
 
   moveToPage(currentPage, true);
 };
 
-viewModeGrid.addEventListener("click", (e) => {
-  e.target.classList.add("active");
-  viewModeList.classList.remove("active");
-  collectionRow.classList.remove("change-direction");
+viewModeGrid.addEventListener('click', (e) => {
+  e.target.classList.add('active');
+  viewModeList.classList.remove('active');
+  collectionRow.classList.remove('change-direction');
 
-  changeDisplayStyle("horizontal");
+  changeDisplayStyle('horizontal');
 });
 
-viewModeList.addEventListener("click", (e) => {
-  e.target.classList.add("active");
-  viewModeGrid.classList.remove("active");
-  collectionRow.classList.add("change-direction");
+viewModeList.addEventListener('click', (e) => {
+  e.target.classList.add('active');
+  viewModeGrid.classList.remove('active');
+  collectionRow.classList.add('change-direction');
 
-  changeDisplayStyle("vertical");
+  changeDisplayStyle('vertical');
 });
 
 // Rotate Z 180 deg to angle up of filter title
 const rotateAngle = (filter, angle) => {
   if (filter.isAngleUp) {
-    angle.style.transform = "rotateZ(180deg)";
+    angle.style.transform = 'rotateZ(180deg)';
   } else {
-    angle.style.transform = "none";
+    angle.style.transform = 'none';
   }
 
   filter.isAngleUp = !filter.isAngleUp;
@@ -73,15 +74,15 @@ const rotateZAngleUp = (element) => {
 
 // Close & show quick view overlay
 
-closeQuickViewBtn.addEventListener("click", (e) => {
-  quickViewOverlay.style.display = "none";
+closeQuickViewBtn.addEventListener('click', (e) => {
+  quickViewOverlay.style.display = 'none';
 });
 
 let quickView = (event, productCode) => {
   event.stopPropagation();
-  quickViewOverlay.style.display = "block";
+  quickViewOverlay.style.display = 'block';
 
-  const products = JSON.parse(localStorage.getItem("currentList"));
+  const products = JSON.parse(localStorage.getItem('currentList'));
   let product = {};
 
   for (let index = 0; index < products.length; index++) {
@@ -91,20 +92,36 @@ let quickView = (event, productCode) => {
     }
   }
 
-  const imgE = document.querySelector("product-detail-element #product-img");
-  const nameE = document.querySelector("product-detail-element #product-name");
+  const imgE = document.querySelector('product-detail-element #product-img');
+  const nameE = document.querySelector('product-detail-element #product-name');
   const brandE = document.querySelector(
-    "product-detail-element #product-brand"
+    'product-detail-element #product-brand'
   );
-  const codeE = document.querySelector("product-detail-element #product-code");
+  const codeE = document.querySelector('product-detail-element #product-code');
   const priceE = document.querySelector(
-    "product-detail-element #product-price"
+    'product-detail-element #product-price'
   );
   const oldPriceE = document.querySelector(
-    "product-detail-element #product-old-price"
+    'product-detail-element #product-old-price'
   );
-  const desE = document.querySelector("product-detail-element #product-des");
-  const cateE = document.querySelector("product-detail-element #product-cate");
+  const desE = document.querySelector('product-detail-element #product-des');
+  const cateE = document.querySelector('product-detail-element #product-cate');
+  // using for showing product's star on working overlay
+  const productStarOnWorkingOverlay = document.querySelector(
+    '.product-detail__reviews'
+  );
+
+  // create star element
+  let starE = '';
+  for (let i = 1; i <= 5; i++) {
+    if (product.soSao > 0) {
+      starE += '<i class="fas fa-star"></i>';
+      product.soSao--;
+    } else {
+      starE += '<i class="far fa-star"></i>';
+    }
+  }
+  productStarOnWorkingOverlay.innerHTML = starE;
 
   imgE.src = product.anh;
   nameE.textContent = product.tenSP;
@@ -114,7 +131,7 @@ let quickView = (event, productCode) => {
   priceE.textContent = ((parseInt(product.gia) / 100) * 85).toFixed(2);
   desE.textContent = product.moTa;
 
-  const categories = JSON.parse(localStorage.getItem("categories"));
+  const categories = JSON.parse(localStorage.getItem('categories'));
 
   for (let index = 0; index < categories.length; index++) {
     if (categories[index].maDM === product.maDM) {
@@ -154,7 +171,9 @@ const createCardbody = (product) => {
                       85
                     ).toFixed(2)}</span>
                 </div>
-                <a href="#" class="btn btn-primary add-to-cart-btn"
+                <a href="#" class="btn btn-primary add-to-cart-btn" onclick=addToCartInPage(event,'${
+                  product.maSP
+                }')
 >ADD TO CART</a
                 >
             </div>
@@ -168,7 +187,7 @@ const createHorProductElement = (product = {}) => {
   const cardBody = createCardbody(product);
 
   const productElement = `
-    <div class="col-lg-3 collection__item" onclick="directToDetailPage('${product.maSP}')">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 collection__item" onclick="directToDetailPage('${product.maSP}')">
         ${cardBody}
     </div>`;
 
@@ -176,8 +195,8 @@ const createHorProductElement = (product = {}) => {
 };
 
 const createVerProductElement = (product = {}) => {
-  const categories = JSON.parse(localStorage.getItem("categories"));
-  let productCate = "";
+  const categories = JSON.parse(localStorage.getItem('categories'));
+  let productCate = '';
 
   for (let index = 0; index < categories.length; index++) {
     if (categories[index].maDM === product.maDM) {
@@ -185,11 +204,10 @@ const createVerProductElement = (product = {}) => {
       break;
     }
   }
-
   const productElement = `
   <div class="product-detail product-detail--inside-collection">
 	<div class="row">
-		<div class="col-lg-4">
+		<div class="col-sm-3 col-md-4 col-lg-4">
 			<div class="card-top">
 				<div class="card-label"><strong>-15%</strong></div>
 				<img
@@ -200,7 +218,7 @@ const createVerProductElement = (product = {}) => {
 				/>
 			</div>
 		</div>
-		<div class="col-lg-8">
+		<div class="col-sm-9 col-md-8 col-lg-8">
 			<div class="card-body">
 				<h5 class="card-title"> ${product.tenSP}</h5>
 				<div class="product-detail__reviews">
@@ -246,7 +264,9 @@ const createVerProductElement = (product = {}) => {
 						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
 					</p>
 				</div>
-				<a href="#" class="btn btn-primary add-to-cart-btn">ADD TO CART</a>
+				<a href="#" class="btn btn-primary add-to-cart-btn" onclick=addToCartInPage(event,'${
+          product.maSP
+        }')>ADD TO CART</a>
 			</div>
 		</div>
 	</div>
@@ -257,9 +277,9 @@ const createVerProductElement = (product = {}) => {
 };
 
 const displayData = (productList = []) => {
-  let productElementRows = "";
+  let productElementRows = '';
 
-  if (direction == "horizontal") {
+  if (direction == 'horizontal') {
     productList.forEach(
       (product) => (productElementRows += createHorProductElement(product))
     );
@@ -277,7 +297,7 @@ const createFeaProductElement = (product = {}, isFirst = false) => {
   const cardBody = createCardbody(product);
 
   const productElement = `
-	<div class="carousel-item ${isFirst ? "active" : ""}">
+	<div class="carousel-item ${isFirst ? 'active' : ''}">
 		<div
 			class="collection__item collection__item--featured" onclick="directToDetailPage('${
         product.maSP
@@ -292,7 +312,7 @@ const createFeaProductElement = (product = {}, isFirst = false) => {
 };
 
 const displayFeatureFroducts = (productList = []) => {
-  let productElementRows = "";
+  let productElementRows = '';
 
   productList.forEach((product, index) => {
     index == 0
@@ -305,12 +325,12 @@ const displayFeatureFroducts = (productList = []) => {
 
 /**********  Pagination **********/
 dropItemsPagination.forEach((item) => {
-  item.addEventListener("click", (e) => {
+  item.addEventListener('click', (e) => {
     const dropdownTogglePagination = document.querySelector(
-      ".drop-toggle-pagination"
+      '.drop-toggle-pagination'
     );
 
-    localStorage.setItem("numberOfItemsOfEachPage", e.target.textContent);
+    localStorage.setItem('numberOfItemsOfEachPage', e.target.textContent);
 
     dropdownTogglePagination.textContent = e.target.textContent;
 
@@ -319,7 +339,7 @@ dropItemsPagination.forEach((item) => {
 });
 
 const updateToolbar = (currentPage = 1, numberOfPages = 1) => {
-  const pageLink = document.querySelectorAll(".pagination .page-link");
+  const pageLink = document.querySelectorAll('.pagination .page-link');
 
   pageLink[2].textContent =
     currentPage - 1 <= 0 ? numberOfPages : currentPage - 1;
@@ -329,9 +349,9 @@ const updateToolbar = (currentPage = 1, numberOfPages = 1) => {
 };
 
 const moveToPage = (page = 1, isMoveToCurent = false) => {
-  const products = JSON.parse(localStorage.getItem("currentList"));
+  const products = JSON.parse(localStorage.getItem('currentList'));
   const numberOfItemsOfEachPage = JSON.parse(
-    localStorage.getItem("numberOfItemsOfEachPage")
+    localStorage.getItem('numberOfItemsOfEachPage')
   );
   const numberOfPages = Math.ceil(products.length / numberOfItemsOfEachPage);
 
@@ -354,45 +374,45 @@ const moveToPage = (page = 1, isMoveToCurent = false) => {
   displayData(products.slice(begin, end));
 
   if (!isMoveToCurent) {
-    localStorage.setItem("currentPage", page);
+    localStorage.setItem('currentPage', page);
     updateToolbar(page, numberOfPages);
   }
 };
 
 const moveToPrePage = () => {
-  const currentPage = parseInt(localStorage.getItem("currentPage"));
+  const currentPage = parseInt(localStorage.getItem('currentPage'));
 
   moveToPage(currentPage - 1);
 };
 const moveToNextPage = () => {
-  const currentPage = parseInt(localStorage.getItem("currentPage"));
+  const currentPage = parseInt(localStorage.getItem('currentPage'));
 
   moveToPage(currentPage + 1);
 };
 
 const findPage = () => {
-  const findPageInput = document.getElementById("find-page-input");
+  const findPageInput = document.getElementById('find-page-input');
   const inputValue = parseInt(findPageInput.value);
   const minValue = parseInt(findPageInput.min);
   const maxValue = parseInt(findPageInput.max);
 
   if (inputValue < minValue || inputValue > maxValue) {
-    alert("Invalid Input!");
+    alert('Invalid Input!');
   } else {
     moveToPage(inputValue);
   }
 };
 
 const createPaginationToolbar = () => {
-  const products = JSON.parse(localStorage.getItem("currentList"));
+  const products = JSON.parse(localStorage.getItem('currentList'));
   const numberOfItemsOfEachPage = JSON.parse(
-    localStorage.getItem("numberOfItemsOfEachPage")
+    localStorage.getItem('numberOfItemsOfEachPage')
   );
   const numberOfPages = Math.ceil(products.length / numberOfItemsOfEachPage);
 
   const toolbar = `
     <div class="pagination__move-bar">
-      <li class="page-item">
+      <li class="page-item f-l-item">
         <a class="page-link" onclick="moveToPage(1)">First Item</a>
       </li>
       <li class="page-item" id="previous-page">
@@ -409,16 +429,16 @@ const createPaginationToolbar = () => {
       <li class="page-item">
         <a class="page-link" onclick="moveToPage(this.textContent)">2</a>
       </li>
-      <li class="page-item" id="next-page">
+      <li class="page-item">
         <a class="page-link" aria-label="Next" onclick="moveToNextPage()">
         <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
-      <li class="page-item" id="last-page">
+      <li class="page-item f-l-item">
         <a class="page-link" onclick="moveToPage(${numberOfPages})">Last Item</a>
       </li>
     </div>
-    <div class="pagination__find-bar">
+    <div class="pagination__find-bar ">
       <li class="page-item">
         <div class="input-group">
           <input
@@ -443,14 +463,14 @@ const createPaginationToolbar = () => {
     </div>
 	`;
 
-  const paginationE = document.querySelector(".pagination");
+  const paginationE = document.querySelector('.pagination');
   paginationE.innerHTML = toolbar;
 
   displayData(products.slice(0, numberOfItemsOfEachPage));
 };
 
 /**********  Fetch Data **********/
-const fetchData = async (url = "", dataProperty) => {
+const fetchData = async (url = '', dataProperty) => {
   const response = await fetch(url);
   const dataJSON = await response.json();
   const dataList = dataJSON[dataProperty];
@@ -458,28 +478,91 @@ const fetchData = async (url = "", dataProperty) => {
   return dataList;
 };
 
-const fetchProductList = () => {
-  fetchData("../../data/products.json", "products").then((productList) => {
-    localStorage.setItem("products", JSON.stringify(productList));
-    localStorage.setItem("currentList", JSON.stringify(productList));
-    localStorage.setItem("currentPage", "1");
-    localStorage.setItem("numberOfItemsOfEachPage", "24");
-    localStorage.setItem("selectedSearchField", "tenSP");
+const getSaleIDByProductID = (productID) => {
+  let sales = JSON.parse(localStorage.getItem('sales'));
 
-    displayFeatureFroducts(productList.slice(0, 3));
-    createPaginationToolbar();
+  todayProductSale = sales.filter((sale) => {
+    let beginDate = new Date(sale.beginDate);
+    let endDate = new Date(sale.endDate);
+    let curDate = new Date();
+    let currenDate = new Date(
+      curDate.getFullYear() +
+        '-' +
+        (curDate.getMonth() + 1) +
+        '-' +
+        curDate.getDate()
+    );
+
+    if (
+      beginDate <= currenDate &&
+      currenDate <= endDate &&
+      sale.products.includes(productID)
+    )
+      return true;
+    return false;
   });
 
-  // Fetch Ca
-  fetchData("../../data/categories.json", "categories").then((categories) =>
-    localStorage.setItem("categories", JSON.stringify(categories))
+  if (!todayProductSale) return null;
+
+  let maxSale = -1;
+  let selectID = null;
+
+  let sortedSale = todayProductSale.sort((s1, s2) => {
+    parseInt(s2.discount) - parseInt(s1.discount);
+  });
+
+  return sortedSale[0];
+};
+
+// Notice: This function lack adding sales to product => have to implement
+// fetch product list, category list, review list
+const fetchProductList = async () => {
+  localStorage.setItem('currentPage', '1');
+  localStorage.setItem('numberOfItemsOfEachPage', '24');
+  localStorage.setItem('selectedSearchField', 'tenSP');
+
+  // Fetch Category
+  fetchData('../../data/categories.json', 'categories').then((categories) =>
+    localStorage.setItem('categories', JSON.stringify(categories))
   );
+
+  let reviewList = await fetchData('../../data/reviews.json', 'reviews');
+  localStorage.setItem('reviews', JSON.stringify(reviewList));
+
+  let productList = await fetchData('../../data/products.json', 'products');
+
+  // calculate product's review's stars
+  productList.forEach((product, index) => {
+    let tempReviewAcc = reviewList.reduce(
+      (acc, review) =>
+        review.maSP == product.maSP
+          ? {
+              ...acc,
+              total: acc.total + review.soSao,
+              quantity: ++acc.quantity
+            }
+          : acc,
+
+      { total: 0, quantity: 0 }
+    );
+
+    productList[index]['soSao'] =
+      Math.ceil(tempReviewAcc.total / tempReviewAcc.quantity) || 0;
+
+    // implement product sale below
+  });
+
+  localStorage.setItem('currentList', JSON.stringify(productList));
+  localStorage.setItem('products', JSON.stringify(productList));
+
+  displayFeatureFroducts(productList.slice(0, 3));
+  createPaginationToolbar();
 };
 
 /**********  Search **********/
 const search = (value) => {
-  let products = JSON.parse(localStorage.getItem("products"));
-  let selectedSearchField = localStorage.getItem("selectedSearchField");
+  let products = JSON.parse(localStorage.getItem('products'));
+  let selectedSearchField = localStorage.getItem('selectedSearchField');
 
   let filteredProducts = products.filter((product) => {
     if (product[selectedSearchField].includes(value)) return true;
@@ -487,83 +570,82 @@ const search = (value) => {
     return false;
   });
 
-  localStorage.setItem("currentList", JSON.stringify(filteredProducts));
+  localStorage.setItem('currentList', JSON.stringify(filteredProducts));
 
   createPaginationToolbar();
 };
 
-const selectSearchField = (selectedSearchField = "name") => {
-  localStorage.setItem("selectedSearchField", selectedSearchField);
+const selectSearchField = (selectedSearchField = 'name') => {
+  localStorage.setItem('selectedSearchField', selectedSearchField);
   search(searchField.value);
 };
 
-searchField.addEventListener("keyup", (e) => {
+searchField.addEventListener('keyup', (e) => {
   search(e.target.value);
 });
 
 /**********  Move to Page Detailed Product **********/
-const products = JSON.parse(localStorage.getItem("products"));
-const recentlyViewdArr = JSON.parse(localStorage.getItem("recently"));
+const products = JSON.parse(localStorage.getItem('products'));
 const findProductFromId = (maSPToAdd) => {
   return products.filter((product) => {
     return product.maSP == maSPToAdd;
   });
 };
 const directToDetailPage = (productCode) => {
-  localStorage.setItem("detailProductCode", productCode);
-  window.location.href = "../../client/html/product-detail-page.html";
+  localStorage.setItem('detailProductCode', productCode);
+  window.location.href = '../../client/html/product-detail-page.html';
   //  push to recently view
   var newArr = [];
   const product = findProductFromId(productCode);
   newArr.push(product);
   localStorage.setItem(
-    "recentlyViewed",
+    'recentlyViewed',
     JSON.stringify(Array.from(new Set(...newArr)))
   );
 };
 
 /**********  Sort product **********/
 function selectSort(selectElement) {
-  let products = JSON.parse(localStorage.getItem("products"));
+  let products = JSON.parse(localStorage.getItem('products'));
   let sortedProducts = null;
 
-  if (selectElement.value === "default") {
+  if (selectElement.value === 'default') {
     sortedProducts = products;
   }
 
-  if (selectElement.value === "priceUp") {
+  if (selectElement.value === 'priceUp') {
     sortedProducts = products.sort((p1, p2) => p1.gia - p2.gia);
   }
 
-  if (selectElement.value === "priceDown") {
+  if (selectElement.value === 'priceDown') {
     sortedProducts = products.sort((p1, p2) => p2.gia - p1.gia);
   }
 
-  if (selectElement.value === "alphaUp") {
+  if (selectElement.value === 'alphaUp') {
     sortedProducts = products.sort((p1, p2) => {
       if (p1.tenSP < p2.tenSP) return -1;
       return p1.tenSP > p2.tenSP ? 1 : 0;
     });
   }
 
-  if (selectElement.value === "alphaDown") {
+  if (selectElement.value === 'alphaDown') {
     sortedProducts = products.sort((p1, p2) => {
       if (p2.tenSP < p1.tenSP) return -1;
       return p2.tenSP > p1.tenSP ? 1 : 0;
     });
   }
 
-  if (selectElement.value === "dateUp") {
+  if (selectElement.value === 'dateUp') {
     sortedProducts = products.sort(
       (p1, p2) => new Date(p1.ngayNhap) - new Date(p2.ngayNhap)
     );
   }
 
-  if (selectElement.value === "dateDown") {
+  if (selectElement.value === 'dateDown') {
     sortedProducts = products.sort(
       (p1, p2) => new Date(p2.ngayNhap) - new Date(p1.ngayNhap)
     );
   }
-  localStorage.setItem("currentList", JSON.stringify(sortedProducts));
+  localStorage.setItem('currentList', JSON.stringify(sortedProducts));
   createPaginationToolbar();
 }

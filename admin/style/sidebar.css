@@ -53,7 +53,9 @@ body {
 .user:hover > .dropdown {
   display: block;
 }
-
+.log-out {
+  cursor: pointer;
+}
 /* SIDEBAR */
 .sidebar {
   background: #2c2e3e;
