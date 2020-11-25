@@ -16,19 +16,22 @@ NavbarElement.innerHTML = `
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="#" class="nav-link active">MAKE UP</a>
+              <a href="./home.html" class="nav-link active">Trang chủ</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">HAIR</a>
+              <a href="./product-page.html" class="nav-link">Trang sản phẩm</a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="justify-content-md-right"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="./login.html" class="nav-link active">Đăng nhập</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">PERSONAL CARE</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">FRAGRANCE</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">NIGHT WEAR</a>
+              <a href="./cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
             </li>
           </ul>
         </div>
