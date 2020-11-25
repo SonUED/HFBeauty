@@ -111,7 +111,7 @@ const createProductElementRow = (product = {}) => {
             <td>
                 <div class="card">
                     <div class="row no-gutters">
-                        <div class="col-lg-2">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
                           <img
                             id="product-img-${product.maSP}"
                             src="${product.anh}"
@@ -119,7 +119,7 @@ const createProductElementRow = (product = {}) => {
                             alt="Product Image"
                           />
                         </div>
-                        <div class="col-lg-10">
+                        <div class="col-10 col-sm-10 col-md-10 col-lg-10">
                             <div class="card-body">
                                 <h5 class="card-title" id="product-name-${product.maSP}">
                                     ${product.tenSP}
@@ -282,6 +282,9 @@ dropItemsPagination.forEach((item) => {
 		dropdownTogglePagination.textContent = e.target.textContent;
 
 		createPaginationToolbar();
+
+		const currentPage = parseInt(localStorage.getItem('currentPage'));
+		moveToPage(currentPage);
 	});
 });
 

@@ -91,6 +91,9 @@ input::-webkit-inner-spin-button {
           align-items: center;
   width: 60%;
   vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .toolbar-right .dropdown,
@@ -309,6 +312,12 @@ input::-webkit-inner-spin-button {
 
 .product-management__nav .product-management__quantity-title p {
   margin-bottom: 0;
+}
+
+.product-management__body {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /****************************************
