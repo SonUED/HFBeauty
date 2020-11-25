@@ -1,0 +1,39 @@
+.search-navbar {
+  display: inline-block;
+  height: 100%;
+
+  &__search-field {
+    height: auto;
+
+    font-size: 14px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__choose-attr {
+    color: #e7040f;
+    border-color: #e7040f;
+
+    &:hover {
+      color: white;
+      background-color: #e7040f;
+      border-color: #e7040f;
+    }
+  }
+
+  .btn-outline-success:not(:disabled):not(.disabled).active,
+  .btn-outline-success:not(:disabled):not(.disabled):active,
+  .show > .btn-outline-success.dropdown-toggle {
+    color: white;
+    background-color: #e7040f;
+    border-color: #e7040f;
+  }
+
+  .dropdown-menu {
+    font-family: 'Arimo', sans-serif;
+    font-size: 12px;
+    &.show {
+      width: 100%;
+    }
+  }
+}

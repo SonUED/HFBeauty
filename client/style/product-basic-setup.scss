@@ -1,0 +1,244 @@
+$primaryFont: 'Oswald';
+$secondaryFont: 'Arimo';
+
+$primaryColor: #2d2d2d;
+$secondaryColor: #000000;
+
+$hoverTextColor: #e7040f;
+$labelColor: #e7040f;
+$buttonColor: #ff416a;
+$hoverButtonColor: #ff722e;
+$borderColor: #e0e5e2;
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $primaryFont, sans-serif;
+  font-weight: 500;
+  background-color: #fff;
+  color: $primaryColor;
+  letter-spacing: 0.02rem;
+}
+
+main {
+  margin-bottom: 80px;
+}
+
+a {
+  color: $primaryColor;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1230px;
+}
+
+.disabled-click {
+  pointer-events: none;
+}
+
+$smallDevices: 576px;
+$mediumDevices: 768px;
+$largeDevices: 992px;
+
+@mixin smallDevices {
+  @media (min-width: $smallDevices) {
+    @content;
+  }
+}
+
+@mixin mediumDevices {
+  @media (min-width: $mediumDevices) {
+    @content;
+  }
+}
+
+@mixin largeDevices {
+  @media (min-width: $largeDevices) {
+    @content;
+  }
+}
+/****************************************
+          REUSED COMPONENT
+****************************************/
+
+/******* CARD *******/
+.collection__list {
+  .card {
+    padding: 0 20%;
+
+    @include smallDevices() {
+      padding: 0 50px;
+    }
+
+    @include mediumDevices() {
+      padding: 0 25px;
+    }
+
+    @include largeDevices() {
+      padding: 0;
+    }
+  }
+}
+
+.card {
+  border: none;
+
+  img {
+    height: 220px;
+  }
+
+  &-top {
+    position: relative;
+
+    .card-label,
+    .card-quick-view-btn {
+      position: absolute;
+      font-size: 12px;
+    }
+
+    .card-label {
+      top: 20px;
+      padding: 2px 5px;
+
+      font-family: $secondaryFont, sans-serif;
+
+      color: white;
+      background-color: $labelColor;
+
+      strong {
+        font-weight: 400;
+      }
+    }
+
+    .card-quick-view-btn {
+      visibility: hidden;
+      cursor: pointer;
+
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 5px 10px;
+
+      font-weight: 400;
+      line-height: 20px;
+      text-align: center;
+
+      border-radius: 3px;
+      background-color: white;
+      box-shadow: 0 0 6px 0.1px #b8bab9;
+
+      &:hover {
+        color: white;
+        background-color: black;
+      }
+
+      span {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &-body {
+    padding: 10px 0 15px;
+
+    .card-title,
+    .card-subtitle {
+      height: 23px;
+      margin-bottom: 4px;
+
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 20px;
+    }
+
+    .card-title,
+    .card-text {
+      font-family: $secondaryFont, sans-serif;
+    }
+
+    .card-subtitle,
+    .btn {
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        cursor: pointer;
+        color: $hoverTextColor;
+      }
+    }
+
+    .price-box {
+      margin-bottom: 15px;
+
+      font-size: 14px;
+      font-weight: 700;
+      color: $hoverTextColor;
+    }
+
+    .btn {
+      padding: 10px;
+      font: 600 16px/20px $primaryFont, sans-serif;
+    }
+
+    .add-to-cart-btn {
+      visibility: hidden;
+      width: 100%;
+
+      background-color: $buttonColor;
+      border: 1px solid black;
+
+      &:hover {
+        background-color: $hoverButtonColor;
+        border: 1px solid $buttonColor;
+      }
+    }
+  }
+}
+
+/******* COLLECTION ITEM *******/
+.collection__item {
+  margin-bottom: 5px;
+
+  @include mediumDevices() {
+    &:hover {
+      padding: -15px;
+      box-shadow: 0 0 5px 0.1px #b8bab9;
+
+      .add-to-cart-btn,
+      .card-quick-view-btn {
+        visibility: visible;
+      }
+    }
+  }
+
+  &--featured {
+    width: 95%;
+    margin: 0 auto;
+
+    .add-to-cart-btn {
+      visibility: visible;
+    }
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}

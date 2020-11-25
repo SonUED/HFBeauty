@@ -1,0 +1,293 @@
+@import url(d:\UED - Senior - 2020 - 2021\Semester 1\Javascript Programming\HFBeauty\client\style\reset.css);
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  background-color: #fff;
+  color: #2d2d2d;
+  letter-spacing: 0.02rem;
+}
+
+main {
+  margin-bottom: 80px;
+}
+
+a {
+  color: #2d2d2d;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1230px;
+}
+
+.disabled-click {
+  pointer-events: none;
+}
+
+/****************************************
+          REUSED COMPONENT
+****************************************/
+/******* CARD *******/
+.collection__list .card {
+  padding: 0 20%;
+}
+
+@media (min-width: 576px) {
+  .collection__list .card {
+    padding: 0 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .collection__list .card {
+    padding: 0 25px;
+  }
+}
+
+@media (min-width: 992px) {
+  .collection__list .card {
+    padding: 0;
+  }
+}
+
+.card {
+  border: none;
+}
+
+.card img {
+  height: 220px;
+}
+
+.card-top {
+  position: relative;
+}
+
+.card-top .card-label,
+.card-top .card-quick-view-btn {
+  position: absolute;
+  font-size: 12px;
+}
+
+.card-top .card-label {
+  top: 20px;
+  padding: 2px 5px;
+  font-family: "Arimo", sans-serif;
+  color: white;
+  background-color: #e7040f;
+}
+
+.card-top .card-label strong {
+  font-weight: 400;
+}
+
+.card-top .card-quick-view-btn {
+  visibility: hidden;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 5px 10px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: white;
+  -webkit-box-shadow: 0 0 6px 0.1px #b8bab9;
+          box-shadow: 0 0 6px 0.1px #b8bab9;
+}
+
+.card-top .card-quick-view-btn:hover {
+  color: white;
+  background-color: black;
+}
+
+.card-top .card-quick-view-btn span {
+  pointer-events: none;
+}
+
+.card-body {
+  padding: 10px 0 15px;
+}
+
+.card-body .card-title,
+.card-body .card-subtitle {
+  height: 23px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.card-body .card-title,
+.card-body .card-text {
+  font-family: "Arimo", sans-serif;
+}
+
+.card-body .card-subtitle,
+.card-body .btn {
+  text-transform: uppercase;
+}
+
+.card-body .card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-body .card-title:hover {
+  cursor: pointer;
+  color: #e7040f;
+}
+
+.card-body .price-box {
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e7040f;
+}
+
+.card-body .btn {
+  padding: 10px;
+  font: 600 16px/20px "Oswald", sans-serif;
+}
+
+.card-body .add-to-cart-btn {
+  visibility: hidden;
+  width: 100%;
+  background-color: #ff416a;
+  border: 1px solid black;
+}
+
+.card-body .add-to-cart-btn:hover {
+  background-color: #ff722e;
+  border: 1px solid #ff416a;
+}
+
+/******* COLLECTION ITEM *******/
+.collection__item {
+  margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+  .collection__item:hover {
+    padding: -15px;
+    -webkit-box-shadow: 0 0 5px 0.1px #b8bab9;
+            box-shadow: 0 0 5px 0.1px #b8bab9;
+  }
+  .collection__item:hover .add-to-cart-btn,
+  .collection__item:hover .card-quick-view-btn {
+    visibility: visible;
+  }
+}
+
+.collection__item--featured {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.collection__item--featured .add-to-cart-btn {
+  visibility: visible;
+}
+
+.collection__item--featured:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.buy-it-now-btn {
+  width: 100%;
+  color: black;
+  background-color: #fff;
+  border: 1px solid #ff416a;
+}
+
+.buy-it-now-btn:hover {
+  background-color: #ff416a;
+  border: 1px solid black;
+}
+
+.nav-tabs {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.nav-tabs .nav-link {
+  text-transform: uppercase;
+}
+
+.nav-tabs .nav-link.active {
+  color: black;
+}
+
+.product-detail-support {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tab-content {
+  padding: 25px 0;
+  font: 400 12px/20px "Arimo", sans-serif;
+}
+
+.tab-content .tab-pane:first-child,
+.tab-content .tab-pane:last-child {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.tab-content .tab-pane:nth-of-type(2) {
+  padding: 24px;
+  border: 1.5px solid #e0e5e2;
+}
+
+/****************************************
+		SECTION customer reviews
+****************************************/
+.section-reviews {
+  padding: 10px;
+}
+
+.section-reviews .reviews__item {
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #7d7c7c;
+}
+
+.section-reviews .reviews__item:not(:last-of-type) {
+  margin-bottom: 2.5rem;
+}
+
+.section-reviews .reviews__stars i:nth-of-type(1) {
+  color: #ffab5a;
+}
+
+.section-reviews .reviews__stars i:nth-of-type(2) {
+  color: #ffa147;
+}
+
+.section-reviews .reviews__stars i:nth-of-type(3) {
+  color: #ff9e41;
+}
+
+.section-reviews .reviews__stars i:nth-of-type(4) {
+  color: #ff8a18;
+}
+
+.section-reviews .reviews__stars i:nth-of-type(5) {
+  color: #ff8004;
+}
+/*# sourceMappingURL=product-detail-page.css.map */

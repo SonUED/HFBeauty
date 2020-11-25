@@ -1,0 +1,31 @@
+.btn-group {
+    font-size: 15px;
+    width: 100%;
+    margin-top: 100px;
+}
+.button {
+    text-align: center;
+    background-color: white;
+    outline: none;
+    border: none;
+    width: 100%;
+
+}
+.button:hover {
+    color: orange;
+}
+
+/* input:focus {
+    border-bottom: 3px solid orange;
+} */
+
+.table {
+    font-size: 14px;
+    width: 100%;
+    border-bottom: 1px solid #ebebe0;
+    border-top: 1px solid #ebebe0;
+}
+table tr {
+    border-bottom: 1px solid #ebebe0;
+    border-top: 1px solid #ebebe0;
+}

@@ -1,0 +1,40 @@
+.search-navbar {
+  display: inline-block;
+  height: 100%;
+}
+
+.search-navbar__search-field {
+  height: auto;
+  font-size: 14px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search-navbar__choose-attr {
+  color: #e7040f;
+  border-color: #e7040f;
+}
+
+.search-navbar__choose-attr:hover {
+  color: white;
+  background-color: #e7040f;
+  border-color: #e7040f;
+}
+
+.search-navbar .btn-outline-success:not(:disabled):not(.disabled).active,
+.search-navbar .btn-outline-success:not(:disabled):not(.disabled):active,
+.search-navbar .show > .btn-outline-success.dropdown-toggle {
+  color: white;
+  background-color: #e7040f;
+  border-color: #e7040f;
+}
+
+.search-navbar .dropdown-menu {
+  font-family: 'Arimo', sans-serif;
+  font-size: 12px;
+}
+
+.search-navbar .dropdown-menu.show {
+  width: 100%;
+}
+/*# sourceMappingURL=search-nav.style.css.map */

@@ -1,0 +1,284 @@
+body {
+  position: relative;
+  background-color: #fff;
+  color: #2d2d2d;
+  letter-spacing: 0.02rem;
+}
+
+.product-detail {
+  width: 100%;
+  max-height: 70vh;
+  padding: 40px;
+  font-family: "Arimo", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: white;
+}
+.product-section,
+.payment-section {
+  margin-top: 20px;
+}
+.price-text {
+  font-family: "Arimo";
+  margin: 0 auto;
+  padding: 3rem;
+}
+.scure_brand img {
+  width: 100%;
+}
+.payment-section .sub-text {
+  font-size: 14px;
+  font-weight: normal;
+}
+#price {
+  font-weight: bold;
+  font-size: 22px;
+}
+#discount {
+  font-weight: bold;
+  font-size: 18px;
+}
+#total {
+  font-size: 28px;
+  font-weight: 600;
+}
+.gray {
+  background: #fafafa;
+}
+.product-detail .btn {
+  visibility: visible;
+}
+
+.product-detail .strong-text-700,
+.product-detail .card-title {
+  font-weight: 700;
+}
+
+.product-detail .card-title {
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.product-detail .btn,
+.product-detail .card-title,
+.product-detail .price-box,
+.product-detail .quantity,
+.product-detail__brand,
+.product-detail__code,
+.product-detail__des,
+.product-detail__seen,
+.quantity__title,
+.product-detail__reviews {
+  margin-bottom: 5px;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+.product-detail .price-box {
+  font-size: 20px;
+}
+.card {
+  border: none;
+}
+
+.card-top {
+  position: relative;
+  width: 200px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.card-top .card-label strong {
+  font-weight: 400;
+}
+
+.card-body {
+  padding: 10px 0 15px;
+}
+
+.card-body .card-title,
+.card-body .card-subtitle {
+  height: 23px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.card-body .card-title,
+.card-body .card-text {
+  font-family: "Arimo", sans-serif;
+}
+
+.card-body .card-subtitle,
+.card-body .btn {
+  text-transform: uppercase;
+}
+
+.card-body .card-title:hover {
+  cursor: pointer;
+  color: #e7040f;
+}
+
+.card-body .price-box {
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e7040f;
+}
+
+.card-body .btn {
+  padding: 5px 10px;
+  font: 300 14px/20px "Oswald", sans-serif;
+}
+
+.quantity__group {
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.quantity__plus,
+.quantity__minus,
+.quantity__content {
+  display: inline-block;
+  margin: 0 0 0 -1px;
+  padding: 0 1px 0 0;
+  height: 50px;
+  width: 20%;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #e0e5e2;
+}
+
+.quantity__plus:focus,
+.quantity__minus:focus,
+.quantity__content:focus {
+  outline: none;
+}
+
+.quantity__plus:hover,
+.quantity__minus:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.quantity__content {
+  width: 40%;
+}
+.card-body .add-to-cart-btn {
+  visibility: visible;
+  width: 50%;
+  background-color: transparent;
+  border: 1px solid #575757;
+  color: #575757;
+}
+
+.card-body .add-to-cart-btn:hover {
+  color: #ff416a;
+  border: 1px solid #ff416a;
+}
+.payment-btn {
+  visibility: visible;
+  padding: 10px 0px;
+  width: 100%;
+  background-color: #ff416a;
+  color: white;
+  border: 1px solid #ff416a;
+}
+.order__btn {
+  visibility: visible;
+  padding: 5px 10px;
+  background-color: #ff416a;
+  color: white;
+  border: 1px solid #ff416a;
+}
+.order__btn:hover {
+  text-decoration: none !important;
+  color: white;
+}
+textarea {
+  visibility: visible;
+  padding: 10px 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  color: #000;
+  border: 1px solid #ff416a;
+  outline: none;
+  font-size: 14px;
+}
+.secure {
+  padding: 10px 0px;
+}
+.secure .secure_text {
+  font-family: "Arimo", serif;
+  font-size: 14px;
+  font-weight: 200;
+  padding: 10px 0px;
+}
+/* MODAL */
+.modals {
+  position: absolute;
+  display: none;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  background: #fff;
+  width: 60%;
+  font-size: 1.6rem;
+  border: 1px solid #ff416a;
+}
+.modal__inner {
+  padding: 5px 2rem;
+}
+.item-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+.item-wrapper .item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-wrapper .item span img {
+  width: 80px;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.info .address {
+  font-weight: 300 !important;
+}
+.modal__items {
+  padding: 2rem 0rem;
+}
+.modal__footer {
+  width: 100%;
+  flex-direction: column;
+}
+.modal__footer div:nth-child(n) {
+  padding: 1rem 0rem;
+}
+.modal__footer .pay select {
+  padding: 0.5rem 0rem;
+}
+
+.modals .header__modals {
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+}
+.modals .header__modals p {
+  padding: 1rem 1rem;
+  color: #fff;
+}

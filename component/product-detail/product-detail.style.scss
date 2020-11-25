@@ -1,0 +1,130 @@
+$starColors: #ffab5a, #ffa147, #ff9e41, #ff8a18, #ff8004;
+$borderColor: #e0e5e2;
+
+$largeDevices: 992px;
+
+@mixin largDevices {
+  @media (min-width: $largeDevices) {
+    @content;
+  }
+}
+
+@mixin setStarColor($colorList, $selector) {
+  @for $i from 1 through 5 {
+    #{ $selector }:nth-of-type(#{ $i }) {
+      color: nth($colorList, $i);
+    }
+  }
+}
+
+.product-detail {
+  width: 100%;
+  padding: 40px;
+
+  font-family: 'Arimo', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: white;
+
+  .btn {
+    visibility: visible;
+  }
+
+  .strong-text-700,
+  .card-title {
+    font-weight: 700;
+  }
+
+  .card-title {
+    text-align: center;
+
+    font-size: 18px;
+    line-height: 30px;
+
+    @include largDevices() {
+      text-align: left;
+    }
+  }
+
+  .btn,
+  .card-title,
+  .price-box,
+  .quantity,
+  &__brand,
+  &__code,
+  &__des,
+  &__seen,
+  &__reviews,
+  &__cate {
+    margin-bottom: 20px;
+    line-height: 20px;
+  }
+
+  &__reviews {
+    text-align: center;
+
+    @include setStarColor($starColors, 'i');
+
+    @include largDevices() {
+      text-align: left;
+    }
+  }
+
+  .price-box {
+    font-size: 20px;
+
+    .old-price,
+    .new-price {
+      padding: 10px;
+    }
+  }
+
+  .add-to-cart-btn {
+    visibility: visible;
+  }
+}
+
+.product-detail--inside-collection {
+  padding: 10px;
+
+  .add-to-cart-btn {
+    max-width: 40%;
+  }
+}
+
+.quantity {
+  &__group {
+    padding: 5px;
+
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__plus,
+  &__minus,
+  &__content {
+    display: inline-block;
+    margin: 0 0 0 -1px;
+    padding: 0 1px 0 0;
+    height: 50px;
+    width: 15%;
+    text-align: center;
+
+    background-color: #fff;
+    border: 1px solid $borderColor;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__plus:hover,
+  &__minus:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  &__content {
+    width: 70%;
+  }
+}

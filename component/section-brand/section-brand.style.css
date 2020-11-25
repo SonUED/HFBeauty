@@ -1,0 +1,20 @@
+/****************************************
+		SECTION brands
+****************************************/
+.brand__block {
+  padding: 38px 0;
+}
+
+.brand__item {
+  padding: 10px;
+  text-align: center;
+}
+
+@media (min-width: 981px) {
+  .brand .col-20 {
+    max-width: 20%;
+    padding-left: 15px;
+    padding-right: 10px;
+  }
+}
+/*# sourceMappingURL=section-brand.style.css.map */

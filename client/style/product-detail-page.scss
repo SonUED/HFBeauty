@@ -1,0 +1,81 @@
+@import 'reset.css';
+@import 'product-basic-setup';
+
+$starColors: #ffab5a, #ffa147, #ff9e41, #ff8a18, #ff8004;
+@mixin setStarColor($colorList, $selector) {
+	@for $i from 1 through 5 {
+		#{ $selector }:nth-of-type(#{ $i }) {
+			color: nth($colorList, $i);
+		}
+	}
+}
+
+.buy-it-now-btn {
+	width: 100%;
+	color: black;
+	background-color: #fff;
+	border: 1px solid $buttonColor;
+
+	&:hover {
+		background-color: $buttonColor;
+		border: 1px solid black;
+	}
+}
+
+.nav {
+	&-tabs {
+		font-weight: 600;
+		font-size: 14px;
+
+		.nav-link {
+			text-transform: uppercase;
+		}
+		.nav-link.active {
+			color: black;
+		}
+	}
+}
+
+.product-detail-support {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.tab-content {
+	padding: 25px 0;
+	font: 400 12px/20px $secondaryFont, sans-serif;
+
+	.tab-pane:first-child,
+	.tab-pane:last-child {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.tab-pane:nth-of-type(2) {
+		padding: 24px;
+		border: 1.5px solid $borderColor;
+	}
+}
+
+/****************************************
+		SECTION customer reviews
+****************************************/
+
+.section-reviews {
+	padding: 10px;
+
+	.reviews {
+		&__item {
+			padding-bottom: 2.5rem;
+			border-bottom: 1px solid #7d7c7c;
+		}
+
+		&__item:not(:last-of-type) {
+			margin-bottom: 2.5rem;
+		}
+
+		&__stars {
+			@include setStarColor($starColors, 'i');
+		}
+	}
+}

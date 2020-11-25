@@ -1,0 +1,279 @@
+body {
+  font-family: "Oswald", sans-serif !important;
+}
+* {
+  outline: none;
+}
+.header {
+  position: relative;
+  height: 10rem;
+  width: 100%;
+  background-color: rgb(228, 228, 228);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+}
+.logo img {
+  width: 10rem;
+  padding: 1rem 1rem;
+}
+.container-fluid {
+  margin-top: 2rem;
+}
+
+.container .main {
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+}
+.collection-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+.collection-section .collection {
+  position: relative;
+  overflow: hidden;
+  width: calc(100% / 3 - 30px);
+}
+.collection-section .collection .collection__title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  cursor: pointer;
+  transition: border-bottom 0.3s linear;
+}
+.collection-section .collection:hover > .collection__title {
+  border-bottom: 2px solid black;
+}
+.collection-section .collection img {
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.collection-section .collection img:hover {
+  transform: scale(1.05) rotate(3deg);
+  position: relative;
+  z-index: 1;
+}
+.products {
+  position: relative;
+  top: 2rem;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+.products h3 {
+  position: relative;
+  text-align: center;
+  font-size: 3rem;
+  padding: 3rem;
+}
+.products h3::before {
+  top: 50%;
+  width: 120px;
+  height: 2px;
+  left: 25%;
+  position: absolute;
+  background-color: #141414;
+  content: "";
+}
+.products h3::after {
+  top: 50%;
+  width: 120px;
+  height: 2px;
+  right: 25%;
+  position: absolute;
+  background-color: #141414;
+  content: "";
+}
+.items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.wrapper {
+  width: calc(100% / 5 - 15px);
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin: 5px 0.3rem;
+  overflow: hidden;
+}
+.wrapper .product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.2s linear;
+}
+.wrapper .product .name {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+.wrapper .product .price-section {
+  margin: 5px;
+}
+.wrapper .product .price-section .price {
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.product img {
+  height: 300px;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+.product .mark {
+  background-color: red;
+  position: absolute;
+  top: 0rem;
+  left: 0;
+  color: white;
+}
+.wrapper button {
+  position: absolute;
+  display: none;
+  background-color: transparent;
+  border: 1px solid red;
+  color: white;
+  background-color: #e27d60;
+  bottom: 25%;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  outline: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+  transition: display 0.2s linear;
+}
+.img {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.img img {
+  width: 50%;
+}
+.product:hover {
+  opacity: 0.5;
+}
+.wrapper:hover > button {
+  display: block;
+}
+
+#instagram {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+#instagram div {
+  width: 25rem;
+  height: 25rem;
+  overflow: hidden;
+  text-align: center;
+}
+#instagram div img {
+  height: 100%;
+  object-fit: cover;
+}
+#instagram span {
+  font-size: 4rem;
+  color: #c7c7c7;
+}
+.trending {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  margin-left: -5rem;
+  margin: 0 auto;
+}
+.trending .trending-item {
+  position: relative;
+  width: calc(100% / 3 - 10px);
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.07);
+}
+.trending .trending-item .trending-img {
+  width: 100%;
+  height: 40rem;
+  overflow: hidden;
+  background: #000;
+}
+.trending .trending-item .trending-img img {
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+.trending .trending-item:hover > .trending-img img {
+  opacity: 0.8;
+  transform: scale(1.05) rotate(3deg);
+}
+.trending .trending-content {
+  text-align: center;
+}
+.trending .trending-content .content {
+  margin: 0 auto;
+  max-width: 80%;
+  margin-top: -4rem;
+  position: relative;
+  background: #fff;
+  padding: 2rem 0rem;
+}
+.trending .trending-content .content span {
+  text-transform: uppercase;
+  font-size: 2.8rem;
+  font-weight: 400;
+}
+.trending .trending-content .content h4 {
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.trending .trending-content {
+  font-size: 14px;
+  font-weight: 200;
+}
+.error {
+  border: 1px solid rgb(201, 54, 54);
+}
+@media only screen and (max-width: 600px) {
+  .collection-section {
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+  .collection-section .collection {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .products h3::before,
+  .products h3::after {
+    width: 0;
+  }
+  .wrapper {
+    width: calc(100% - 15px);
+  }
+  .trending {
+    flex-direction: column;
+  }
+  .trending .trending-item {
+    width: 100%;
+  }
+  #instagram span {
+    display: none;
+  }
+  #instagram div {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  #instagram div img {
+    width: 100%;
+  }
+}
