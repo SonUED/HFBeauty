@@ -95,7 +95,7 @@ ul {
 }
 
 .card-top .card-quick-view-btn {
-  visibility: hidden;
+  display: none;
   cursor: pointer;
   top: 50%;
   left: 50%;
@@ -167,7 +167,7 @@ ul {
 }
 
 .card-body .add-to-cart-btn {
-  visibility: hidden;
+  display: none;
   width: 100%;
   background-color: #ff416a;
   border: 1px solid black;
@@ -183,15 +183,16 @@ ul {
   margin-bottom: 5px;
 }
 
-.collection__item:hover {
-  padding: -15px;
-  -webkit-box-shadow: 0 0 5px 0.1px #b8bab9;
-          box-shadow: 0 0 5px 0.1px #b8bab9;
-}
-
-.collection__item:hover .add-to-cart-btn,
-.collection__item:hover .card-quick-view-btn {
-  visibility: visible;
+@media (min-width: 768px) {
+  .collection__item:hover {
+    padding: -15px;
+    -webkit-box-shadow: 0 0 5px 0.1px #b8bab9;
+            box-shadow: 0 0 5px 0.1px #b8bab9;
+  }
+  .collection__item:hover .add-to-cart-btn,
+  .collection__item:hover .card-quick-view-btn {
+    display: block;
+  }
 }
 
 .collection__item--featured {
@@ -392,6 +393,10 @@ ul {
   font-family: "Arimo", sans-serif;
   line-height: 27px;
   color: #000000;
+<<<<<<< HEAD
+=======
+  background-color: white;
+>>>>>>> c18700e (complete responsivement product page)
   border: 1px solid #e0e5e2;
   border-radius: 3px;
 }

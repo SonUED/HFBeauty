@@ -185,10 +185,13 @@ $largeDevices: 992px;
 	.sort-select {
 		width: 70px;
 		height: 27px;
+
 		font-size: 12px;
 		font-family: $secondaryFont, sans-serif;
 		line-height: 27px;
+
 		color: $secondaryColor;
+		background-color: white;
 		border: 1px solid $borderColor;
 		border-radius: 3px;
 
