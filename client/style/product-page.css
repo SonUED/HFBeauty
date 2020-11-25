@@ -1,4 +1,4 @@
-@import url(d:\Tran Thanh Khang\HFBeauty\client\style\reset.css);
+@import url(d:\UED - Senior - 2020 - 2021\Semester 1\Javascript Programming\HFBeauty\client\style\reset.css);
 html {
   font-size: 62.5%;
 }
@@ -95,7 +95,7 @@ ul {
 }
 
 .card-top .card-quick-view-btn {
-  display: none;
+  visibility: hidden;
   cursor: pointer;
   top: 50%;
   left: 50%;
@@ -167,7 +167,7 @@ ul {
 }
 
 .card-body .add-to-cart-btn {
-  display: none;
+  visibility: hidden;
   width: 100%;
   background-color: #ff416a;
   border: 1px solid black;
@@ -191,7 +191,7 @@ ul {
   }
   .collection__item:hover .add-to-cart-btn,
   .collection__item:hover .card-quick-view-btn {
-    display: block;
+    visibility: visible;
   }
 }
 
@@ -393,10 +393,7 @@ ul {
   font-family: "Arimo", sans-serif;
   line-height: 27px;
   color: #000000;
-<<<<<<< HEAD
-=======
   background-color: white;
->>>>>>> c18700e (complete responsivement product page)
   border: 1px solid #e0e5e2;
   border-radius: 3px;
 }

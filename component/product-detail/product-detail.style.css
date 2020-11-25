@@ -75,6 +75,10 @@
   padding: 10px;
 }
 
+.product-detail .add-to-cart-btn {
+  visibility: visible;
+}
+
 .product-detail--inside-collection {
   padding: 10px;
 }
