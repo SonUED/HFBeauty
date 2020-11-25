@@ -184,7 +184,7 @@ const createHorProductElement = (product = {}) => {
 	const cardBody = createCardbody(product);
 
 	const productElement = `
-    <div class="col-6 col-sm-6 col-md-4 col-lg-3 collection__item" onclick="directToDetailPage('${product.maSP}')">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 collection__item" onclick="directToDetailPage('${product.maSP}')">
         ${cardBody}
     </div>`;
 
@@ -408,7 +408,7 @@ const createPaginationToolbar = () => {
 
 	const toolbar = `
     <div class="pagination__move-bar">
-      <li class="page-item">
+      <li class="page-item f-l-item">
         <a class="page-link" onclick="moveToPage(1)">First Item</a>
       </li>
       <li class="page-item" id="previous-page">
@@ -425,16 +425,16 @@ const createPaginationToolbar = () => {
       <li class="page-item">
         <a class="page-link" onclick="moveToPage(this.textContent)">2</a>
       </li>
-      <li class="page-item" id="next-page">
+      <li class="page-item">
         <a class="page-link" aria-label="Next" onclick="moveToNextPage()">
         <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
-      <li class="page-item" id="last-page">
+      <li class="page-item f-l-item">
         <a class="page-link" onclick="moveToPage(${numberOfPages})">Last Item</a>
       </li>
     </div>
-    <div class="pagination__find-bar">
+    <div class="pagination__find-bar ">
       <li class="page-item">
         <div class="input-group">
           <input

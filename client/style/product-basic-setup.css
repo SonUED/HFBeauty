@@ -41,6 +41,28 @@ ul {
           REUSED COMPONENT
 ****************************************/
 /******* CARD *******/
+.collection__list .card {
+  padding: 0 20%;
+}
+
+@media (min-width: 576px) {
+  .collection__list .card {
+    padding: 0 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .collection__list .card {
+    padding: 0 25px;
+  }
+}
+
+@media (min-width: 992px) {
+  .collection__list .card {
+    padding: 0;
+  }
+}
+
 .card {
   border: none;
 }
@@ -118,6 +140,12 @@ ul {
 .card-body .card-subtitle,
 .card-body .btn {
   text-transform: uppercase;
+}
+
+.card-body .card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-body .card-title:hover {
