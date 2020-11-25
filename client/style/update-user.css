@@ -11,7 +11,7 @@ section {
 section * {
   margin: 10px;
 }
-.form-user {
+.form-customer {
   display: none;
   width: 80%;
   margin: auto;
@@ -19,6 +19,7 @@ section * {
 
 .name {
   border-bottom: 2px solid;
+  /* padding-left: 40%; */
   text-align: center;
 }
 
@@ -37,26 +38,28 @@ section * {
   position: relative;
   text-align: center;
   width: 200px;
+  top: 15px;
 }
 
 .image {
-  left: 100px;
   display: block;
   width: 200px;
   height: auto;
 }
 
+
 .overlay {
+  /* display: none; */
   position: absolute;
-  top: 0;
+  top: -10px;
   bottom: 0;
-  left: 0;
+  left: 15px;
   right: 0;
   height: 100%;
-  width: 250px;
+  width: 200px;
   opacity: 0;
   transition: 0.5s ease;
-  background-color: #008cba;
+  background-color: gray;
 }
 
 .container:hover .overlay {
@@ -78,7 +81,7 @@ section * {
   margin-left: 40%;
 }
 .btn-group {
-  margin-left: 40%;
+  margin-left: 45%;
 }
 
 .avatar-upload-file {

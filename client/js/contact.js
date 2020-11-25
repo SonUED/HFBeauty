@@ -15,19 +15,26 @@ function sent() {
   var name = document.querySelector("#name").value;
   var email = document.querySelector("#email").value;
   var message = document.querySelector("#message").value;
+  var today = new Date();
 
-  var newContact = {
-    id: "CT" + contact.length,
-    name: name,
-    email: email,
-    message: message,
-    date: new Date(),
-    status: "unseen"
+  if (!name || !email || !message) {
+    alert("Tất cả các trường không được để trống");
+  }else {
+    var newContact = {
+      id: "CT" + contact.length,
+      name: name,
+      email: email,
+      message: message,
+      date: today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(),
+      status: "unseen"
+    }
+  
+    contact.push(newContact);
+    saveContactToStorage();
+    showForm();
   }
 
-  contact.push(newContact);
-  saveContactToStorage();
-  showForm();
+  
 }
 
 function getContactFromStorage(){

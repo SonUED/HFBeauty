@@ -1,4 +1,4 @@
-const searchNavTemplate = document.createElement("template");
+const searchNavTemplate = document.createElement('template');
 
 searchNavTemplate.innerHTML = `
 <link rel="stylesheet" type="text/css" href="/component/search-nav/search-nav.style.css">
@@ -15,7 +15,7 @@ searchNavTemplate.innerHTML = `
         />
         <button
             type="button"
-            class="btn btn-outline-success my-2 my-sm-0 dropdown-toggle dropdown-toggle-split search-navbar__choose-attr"
+            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split search-navbar__choose-attr"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -63,4 +63,4 @@ class SearchNav extends HTMLElement {
   }
 }
 
-customElements.define("search-nav-element", SearchNav);
+customElements.define('search-nav-element', SearchNav);

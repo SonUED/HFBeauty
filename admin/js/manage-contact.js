@@ -13,7 +13,7 @@ function showContact(mess) {
 
   contact.map((item) => {
     if (mess === "unseen") {
-      btn = `<input class="btn btn-danger" type="button" value="Đã Đọc " onclick="seen('${item.id}')">`;
+      btn = `<input class="btn btn-success" type="button" value="Đã Đọc " onclick="seen('${item.id}')">`;
     } else {
       btn = `${item.status}`;
     }

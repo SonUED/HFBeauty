@@ -1,37 +1,14 @@
-var category = [
-  {
-    index: "DM0",
-    name: "Son Xáp",
-    description: "123",
-    image:
-      "https://media3.scdn.vn/img3/2019/3_17/OWbf3h_simg_de2fe0_500x500_maxb.jpg",
-  },
-  {
-    index: "DM1",
-    name: "Son Nước",
-    description: "123",
-    image:
-      "https://media3.scdn.vn/img3/2019/7_3/ubH8on_simg_de2fe0_500x500_maxb.jpg",
-  },
-  {
-    index: "DM2",
-    name: "Son Dưỡng",
-    description: "123",
-    image:
-      "https://product.hstatic.net/1000025647/product/son-duong-dior-001-pink_grande_9e54348245de42f5a816f49a3bbc30bc_grande.png",
-  },
-];
-
+var category = [];
 function showCategory() {
   document.querySelector(".table-category").innerHTML = "";
   category.map((item) => {
     var row = `<tr>
-            <td> ${item.index} </td>
-            <td> ${item.name} </td>
-            <td> ${item.description} </td>
-            <td><img class="img-thumbnail" src="${item.image}"/></td>
-            <td><input class="btn btn-success" type="button" value="Sửa" onclick="editCategory('${item.index}')"></td>
-            <td><input class="btn btn-danger" type="button" value="Xóa" onclick="deleteCategory('${item.index}')"></td>
+            <td> ${item.maDM} </td>
+            <td> ${item.tenDM} </td>
+            <td> ${item.moTa} </td>
+            <td><img class="img-thumbnail" src="${item.anh}"/></td>
+            <td><input class="btn btn-success" type="button" value="Sửa" onclick="editCategory('${item.maDM}')"></td>
+            <td><input class="btn btn-danger" type="button" value="Xóa" onclick="deleteCategory('${item.maDM}')"></td>
         </tr>`;
 
     document.querySelector(".table-category").innerHTML += row;
@@ -39,47 +16,53 @@ function showCategory() {
 }
 
 function save() {
-  getCategoryFromStorage()
+  getCategoryFromStorage();
 
   var index = document.getElementById("index").value;
   var name = document.getElementById("name").value;
   var description = document.getElementById("description").value;
   var image = document.getElementById("image").value;
 
-  var item = {
-    index: index,
-    name: name,
-    description: description,
-    image: image,
-  };
-  if (index == "") {
-    index = category[category.length - 1].index;
-    index = parseInt(index.slice(2, index.length));
-    index++;
-    index = "DM" + index;
-    item.index = index;
-    category.push(item);
+  if (!name || !description || !image) {
+    alert("Tất cả các trường không được để trống");
   } else {
-    category = category.map(cate => cate.index === item.index ?   item : cate);
+    var item = {
+      maDM: index,
+      tenDM: name,
+      moTa: description,
+      anh: image,
+    };
+
+    if (index == "") {
+      index = category[category.length - 1].maDM;
+      index = parseInt(index.slice(2, index.length));
+      index++;
+      index = "DM" + index;
+      item.maDM = index;
+      category.push(item);
+    } else {
+      category = category.map((cate) =>
+        cate.maDM === item.maDM ? item : cate
+      );
+    }
+
+    saveCategoryToStorage();
+    showCategory();
+    showForm();
   }
-
-
-  saveCategoryToStorage();
-  showCategory();
-  showForm();
 }
 function editCategory(index) {
   showForm();
   getCategoryFromStorage();
-  index = index.slice(2, index.length);
+  index = index.slice(2, index.length) - 1;
   document.getElementById("index").value = "DM" + index;
-  document.getElementById("name").value = category[index].name;
-  document.getElementById("description").value = category[index].description;
-  document.getElementById("image").value = category[index].image;
+  document.getElementById("name").value = category[index].tenDM;
+  document.getElementById("description").value = category[index].moTa;
+  document.getElementById("image").value = category[index].anh;
 }
 function deleteCategory(index) {
   getCategoryFromStorage();
-  category = category.filter((item) => item.index != index);
+  category = category.filter((item) => item.maDM != index);
   saveCategoryToStorage();
   showCategory();
 }
@@ -100,7 +83,6 @@ function showForm() {
     document.querySelector(".table").style.display = "none";
   }
 }
-
 
 function searching(inputText) {
   inputText = inputText.toLowerCase().trim();
@@ -139,4 +121,11 @@ function loadData() {
   getCategoryFromStorage();
   showCategory();
 }
-
+function fetchCategory() {
+  fetch("../../data/categories.json")
+    .then((response) => response.json())
+    .then((data) => {
+      localStorage.setItem("category", JSON.stringify(data["categories"]));
+    });
+}
+// fetchCategory()

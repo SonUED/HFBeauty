@@ -1,0 +1,23 @@
+.col-9 {
+    margin-top: 100px;
+}
+.btn-group {
+    font-size: 15px;
+    width: 100%;
+}
+.button {
+    text-align: center;
+    background-color: white;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+.button:hover {
+    color: orange;
+}
+.btn-toolbar {
+    margin: 20px;
+}
+.btn-year, .btn-month{
+    font-size: 14px;
+}

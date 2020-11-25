@@ -1,7 +1,6 @@
 const recentlyViewedProductsTemplate = document.createElement("template");
 var recentlyViewdArr = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
 var cartArr = JSON.parse(localStorage.getItem("cartArr"));
-
 recentlyViewedProductsTemplate.innerHTML = `
 <link rel="stylesheet" type="text/css" href="/component/recently-viewd-products/recently-viewed-product.style.css">
 <section class="recently-viewed-products">
@@ -31,7 +30,8 @@ recentlyViewedProductsTemplate.innerHTML = `
                 &nbsp;
                 <span class="new-price">Rs. 718.00</span>
             </div>
-            <a href="#" class="btn btn-primary" onclick="addToCart('SP2')">ADD TO CART</a>
+
+            <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('SP2')">ADD TO CART</a>
             </div>
         </div>
         </div>

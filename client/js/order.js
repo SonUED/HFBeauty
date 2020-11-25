@@ -1,129 +1,11 @@
-var currentCustomer = {
-  tenTaiKhoan: "nva",
-  tenKH: "Nguyen Van A",
-  ngaySinh: "1/1/1999",
-  anhDaiDien:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX-g7iDC3RkcWjMYAEJ-ogKQwfsJnPXns4aQ&usqp=CAU",
-  mail: "nva@gmail.com",
-  soDienThoai: "0123456789",
-  diaChi: "1 Hoa Lien Hoa Vang",
-};
-
-var order = [
-  {
-    maDH: 0,
-    tenTaiKhoan: "nva",
-    nguoiNhan: "Nguyen van a",
-    diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-    SDT: "0123456789",
-    ngayDat: "23/05/2020",
-    trangThai: "received",
-  },
-  {
-    maDH: 1,
-    tenTaiKhoan: "nva",
-    nguoiNhan: "Nguyen van a",
-    diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-    SDT: "0123456789",
-    ngayDat: "23/05/2020",
-    trangThai: "received",
-  },
-  {
-    maDH: 2,
-    tenTaiKhoan: "nva",
-    nguoiNhan: "Nguyen van a",
-    diaChi: "2 Âu Cơ, Hòa Khánh Nam - Liên Chiểu - Đà Nẵng",
-    SDT: "0123456789",
-    ngayDat: "23/05/2020",
-    trangThai: "received",
-  },
-];
-
-var detailOrder = [
-  {
-    maDH: 0,
-    maSP: "SP1",
-    soLuong: 1,
-  },
-  {
-    maDH: 1,
-    maSP: "SP1",
-    soLuong: 1,
-  },
-  {
-    maDH: 2,
-    maSP: "SP3",
-    soLuong: 1,
-  },
-  {
-    maDH: 1,
-    maSP: "SP2",
-    soLuong: 1,
-  },
-];
-
-var products = [
-  {
-    maSP: "SP1",
-    tenSP: "Son kem đỏ Nivea 1",
-    maDM: "DM2",
-    gia: 21,
-    soLuong: 7,
-    hanSuDung: "2 năm kể từ ngày sản xuất.",
-    ngaySanXuat: "Xem trên bao bì sản phẩm.",
-    thuongHieu: "Nivea",
-    moTa:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam laboriosam fugiat eum nihil deserunt odio velit iure repellendus hic suscipit eius voluptas repudiandae enim ex consectetur assumenda commodi, nisi alias.",
-    ngayNhap: "2020-10-27T13:29:31.665Z",
-    anh:
-      "https://product.hstatic.net/200000135107/product/nars_63ec89ba528741d29bd3b7b1fedbbe6e_55624ac18ab04f268bfb6d2bc5f66a05_master.jpg",
-  },
-  {
-    maSP: "SP2",
-    tenSP: "Son kem đỏ Nivea 2",
-    maDM: "DM2",
-    gia: 21,
-    soLuong: 7,
-    hanSuDung: "2 năm kể từ ngày sản xuất.",
-    ngaySanXuat: "Xem trên bao bì sản phẩm.",
-    thuongHieu: "Nivea",
-    moTa:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam laboriosam fugiat eum nihil deserunt odio velit iure repellendus hic suscipit eius voluptas repudiandae enim ex consectetur assumenda commodi, nisi alias.",
-    ngayNhap: "2020-10-27T13:29:31.665Z",
-    anh:
-      "https://product.hstatic.net/200000135107/product/nars_63ec89ba528741d29bd3b7b1fedbbe6e_55624ac18ab04f268bfb6d2bc5f66a05_master.jpg",
-  },
-  {
-    maSP: "SP3",
-    tenSP: "Son kem đỏ Nivea 3",
-    maDM: "DM2",
-    gia: 21,
-    soLuong: 7,
-    hanSuDung: "2 năm kể từ ngày sản xuất.",
-    ngaySanXuat: "Xem trên bao bì sản phẩm.",
-    thuongHieu: "Nivea",
-    moTa:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam laboriosam fugiat eum nihil deserunt odio velit iure repellendus hic suscipit eius voluptas repudiandae enim ex consectetur assumenda commodi, nisi alias.",
-    ngayNhap: "2020-10-27T13:29:31.665Z",
-    anh:
-      "https://product.hstatic.net/200000135107/product/nars_63ec89ba528741d29bd3b7b1fedbbe6e_55624ac18ab04f268bfb6d2bc5f66a05_master.jpg",
-  },
-];
-
-localStorage.setItem("currentCustomer", JSON.stringify(currentCustomer));
-localStorage.setItem("order", JSON.stringify(order));
-localStorage.setItem("detailOrder", JSON.stringify(detailOrder));
-localStorage.setItem("products", JSON.stringify(products));
-
 var judge = [];
+var currentCustomer = {};
 var myDetailOrder = [];
 var myOrder = [];
 var trangThai = ['all','wait-for-accept', 'wait-for-take', 'deliver','received', 'canceled'];
 
-
 function show(mess) {
   document.querySelector(".table-order").innerHTML = "";
-
   getDataFromStorage();
   getMyDetailOrder(mess);
   showDataTable(mess);
@@ -151,7 +33,7 @@ function showDataTable(mess) {
       coltt = 2;
 
       btnCancel = ` <td>
-            <button class="btn btn-danger" onclick="cancel(${item[0].maDH})">Hủy</button>
+            <button class="btn btn-danger" onclick="cancel('${item[0].maDH}')">Hủy</button>
           </td>`;
     }
     if (mess === "received") {
@@ -216,9 +98,9 @@ function getMyDetailOrder(mess) {
     );
   }
 
-  myDetailOrder = myOrder.map((item) => {
-    return detailOrder.filter((myOrder) => myOrder.maDH === item.maDH);
-  });
+  myDetailOrder = myOrder.map((item) => 
+     detailOrder.filter((myOrder) => myOrder.maDH === item.maDH)
+  );
 
   myDetailOrder = myDetailOrder.filter((item) => item.length > 0);
 }
@@ -241,11 +123,18 @@ function showFormJudge(maSP) {
   var display = document.querySelector(".form-judge").style.display;
   document.querySelector("#maSP").value = maSP;
 
+  clearForm();
+
   if (display === "block") {
     document.querySelector(".form-judge").style.display = "none";
   } else {
     document.querySelector(".form-judge").style.display = "block";
   }
+}
+function clearForm() {
+  document.querySelector("#title").value = "";
+  document.querySelector("#star5").checked = true;
+  document.querySelector("#content").value = "";
 }
 
 function sentJudge() {
@@ -293,7 +182,6 @@ function checkJudge(maSP) {
       check.push(item.maSP);
     }
   });
-  console.log(check);
   if (check.indexOf(maSP) < 0) {
     return false;
   } else {
@@ -323,21 +211,18 @@ function getDataFromStorage() {
   products = JSON.parse(productsString) || [];
 }
 
-function getJudgeFromStorage() {
-  let judgeString = localStorage.getItem("judge");
-  judge = JSON.parse(judgeString) || [];
-}
-
 function saveOrderToStorage() {
   let orderString = JSON.stringify(order);
   localStorage.setItem("order", orderString);
+}
+
+function getJudgeFromStorage() {
+  let judgeString = localStorage.getItem("judge");
+  judge = JSON.parse(judgeString) || [];
 }
 
 function saveJudgeToStorage() {
   let judgeString = JSON.stringify(judge);
   localStorage.setItem("judge", judgeString);
 }
-getJudgeFromStorage();
-console.log(checkJudge("SP1"));
-console.log(checkJudge("SP1"));
-console.log(checkJudge("SP3"));
+
