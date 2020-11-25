@@ -143,10 +143,20 @@ let quickView = (event, productCode) => {
 
 /**********  Display Data **********/
 const createCardbody = (product) => {
+  const discount = product.giamGia;
+  const oldPrice = parseFloat(product.gia);
+
   const cardBody = `
 	<div class="card text-center">
             <div class="card-top">
-                <div class="card-label"><strong>-15%</strong></div>
+                ${
+                  discount > 0
+                    ? `<div class='card-label'>
+                      <strong>${discount}%</strong>
+                    </div>
+                    `
+                    : ''
+                }
                 <div class="card-quick-view-btn" onclick="quickView(event,'${
                   product.maSP
                 }')">
@@ -162,14 +172,18 @@ const createCardbody = (product) => {
                 <h6 class="card-subtitle">${product.thuongHieu}</h6>
                 <h5 class="card-title">${product.tenSP}</h5>
                 <div class="price-box">
-                    <span class="old-price">
+                ${
+                  discount > 0
+                    ? `<span class="old-price">
                         <del class="text-muted">Rs. ${product.gia}.00</del>
-                    </span>
+                      </span>`
+                    : ''
+                }
+                    
                     &nbsp;
-                    <span class="new-price">Rs. ${(
-                      (parseInt(product.gia) / 100) *
-                      85
-                    ).toFixed(2)}</span>
+                    <span class="new-price">Rs. ${
+                      oldPrice - (oldPrice / 100) * discount
+                    }</span>
                 </div>
                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick=addToCartInPage(event,'${
                   product.maSP
@@ -504,9 +518,6 @@ const getSaleIDByProductID = (productID) => {
 
   if (!todayProductSale) return null;
 
-  let maxSale = -1;
-  let selectID = null;
-
   let sortedSale = todayProductSale.sort((s1, s2) => {
     parseInt(s2.discount) - parseInt(s1.discount);
   });
@@ -514,7 +525,6 @@ const getSaleIDByProductID = (productID) => {
   return sortedSale[0];
 };
 
-// Notice: This function lack adding sales to product => have to implement
 // fetch product list, category list, review list
 const fetchProductList = async () => {
   localStorage.setItem('currentPage', '1');
@@ -546,10 +556,11 @@ const fetchProductList = async () => {
       { total: 0, quantity: 0 }
     );
 
+    productList[index]['giamGia'] =
+      parseInt(getSaleIDByProductID(product.maSP)?.discount) || 0;
+
     productList[index]['soSao'] =
       Math.ceil(tempReviewAcc.total / tempReviewAcc.quantity) || 0;
-
-    // implement product sale below
   });
 
   localStorage.setItem('currentList', JSON.stringify(productList));
