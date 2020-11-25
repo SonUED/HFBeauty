@@ -467,27 +467,7 @@
       <recently-viewed-products-element></recently-viewed-products-element>
     </main>
     <section-brand-element></section-brand-element>
-    <script>
-      const pushToRecent = (iDRecent) => {
-        const products = JSON.parse(localStorage.getItem('products'));
-        const recentlyViewdArr = JSON.parse(localStorage.getItem('recently'));
-        var newArr = [];
-        const findProductFromId = (maSPToAdd) => {
-          return products.filter((product) => {
-            return product.maSP == maSPToAdd;
-          });
-        };
-        console.log(iDRecent);
-        const product = findProductFromId(iDRecent);
-        console.log(product);
-        newArr.push(product);
-
-        localStorage.setItem(
-          'recentlyViewed',
-          JSON.stringify(Array.from(new Set(...newArr)))
-        );
-      };
-    </script>
+    <script></script>
     <script src="../../component/search-nav/search-nav.component.js"></script>
     <script src="../../component/client-navbar/client-narbar.component.js"></script>
     <script src="../../component/product-detail/product-detail.component.js"></script>

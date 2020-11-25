@@ -81,7 +81,7 @@
           <div class="input-frm d-none">
             <h1 class="title-article">TẠO KHUYẾN MÃI</h1>
             <div>
-              <form name="frm">
+              <form name="frm" onsubmit="clickFinish(event)">
                 <div class="form-group">
                   <label for="salename">Tên đợt khuyến mãi</label>
                   <input
@@ -89,6 +89,7 @@
                     class="form-control"
                     name="salenem"
                     id="salename"
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -112,11 +113,21 @@
                 <div class="date-container row">
                   <div class="form-group col-md-6">
                     <label for="beginDate">Ngày bắt đầu</label>
-                    <input type="date" class="form-control" id="beginDate" />
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="beginDate"
+                      required
+                    />
                   </div>
                   <div class="form-group col-md-6">
                     <label for="endDate">Ngày kết thúc</label>
-                    <input type="date" class="form-control" id="endDate" />
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="endDate"
+                      required
+                    />
                   </div>
                 </div>
 
@@ -126,12 +137,7 @@
                   <div id="contentTab"></div>
                 </div>
                 <div class="btns-group">
-                  <button
-                    type="button"
-                    id="btnAdd"
-                    class="btn btn-primary"
-                    onclick="clickFinish()"
-                  >
+                  <button type="submit" id="btnAdd" class="btn btn-primary">
                     Thêm
                   </button>
                   <button

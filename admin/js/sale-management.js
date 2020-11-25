@@ -156,12 +156,20 @@ function getSelectedProducts() {
   return ids;
 }
 
-function clickFinish() {
+function clickFinish(event) {
+  event.preventDefault();
   let salename = frm.salename.value;
   let description = frm.description.value;
   let discount = frm.discount.value;
   let beginDate = frm.beginDate.value;
   let endDate = frm.endDate.value;
+
+  if (new Date(beginDate) > new Date(endDate)) {
+    alert(
+      "Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.\nVui lòng kiểm tra lại!"
+    );
+    return;
+  }
 
   detailSale = {
     id: detailSale.id,

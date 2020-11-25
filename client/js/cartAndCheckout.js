@@ -1,7 +1,7 @@
 var quality = 0;
 var qualityInp;
 const DISCOUNT = 50;
-const CART_ARR = JSON.parse(localStorage.getItem("cartArr"));
+const CART_ARR = JSON.parse(localStorage.getItem("cartArr")) || [];
 const SHIP_FEE = 30;
 var totalSpanInBill = document.getElementById("totalFee");
 var totalPre = document.getElementById("total");

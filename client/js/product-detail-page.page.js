@@ -135,11 +135,7 @@ const displayProduct = (product) => {
 };
 
 const getProduct = () => {
-  const products = JSON.parse(localStorage.getItem("products"));
-  const detailProductCode = localStorage.getItem("detailProductCode");
-
   const product = products.find((product) => product.maSP == detailProductCode);
-
   displayProduct(product);
 
   const reviewList = getAllReviews(product.maSP);

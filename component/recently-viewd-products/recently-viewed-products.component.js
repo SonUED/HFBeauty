@@ -1,6 +1,7 @@
 const recentlyViewedProductsTemplate = document.createElement("template");
 var recentlyViewdArr = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
 var cartArr = JSON.parse(localStorage.getItem("cartArr"));
+
 recentlyViewedProductsTemplate.innerHTML = `
 <link rel="stylesheet" type="text/css" href="/component/recently-viewd-products/recently-viewed-product.style.css">
 <section class="recently-viewed-products">
