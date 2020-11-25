@@ -1,12 +1,13 @@
 body {
-  width: 80%;
   margin: auto;
 }
 
 .tool-area {
+  width: 100%;
 }
 
 .tool-area .search-box {
+  width: 50%;
   float: left;
 }
 .tool-area .btns {
@@ -82,4 +83,13 @@ label {
   height: 350px;
   overflow: scroll;
   width: 80%;
+}
+
+.content {
+  font-size: 162%;
+}
+
+#search {
+  width: 100%;
+  font-size: 162%;
 }
