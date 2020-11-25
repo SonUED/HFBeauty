@@ -116,6 +116,10 @@ input::-webkit-inner-spin-button {
 
 			width: 60%;
 			vertical-align: middle;
+
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 		// overide css from sidebar.css
@@ -345,6 +349,12 @@ input::-webkit-inner-spin-button {
 				margin-bottom: 0;
 			}
 		}
+	}
+
+	&__body {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 
