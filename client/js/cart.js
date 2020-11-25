@@ -1,15 +1,7 @@
 var qualityInp = document.getElementById("quality");
-
-// const maSP = document.getElementById("maSP").value;
 const subTotalSpan = document.getElementById("subtotal");
-const products = JSON.parse(localStorage.getItem("products"));
-const recentlyViewdArr = JSON.parse(localStorage.getItem("recentlyViewed"));
-
-const recentlyViewdArr = JSON.parse(localStorage.getItem("recentlyViewed"));
-
 var quality = 0;
 
-var cartArr = [];
 const increase = () => {
   qualityInp.value = ++quality;
   subTotalSpan.innerHTML = quality * 100;
@@ -25,13 +17,13 @@ const findProductFromId = (maSPToAdd) => {
     return product.maSP == maSPToAdd;
   });
 };
-const existCartItem = (maSPToAdd) => {
+const existCartItemInDetail = (maSPToAdd) => {
   var founnd = cartArr.filter((cartItem) => {
     return cartItem.maSP === maSPToAdd;
   });
   return founnd;
 };
-const addToCart = (maSPToAdd) => {
+const addToCartInDetail = (maSPToAdd) => {
   qualityInp == null ? (quality = 1) : (quality = qualityInp.value);
   const productToAdd = findProductFromId(maSPToAdd)[0];
   if (existCartItem(maSPToAdd).length > 0) {

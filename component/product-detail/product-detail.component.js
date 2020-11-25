@@ -70,7 +70,7 @@ productDetailTemplate.innerHTML = `
 						Subtotal: <span class="strong-text-700">Rs.<span id="subtotal"></span></span>
 					</p>
 				</div>
-				<a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('SP2')">ADD TO CART</a>
+				<a href="#" class="btn btn-primary add-to-cart-btn" id="addToCart">ADD TO CART</a>
 				<slot name="buy-it-now-btn"></slot>
 				<div class="product-detail__seen">
 					<i class="fas fa-eye"></i>

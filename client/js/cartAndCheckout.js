@@ -2,34 +2,48 @@ var quality = 0;
 var qualityInp;
 const DISCOUNT = 50;
 const CART_ARR = JSON.parse(localStorage.getItem("cartArr"));
-var totalSpan = document.getElementById("total");
+const SHIP_FEE = 30;
+var totalSpanInBill = document.getElementById("totalFee");
+var totalPre = document.getElementById("total");
+var priceSpan = document.getElementById("price");
+var soDonHang = JSON.parse(localStorage.getItem("soDonHang")) || 0;
+const removeItemToCart = (maSP) => {
+  console.log(maSP);
+  CART_ARR.map((index, item) => {
+    item.maSP == maSP ? CART_ARR.slice(index, 1) : " ";
+  });
+  console.log(CART_ARR);
+};
 const increase = (maSP) => {
   qualityInp = document.getElementById(`quality${maSP}`);
   qualityInp.value++;
+  addToCart(maSP);
+  total(priceSpan, 1);
+  total(totalPre, 0.5);
 };
 const decrease = (maSP) => {
   qualityInp = document.getElementById(`quality${maSP}`);
   qualityInp.value * 1 == 0
     ? (qualityInp.value = 0)
     : (qualityInp.value = qualityInp.value * 1 - 1);
+  addToCart(maSP);
+  total(priceSpan, 1);
+  total(totalPre, 0.5);
 };
-const total = () => {
-  var total = 0;
-  const cartArr = JSON.parse(localStorage.getItem("cartArr"));
-  cartArr.map((item) => {
-    total += item.gia * item.quantity;
+const total = (idInner, discount = 1, shipFee = 0) => {
+  var totalCount = 0;
+  CART_ARR.map((item) => {
+    totalCount += Number(item.gia * item.quantity * discount);
   });
-  totalSpan.innerHTML = total + ".00";
+  idInner.innerHTML = Math.round(totalCount + shipFee) + ".00";
 };
 const addToCart = (maSP) => {
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
   qualityInp = document.getElementById(`quality${maSP}`);
   CART_ARR.map((item) => {
     item.quantity =
       item.maSP == maSP ? parseInt(qualityInp.value) : item.quantity;
   });
   localStorage.setItem("cartArr", JSON.stringify(CART_ARR));
-  total();
 };
 const createNewRow = (cartItem, DISCOUNT) => {
   const {
@@ -84,18 +98,63 @@ const createNewRow = (cartItem, DISCOUNT) => {
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
-                                <a href="#" class="btn btn-primary add-to-cart-btn" onclick="removeItemToCart(${maSP})">REMOVE</a>
-                                 <a href="#" class="btn btn-primary add-to-cart-btn" onclick="addToCart('${maSP}')">ADD TO CART</a>
+                                <a href="#" class="btn btn-primary add-to-cart-btn" onclick="removeItemToCart('${maSP}')">REMOVE</a>
                             </div>
                             
                         </div>
                     </div>
                 </div>`;
 };
-const displayCart = () => {
-  CART_ARR.map((cartItem) => {
-    const row = createNewRow(cartItem, DISCOUNT);
-    document.getElementById("products").innerHTML += row;
+const checkoutRow = (item) => {
+  const row = `<div class="item">
+              <span><img src="${item.anh}" alt="img" /></span>
+              <span class="name">${item.tenSP}</span>
+              <span class="quantity">${item.quantity} sp</span>
+              <span class="sub_total">${Number(
+                item.quantity * item.gia
+              )}.00 VNĐ</span>
+            </div>`;
+  return row;
+};
+const checkoutModalDisplay = () => {
+  document.getElementById("modals").style.display = "block";
+  document.getElementById("shipFee").innerHTML = SHIP_FEE;
+  CART_ARR.map((item) => {
+    const row = checkoutRow(item);
+    document.getElementById("item-wrapper").innerHTML += row;
   });
+  total(totalSpanInBill, 0.5, SHIP_FEE);
+};
+const displayCart = () => {
+  CART_ARR.length > 0
+    ? CART_ARR.map((cartItem) => {
+        const row = createNewRow(cartItem, DISCOUNT);
+        document.getElementById("products").innerHTML += row;
+      })
+    : (document.getElementById("noti").innerHTML = "Không có sản phẩm nào !");
+  total(priceSpan);
+  total(totalPre, 0.5);
+};
+const closeModal = () => {
+  document.getElementById("modals").style.display = "none";
+};
+const order = (event) => {
+  event.preventDefault();
+  var soDonHang = JSON.parse(localStorage.getItem("soDonHang")) || 0;
+  const order = JSON.parse(localStorage.getItem("order"));
+  var currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
+  var maDH = "DH" + soDonHang + 1;
+  var date = new Date();
+  const newOrder = {
+    ...currentCustomer,
+    maDH: maDH,
+    ngayDatHang: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
+  };
+  order.push(newOrder);
+  const chiTietDonHang = { ...CART_ARR, maDH: maDH };
+  localStorage.setItem("order", JSON.stringify(order));
+  localStorage.setItem("chiTietDonHang", JSON.stringify(chiTietDonHang));
+  document.getElementById("modals").style.display = "none";
+  localStorage.setItem("cartArr", JSON.stringify([]));
 };
 displayCart();

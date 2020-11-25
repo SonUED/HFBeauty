@@ -19,7 +19,9 @@ SideBarElement.innerHTML = `
                <a href="#"><li class="item"><i class="fa fa-chart-line"></i>Thống kê</li></a>
             </ul>
         </div>
-    </div>`;
+    </div>
+    
+    `;
 class SideBar extends HTMLElement {
   constructor() {
     super();

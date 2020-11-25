@@ -53,6 +53,7 @@ body {
 }
 .collection-section .collection img {
   transition: all 0.3s ease-in-out;
+  width: 100%;
 }
 .collection-section .collection img:hover {
   transform: scale(1.05) rotate(3deg);
@@ -209,6 +210,7 @@ body {
   background: #000;
 }
 .trending .trending-item .trending-img img {
+  width: 100%;
   transition: all 0.3s ease-in-out;
 }
 .trending .trending-item:hover > .trending-img img {
@@ -241,4 +243,37 @@ body {
 }
 .error {
   border: 1px solid rgb(201, 54, 54);
+}
+@media only screen and (max-width: 600px) {
+  .collection-section {
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+  .collection-section .collection {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .products h3::before,
+  .products h3::after {
+    width: 0;
+  }
+  .wrapper {
+    width: calc(100% - 15px);
+  }
+  .trending {
+    flex-direction: column;
+  }
+  .trending .trending-item {
+    width: 100%;
+  }
+  #instagram span {
+    display: none;
+  }
+  #instagram div {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  #instagram div img {
+    width: 100%;
+  }
 }

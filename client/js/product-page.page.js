@@ -15,6 +15,8 @@ const dropItemsPagination = document.querySelectorAll(
   ".drop-pagination .dropdown-item"
 );
 
+var recentlyViewdArr = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
+var cartArr = JSON.parse(localStorage.getItem("cartArr")) || [];
 let filterPrice = { id: "filter-price", isAngleUp: true };
 let filterBrand = { id: "filter-brand", isAngleUp: true };
 
@@ -154,7 +156,9 @@ const createCardbody = (product) => {
                       85
                     ).toFixed(2)}</span>
                 </div>
-                <a href="#" class="btn btn-primary add-to-cart-btn"
+                <a href="#" class="btn btn-primary add-to-cart-btn" onclick=addToCartInPage(event,'${
+                  product.maSP
+                }')
 >ADD TO CART</a
                 >
             </div>
@@ -185,7 +189,6 @@ const createVerProductElement = (product = {}) => {
       break;
     }
   }
-
   const productElement = `
   <div class="product-detail product-detail--inside-collection">
 	<div class="row">
@@ -246,7 +249,9 @@ const createVerProductElement = (product = {}) => {
 						Subtotal: <span class="strong-text-700">Rs. 718.00</span>
 					</p>
 				</div>
-				<a href="#" class="btn btn-primary add-to-cart-btn">ADD TO CART</a>
+				<a href="#" class="btn btn-primary add-to-cart-btn" onclick=addToCartInPage(event,'${
+          product.maSP
+        }')>ADD TO CART</a>
 			</div>
 		</div>
 	</div>
@@ -503,8 +508,14 @@ searchField.addEventListener("keyup", (e) => {
 
 /**********  Move to Page Detailed Product **********/
 const products = JSON.parse(localStorage.getItem("products"));
-const recentlyViewdArr = JSON.parse(localStorage.getItem("recently"));
+const existRecentlyViewedItem = (array, maSPToAdd) => {
+  var founnd = array.filter((item) => {
+    return item.maSP === maSPToAdd;
+  });
+  return founnd;
+};
 const findProductFromId = (maSPToAdd) => {
+  console.log(maSPToAdd);
   return products.filter((product) => {
     return product.maSP == maSPToAdd;
   });
@@ -513,11 +524,28 @@ const directToDetailPage = (productCode) => {
   localStorage.setItem("detailProductCode", productCode);
   window.location.href = "../../client/html/product-detail-page.html";
   //  push to recently view
-  var newArr = [];
   const product = findProductFromId(productCode);
-  newArr.push(product);
-  localStorage.setItem(
-    "recentlyViewed",
-    JSON.stringify(Array.from(new Set(...newArr)))
-  );
+  recentlyViewdArr =
+    existRecentlyViewedItem(recentlyViewdArr, productCode).length > 0
+      ? recentlyViewdArr
+      : (recentlyViewdArr = [...recentlyViewdArr, ...product]);
+  localStorage.setItem("recentlyViewed", JSON.stringify(recentlyViewdArr));
+};
+
+const addToCartInPage = (event, productCode) => {
+  event.stopPropagation();
+  const productToAdd = findProductFromId(productCode)[0];
+  if (existRecentlyViewedItem(cartArr, productCode).length > 0) {
+    cartArr = cartArr.map((cartItem) =>
+      cartItem.maSP == productToAdd.maSP
+        ? {
+            ...productToAdd,
+            quantity: Number(cartItem.quantity) + 1,
+          }
+        : cartItem
+    );
+  } else {
+    cartArr = [...cartArr, { ...productToAdd, quantity: 1 }];
+  }
+  localStorage.setItem("cartArr", JSON.stringify(cartArr));
 };
