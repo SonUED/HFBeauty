@@ -1,13 +1,14 @@
-const products = JSON.parse(localStorage.getItem('products'));
-const detailProductCode = localStorage.getItem('detailProductCode');
-var qualityInp = document.getElementById('quality');
-const subTotalSpan = document.getElementById('subtotal');
+const products = JSON.parse(localStorage.getItem("products"));
+const detailProductCode = localStorage.getItem("detailProductCode");
+var qualityInp = document.getElementById("quality");
+const subTotalSpan = document.getElementById("subtotal");
+var cartArr = JSON.parse(localStorage.getItem("cartArr")) || [];
 var quality = 0;
 
 const addBuyItNowBtn = () => {
   const slotBuy = document.querySelector('slot[name="buy-it-now-btn"]');
 
-  const buyItNowBtn = document.createElement('span');
+  const buyItNowBtn = document.createElement("span");
 
   buyItNowBtn.innerHTML =
     '<a href="#" class="btn btn-primary buy-it-now-btn">BUY IT NOW</a>';
@@ -18,17 +19,17 @@ addBuyItNowBtn();
 const createReviewElement = (review) => {
   //temporary customer name
   const names = [
-    'Peter Parker',
-    'Tony Stark',
-    'Steven Rogers',
-    'Natasha Romanoff',
-    'Bruce Wayne'
+    "Peter Parker",
+    "Tony Stark",
+    "Steven Rogers",
+    "Natasha Romanoff",
+    "Bruce Wayne",
   ];
 
   const tempName = names[Math.floor(Math.random() * 5 + 1)];
 
   // create star element
-  let starE = '';
+  let starE = "";
   for (let i = 1; i <= 5; i++) {
     if (review.soSao > 0) {
       starE += '<i class="fas fa-star"></i>';
@@ -67,9 +68,9 @@ const createReviewElement = (review) => {
 };
 
 const displayReviews = (reviewList) => {
-  const sectionReviews = document.querySelector('.section-reviews');
+  const sectionReviews = document.querySelector(".section-reviews");
 
-  let reviewRows = '';
+  let reviewRows = "";
 
   reviewList.forEach((review) => {
     reviewRows += createReviewElement(review);
@@ -79,34 +80,34 @@ const displayReviews = (reviewList) => {
 };
 
 const getAllReviews = (productCode) => {
-  const reviewList = JSON.parse(localStorage.getItem('judge'));
+  const reviewList = JSON.parse(localStorage.getItem("judge"));
 
   console.log(reviewList);
   return reviewList.filter((review) => review.maSP == productCode);
 };
 
 const displayProduct = (product) => {
-  const imgE = document.querySelector('product-detail-element #product-img');
-  const nameE = document.querySelector('product-detail-element #product-name');
+  const imgE = document.querySelector("product-detail-element #product-img");
+  const nameE = document.querySelector("product-detail-element #product-name");
   const brandE = document.querySelector(
-    'product-detail-element #product-brand'
+    "product-detail-element #product-brand"
   );
-  const codeE = document.querySelector('product-detail-element #product-code');
+  const codeE = document.querySelector("product-detail-element #product-code");
   const priceE = document.querySelector(
-    'product-detail-element #product-price'
+    "product-detail-element #product-price"
   );
   const oldPriceE = document.querySelector(
-    'product-detail-element #product-old-price'
+    "product-detail-element #product-old-price"
   );
-  const desE = document.querySelector('product-detail-element #product-des');
-  const cateE = document.querySelector('product-detail-element #product-cate');
+  const desE = document.querySelector("product-detail-element #product-des");
+  const cateE = document.querySelector("product-detail-element #product-cate");
   // using for showing product's star on working overlay
   const productStarOnWorkingOverlay = document.querySelector(
-    '.product-detail__reviews'
+    ".product-detail__reviews"
   );
 
   // create star element
-  let starE = '';
+  let starE = "";
   for (let i = 1; i <= 5; i++) {
     if (product.soSao > 0) {
       starE += '<i class="fas fa-star"></i>';
@@ -125,7 +126,7 @@ const displayProduct = (product) => {
   priceE.textContent = ((parseInt(product.gia) / 100) * 85).toFixed(2);
   desE.textContent = product.moTa;
 
-  const categories = JSON.parse(localStorage.getItem('categories'));
+  const categories = JSON.parse(localStorage.getItem("categories"));
 
   for (let index = 0; index < categories.length; index++) {
     if (categories[index].maDM === product.maDM) {
@@ -136,12 +137,6 @@ const displayProduct = (product) => {
 };
 
 const getProduct = () => {
-<<<<<<< HEAD
-  const products = JSON.parse(localStorage.getItem('products'));
-  const detailProductCode = localStorage.getItem('detailProductCode');
-
-=======
->>>>>>> 23691ac... validate new sale and fix font size
   const product = products.find((product) => product.maSP == detailProductCode);
   displayProduct(product);
 
@@ -178,16 +173,16 @@ const addToCartInDetail = (maSPToAdd) => {
       cartItem.maSP == productToAdd.maSP
         ? {
             ...productToAdd,
-            quantity: Number(cartItem.quantity) + Number(quality)
+            quantity: Number(cartItem.quantity) + Number(quality),
           }
         : cartItem
     );
   } else {
     cartArr = [...cartArr, { ...productToAdd, quantity: quality }];
   }
-  localStorage.setItem('cartArr', JSON.stringify(cartArr));
+  localStorage.setItem("cartArr", JSON.stringify(cartArr));
 };
 
-document.getElementById('addToCart').addEventListener('click', () => {
+document.getElementById("addToCart").addEventListener("click", () => {
   addToCartInDetail(detailProductCode);
 });

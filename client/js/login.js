@@ -44,7 +44,19 @@ const login = (event) => {
   const username = document.getElementById("username");
   const password = document.getElementById("password");
   console.log(username.value + password.value);
-  if (isExistToLogin(username.value, password.value).length > 0) {
+  if (
+    isExistToLogin(username.value, password.value).length > 0 &&
+    isExistToLogin(username.value, password.value)[0].vaiTro == "QuanLy"
+  ) {
+    localStorage.setItem(
+      "currentCustomer",
+      JSON.stringify(isExistToLogin(username.value, password.value)[0])
+    );
+    window.location.href = "../../admin/html/user-management.html";
+  } else if (
+    isExistToLogin(username.value, password.value).length > 0 &&
+    isExistToLogin(username.value, password.value)[0].vaiTro == "KhachHang"
+  ) {
     localStorage.setItem(
       "currentCustomer",
       JSON.stringify(isExistToLogin(username.value, password.value)[0])

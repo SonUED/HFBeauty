@@ -107,7 +107,10 @@
             <div class="shipper">
               Đơn vị vận chuyển : <span>HF Beauty Delivery</span>
             </div>
-            <div class="pay">
+            <div class="shipper">
+              Hình thức thanh toán : <span>Thanh toán khi nhận hàng</span>
+            </div>
+            <!-- <div class="pay">
               <select name="" id="">
                 <option value="Thanh toán khi nhận hàng">
                   Thanh toán khi nhận hàng
@@ -116,14 +119,12 @@
                   Thanh toán trực tuyến
                 </option>
               </select>
-            </div>
+            </div> -->
             <div class="total">
-              <p>Tổng tiền hàng :<span id="subTotal"></span></p>
-              <p>Tổng tiền vận chuyển : <span id="shipFee"></span></p>
               <p>
-                Khuyến mãi :<span id="shipFee"> <strong>50%</strong></span>
+                Tổng thanh toán :
+                <strong><span id="totalFee"></span>VNĐ</strong>
               </p>
-              <p>Tổng thanh toán : <span id="totalFee"></span></p>
             </div>
             <a href="#" class="order__btn" onclick="order(event)">Đặt hàng</a>
           </div>
@@ -132,6 +133,7 @@
     </div>
     <section-brand-element></section-brand-element>
     <script src="../../component/section-brand/section-brand.component.js"></script>
+    <script src="../../util/sales.js"></script>
     <script src="../js/cartAndCheckout.js"></script>
   </body>
 </html>

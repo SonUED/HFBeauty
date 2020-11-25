@@ -1,25 +1,59 @@
 var quality = 0;
 var qualityInp;
-const DISCOUNT = 50;
-const CART_ARR = JSON.parse(localStorage.getItem("cartArr")) || [];
-const SHIP_FEE = 30;
+var CART_ARR = JSON.parse(localStorage.getItem("cartArr")) || [];
+var currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
 var totalSpanInBill = document.getElementById("totalFee");
 var totalPre = document.getElementById("total");
 var priceSpan = document.getElementById("price");
 var soDonHang = JSON.parse(localStorage.getItem("soDonHang")) || 0;
 const removeItemToCart = (maSP) => {
-  console.log(maSP);
-  CART_ARR.map((index, item) => {
-    item.maSP == maSP ? CART_ARR.slice(index, 1) : " ";
+  CART_ARR.map((item, index) => {
+    item.maSP == maSP ? CART_ARR.splice(index, 1) : " ";
   });
-  console.log(CART_ARR);
+  localStorage.setItem("cartArr", JSON.stringify(CART_ARR));
+  location.reload();
 };
+function getSaleIDByProductID(productID) {
+  let sales = JSON.parse(localStorage.getItem("sales")) || [];
+
+  todayProductSale = sales.filter((sale) => {
+    let beginDate = new Date(sale.beginDate);
+    let endDate = new Date(sale.endDate);
+    let curDate = new Date();
+    let currenDate = new Date(
+      curDate.getFullYear() +
+        "-" +
+        (curDate.getMonth() + 1) +
+        "-" +
+        curDate.getDate()
+    );
+
+    if (
+      beginDate <= currenDate &&
+      currenDate <= endDate &&
+      sale.products.includes(productID)
+    )
+      return true;
+    return false;
+  });
+
+  if (!todayProductSale) return null;
+
+  let maxSale = -1;
+  let selectID = null;
+
+  let sortedSale = todayProductSale.sort((s1, s2) => {
+    parseInt(s2.discount) - parseInt(s1.discount);
+  });
+  return sortedSale[0];
+}
+
 const increase = (maSP) => {
   qualityInp = document.getElementById(`quality${maSP}`);
   qualityInp.value++;
   addToCart(maSP);
-  total(priceSpan, 1);
-  total(totalPre, 0.5);
+  total(priceSpan);
+  total(totalPre);
 };
 const decrease = (maSP) => {
   qualityInp = document.getElementById(`quality${maSP}`);
@@ -27,15 +61,19 @@ const decrease = (maSP) => {
     ? (qualityInp.value = 0)
     : (qualityInp.value = qualityInp.value * 1 - 1);
   addToCart(maSP);
-  total(priceSpan, 1);
-  total(totalPre, 0.5);
+  total(priceSpan);
+  total(totalPre);
 };
-const total = (idInner, discount = 1, shipFee = 0) => {
+const total = (idInner) => {
   var totalCount = 0;
   CART_ARR.map((item) => {
-    totalCount += Number(item.gia * item.quantity * discount);
+    var discount =
+      getSaleIDByProductID(item.maSP) == undefined
+        ? 1
+        : getSaleIDByProductID(item.maSP).discount;
+    totalCount += Number((item.gia * item.quantity * discount) / 100);
   });
-  idInner.innerHTML = Math.round(totalCount + shipFee) + ".00";
+  idInner.innerHTML = Math.round(totalCount) + ".00";
 };
 const addToCart = (maSP) => {
   qualityInp = document.getElementById(`quality${maSP}`);
@@ -77,14 +115,20 @@ const createNewRow = (cartItem, DISCOUNT) => {
                                     <del class="text-muted">${gia}.000</del>
                                 </span>
                                 <div>
-                                    <span class="sub-text">Discount :</span> <span id="discount">${DISCOUNT}%</span>
-                                    <input type="hidden" id="discountInp" value="${DISCOUNT}">
+                                    <span class="sub-text">Discount :</span> <span id="discount">${
+                                      getSaleIDByProductID(maSP) == undefined
+                                        ? 1
+                                        : getSaleIDByProductID(maSP).discount
+                                    }%</span>
+                                    <input type="hidden" id="discountInp" value="getSaleIDByProductID('${maSP}')">
                                 </div>
                                 <span class="new-price">Rs. <span id="price${maSP}">${
-    (gia * DISCOUNT) / 100
+    getSaleIDByProductID(maSP) == undefined
+      ? gia * 1
+      : (gia * getSaleIDByProductID(maSP).discount) / 100
   }</span></span>
                                 <input type="hidden" id="priceInp" value="${
-                                  (gia * DISCOUNT) / 100
+                                  gia / 100
                                 }">
                             </div>
                             <div class="quantity">
@@ -118,22 +162,23 @@ const checkoutRow = (item) => {
 };
 const checkoutModalDisplay = () => {
   document.getElementById("modals").style.display = "block";
-  document.getElementById("shipFee").innerHTML = SHIP_FEE;
   CART_ARR.map((item) => {
     const row = checkoutRow(item);
     document.getElementById("item-wrapper").innerHTML += row;
   });
-  total(totalSpanInBill, 0.5, SHIP_FEE);
+  total(totalSpanInBill);
 };
 const displayCart = () => {
-  CART_ARR.length > 0
+  currentCustomer == null
+    ? (window.location.href = "../html/login.html")
+    : CART_ARR.length > 0
     ? CART_ARR.map((cartItem) => {
-        const row = createNewRow(cartItem, DISCOUNT);
+        const row = createNewRow(cartItem);
         document.getElementById("products").innerHTML += row;
       })
     : (document.getElementById("noti").innerHTML = "Không có sản phẩm nào !");
   total(priceSpan);
-  total(totalPre, 0.5);
+  total(totalPre);
 };
 const closeModal = () => {
   document.getElementById("modals").style.display = "none";
@@ -141,7 +186,7 @@ const closeModal = () => {
 const order = (event) => {
   event.preventDefault();
   var soDonHang = JSON.parse(localStorage.getItem("soDonHang")) || 0;
-  const order = JSON.parse(localStorage.getItem("order"));
+  const order = JSON.parse(localStorage.getItem("order")) || [];
   var currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
   var maDH = "DH" + soDonHang + 1;
   var date = new Date();
