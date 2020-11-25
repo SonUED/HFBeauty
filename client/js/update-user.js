@@ -1,13 +1,13 @@
 var currentCustomer = {};
 var customer = [];
-const avatar = document.querySelector(".image");
+const avatar = document.querySelector('.image');
 
 showData();
 
 function showData() {
   getCurrentCustomerFromStorage();
-  document.querySelector(".show-data").innerHTML = "";
-  document.querySelector(".overlay").style.display = "none";
+  document.querySelector('.show-data').innerHTML = '';
+  document.querySelector('.overlay').style.display = 'none';
   avatar.src = currentCustomer.anhDaiDien;
   var data = `
   <div class="name">
@@ -26,23 +26,22 @@ function showData() {
         Cập nhật thông tin
       </button>
   </div>`;
-  document.querySelector(".show-data").innerHTML += data;
+  document.querySelector('.show-data').innerHTML += data;
 }
 function showForm() {
-  document.querySelector(".form-customer").style.display = "block";
-  document.querySelector(".profile").style.display = "none";
-  document.querySelector(".overlay").style.display = "block";
+  document.querySelector('.form-customer').style.display = 'block';
+  document.querySelector('.profile').style.display = 'none';
+  document.querySelector('.overlay').style.display = 'block';
 
-
-  document.querySelector("#name").value = currentCustomer.tenKH;
-  document.querySelector("#date").value = currentCustomer.ngaySinh;
-  document.querySelector("#mail").value = currentCustomer.mail;
-  document.querySelector("#phone").value = currentCustomer.soDienThoai;
-  document.querySelector("#adress").value = currentCustomer.diaChi;
+  document.querySelector('#name').value = currentCustomer.tenKH;
+  document.querySelector('#date').value = currentCustomer.ngaySinh;
+  document.querySelector('#mail').value = currentCustomer.mail;
+  document.querySelector('#phone').value = currentCustomer.soDienThoai;
+  document.querySelector('#adress').value = currentCustomer.diaChi;
 }
 function hiddenForm() {
-  document.querySelector(".form-customer").style.display = "none";
-  document.querySelector(".profile").style.display = "block";
+  document.querySelector('.form-customer').style.display = 'none';
+  document.querySelector('.profile').style.display = 'block';
 
   showData();
 }
@@ -51,11 +50,11 @@ function save() {
   getCustomerFromStorage();
   var indexOfCurrentCustomer = customer.indexOf(currentCustomer);
 
-  currentCustomer.tenKH = document.querySelector("#name").value;
-  currentCustomer.ngaySinh = document.querySelector("#date").value;
-  currentCustomer.mail = document.querySelector("#mail").value;
-  currentCustomer.soDienThoai = document.querySelector("#phone").value;
-  currentCustomer.diaChi = document.querySelector("#adress").value;
+  currentCustomer.tenKH = document.querySelector('#name').value;
+  currentCustomer.ngaySinh = document.querySelector('#date').value;
+  currentCustomer.mail = document.querySelector('#mail').value;
+  currentCustomer.soDienThoai = document.querySelector('#phone').value;
+  currentCustomer.diaChi = document.querySelector('#adress').value;
   currentCustomer.anhDaiDien = avatar.src;
 
   customer[indexOfCurrentCustomer] = currentCustomer;
@@ -72,7 +71,7 @@ function changeImage(imgAvatar) {
     if (/\.(jpe?g|png|gif|webp)$/i.test(imageObject.name)) {
       const reader = new FileReader();
       reader.addEventListener(
-        "load",
+        'load',
         function () {
           avatar.src = this.result;
         },
@@ -81,24 +80,23 @@ function changeImage(imgAvatar) {
       reader.readAsDataURL(imageObject);
     }
   }
-  console.log(currentCustomer.anhDaiDien===avatar.src);
-
+  console.log(currentCustomer.anhDaiDien === avatar.src);
 }
 
 function getCustomerFromStorage() {
-  let customerString = localStorage.getItem("customer");
+  let customerString = localStorage.getItem('customer');
   customer = JSON.parse(customerString) || [];
 }
 function getCurrentCustomerFromStorage() {
-  let currentCustomerString = localStorage.getItem("currentCustomer");
+  let currentCustomerString = localStorage.getItem('currentCustomer');
   currentCustomer = JSON.parse(currentCustomerString) || [];
 }
 
 function saveCurrentCustomerToStorage() {
   let currentCustomerString = JSON.stringify(currentCustomer);
-  localStorage.setItem("currentCustomer", currentCustomerString);
+  localStorage.setItem('currentCustomer', currentCustomerString);
 }
 function saveCustomerToStorage() {
   let customerString = JSON.stringify(customer);
-  localStorage.setItem("customer", customerString);
+  localStorage.setItem('customer', customerString);
 }

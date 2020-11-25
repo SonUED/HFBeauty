@@ -1,6 +1,7 @@
 var category = [];
+
 function showCategory() {
-  document.querySelector(".table-category").innerHTML = "";
+  document.querySelector('.table-category').innerHTML = '';
   category.map((item) => {
     var row = `<tr>
             <td> ${item.maDM} </td>
@@ -11,33 +12,33 @@ function showCategory() {
             <td><input class="btn btn-danger" type="button" value="Xóa" onclick="deleteCategory('${item.maDM}')"></td>
         </tr>`;
 
-    document.querySelector(".table-category").innerHTML += row;
+    document.querySelector('.table-category').innerHTML += row;
   });
 }
 
 function save() {
   getCategoryFromStorage();
 
-  var index = document.getElementById("index").value;
-  var name = document.getElementById("name").value;
-  var description = document.getElementById("description").value;
-  var image = document.getElementById("image").value;
+  var index = document.getElementById('index').value;
+  var name = document.getElementById('name').value;
+  var description = document.getElementById('description').value;
+  var image = document.getElementById('image').value;
 
   if (!name || !description || !image) {
-    alert("Tất cả các trường không được để trống");
+    alert('Tất cả các trường không được để trống');
   } else {
     var item = {
       maDM: index,
       tenDM: name,
       moTa: description,
-      anh: image,
+      anh: image
     };
 
-    if (index == "") {
+    if (index == '') {
       index = category[category.length - 1].maDM;
       index = parseInt(index.slice(2, index.length));
       index++;
-      index = "DM" + index;
+      index = 'DM' + index;
       item.maDM = index;
       category.push(item);
     } else {
@@ -55,10 +56,10 @@ function editCategory(index) {
   showForm();
   getCategoryFromStorage();
   index = index.slice(2, index.length) - 1;
-  document.getElementById("index").value = "DM" + index;
-  document.getElementById("name").value = category[index].tenDM;
-  document.getElementById("description").value = category[index].moTa;
-  document.getElementById("image").value = category[index].anh;
+  document.getElementById('index').value = 'DM' + index;
+  document.getElementById('name').value = category[index].tenDM;
+  document.getElementById('description').value = category[index].moTa;
+  document.getElementById('image').value = category[index].anh;
 }
 function deleteCategory(index) {
   getCategoryFromStorage();
@@ -69,33 +70,33 @@ function deleteCategory(index) {
 
 function showForm() {
   getCategoryFromStorage();
-  document.getElementById("index").value = "";
-  document.getElementById("name").value = "";
-  document.getElementById("description").value = "";
-  document.getElementById("image").value = "";
-  var display = document.querySelector(".form-category").style.display;
+  document.getElementById('index').value = '';
+  document.getElementById('name').value = '';
+  document.getElementById('description').value = '';
+  document.getElementById('image').value = '';
+  var display = document.querySelector('.form-category').style.display;
 
-  if (display === "block") {
-    document.querySelector(".form-category").style.display = "none";
-    document.querySelector(".table").style.display = "table";
+  if (display === 'block') {
+    document.querySelector('.form-category').style.display = 'none';
+    document.querySelector('.table').style.display = 'table';
   } else {
-    document.querySelector(".form-category").style.display = "block";
-    document.querySelector(".table").style.display = "none";
+    document.querySelector('.form-category').style.display = 'block';
+    document.querySelector('.table').style.display = 'none';
   }
 }
 
 function searching(inputText) {
   inputText = inputText.toLowerCase().trim();
-  inputText = inputText.replace(/\s\s+/g, " ");
+  inputText = inputText.replace(/\s\s+/g, ' ');
 
   getCategoryFromStorage();
 
-  if (inputText == "") {
+  if (inputText == '') {
     showCategory();
     return;
   }
 
-  let keywords = inputText.split(" ");
+  let keywords = inputText.split(' ');
   category = category.filter((eachUser) => {
     return Object.keys(eachUser).some((key) => {
       return keywords.reduce(
@@ -108,13 +109,13 @@ function searching(inputText) {
 }
 
 function getCategoryFromStorage() {
-  let categoryString = localStorage.getItem("category");
+  let categoryString = localStorage.getItem('category');
   category = JSON.parse(categoryString) || [];
 }
 
 function saveCategoryToStorage() {
   let categoryString = JSON.stringify(category);
-  localStorage.setItem("category", categoryString);
+  localStorage.setItem('category', categoryString);
 }
 
 function loadData() {
@@ -122,10 +123,10 @@ function loadData() {
   showCategory();
 }
 function fetchCategory() {
-  fetch("../../data/categories.json")
+  fetch('../../data/categories.json')
     .then((response) => response.json())
     .then((data) => {
-      localStorage.setItem("category", JSON.stringify(data["categories"]));
+      localStorage.setItem('category', JSON.stringify(data['categories']));
     });
 }
 // fetchCategory()
