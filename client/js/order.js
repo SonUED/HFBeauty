@@ -1,41 +1,57 @@
 var judge = [];
+var order = [];
 var currentCustomer = {};
 var myDetailOrder = [];
 var myOrder = [];
 var trangThai = [
-  'all',
-  'wait-for-accept',
-  'wait-for-take',
-  'deliver',
-  'received',
-  'canceled'
+  "all",
+  "wait-for-accept",
+  "wait-for-take",
+  "deliver",
+  "received",
+  "canceled",
 ];
 
+currentCustomer = {
+  tenTaiKhoan: "LeBaC",
+  matKhau: "123123",
+  tenKH: "Le Van A",
+  ngaySinh: "1982-08-28",
+  anhDaiDien:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX-g7iDC3RkcWjMYAEJ-ogKQwfsJnPXns4aQ&usqp=CAU",
+  mail: "LeBaC@hfbeauty.com",
+  soDienThoai: 7760590765,
+  diaChi: "902 30/4",
+};
+
 function show(mess) {
-  document.querySelector('.table-order').innerHTML = '';
+  if (order.length < 1) {
+    fetchOrder();
+  }
+  document.querySelector(".table-order").innerHTML = "";
   getDataFromStorage();
   getMyDetailOrder(mess);
   showDataTable(mess);
 }
 function getOrderFromStorage() {
-  let orderString = localStorage.getItem('order');
+  let orderString = localStorage.getItem("order");
   order = JSON.parse(orderString) || [];
 }
 
 function saveOrderToStorage() {
   let orderString = JSON.stringify(order);
-  localStorage.setItem('order', orderString);
+  localStorage.setItem("order", orderString);
 }
 function showDataTable(mess) {
   borderBottom(mess);
 
-  var btnCancel = '';
-  var btnJudge = '';
+  var btnCancel = "";
+  var btnJudge = "";
   var colth = 3;
   var coltt = 3;
 
   myDetailOrder.map((item) => {
-    if (mess === 'wait-for-accept') {
+    if (mess === "wait-for-accept") {
       colth = 3;
       coltt = 2;
 
@@ -43,7 +59,7 @@ function showDataTable(mess) {
             <button class="btn btn-danger" onclick="cancel('${item[0].maDH}')">Hủy</button>
           </td>`;
     }
-    if (mess === 'received') {
+    if (mess === "received") {
       colth = 4;
       coltt = 4;
     }
@@ -52,13 +68,13 @@ function showDataTable(mess) {
     var thead = `<tr>
         <th colspan="${colth}" class="table-head">Đơn hàng ${item[0].maDH}</th>
       </tr>`;
-    document.querySelector('.table-order').innerHTML += thead;
+    document.querySelector(".table-order").innerHTML += thead;
 
     item.map((detail) => {
-      if (mess === 'received') {
+      if (mess === "received") {
         if (checkJudge(detail.maSP) === false) {
           btnJudge = `<td>
-            <button class="open-button btn btn-primary" onclick="showFormJudge('${detail.maSP}')">Đánh giá</button>
+            <button class="btn btn-primary" onclick="showFormJudge('${detail.maSP}')">Đánh giá</button>
           </td>`;
         } else {
           btnJudge = `<td>
@@ -78,7 +94,7 @@ function showDataTable(mess) {
                 <td><b>${detail.soLuong * prd.gia}$</b></td>
                 ${btnJudge}
             </tr>`;
-          document.querySelector('.table-order').innerHTML += row;
+          document.querySelector(".table-order").innerHTML += row;
         }
       });
     });
@@ -87,12 +103,12 @@ function showDataTable(mess) {
         ${btnCancel}
       </tr>
       <br>`;
-    document.querySelector('.table-order').innerHTML += total;
+    document.querySelector(".table-order").innerHTML += total;
   });
 }
 
 function getMyDetailOrder(mess) {
-  if (mess === 'all') {
+  if (mess === "all") {
     myOrder = order.filter(
       (item) => item.tenTaiKhoan === currentCustomer.tenTaiKhoan
     );
@@ -116,55 +132,55 @@ function cancel(maDH) {
 
   order.map((item) => {
     if (item.maDH === maDH) {
-      item.trangThai = 'canceled';
+      item.trangThai = "canceled";
     }
   });
   console.log(order);
 
   saveOrderToStorage();
-  show('wait-for-accept');
+  show("wait-for-accept");
 }
 
 function showFormJudge(maSP) {
-  var display = document.querySelector('.form-judge').style.display;
-  document.querySelector('#maSP').value = maSP;
+  var display = document.querySelector(".form-judge").style.display;
+  document.querySelector("#maSP").value = maSP;
 
   clearForm();
 
-  if (display === 'block') {
-    document.querySelector('.form-judge').style.display = 'none';
+  if (display === "block") {
+    document.querySelector(".form-judge").style.display = "none";
   } else {
-    document.querySelector('.form-judge').style.display = 'block';
+    document.querySelector(".form-judge").style.display = "block";
   }
 }
 function clearForm() {
-  document.querySelector('#title').value = '';
-  document.querySelector('#star5').checked = true;
-  document.querySelector('#content').value = '';
+  document.querySelector("#title").value = "";
+  document.querySelector("#star5").checked = true;
+  document.querySelector("#content").value = "";
 }
 
 function sentJudge() {
   getJudgeFromStorage();
-  var maSP = document.querySelector('#maSP').value;
-  var title = document.querySelector('#title').value;
-  var content = document.querySelector('#content').value;
+  var maSP = document.querySelector("#maSP").value;
+  var title = document.querySelector("#title").value;
+  var content = document.querySelector("#content").value;
   var rate;
   console.log(maSP);
 
-  if (document.getElementById('star1').checked) {
-    rate = document.getElementById('star1').value;
+  if (document.getElementById("star1").checked) {
+    rate = document.getElementById("star1").value;
   }
-  if (document.getElementById('star2').checked) {
-    rate = document.getElementById('star2').value;
+  if (document.getElementById("star2").checked) {
+    rate = document.getElementById("star2").value;
   }
-  if (document.getElementById('star3').checked) {
-    rate = document.getElementById('star3').value;
+  if (document.getElementById("star3").checked) {
+    rate = document.getElementById("star3").value;
   }
-  if (document.getElementById('star4').checked) {
-    rate = document.getElementById('star4').value;
+  if (document.getElementById("star4").checked) {
+    rate = document.getElementById("star4").value;
   }
-  if (document.getElementById('star5').checked) {
-    rate = document.getElementById('star5').value;
+  if (document.getElementById("star5").checked) {
+    rate = document.getElementById("star5").value;
   }
   var jud = {
     tenTaiKhoan: currentCustomer.tenTaiKhoan,
@@ -172,12 +188,12 @@ function sentJudge() {
     thoiGian: new Date(),
     tieuDe: title,
     noiDung: content,
-    soSao: rate
+    soSao: rate,
   };
   judge.push(jud);
   saveJudgeToStorage();
   showFormJudge();
-  show('received');
+  show("received");
 }
 
 function checkJudge(maSP) {
@@ -198,19 +214,19 @@ function checkJudge(maSP) {
 function borderBottom(mess) {
   trangThai.map((item) => {
     if (item === mess) {
-      document.querySelector('.' + item).style.borderBottom =
-        '3px solid orange';
+      document.querySelector("." + item).style.borderBottom =
+        "3px solid orange";
     } else {
-      document.querySelector('.' + item).style.borderBottom = '0';
+      document.querySelector("." + item).style.borderBottom = "0";
     }
   });
 }
 
 function getDataFromStorage() {
-  let customerString = localStorage.getItem('currentCustomer');
-  let orderString = localStorage.getItem('order');
-  let detailOderString = localStorage.getItem('detailOrder');
-  let productsString = localStorage.getItem('products');
+  let customerString = localStorage.getItem("currentCustomer");
+  let orderString = localStorage.getItem("order");
+  let detailOderString = localStorage.getItem("detailOrder");
+  let productsString = localStorage.getItem("products");
 
   currentCustomer = JSON.parse(customerString) || [];
   order = JSON.parse(orderString) || [];
@@ -220,15 +236,22 @@ function getDataFromStorage() {
 
 function saveOrderToStorage() {
   let orderString = JSON.stringify(order);
-  localStorage.setItem('order', orderString);
+  localStorage.setItem("order", orderString);
 }
 
 function getJudgeFromStorage() {
-  let judgeString = localStorage.getItem('judge');
+  let judgeString = localStorage.getItem("judge");
   judge = JSON.parse(judgeString) || [];
 }
 
 function saveJudgeToStorage() {
   let judgeString = JSON.stringify(judge);
-  localStorage.setItem('judge', judgeString);
+  localStorage.setItem("judge", judgeString);
+}
+function fetchOrder() {
+  fetch("../../data/order.json")
+    .then((response) => response.json())
+    .then((data) => {
+      localStorage.setItem("order", JSON.stringify(data["order"]));
+    });
 }

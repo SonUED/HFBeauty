@@ -95,7 +95,7 @@ const signup = (event) => {
         AnhDaiDien: "../imgs/avt.png",
         SDT: 0972053952,
         DiaChi: "",
-        vaiTro: "QuanLy",
+        vaiTro: "KhachHang",
       };
       accountData.push(user);
       localStorage.setItem("account", JSON.stringify(accountData));
