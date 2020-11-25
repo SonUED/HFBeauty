@@ -226,50 +226,39 @@ ul {
   border: 1.5px solid #e0e5e2;
 }
 
-.tab-content .customer-reviews__title {
-  font-size: 24px;
-  font-weight: 700;
+/****************************************
+		SECTION customer reviews
+****************************************/
+.section-reviews {
+  padding: 10px;
 }
 
-.tab-content .customer-reviews__write-review-btn {
-  padding: 5px 10px;
-  background-color: #fff;
-  border: 1.5px solid #e0e5e2;
-  line-height: 17px;
+.section-reviews .reviews__item {
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #7d7c7c;
 }
 
-.tab-content .customer-reviews__write-review-btn:focus {
-  outline: none;
+.section-reviews .reviews__item:not(:last-of-type) {
+  margin-bottom: 2.5rem;
 }
 
-.tab-content .customer-reviews div:nth-child(2) {
-  margin-bottom: 20px;
+.section-reviews .reviews__stars i:nth-of-type(1) {
+  color: #ffab5a;
 }
 
-.tab-content .customer-reviews .collapse {
-  border-top: 1.5px solid #e0e5e2;
+.section-reviews .reviews__stars i:nth-of-type(2) {
+  color: #ffa147;
 }
 
-.tab-content .customer-reviews label {
-  font-weight: 600;
+.section-reviews .reviews__stars i:nth-of-type(3) {
+  color: #ff9e41;
 }
 
-.tab-content .customer-reviews input,
-.tab-content .customer-reviews textarea {
-  font-size: 12px;
+.section-reviews .reviews__stars i:nth-of-type(4) {
+  color: #ff8a18;
 }
 
-.tab-content .customer-reviews .btn {
-  visibility: visible;
-}
-
-.tab-content .customer-reviews button[type='submit'] {
-  width: 15%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font: 600 14px/20px "Oswald", sans-serif;
-  color: black;
-  background-color: #e0e5e2;
-  border: none;
+.section-reviews .reviews__stars i:nth-of-type(5) {
+  color: #ff8004;
 }
 /*# sourceMappingURL=product-detail-page.css.map */

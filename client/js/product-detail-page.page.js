@@ -10,7 +10,65 @@ const addBuyItNowBtn = () => {
 };
 addBuyItNowBtn();
 
-let displayProduct = (product) => {
+const createReviewElement = (review) => {
+	// create star element
+	let starE = '';
+	for (let i = 1; i <= 5; i++) {
+		if (review.soSao > 0) {
+			starE += '<i class="fas fa-star"></i>';
+			review.soSao--;
+		} else {
+			starE += '<i class="far fa-star"></i>';
+		}
+	}
+
+	const reviewElement = `
+	<div class="reviews__item d-flex flex-column">
+		<div
+			class="reviews__heading d-flex justify-content-between"
+		>
+			<h4 class="reviews__title">
+				${review.tieuDe}
+			</h4>
+			<p class="reviews__c-name">${review.maKH}</p>
+		</div>
+		<div class="d-flex justify-content-between">
+			<p class="reviews__stars">
+			${starE}
+			</p>
+			<p>${review.thoiGian}</p>
+		</div>
+		<div class="reviews__content">
+			<p>
+				${review.noiDung}
+			</p>
+		</div>
+
+	</div>
+	`;
+
+	return reviewElement;
+};
+
+const displayReviews = (reviewList) => {
+	const sectionReviews = document.querySelector('.section-reviews');
+
+	let reviewRows = '';
+
+	reviewList.forEach((review) => {
+		reviewRows += createReviewElement(review);
+	});
+
+	sectionReviews.innerHTML = reviewRows;
+};
+
+const getAllReviews = (productCode) => {
+	const reviewList = JSON.parse(localStorage.getItem('reviews'));
+
+	return reviewList.filter((review) => review.maSP == productCode);
+};
+
+const displayProduct = (product) => {
 	const imgE = document.querySelector('product-detail-element #product-img');
 	const nameE = document.querySelector('product-detail-element #product-name');
 	const brandE = document.querySelector(
@@ -67,4 +125,7 @@ const getProduct = () => {
 	const product = products.find((product) => product.maSP == detailProductCode);
 
 	displayProduct(product);
+
+	const reviewList = getAllReviews(product.maSP);
+	displayReviews(reviewList);
 };
