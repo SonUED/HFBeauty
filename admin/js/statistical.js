@@ -44,15 +44,19 @@ function filterSelection(mess) {
   if (tab !== "0px") {
     for (let i = 1; i < 32; i++) {
       var sum = 0;
+      var temp=[];
       label.push(i);
-      var temp = order.filter(
+      if(temp!=null){
+        temp = order.filter(
         (item) =>
           parseInt(item[nameOfDate].split("-")[2]) == i &&
           parseInt(item[nameOfDate].split("-")[0]) == year &&
           parseInt(item[nameOfDate].split("-")[1]) == month &&
           item.trangThai !== "canceled"
       );
-      temp = temp.filter((item) =>
+      }
+      if (detailOrder!=null) {
+        temp = temp.filter((item) =>
         detailOrder.filter((detail) => detail.maDH === item.maDH)
       );
       var detail = temp.map((order) =>
@@ -63,6 +67,7 @@ function filterSelection(mess) {
           detail.map((dt) =>  sum += prd.gia * dt.soLuong)
         });
       });
+      }
       data.push(sum);
     }
   }else {
