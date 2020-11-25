@@ -3,6 +3,7 @@ var recentlyViewdArr = JSON.parse(localStorage.getItem("recentlyViewed")) || [];
 var cartArr = JSON.parse(localStorage.getItem("cartArr"));
 
 recentlyViewedProductsTemplate.innerHTML = `
+<section class="recently-viewed-products">
 <link rel="stylesheet" type="text/css" href="/component/recently-viewd-products/recently-viewed-product.style.css">
 <section class="recently-viewed-products">
     <div class="recently-viewed-products__title">
@@ -51,7 +52,7 @@ class RecentlyViewedProducts extends HTMLElement {
 }
 const createNewCardItem = (product) => {
   const row = `<div class="col-20 collection__item">
-        <div class="card text-center">
+           <div class="card text-center">
             <div class="card-top">
             <div class="card-label"><strong>-15%</strong></div>
             <div class="card-quick-view-btn"><span>QUICK VIEW</span></div>
@@ -66,7 +67,7 @@ const createNewCardItem = (product) => {
             <h5 class="card-title">${product.tenSP}</h5>
             <div class="price-box">
                 <span class="old-price">
-                <del class="text-muted">Rs. 845.00</del>
+                <del class="text-muted">Rs. 845.00</del>  
                 </span>
                 &nbsp;
                 <span class="new-price">Rs. ${product.gia}.00</span>

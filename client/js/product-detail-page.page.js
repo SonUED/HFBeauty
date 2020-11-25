@@ -2,6 +2,7 @@ const products = JSON.parse(localStorage.getItem("products"));
 const detailProductCode = localStorage.getItem("detailProductCode");
 var qualityInp = document.getElementById("quality");
 const subTotalSpan = document.getElementById("subtotal");
+var cartArr = JSON.parse(localStorage.getItem("cartArr")) || [];
 var quality = 0;
 
 const addBuyItNowBtn = () => {
