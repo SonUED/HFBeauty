@@ -11,6 +11,17 @@ const addBuyItNowBtn = () => {
 addBuyItNowBtn();
 
 const createReviewElement = (review) => {
+	//temporary customer name
+	const names = [
+		'Peter Parker',
+		'Tony Stark',
+		'Steven Rogers',
+		'Natasha Romanoff',
+		'Bruce Wayne',
+	];
+
+	const tempName = names[Math.floor(Math.random() * 5 + 1)];
+
 	// create star element
 	let starE = '';
 	for (let i = 1; i <= 5; i++) {
@@ -30,7 +41,7 @@ const createReviewElement = (review) => {
 			<h4 class="reviews__title">
 				${review.tieuDe}
 			</h4>
-			<p class="reviews__c-name">${review.maKH}</p>
+			<p class="reviews__c-name">${tempName}</p>
 		</div>
 		<div class="d-flex justify-content-between">
 			<p class="reviews__stars">

@@ -44,10 +44,10 @@ productDetailTemplate.innerHTML = `
 				</div>
 				<div class="price-box container-fluid">
 					<div class="row">
-						<span class="col-6 col-sm-3 col-md-3 col-lg-3 old-price">
+						<span class="col-6 col-sm-4 col-md-4 col-lg-3 old-price">
 						<del class="text-muted">Rs. <span id="product-old-price"></span></del>
 						</span>
-						<span class="col-6 col-sm-3 col-md-3 col-lg-3 new-price">Rs. <span id="product-price"></span></span>
+						<span class="col-6 col-sm-4 col-md-4 col-lg-3 new-price">Rs. <span id="product-price"></span></span>
 					</div>
 				</div>
 				<div class="product-detail__des">

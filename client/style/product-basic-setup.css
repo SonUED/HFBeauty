@@ -41,6 +41,28 @@ ul {
           REUSED COMPONENT
 ****************************************/
 /******* CARD *******/
+.collection__list .card {
+  padding: 0 20%;
+}
+
+@media (min-width: 576px) {
+  .collection__list .card {
+    padding: 0 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .collection__list .card {
+    padding: 0 25px;
+  }
+}
+
+@media (min-width: 992px) {
+  .collection__list .card {
+    padding: 0;
+  }
+}
+
 .card {
   border: none;
 }
@@ -72,7 +94,7 @@ ul {
 }
 
 .card-top .card-quick-view-btn {
-  visibility: hidden;
+  display: none;
   cursor: pointer;
   top: 50%;
   left: 50%;
@@ -120,6 +142,12 @@ ul {
   text-transform: uppercase;
 }
 
+.card-body .card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .card-body .card-title:hover {
   cursor: pointer;
   color: #e7040f;
@@ -138,7 +166,7 @@ ul {
 }
 
 .card-body .add-to-cart-btn {
-  visibility: hidden;
+  display: none;
   width: 100%;
   background-color: #ff416a;
   border: 1px solid black;
@@ -154,15 +182,16 @@ ul {
   margin-bottom: 5px;
 }
 
-.collection__item:hover {
-  padding: -15px;
-  -webkit-box-shadow: 0 0 5px 0.1px #b8bab9;
-          box-shadow: 0 0 5px 0.1px #b8bab9;
-}
-
-.collection__item:hover .add-to-cart-btn,
-.collection__item:hover .card-quick-view-btn {
-  visibility: visible;
+@media (min-width: 768px) {
+  .collection__item:hover {
+    padding: -15px;
+    -webkit-box-shadow: 0 0 5px 0.1px #b8bab9;
+            box-shadow: 0 0 5px 0.1px #b8bab9;
+  }
+  .collection__item:hover .add-to-cart-btn,
+  .collection__item:hover .card-quick-view-btn {
+    display: block;
+  }
 }
 
 .collection__item--featured {
