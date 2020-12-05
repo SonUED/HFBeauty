@@ -14,4 +14,4 @@ const insert = (product) => {
   //     console.log("Done");
   //   });
 };
-console.log("init in Client");
+console.log("init");
