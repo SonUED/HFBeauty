@@ -14,4 +14,4 @@ const insert = (product) => {
   //     console.log("Done");
   //   });
 };
-console.log("init");
+console.log("init in Admin");
