@@ -36,29 +36,28 @@ const isExistToLogin = (username, password) => {
   );
 };
 const handleChange = (self) => {
+  if (
+    document.getElementById("username").value == "" ||
+    document.getElementById("password").value == ""
+  ) {
+    document.getElementById("btn__login").disabled = true;
+    document.getElementById("btn__signup").disabled = true;
+  }
   if (self.value.length < 6) {
-    document.getElementById(self.id).classList.add("error");
-    errorArr.push(self.id);
     document.getElementById("error").innerHTML =
       "Tài khoản / mật khẩu phải có 6-60 ký tự !";
-  } else {
-    errorArr.splice(errorArr.indexOf(self.id), 1);
+    document.getElementById(self.id).classList.add("error");
+  }else{
+    document.getElementById("btn__login").disabled = false;
+    document.getElementById("btn__signup").disabled = false;
     document.getElementById(self.id).classList.remove("error");
     document.getElementById("error").innerHTML = "";
-    errorArr.length > 0
-      ? (document.getElementById("btn__login").disabled = true)(
-          (document.getElementById("btn__signup").disabled = true)
-        )
-      : (document.getElementById("btn__login").disabled = false)(
-          (document.getElementById("btn__signup").disabled = false)
-        );
   }
 };
 const login = (event) => {
   event.preventDefault();
   const username = document.getElementById("username");
   const password = document.getElementById("password");
-  console.log(username.value + password.value);
   if (
     isExistToLogin(username.value, password.value).length > 0 &&
     isExistToLogin(username.value, password.value)[0].vaiTro == "QuanLy"
@@ -81,7 +80,6 @@ const login = (event) => {
     alert("Dang nhap that bai");
   }
 };
-
 // SIGN UP
 const isExistToSignUp = (username) => {
   return accountData.find((user) => user.tenTaiKhoan == username);
@@ -90,7 +88,7 @@ const checkPassword = (password, confirmPassword) => {
   return password == confirmPassword;
 };
 
-const signup = (event) => {
+const signup = async (event) => {
   event.preventDefault();
   const TenTaiKhoan = document.getElementById("usernameToSignUp");
   const MatKhau = document.getElementById("passwordSignUp");
@@ -102,7 +100,7 @@ const signup = (event) => {
     if (isExistToSignUp(TenTaiKhoan.value)) {
       document.getElementById("error").innerHTML = "Tài khoản đã tồn tại !";
     } else {
-      const user = {
+      const userInfo = {
         TenTaiKhoan: TenTaiKhoan.value,
         MatKhau: MatKhau.value,
         Mail: Mail.value,
@@ -112,13 +110,27 @@ const signup = (event) => {
         DiaChi: "",
         vaiTro: "KhachHang",
       };
-      accountData.push(user);
-      localStorage.setItem("account", JSON.stringify(accountData));
+      await firebase
+        .auth()
+        .createUserWithEmailAndPassword(userInfo.Mail, userInfo.MatKhau)
+        .then((user) => {
+          console.log(user.user.uid);
+          firebase
+            .database()
+            .ref("users")
+            .child(user.user.uid)
+            .set({
+              ...userInfo,
+            })
+            .then(() => {
+              console.log("done");
+            });
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ..
+        });
     }
-    TenTaiKhoan.value = "";
-    MatKhau.value = "";
-    xacnhanMatKhau.value = "";
-    Mail.value = "";
-    document.getElementById("error").innerHTML = "Đăng ký thành công";
   }
 };
