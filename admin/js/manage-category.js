@@ -35,8 +35,7 @@ function save() {
     };
 
     if (index == '') {
-      index = category[category.length - 1].maDM;
-      index = parseInt(index.slice(2, index.length));
+      index = category.length ;
       index++;
       index = 'DM' + index;
       item.maDM = index;
@@ -46,10 +45,11 @@ function save() {
         cate.maDM === item.maDM ? item : cate
       );
     }
-
     saveCategoryToStorage();
     showCategory();
     showForm();
+    alert("Thành công");
+
   }
 }
 function editCategory(index) {
@@ -129,4 +129,3 @@ function fetchCategory() {
       localStorage.setItem('category', JSON.stringify(data['categories']));
     });
 }
-// fetchCategory()
