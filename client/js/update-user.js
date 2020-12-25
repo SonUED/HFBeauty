@@ -11,29 +11,29 @@ function showData() {
   avatar.src = currentCustomer.anhDaiDien;
   var data = `
   <div class="name">
-    <h2>${currentCustomer.tenKH}</h2>
+    <h2 id="nameShow">${currentCustomer.tenKH}</h2>
   </div>
   <div class="profile">
       <h4>Ngày sinh:</h4>
-      <p>${currentCustomer.ngaySinh}</p>
+      <p id="dateShow">${currentCustomer.ngaySinh}</p>
       <h4>Email:</h4>
-      <p>${currentCustomer.mail} </p>
+      <p id="mailShow">${currentCustomer.mail} </p>
       <h4>Số điện thoại:</h4>
-      <p>${currentCustomer.soDienThoai}</p>
+      <p id="PhoneShow">${currentCustomer.soDienThoai}</p>
       <h4>Địa chỉ:</h4>
-      <p>${currentCustomer.diaChi}</p>
-      <button type="button" class="btn btn-primary" onclick="showForm()">
+      <p id="addressShow">${currentCustomer.diaChi}</p>
+      <button type="button" class="btn btn-primary" onclick="showFormUpdate()">
         Cập nhật thông tin
       </button>
   </div>`;
   document.querySelector('.show-data').innerHTML += data;
 }
-function showForm() {
+function showFormUpdate() {
   document.querySelector('.form-customer').style.display = 'block';
   document.querySelector('.profile').style.display = 'none';
   document.querySelector('.overlay').style.display = 'block';
 
-  document.querySelector('#name').value = currentCustomer.tenKH;
+  document.querySelector('#name1').value = currentCustomer.tenKH;
   document.querySelector('#date').value = currentCustomer.ngaySinh;
   document.querySelector('#mail').value = currentCustomer.mail;
   document.querySelector('#phone').value = currentCustomer.soDienThoai;
@@ -50,7 +50,7 @@ function save() {
   getCustomerFromStorage();
   var indexOfCurrentCustomer = customer.indexOf(currentCustomer);
 
-  currentCustomer.tenKH = document.querySelector('#name').value;
+  currentCustomer.tenKH = document.querySelector('#name1').value;
   currentCustomer.ngaySinh = document.querySelector('#date').value;
   currentCustomer.mail = document.querySelector('#mail').value;
   currentCustomer.soDienThoai = document.querySelector('#phone').value;
@@ -62,6 +62,7 @@ function save() {
   saveCurrentCustomerToStorage();
   hiddenForm();
   showData();
+  alert("Đã sửa thành công")
 }
 
 function changeImage(imgAvatar) {
